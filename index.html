@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INCIDB — The Complete Skincare & Cosmetics INCI Database for Developers</title>
+    <meta name="description" content="Download normalized, multi-source chemical composition data for 19,847 beauty products. Enriched with EU CosIng, FDA MoCRA allergens, EWG toxicology scores, and CIR clinical safety verdicts in ready-to-query CSV and Apache Parquet format.">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="grid-overlay"></div>
+
+    <!-- Header / Nav -->
+    <header>
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                INCIDB <span class="logo-badge">v1.0.0</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#explorer" class="nav-link">Live Explorer</a>
+                <a href="#registries" class="nav-link">8-Source Registry</a>
+                <a href="DATA_DICTIONARY.md" class="nav-link">Data Schema</a>
+                <a href="#pricing" class="nav-link">Pricing Plans</a>
+                <a href="README.md" class="btn btn-secondary">Documentation</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-pill">
+                <span>●</span> Audited 1-to-1 Parquet & CSV Flat Files · Released July 2026
+            </div>
+            <h1 class="hero-title">
+                The Skincare & Cosmetics INCI Database for <span>Developers & AI Platforms</span>
+            </h1>
+            <p class="hero-subtitle">
+                Normalized chemical composition data for <strong>19,847 commercial beauty products</strong> across <strong>57,181 canonical INCI compounds</strong>. Enriched with clinical safety monographs, contact dermatitis allergens, and toxicology profiles from 8 global regulatory registries.
+            </p>
+            <div class="hero-actions">
+                <a href="#pricing" class="btn btn-primary">Explore Commercial Tiers →</a>
+                <a href="samples/products.csv" download class="btn btn-secondary">Download Free CSV Samples</a>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-number">19,847</div>
+                    <div class="metric-label">Commercial Formulations</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">57,181</div>
+                    <div class="metric-label">Canonical INCI Compounds</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">330,088</div>
+                    <div class="metric-label">Relational Junction Mappings</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">5,994</div>
+                    <div class="metric-label">Global Cosmetic Brands</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Query Explorer -->
+    <section id="explorer" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Interactive Preview</div>
+                <h2 class="section-title">Query High-Performance Apache Parquet & CSV</h2>
+            </div>
+
+            <div class="explorer-window">
+                <div class="explorer-toolbar">
+                    <div class="dots">
+                        <div class="dot dot-red"></div>
+                        <div class="dot dot-yellow"></div>
+                        <div class="dot dot-green"></div>
+                    </div>
+                    <div class="explorer-tabs">
+                        <button class="tab-btn active" onclick="switchTab('sql')">DuckDB SQL Query</button>
+                        <button class="tab-btn" onclick="switchTab('python')">PyArrow / Pandas</button>
+                        <button class="tab-btn" onclick="switchTab('json')">Live Formulation Record</button>
+                    </div>
+                </div>
+                <div class="explorer-body" id="code-content">
+                    <!-- Default SQL View -->
+<pre><code><span class="keyword">SELECT</span> 
+    i.inci_name,
+    i.ewg_hazard_score,
+    i.is_common_allergen,
+    pi.position_index AS concentration_rank
+<span class="keyword">FROM</span> <span class="string">'data/exports/parquet/product_ingredients.parquet'</span> pi
+<span class="keyword">JOIN</span> <span class="string">'data/exports/parquet/ingredients.parquet'</span> i <span class="keyword">ON</span> pi.ingredient_id = i.ingredient_id
+<span class="keyword">WHERE</span> pi.product_id = <span class="number">67455</span>
+<span class="keyword">ORDER BY</span> pi.position_index <span class="keyword">ASC</span>;
+
+<span class="comment">-- Output: Good Genes All-In-One Lactic Acid Treatment (Brand: Sunday Riley)</span>
+<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span>
+<span class="comment">-- | inci_name                       | ewg_hazard_score | is_common_allergen | concentration_rank|</span>
+<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span>
+<span class="comment">-- | WATER/EAU/AQUA                  | 1.0              | 0                  | 1                |</span>
+<span class="comment">-- | LACTIC ACID                     | 4.0              | 0                  | 2                |</span>
+<span class="comment">-- | OPUNTIA TUNA FRUIT EXTRACT      | 1.0              | 0                  | 3                |</span>
+<span class="comment">-- | SQUALANE                        | 1.0              | 0                  | 4                |</span>
+<span class="comment">-- | CYMBOPOGON SCHOENANTHUS OIL     | 2.0              | 1 (FDA MoCRA Alert)| 12               |</span>
+<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8-Source Regulatory Integration Grid -->
+    <section id="registries" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Data Architecture</div>
+                <h2 class="section-title">Unified 8-Source Toxicological & Clinical Registry</h2>
+            </div>
+
+            <div class="registry-grid">
+                <div class="registry-card">
+                    <span class="registry-badge">EU Regulation</span>
+                    <h3 class="registry-title">European Commission CosIng</h3>
+                    <p class="registry-desc">Official EU chemical inventory mappings with exact CAS registry numbers and restricted formulation thresholds.</p>
+                </div>
+                <div class="registry-card">
+                    <span class="registry-badge">US FDA</span>
+                    <h3 class="registry-title">FDA MoCRA Allergen Registry</h3>
+                    <p class="registry-desc">Explicit flags for mandatory Modernization of Cosmetics Regulation Act contact dermatitis fragrance allergens.</p>
+                </div>
+                <div class="registry-card">
+                    <span class="registry-badge">Toxicology</span>
+                    <h3 class="registry-title">EWG Skin Deep Hazard Scores</h3>
+                    <p class="registry-desc">Granular hazard scores (1-10) with explicit sub-score flags for Carcinogenicity and Endocrine Disruption.</p>
+                </div>
+                <div class="registry-card">
+                    <span class="registry-badge">Clinical Science</span>
+                    <h3 class="registry-title">CIR Scientific Safety Verdicts</h3>
+                    <p class="registry-desc">Expert Panel peer-reviewed safety monographs ("Safe as used", "Safe with qualifications") and concentration limits.</p>
+                </div>
+                <div class="registry-card">
+                    <span class="registry-badge">Clinical Dermatology</span>
+                    <h3 class="registry-title">NLM DailyMed Clinical OTC</h3>
+                    <p class="registry-desc">Formulations harvested from US National Library of Medicine clinical dermatological topical drug labels.</p>
+                </div>
+                <div class="registry-card">
+                    <span class="registry-badge">Asian Standard</span>
+                    <h3 class="registry-title">K-Beauty MFDS Standards</h3>
+                    <p class="registry-desc">Functional whitening, barrier repair, and anti-wrinkle actives from the Korean Ministry of Food and Drug Safety.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commercial Pricing Plans -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <div class="section-eyebrow">Transparent Licensing</div>
+                <h2 class="section-title">Commercial Data Licensing Plans</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">One-time snapshot archives or continuous bi-weekly release subscriptions.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Free Sample -->
+                <div class="pricing-card">
+                    <div class="tier-name">Free Sample</div>
+                    <div class="tier-desc">Preview schema and integration pipelines before purchasing.</div>
+                    <div class="tier-price">$0 <span>/ sample</span></div>
+                    <ul class="tier-features">
+                        <li class="included"><span class="check-icon">✓</span> 10 sample rows per table</li>
+                        <li class="included"><span class="check-icon">✓</span> Pipe-delimited CSV (`|`)</li>
+                        <li class="included"><span class="check-icon">✓</span> PyArrow Parquet previews</li>
+                        <li><span class="cross-icon">✕</span> Full 19,847 product catalog</li>
+                        <li><span class="cross-icon">✕</span> EWG Carcinogenicity Flags</li>
+                        <li><span class="cross-icon">✕</span> Continuous updates</li>
+                    </ul>
+                    <a href="samples/products.csv" download class="btn btn-secondary" style="justify-content: center;">Download Free Samples</a>
+                </div>
+
+                <!-- One-Time Core -->
+                <div class="pricing-card">
+                    <div class="tier-name">One-Time Core</div>
+                    <div class="tier-desc">Complete CSV database snapshot for indie mobile apps & catalogs.</div>
+                    <div class="tier-price">$250 <span>USD one-time</span></div>
+                    <ul class="tier-features">
+                        <li class="included"><span class="check-icon">✓</span> All 19,847 formulations</li>
+                        <li class="included"><span class="check-icon">✓</span> All 57,181 INCI compounds</li>
+                        <li class="included"><span class="check-icon">✓</span> All 5,994 global brands</li>
+                        <li class="included"><span class="check-icon">✓</span> Pipe-delimited CSV format</li>
+                        <li><span class="cross-icon">✕</span> Apache Parquet archives</li>
+                        <li><span class="cross-icon">✕</span> Bi-weekly release updates</li>
+                    </ul>
+                    <button onclick="openModal('One-Time Core ($250 USD)')" class="btn btn-secondary" style="width: 100%; justify-content: center;">Purchase License</button>
+                </div>
+
+                <!-- One-Time Full -->
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="tier-name">One-Time Full Database</div>
+                    <div class="tier-desc">Complete CSV + Parquet archive with clinical & toxicology profiles.</div>
+                    <div class="tier-price">$500 <span>USD one-time</span></div>
+                    <ul class="tier-features">
+                        <li class="included"><span class="check-icon">✓</span> Everything in Core</li>
+                        <li class="included"><span class="check-icon">✓</span> High-Performance Parquet (`pyarrow`)</li>
+                        <li class="included"><span class="check-icon">✓</span> EWG Carcinogen & Endocrine Flags</li>
+                        <li class="included"><span class="check-icon">✓</span> CIR Expert Safety Verdicts</li>
+                        <li class="included"><span class="check-icon">✓</span> Enterprise Commercial License</li>
+                        <li><span class="cross-icon">✕</span> Bi-weekly release updates</li>
+                    </ul>
+                    <button onclick="openModal('One-Time Full Database ($500 USD)')" class="btn btn-primary" style="width: 100%; justify-content: center;">Purchase License</button>
+                </div>
+
+                <!-- Annual Subscription -->
+                <div class="pricing-card">
+                    <div class="tier-name">Annual Subscription</div>
+                    <div class="tier-desc">Continuous bi-weekly data drops for active AI formulation platforms.</div>
+                    <div class="tier-price">$2,400 <span>USD / year</span></div>
+                    <ul class="tier-features">
+                        <li class="included"><span class="check-icon">✓</span> Everything in Full Database</li>
+                        <li class="included"><span class="check-icon">✓</span> Bi-weekly releases (26 drops/yr)</li>
+                        <li class="included"><span class="check-icon">✓</span> Latest regulatory restriction updates</li>
+                        <li class="included"><span class="check-icon">✓</span> New product launches & INCI additions</li>
+                        <li class="included"><span class="check-icon">✓</span> Dedicated engineering support</li>
+                        <li class="included"><span class="check-icon">✓</span> Unlimited enterprise deployment</li>
+                    </ul>
+                    <button onclick="openModal('Annual Subscription ($2,400 USD/year)')" class="btn btn-secondary" style="width: 100%; justify-content: center;">Subscribe Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-card">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Request Commercial License</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;" id="modalTierDesc">You selected a licensing tier.</p>
+            
+            <div style="background: #0E1015; padding: 1rem; border-radius: 6px; font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
+                <span style="color: var(--accent-cyan);">B2B Direct Ingestion Ready:</span><br>
+                Instant delivery via AWS S3 signed bucket or direct GitHub private repository access upon license verification.
+            </div>
+
+            <button onclick="alert('Thank you for your interest! Please contact enterprise@incidb.net or submit a GitHub issue to finalize your data license invoice.'); closeModal();" class="btn btn-primary" style="width: 100%; justify-content: center;">Proceed to B2B Invoice Checkout</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>INCIDB Data Engineering Pipeline v1.0.0 · Normalized & Audited July 2026</p>
+            <p style="margin-top: 0.5rem;"><a href="DATA_DICTIONARY.md" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="docs/pricing_plan.md" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="README.md" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const tabContents = {
+            sql: `<pre><code><span class="keyword">SELECT</span> 
+    i.inci_name,
+    i.ewg_hazard_score,
+    i.is_common_allergen,
+    pi.position_index AS concentration_rank
+<span class="keyword">FROM</span> <span class="string">'data/exports/parquet/product_ingredients.parquet'</span> pi
+<span class="keyword">JOIN</span> <span class="string">'data/exports/parquet/ingredients.parquet'</span> i <span class="keyword">ON</span> pi.ingredient_id = i.ingredient_id
+<span class="keyword">WHERE</span> pi.product_id = <span class="number">67455</span>
+<span class="keyword">ORDER BY</span> pi.position_index <span class="keyword">ASC</span>;
+
+<span class="comment">-- Output: Good Genes All-In-One Lactic Acid Treatment (Brand: Sunday Riley)</span>
+<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span>
+<span class="comment">-- | inci_name                       | ewg_hazard_score | is_common_allergen | concentration_rank|</span>
+<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span>
+<span class="comment">-- | WATER/EAU/AQUA                  | 1.0              | 0                  | 1                |</span>
+<span class="comment">-- | LACTIC ACID                     | 4.0              | 0                  | 2                |</span>
+<span class="comment">-- | OPUNTIA TUNA FRUIT EXTRACT      | 1.0              | 0                  | 3                |</span>
+<span class="comment">-- | SQUALANE                        | 1.0              | 0                  | 4                |</span>
+<span class="comment">-- | CYMBOPOGON SCHOENANTHUS OIL     | 2.0              | 1 (FDA MoCRA Alert)| 12               |</span>
+<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span></code></pre>`,
+            python: `<pre><code><span class="keyword">import</span> pyarrow.parquet <span class="keyword">as</span> pq
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="comment"># Load high-performance Parquet datasets</span>
+products = pq.read_table(<span class="string">'data/exports/parquet/products.parquet'</span>).to_pandas()
+ingredients = pq.read_table(<span class="string">'data/exports/parquet/ingredients.parquet'</span>).to_pandas()
+
+<span class="comment"># Filter endocrine disruptors and carcinogenic flagged ingredients</span>
+high_risk = ingredients[(ingredients[<span class="string">'cancer_hazard_flag'</span>] == <span class="number">1</span>) | (ingredients[<span class="string">'endocrine_hazard_flag'</span>] == <span class="number">1</span>)]
+print(<span class="string">f"Flagged {len(high_risk)} toxicological hazard compounds across {len(products):,} formulations."</span>)</code></pre>`,
+            json: `<pre><code>{
+  <span class="string">"product_id"</span>: <span class="number">67455</span>,
+  <span class="string">"name"</span>: <span class="string">"Good Genes All-In-One Lactic Acid Treatment"</span>,
+  <span class="string">"brand"</span>: <span class="string">"Sunday Riley"</span>,
+  <span class="string">"category"</span>: <span class="string">"Skincare"</span>,
+  <span class="string">"retail_price_usd"</span>: <span class="number">85.0</span>,
+  <span class="string">"clinical_safety_profile"</span>: {
+    <span class="string">"total_ingredients"</span>: <span class="number">28</span>,
+    <span class="string">"avg_ewg_score"</span>: <span class="number">1.4</span>,
+    <span class="string">"mocra_allergens_flagged"</span>: <span class="number">1</span>,
+    <span class="string">"cir_verdict"</span>: <span class="string">"Safe with qualifications (Lactic Acid max 10% pH >= 3.5)"</span>
+  }
+}</code></pre>`
+        };
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('code-content').innerHTML = tabContents[tab];
+        }
+
+        function openModal(tier) {
+            document.getElementById('modalTierDesc').innerText = `You are requesting a commercial data license for: ${tier}.`;
+            document.getElementById('checkoutModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
