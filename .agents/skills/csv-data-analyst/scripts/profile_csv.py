@@ -21,7 +21,7 @@ def profile_csv(file_path: str, delimiter: str = "|"):
     print(f"[*] Delimiter: {repr(delimiter)}")
 
     try:
-        df = pd.read_csv(file_path, sep=delimiter, dtype=str, low_memory=False)
+        df = pd.read_csv(file_path, sep=delimiter, dtype=str, low_memory=False, keep_default_na=False)
     except Exception as e:
         print(f"[!] Failed to read CSV: {e}")
         return
