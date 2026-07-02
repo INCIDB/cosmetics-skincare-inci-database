@@ -1,0 +1,16 @@
+# INCIDB — The Complete Skincare & Cosmetics INCI Database
+
+> Comprehensive, multi-source skincare and cosmetic formulation database unifying 19,847 commercial products, 57,181 canonical INCI ingredients, 5,994 global brands, and 330,088 relational composition mappings. Enriched with clinical safety monographs, contact dermatitis allergens, and toxicology profiles from 8 international regulatory bodies.
+
+## Key Links & Documentation
+- [Landing Page](https://incidb.net/)
+- [GitHub Repository](https://github.com/Ichlibitiche/skincare-cosmetics-incidb)
+- [Data Dictionary & Field Definitions](https://incidb.net/DATA_DICTIONARY.md)
+- [Apache Parquet Technical Schema](https://incidb.net/SPEC.md)
+- [Commercial Data Licensing & Pricing](https://incidb.net/docs/pricing_plan.md)
+- [Free Preview CSV Samples](https://incidb.net/samples/products.csv)
+
+## Core Capabilities & Specs
+- **Data Formats:** Pipe-delimited CSV (`|`) and Apache Parquet (`pyarrow`).
+- **Regulatory Registries Included:** EU CosIng, US FDA MoCRA Contact Allergens, EWG Skin Deep Toxicology (Carcinogenic & Endocrine flags), CIR Expert Panel Safety Verdicts, NLM DailyMed Clinical OTC, K-Beauty MFDS Functional Standards.
+- **Licensing Tiers:** Free Sample ($0), One-Time Core ($250 USD), One-Time Full Database ($500 USD).
