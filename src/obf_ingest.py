@@ -1,8 +1,10 @@
+import gzip
 import json
 import re
 import requests
 from pathlib import Path
 from typing import Dict, Any, List
+from src.enricher import normalize_ingredients, ingest_product_record
 
 OBF_SEARCH_URL = "https://world.openbeautyfacts.org/cgi/search.pl"
 
@@ -107,6 +109,40 @@ def fetch_obf_products(limit: int = 200, max_pages: int = 5, output_dir: Path = 
         
     print(f"[OBF Success] Saved {len(saved_files)} Open Beauty Facts products to {output_dir}.")
     return saved_files
+
+def ingest_obf_dump(dump_path: Path, db_path: Path, max_records: int = None, batch_size: int = 500) -> int:
+    """Streams JSON lines from a compressed (.jsonl.gz) dump file, normalizes ingredients, and stores in SQLite."""
+    if not dump_path.exists():
+        return 0
+        
+    count = 0
+    print(f"[OBF Dump] Streaming compressed archive {dump_path} into {db_path}...")
+    with gzip.open(dump_path, "rt", encoding="utf-8", errors="replace") as f:
+        for line in f:
+            if not line.strip():
+                continue
+            try:
+                raw_item = json.loads(line)
+            except Exception:
+                continue
+                
+            ing = raw_item.get("ingredients_text") or raw_item.get("ingredients_text_en") or raw_item.get("ingredients_text_fr") or ""
+            if not ing or len(ing) < 5:
+                continue
+                
+            formatted = parse_obf_item(raw_item)
+            normalized = normalize_ingredients(formatted["raw_ingredients"], use_mock_if_no_key=True)
+            ingest_product_record(db_path, formatted, normalized)
+            count += 1
+            
+            if max_records and count >= max_records:
+                break
+                
+            if count % batch_size == 0:
+                print(f"[OBF Dump Progress] Ingested {count} records...")
+                
+    print(f"[OBF Dump Success] Ingested {count} cosmetic formulations from compressed dump {dump_path}.")
+    return count
 
 if __name__ == "__main__":
     out = Path("data/raw/obf")

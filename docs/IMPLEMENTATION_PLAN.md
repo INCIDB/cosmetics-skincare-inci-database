@@ -52,7 +52,7 @@ This implementation plan breaks down the development of the INCIDB prototype int
     *   Re-run exporters (`src/exporter.py`) to update CSV and Parquet exports.
 *   **Verification:** Query SQLite database and confirm over 50 real cosmetic products and hundreds of unique INCI ingredients are present.
 
-## Phase 7: Multi-Source Bulk Ingestion (OBF Deep Crawl & DailyMed OTC Skincare)
+## Phase 7: Multi-Source Bulk Ingestion (OBF Deep Crawl & DailyMed OTC Skincare) [COMPLETED]
 *   **Goal:** Deep crawl Open Beauty Facts across multiple pagination batches and add US National Library of Medicine (DailyMed) OTC skincare products to ingest thousands of formulations.
 *   **Tasks:**
     *   Update `src/obf_ingest.py` to support multi-page pagination loops (`max_pages`) for bulk ingestion.
@@ -61,3 +61,13 @@ This implementation plan breaks down the development of the INCIDB prototype int
     *   Update `src/utils.py` to create `data/raw/dailymed/`.
     *   Update `run_pipeline.py` to orchestrate all three sources (Sephora, Open Beauty Facts bulk, DailyMed OTC).
 *   **Verification:** Verify database record counts expand significantly across multi-source origins.
+
+## Phase 8: Offline Bulk Compressed Dump Ingestion (`jsonl.gz`) [COMPLETED]
+*   **Goal:** Stream and ingest massive offline compressed dataset dumps (`data/raw/obf/openbeautyfacts-products.jsonl.gz`) efficiently into SQLite with batched transactions.
+*   **Tasks:**
+    *   Add `ingest_obf_dump(dump_path: Path, db_path: Path, max_records: int = None, batch_size: int = 500) -> int` to `src/obf_ingest.py`.
+    *   Use `gzip` streaming to read JSON lines without exhausting RAM.
+    *   Filter valid cosmetic products containing `ingredients_text`.
+    *   Perform batched database inserts and ingredient normalizations.
+    *   Update `run_pipeline.py` to automatically detect and ingest compressed `.jsonl.gz` archives if present under `data/raw/obf/`.
+*   **Verification:** Verify database product count increases massively from the compressed archive.
