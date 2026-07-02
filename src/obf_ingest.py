@@ -62,33 +62,38 @@ def generate_obf_fallback_sample(count: int = 50) -> List[Dict[str, Any]]:
         })
     return items
 
-def fetch_obf_products(limit: int = 50, output_dir: Path = Path("data/raw/obf"), use_sample_if_offline: bool = True) -> List[Path]:
-    """Queries Open Beauty Facts API for cosmetic products with ingredient listings and caches them."""
+def fetch_obf_products(limit: int = 200, max_pages: int = 5, output_dir: Path = Path("data/raw/obf"), use_sample_if_offline: bool = True) -> List[Path]:
+    """Queries Open Beauty Facts API across multiple pages for cosmetic products and caches them."""
     output_dir.mkdir(parents=True, exist_ok=True)
     saved_files = []
-    
-    params = {
-        "action": "process",
-        "json": "1",
-        "page_size": str(max(limit * 2, 100)),
-        "fields": "code,product_name,brands,ingredients_text,url"
-    }
-    
     raw_items = []
+    
     try:
-        print(f"[OBF Ingest] Querying Open Beauty Facts API for products...")
-        resp = requests.get(OBF_SEARCH_URL, params=params, timeout=10, headers={"User-Agent": "INCIDB-Research-Agent/1.0"})
-        if resp.status_code == 200:
-            data = resp.json()
-            products = data.get("products", [])
-            for p in products:
-                ing = p.get("ingredients_text", "")
-                if ing and len(ing) > 10:
-                    raw_items.append(p)
-                if len(raw_items) >= limit:
+        print(f"[OBF Ingest] Deep querying Open Beauty Facts API across up to {max_pages} pages (target {limit} items)...")
+        for page in range(1, max_pages + 1):
+            if len(raw_items) >= limit:
+                break
+            params = {
+                "action": "process",
+                "json": "1",
+                "page": str(page),
+                "page_size": "100",
+                "fields": "code,product_name,brands,ingredients_text,url"
+            }
+            resp = requests.get(OBF_SEARCH_URL, params=params, timeout=10, headers={"User-Agent": "INCIDB-Research-Agent/1.0"})
+            if resp.status_code == 200:
+                data = resp.json()
+                products = data.get("products", [])
+                if not products:
                     break
+                for p in products:
+                    ing = p.get("ingredients_text", "")
+                    if ing and len(ing) > 10:
+                        raw_items.append(p)
+                    if len(raw_items) >= limit:
+                        break
     except Exception as e:
-        print(f"[OBF Note] Live network request failed ({e}).")
+        print(f"[OBF Note] Live network request stopped/failed ({e}).")
         
     if len(raw_items) < limit and use_sample_if_offline:
         print(f"[OBF Ingest] Supplementary sample fallback activated to reach {limit} products.")

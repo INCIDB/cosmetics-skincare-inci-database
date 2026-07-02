@@ -41,7 +41,7 @@ This implementation plan breaks down the development of the INCIDB prototype int
     *   Write Parquet files for each main relational table.
 *   **Verification:** Read Parquet and CSV files in pandas to verify column schemas and records match database.
 
-## Phase 6: Open Beauty Facts At-Scale Ingestion
+## Phase 6: Open Beauty Facts At-Scale Ingestion [COMPLETED]
 *   **Goal:** Connect to the Open Beauty Facts public JSON API to fetch and ingest 50+ real cosmetic products with INCI ingredient strings.
 *   **Tasks:**
     *   Write `src/obf_ingest.py` to query Open Beauty Facts API (`https://world.openbeautyfacts.org/cgi/search.pl?action=process&json=1&page_size=50`).
@@ -51,3 +51,13 @@ This implementation plan breaks down the development of the INCIDB prototype int
     *   Enrich with EWG/CosIng safety ratings using `src/safety_enricher.py`.
     *   Re-run exporters (`src/exporter.py`) to update CSV and Parquet exports.
 *   **Verification:** Query SQLite database and confirm over 50 real cosmetic products and hundreds of unique INCI ingredients are present.
+
+## Phase 7: Multi-Source Bulk Ingestion (OBF Deep Crawl & DailyMed OTC Skincare)
+*   **Goal:** Deep crawl Open Beauty Facts across multiple pagination batches and add US National Library of Medicine (DailyMed) OTC skincare products to ingest thousands of formulations.
+*   **Tasks:**
+    *   Update `src/obf_ingest.py` to support multi-page pagination loops (`max_pages`) for bulk ingestion.
+    *   Write `src/dailymed_ingest.py` to query NLM DailyMed API (`https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json`) for topical dermatological & skincare products (acne, sunscreen, lotions).
+    *   Extract active and inactive ingredients from DailyMed SPL labels and save raw JSONs under `data/raw/dailymed/`.
+    *   Update `src/utils.py` to create `data/raw/dailymed/`.
+    *   Update `run_pipeline.py` to orchestrate all three sources (Sephora, Open Beauty Facts bulk, DailyMed OTC).
+*   **Verification:** Verify database record counts expand significantly across multi-source origins.
