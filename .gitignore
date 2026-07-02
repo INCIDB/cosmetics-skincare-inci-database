@@ -21,6 +21,13 @@ run_pipeline.py
 clean_exports.py
 pytest.ini
 
+# Internal Specs & Planning Documents
+docs/IMPLEMENTATION_PLAN.md
+docs/extraction_pipeline.py
+docs/functional_specification.md
+docs/technical_specification.md
+docs/walkthrough.md
+
 # Agent & Internal Audit Reports
 .agents/
 ACTION-PLAN.md
