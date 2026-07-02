@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this skill package in research, audits, or derivative tooling, please cite it."
+title: "Agentic SEO Skill"
+type: software
+authors:
+  - family-names: "Bhanunamikaze"
+repository-code: "https://github.com/Bhanunamikaze/Agentic-SEO-Skill"
+url: "https://github.com/Bhanunamikaze/Agentic-SEO-Skill"
+license: "MIT"
+date-released: "2026-05-15"
+abstract: "LLM-first SEO skill package for agent IDEs, with sub-skills, references, agents, and validation scripts for website and GitHub SEO workflows."
+keywords:
+  - SEO
+  - technical SEO
+  - GitHub SEO
+  - agent skills
+  - LLM workflows

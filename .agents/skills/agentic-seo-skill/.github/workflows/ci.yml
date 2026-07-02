@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile Python scripts
+        run: python -m compileall scripts
+
+      - name: Validate skill inventory
+        run: python scripts/validate_skill_inventory.py
+
+      - name: Check reference freshness markers
+        run: python scripts/reference_freshness.py resources/references --max-age-days 90
