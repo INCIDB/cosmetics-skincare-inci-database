@@ -93,30 +93,45 @@ def generate_dailymed_fallback_sample(count: int = 50) -> List[Dict[str, Any]]:
         results.append(base)
     return results
 
-def fetch_dailymed_products(limit: int = 50, output_dir: Path = Path("data/raw/dailymed"), use_sample_if_offline: bool = True) -> List[Path]:
-    """Fetches FDA SPL clinical topical records from DailyMed or fallback dataset and caches them."""
+def fetch_dailymed_products(limit: int = None, max_pages: int = 10, output_dir: Path = Path("data/raw/dailymed"), use_sample_if_offline: bool = True) -> List[Path]:
+    """Fetches FDA SPL clinical topical records across multiple pages from DailyMed and caches them."""
     output_dir.mkdir(parents=True, exist_ok=True)
     saved_files = []
-    
     raw_items = []
+    
+    keywords = ["CREAM", "LOTION", "GEL", "OINTMENT", "BALM", "SERUM", "PASTE", "WASH", "CLEANSER", "SUNSCREEN", "ACNE", "MOISTUR", "SHAMPOO", "SOAP", "DEODORANT", "SKIN", "TOPICAL"]
+    
     try:
-        print(f"[DailyMed Ingest] Querying National Library of Medicine SPL REST API...")
-        resp = requests.get(DAILYMED_SPL_API, params={"drug_class": "topical", "pagesize": str(limit)}, timeout=8, headers={"User-Agent": "INCIDB-Research-Agent/1.0"})
-        if resp.status_code == 200:
-            data = resp.json()
-            spls = data.get("data", [])
-            for item in spls:
-                if item.get("title") and len(raw_items) < limit:
-                    raw_items.append(item)
+        pages_to_fetch = max_pages if max_pages is not None else 50
+        print(f"[DailyMed Ingest] Deep querying National Library of Medicine SPL REST API across up to {pages_to_fetch} pages...")
+        for page in range(1, pages_to_fetch + 1):
+            if limit is not None and len(raw_items) >= limit:
+                break
+            params = {"pagesize": "100", "page": str(page)}
+            resp = requests.get(DAILYMED_SPL_API, params=params, timeout=10, headers={"User-Agent": "INCIDB-Research-Agent/1.0"})
+            if resp.status_code == 200:
+                data = resp.json()
+                spls = data.get("data", [])
+                if not spls:
+                    break
+                for item in spls:
+                    title = str(item.get("title", "")).upper()
+                    if any(kw in title for kw in keywords):
+                        raw_items.append(item)
+                    if limit is not None and len(raw_items) >= limit:
+                        break
+            else:
+                break
     except Exception as e:
-        print(f"[DailyMed Note] Live API connection fallback triggered ({e}).")
+        print(f"[DailyMed Note] Live API connection stopped/fallback triggered ({e}).")
         
-    if len(raw_items) < limit and use_sample_if_offline:
-        print(f"[DailyMed Ingest] Supplementary clinical SPL fallback activated to reach {limit} products.")
-        missing = limit - len(raw_items)
+    target_limit = limit if limit is not None else len(raw_items)
+    if len(raw_items) < target_limit and use_sample_if_offline and target_limit <= 100:
+        print(f"[DailyMed Ingest] Supplementary clinical SPL fallback activated.")
+        missing = target_limit - len(raw_items)
         raw_items.extend(generate_dailymed_fallback_sample(missing))
         
-    for item in raw_items[:limit]:
+    for item in (raw_items[:limit] if limit is not None else raw_items):
         formatted = parse_dailymed_item(item)
         fp = save_dailymed_product(formatted, output_dir)
         saved_files.append(fp)

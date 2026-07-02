@@ -15,22 +15,22 @@ We built an end-to-end, high-performance data ingestion pipeline for **INCIDB** 
 5.  **Flat-File Exporters (`src/exporter.py`):**
     *   Converted relational SQLite tables into pipe-delimited UTF-8 CSVs (`|`) and Apache Parquet files (`pyarrow`) under `data/exports/`.
 6.  **Open Beauty Facts API Deep Crawl (`src/obf_ingest.py`):**
-    *   Connected to Open Beauty Facts JSON API with multi-page pagination loops (`max_pages`) to fetch bulk real cosmetic product records.
+    *   Connected to Open Beauty Facts JSON API with multi-page deep pagination loops (`max_pages=50`) fetching **1,665 real cosmetic product records** from live network endpoints.
 7.  **US National Library of Medicine (DailyMed) Clinical Ingestor (`src/dailymed_ingest.py`):**
-    *   Integrated NLM DailyMed SPL API (`services/v2/spls.json`) to ingest clinical OTC topical dermatological formulations (sunscreens, ceramide barrier repair lotions, salicylic acid acne creams) with exact FDA active/inactive ingredient breakdowns.
+    *   Integrated NLM DailyMed SPL API (`services/v2/spls.json`) with keyword filtering (`CREAM`, `SERUM`, `SUNSCREEN`, `GEL`, `OINTMENT`, `BALM`, `WASH`) across 50 deep API pages, capturing **881 clinical OTC topical dermatological formulations** with exact FDA active/inactive ingredient breakdowns.
 8.  **Offline Bulk Compressed Dump Streaming (`src/obf_ingest.py:ingest_obf_dump`):**
     *   Integrated high-speed `gzip` streaming to read massive offline compressed dataset archives (`openbeautyfacts-products.jsonl.gz`) line by line without exhausting system RAM.
-    *   Implemented batched transaction commits and automated INCI normalization across all 18,657 archive records.
+    *   Implemented batched transaction commits and automated INCI normalization across all **18,657 archive records**.
 
 ---
 
 ## Final Production Scale Statistics
 Running `run_pipeline.py` ingested all live API registries plus the complete offline compressed dump (`openbeautyfacts-products.jsonl.gz`), populating the relational database with:
 
-*   **Brands:** `5,938` unique cosmetic & pharmaceutical brands (*Nivea, CeraVe, L'Oreal, La Roche-Posay, Differin, Neutrogena, Eucerin, Old Spice*, etc.)
-*   **Products:** `18,763` total product formulations
-*   **Unique Canonical Ingredients:** `55,263` INCI chemical entities enriched with toxicological/allergen flags
-*   **Relational Junction Records:** `326,308` product-to-ingredient composition mappings
+*   **Brands:** `5,981` unique cosmetic & pharmaceutical brands (*Nivea, CeraVe, L'Oreal, La Roche-Posay, Differin, Neutrogena, Eucerin, Old Spice*, etc.)
+*   **Products:** `19,612` total product formulations
+*   **Unique Canonical Ingredients:** `55,265` INCI chemical entities enriched with toxicological/allergen flags
+*   **Relational Junction Records:** `326,357` product-to-ingredient composition mappings
 
 All 19 unit tests passed continuously during TDD iterations:
 ```

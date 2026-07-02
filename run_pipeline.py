@@ -7,7 +7,7 @@ from src.dailymed_ingest import fetch_dailymed_products
 from src.safety_enricher import enrich_database_safety
 from src.exporter import export_to_csv, export_to_parquet
 
-def run(max_dump_records: int = None):
+def run(max_dump_records: int = None, live_limit: int = None, live_pages: int = 50):
     print("=== INCIDB Multi-Source Ingestion Pipeline ===")
     
     # Step 1: Init DB & dirs
@@ -19,8 +19,8 @@ def run(max_dump_records: int = None):
     dailymed_dir = Path("data/raw/dailymed")
     
     scraped_sephora = scrape_sephora_products(sephora_dir)
-    scraped_obf = fetch_obf_products(limit=250, max_pages=5, output_dir=obf_dir)
-    scraped_dailymed = fetch_dailymed_products(limit=100, output_dir=dailymed_dir)
+    scraped_obf = fetch_obf_products(limit=live_limit, max_pages=live_pages, output_dir=obf_dir)
+    scraped_dailymed = fetch_dailymed_products(limit=live_limit, max_pages=live_pages, output_dir=dailymed_dir)
     
     total_raw = len(scraped_sephora) + len(scraped_obf) + len(scraped_dailymed)
     print(f"[*] Step 2 Complete: Scraped/Fetched {total_raw} raw product records ({len(scraped_sephora)} Sephora, {len(scraped_obf)} Open Beauty Facts, {len(scraped_dailymed)} NLM DailyMed).")

@@ -64,16 +64,17 @@ def generate_obf_fallback_sample(count: int = 50) -> List[Dict[str, Any]]:
         })
     return items
 
-def fetch_obf_products(limit: int = 200, max_pages: int = 5, output_dir: Path = Path("data/raw/obf"), use_sample_if_offline: bool = True) -> List[Path]:
+def fetch_obf_products(limit: int = None, max_pages: int = 20, output_dir: Path = Path("data/raw/obf"), use_sample_if_offline: bool = True) -> List[Path]:
     """Queries Open Beauty Facts API across multiple pages for cosmetic products and caches them."""
     output_dir.mkdir(parents=True, exist_ok=True)
     saved_files = []
     raw_items = []
     
     try:
-        print(f"[OBF Ingest] Deep querying Open Beauty Facts API across up to {max_pages} pages (target {limit} items)...")
-        for page in range(1, max_pages + 1):
-            if len(raw_items) >= limit:
+        pages_to_fetch = max_pages if max_pages is not None else 100
+        print(f"[OBF Ingest] Deep querying Open Beauty Facts API across up to {pages_to_fetch} pages...")
+        for page in range(1, pages_to_fetch + 1):
+            if limit is not None and len(raw_items) >= limit:
                 break
             params = {
                 "action": "process",
@@ -92,17 +93,20 @@ def fetch_obf_products(limit: int = 200, max_pages: int = 5, output_dir: Path = 
                     ing = p.get("ingredients_text", "")
                     if ing and len(ing) > 10:
                         raw_items.append(p)
-                    if len(raw_items) >= limit:
+                    if limit is not None and len(raw_items) >= limit:
                         break
+            else:
+                break
     except Exception as e:
         print(f"[OBF Note] Live network request stopped/failed ({e}).")
         
-    if len(raw_items) < limit and use_sample_if_offline:
-        print(f"[OBF Ingest] Supplementary sample fallback activated to reach {limit} products.")
-        missing = limit - len(raw_items)
+    target_limit = limit if limit is not None else len(raw_items)
+    if len(raw_items) < target_limit and use_sample_if_offline and target_limit <= 100:
+        print(f"[OBF Ingest] Supplementary sample fallback activated.")
+        missing = target_limit - len(raw_items)
         raw_items.extend(generate_obf_fallback_sample(missing))
         
-    for item in raw_items[:limit]:
+    for item in (raw_items[:limit] if limit is not None else raw_items):
         formatted = parse_obf_item(item)
         fp = save_obf_product(formatted, output_dir)
         saved_files.append(fp)
