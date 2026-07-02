@@ -16,6 +16,6 @@ THE EVALUATION SAMPLES ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE
 
 The full production datasets containing 19,847 commercial cosmetic formulations across 57,181 canonical INCI compounds (including full CSV exports and high-performance Apache Parquet archives) are STRICTLY PROPRIETARY AND COMMERCIAL ASSETS owned by INCIDB.
 
-Commercial usage, redistribution, embedding within mobile applications, AI/LLM model training, or deployment within production SaaS platforms requires a valid Commercial License agreement obtained via https://incidb.net/ or by contacting amine.ahtitiche@gmail.com / enterprise@incidb.net.
+Commercial usage, redistribution, embedding within mobile applications, AI/LLM model training, or deployment within production SaaS platforms requires a valid Commercial License agreement obtained via https://incidb.net/ or by contacting support@incidb.net.
 
 Unauthorized scraping, redistribution, or commercial resale of the production dataset without a commercial license is prohibited under international intellectual property and database protection laws.

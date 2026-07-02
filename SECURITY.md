@@ -16,7 +16,7 @@ Only the latest major data release (v1.0.x) receives active security audits, reg
 If you discover a potential security issue, pipeline vulnerability, or critical regulatory data discrepancy (such as a misclassified EU CosIng chemical restriction or FDA MoCRA allergen flag), please follow responsible disclosure protocols:
 
 1. **DO NOT open a public GitHub issue** for sensitive security flaws or potential data integrity exploits.
-2. **Email the INCIDB Security Team directly at:** `amine.ahtitiche@gmail.com` or `enterprise@incidb.net`.
+2. **Email the INCIDB Security Team directly at:** `support@INCIDB.net`.
 3. Include clear reproduction steps, affected INCI compound IDs or EAN barcodes, and your contact details.
 
 ### Response Timeline

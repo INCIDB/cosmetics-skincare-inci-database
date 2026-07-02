@@ -30,11 +30,11 @@ Community leaders are responsible for clarifying and enforcing our standards of 
 
 ## Scope
 
-This Code of Conduct applies within all project spaces, including GitHub Issues, Pull Requests, email communications (`amine.ahtitiche@gmail.com`), and public developer forums.
+This Code of Conduct applies within all project spaces, including GitHub Issues, Pull Requests, email communications (`support@INCIDB.net`), and public developer forums.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project team at `amine.ahtitiche@gmail.com`. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project team at `support@INCIDB.net`. All complaints will be reviewed and investigated promptly and fairly.
 
 ## Attribution
 
