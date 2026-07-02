@@ -4,7 +4,7 @@
 
 ## Key Links & Documentation
 - [Landing Page](https://incidb.net/)
-- [GitHub Repository](https://github.com/Ichlibitiche/skincare-cosmetics-incidb)
+- [GitHub Repository](https://github.com/INCIDB/cosmetics-skincare-inci-database)
 - [Data Dictionary & Field Definitions](https://incidb.net/DATA_DICTIONARY.md)
 - [Apache Parquet Technical Schema](https://incidb.net/SPEC.md)
 - [Commercial Data Licensing & Pricing](https://incidb.net/docs/pricing_plan.md)
