@@ -1,0 +1,21 @@
+INCIDB DUAL-LICENSING TERMS & OPEN SCHEMA EVALUATION LICENSE
+
+Copyright (c) 2026 INCIDB Organization (https://incidb.net)
+
+---
+
+### SECTION 1: OPEN SCHEMA & EVALUATION SAMPLES (MIT / CC BY-NC 4.0)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of the open schema documentation (`DATA_DICTIONARY.md`, `SPEC.md`, `README.md`) and preview evaluation samples located in the `samples/` directory (`products.csv`, `ingredients.csv`, `brands.csv`, `product_ingredients.csv`, `products_sample.parquet`, `ingredients_sample.parquet`), to deal in the evaluation samples without restriction for non-commercial evaluation, testing, and schema integration design purposes only.
+
+THE EVALUATION SAMPLES ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+---
+
+### SECTION 2: PROPRIETARY COMMERCIAL PRODUCTION DATABASE
+
+The full production datasets containing 19,847 commercial cosmetic formulations across 57,181 canonical INCI compounds (including full CSV exports and high-performance Apache Parquet archives) are STRICTLY PROPRIETARY AND COMMERCIAL ASSETS owned by INCIDB.
+
+Commercial usage, redistribution, embedding within mobile applications, AI/LLM model training, or deployment within production SaaS platforms requires a valid Commercial License agreement obtained via https://incidb.net/ or by contacting amine.ahtitiche@gmail.com / enterprise@incidb.net.
+
+Unauthorized scraping, redistribution, or commercial resale of the production dataset without a commercial license is prohibited under international intellectual property and database protection laws.
