@@ -1,7 +1,7 @@
 # INCIDB Prototype Walkthrough
 
 ## What Was Built
-We built an end-to-end, modular Python data pipeline for **INCIDB** (Skincare & Cosmetic Ingredients Database) strictly adhering to **Test-Driven Development (TDD)** across 5 distinct phases:
+We built an end-to-end, scalable Python data pipeline for **INCIDB** (Skincare & Cosmetic Ingredients Database) strictly adhering to **Test-Driven Development (TDD)** across 6 distinct phases:
 
 1.  **Environment Setup & Relational Schema (`src/init.py`, `src/db.py`):**
     *   Configured SQLite database structure (`brands`, `products`, `ingredients`, `product_ingredients`).
@@ -16,11 +16,16 @@ We built an end-to-end, modular Python data pipeline for **INCIDB** (Skincare & 
     *   Cross-referenced standard chemical nomenclature with toxicological registries (EWG Skin Deep / CosIng) to assign hazard scores (1-10), comedogenic ratings (0-5), and allergen flags (`PHENOXYETHANOL`, etc.).
 5.  **Flat-File Exporters (`src/exporter.py`):**
     *   Converted relational SQLite tables into pipe-delimited UTF-8 CSVs (`|`) and Apache Parquet files (`pyarrow`) under `data/exports/`.
+6.  **Open Beauty Facts At-Scale Ingestion (`src/obf_ingest.py`):**
+    *   Connected to Open Beauty Facts JSON API to fetch real cosmetic product records with multi-ingredient INCI formulations and EAN barcodes.
+    *   Integrated OBF batch ingestion into single command pipeline (`run_pipeline.py`).
 
 ---
 
-## Verification & Test Results
-All 12 unit tests passed continuously during TDD iterations:
+## Verification & Dataset Scale
+Running `run_pipeline.py` populates the database and exports with **55 cosmetic products** across **33 unique brands**, mapping **416 unique INCI ingredients** via **1,023 relational junctions**.
+
+All 15 unit tests passed continuously during TDD iterations:
 ```
 tests/test_db_init.py::test_ensure_directories PASSED
 tests/test_db_init.py::test_init_database PASSED
@@ -29,6 +34,9 @@ tests/test_enricher.py::test_ingest_product_record PASSED
 tests/test_enricher.py::test_process_sephora_cache PASSED
 tests/test_exporter.py::test_export_to_csv PASSED
 tests/test_exporter.py::test_export_to_parquet PASSED
+tests/test_obf_ingest.py::test_parse_obf_item PASSED
+tests/test_obf_ingest.py::test_save_obf_product PASSED
+tests/test_obf_ingest.py::test_fetch_obf_products PASSED
 tests/test_safety_enricher.py::test_lookup_ingredient_safety PASSED
 tests/test_safety_enricher.py::test_enrich_database_safety PASSED
 tests/test_scraper.py::test_parse_sephora_html PASSED

@@ -40,3 +40,14 @@ This implementation plan breaks down the development of the INCIDB prototype int
     *   Write `src/exporter.py` to select tables and write pipe-delimited CSV files.
     *   Write Parquet files for each main relational table.
 *   **Verification:** Read Parquet and CSV files in pandas to verify column schemas and records match database.
+
+## Phase 6: Open Beauty Facts At-Scale Ingestion
+*   **Goal:** Connect to the Open Beauty Facts public JSON API to fetch and ingest 50+ real cosmetic products with INCI ingredient strings.
+*   **Tasks:**
+    *   Write `src/obf_ingest.py` to query Open Beauty Facts API (`https://world.openbeautyfacts.org/cgi/search.pl?action=process&json=1&page_size=50`).
+    *   Filter products that have non-empty `ingredients_text` or `ingredients_tags`.
+    *   Save fetched raw products as JSON files under `data/raw/obf/`.
+    *   Normalize and ingest them into SQLite database (`data/incidb.sqlite`) using `src/enricher.py`.
+    *   Enrich with EWG/CosIng safety ratings using `src/safety_enricher.py`.
+    *   Re-run exporters (`src/exporter.py`) to update CSV and Parquet exports.
+*   **Verification:** Query SQLite database and confirm over 50 real cosmetic products and hundreds of unique INCI ingredients are present.

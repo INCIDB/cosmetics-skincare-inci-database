@@ -5,3 +5,4 @@ def ensure_directories(base_data_path: Path):
     base = Path(base_data_path)
     (base / "raw" / "sephora").mkdir(parents=True, exist_ok=True)
     (base / "raw" / "ewg").mkdir(parents=True, exist_ok=True)
+    (base / "raw" / "obf").mkdir(parents=True, exist_ok=True)

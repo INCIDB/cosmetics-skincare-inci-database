@@ -147,13 +147,13 @@ def ingest_product_record(db_path: Path, product_data: Dict[str, Any], normalize
     conn.commit()
     conn.close()
 
-def process_sephora_cache(raw_dir: Path, db_path: Path) -> int:
-    """Reads all JSON files in raw_dir, normalizes ingredients, and stores them in SQLite DB."""
+def process_raw_directory(raw_dir: Path, db_path: Path, glob_pattern: str = "*.json") -> int:
+    """Reads JSON files in raw_dir matching glob_pattern, normalizes ingredients, and stores in SQLite."""
     if not raw_dir.exists():
         return 0
         
     count = 0
-    for json_file in raw_dir.glob("product_*.json"):
+    for json_file in raw_dir.glob(glob_pattern):
         with open(json_file, "r", encoding="utf-8") as f:
             product_data = json.load(f)
             
@@ -163,6 +163,10 @@ def process_sephora_cache(raw_dir: Path, db_path: Path) -> int:
         count += 1
         
     return count
+
+def process_sephora_cache(raw_dir: Path, db_path: Path) -> int:
+    """Reads all JSON files in raw_dir, normalizes ingredients, and stores them in SQLite DB."""
+    return process_raw_directory(raw_dir, db_path, "product_*.json")
 
 if __name__ == "__main__":
     db = Path("data/incidb.sqlite")
