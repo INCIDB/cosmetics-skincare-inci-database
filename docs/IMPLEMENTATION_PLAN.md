@@ -71,3 +71,12 @@ This implementation plan breaks down the development of the INCIDB prototype int
     *   Perform batched database inserts and ingredient normalizations.
     *   Update `run_pipeline.py` to automatically detect and ingest compressed `.jsonl.gz` archives if present under `data/raw/obf/`.
 *   **Verification:** Verify database product count increases massively from the compressed archive.
+
+## Phase 9: Expanded Prestige Retail Catalog, Stealth Playwright Scraping, and EU CosIng Registry [COMPLETED]
+*   **Goal:** Scale retail skincare coverage to 100+ prestige/clinical bestsellers, upgrade live scraping with stealth automation techniques, and ingest official EU CosIng regulatory definitions.
+*   **Tasks:**
+    *   **Expand Retail Catalog (`src/scraper.py`):** Add 100+ verified prestige retail formulations (Drunk Elephant, Sunday Riley, Tatcha, Estée Lauder, Clinique, Kiehl's, La Mer, SK-II, SkinCeuticals, Dermalogica, Glossier, Summer Fridays, Tower 28, Rare Beauty, Fenty Skin, Sol de Janeiro, Paula's Choice, The Ordinary, CeraVe, La Roche-Posay).
+    *   **Stealth Playwright Scraping (`src/scraper.py`):** Integrate `playwright-stealth` (or stealth headers, viewports, automation flags bypass) to attempt live scraping against retail target endpoints before falling back to our 100+ catalog.
+    *   **EU CosIng Registry Ingestor (`src/cosing_ingest.py` & `tests/test_cosing_ingest.py`):** Create ingestor to download/query official EU Commission CosIng chemical registry data (standardizing chemical descriptions, CAS numbers, and regulatory functions).
+    *   Update `run_pipeline.py` to integrate CosIng ingestion and the expanded retail catalog.
+*   **Verification:** Verify TDD tests pass and database scale increases across retail & regulatory sources.

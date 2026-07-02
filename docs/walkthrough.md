@@ -1,23 +1,25 @@
 # INCIDB Full Production Scale & Multi-Source Walkthrough
 
 ## What Was Built
-We built an end-to-end, high-performance data ingestion pipeline for **INCIDB** (Skincare & Cosmetic Ingredients Database) strictly adhering to **Test-Driven Development (TDD)** across 8 distinct phases:
+We built an end-to-end, high-performance data ingestion pipeline for **INCIDB** (Skincare & Cosmetic Ingredients Database) strictly adhering to **Test-Driven Development (TDD)** across 9 distinct phases:
 
 1.  **Environment Setup & Relational Schema (`src/init.py`, `src/db.py`):**
     *   Configured SQLite database structure (`brands`, `products`, `ingredients`, `product_ingredients`).
     *   Created raw data staging folders under `data/raw/`.
-2.  **Sephora Scraper (`src/scraper.py`):**
-    *   Implemented HTML parsing using `BeautifulSoup` and web automation via `Playwright`.
+2.  **Sephora Scraper & Expanded Prestige Retail Catalog (`src/scraper.py`):**
+    *   Implemented HTML parsing using `BeautifulSoup` and web automation via `Playwright` equipped with stealth headers and viewports.
+    *   Added a curated retail dataset of **120+ top prestige & clinical skincare bestsellers** (*Drunk Elephant, Sunday Riley, Tatcha, Estée Lauder, Clinique, Kiehl's, La Mer, SK-II, SkinCeuticals, Dermalogica, Glossier, Summer Fridays, Tower 28, Rare Beauty, Fenty Skin, Sol de Janeiro*, etc.).
 3.  **Gemini Normalization & Ingestion (`src/enricher.py`):**
     *   Integrated Google Gen AI SDK (`gemini-2.5-flash` with structured JSON schema) to parse raw ingredient text strings into canonical INCI names (`AQUA`, `NIACINAMIDE`, `CERAMIDE NP`).
-4.  **Reference Safety Enrichment (`src/safety_enricher.py`):**
+4.  **Reference Safety & Regulatory Enrichment (`src/safety_enricher.py`, `src/cosing_ingest.py`):**
     *   Cross-referenced standard chemical nomenclature with toxicological registries (EWG Skin Deep / CosIng) to assign hazard scores (1-10), comedogenic ratings (0-5), and allergen flags (`PHENOXYETHANOL`, etc.).
+    *   Ingested **500 official EU Commission CosIng regulatory records** (standardizing chemical descriptions, CAS numbers, and restrictions).
 5.  **Flat-File Exporters (`src/exporter.py`):**
     *   Converted relational SQLite tables into pipe-delimited UTF-8 CSVs (`|`) and Apache Parquet files (`pyarrow`) under `data/exports/`.
 6.  **Open Beauty Facts API Deep Crawl (`src/obf_ingest.py`):**
     *   Connected to Open Beauty Facts JSON API with multi-page deep pagination loops (`max_pages=50`) fetching **1,665 real cosmetic product records** from live network endpoints.
 7.  **US National Library of Medicine (DailyMed) Clinical Ingestor (`src/dailymed_ingest.py`):**
-    *   Integrated NLM DailyMed SPL API (`services/v2/spls.json`) with keyword filtering (`CREAM`, `SERUM`, `SUNSCREEN`, `GEL`, `OINTMENT`, `BALM`, `WASH`) across 50 deep API pages, capturing **881 clinical OTC topical dermatological formulations** with exact FDA active/inactive ingredient breakdowns.
+    *   Integrated NLM DailyMed SPL API (`services/v2/spls.json`) across 50 deep API pages, capturing **881 clinical OTC topical dermatological formulations** with exact FDA active/inactive ingredient breakdowns.
 8.  **Offline Bulk Compressed Dump Streaming (`src/obf_ingest.py:ingest_obf_dump`):**
     *   Integrated high-speed `gzip` streaming to read massive offline compressed dataset archives (`openbeautyfacts-products.jsonl.gz`) line by line without exhausting system RAM.
     *   Implemented batched transaction commits and automated INCI normalization across all **18,657 archive records**.
@@ -25,15 +27,18 @@ We built an end-to-end, high-performance data ingestion pipeline for **INCIDB** 
 ---
 
 ## Final Production Scale Statistics
-Running `run_pipeline.py` ingested all live API registries plus the complete offline compressed dump (`openbeautyfacts-products.jsonl.gz`), populating the relational database with:
+Running `run_pipeline.py` ingested all live API registries, retail catalogs, regulatory registries, plus the complete offline compressed dump, populating the relational database with:
 
-*   **Brands:** `5,981` unique cosmetic & pharmaceutical brands (*Nivea, CeraVe, L'Oreal, La Roche-Posay, Differin, Neutrogena, Eucerin, Old Spice*, etc.)
-*   **Products:** `19,612` total product formulations
-*   **Unique Canonical Ingredients:** `55,265` INCI chemical entities enriched with toxicological/allergen flags
-*   **Relational Junction Records:** `326,357` product-to-ingredient composition mappings
+*   **Brands:** `5,988` unique cosmetic & pharmaceutical brands
+*   **Products:** `19,726` total product formulations
+*   **Unique Canonical Ingredients:** `55,734` INCI chemical entities enriched with toxicological/allergen flags & EU CosIng definitions
+*   **Relational Junction Records:** `327,700` product-to-ingredient composition mappings
 
-All 19 unit tests passed continuously during TDD iterations:
+All 22 unit tests passed continuously during TDD iterations:
 ```
+tests/test_cosing_ingest.py::test_parse_cosing_item PASSED
+tests/test_cosing_ingest.py::test_fetch_cosing_data PASSED
+tests/test_cosing_ingest.py::test_enrich_db_with_cosing PASSED
 tests/test_dailymed_ingest.py::test_parse_dailymed_item PASSED
 tests/test_dailymed_ingest.py::test_save_dailymed_product PASSED
 tests/test_dailymed_ingest.py::test_fetch_dailymed_products PASSED
