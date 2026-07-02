@@ -80,3 +80,14 @@ This implementation plan breaks down the development of the INCIDB prototype int
     *   **EU CosIng Registry Ingestor (`src/cosing_ingest.py` & `tests/test_cosing_ingest.py`):** Create ingestor to download/query official EU Commission CosIng chemical registry data (standardizing chemical descriptions, CAS numbers, and regulatory functions).
     *   Update `run_pipeline.py` to integrate CosIng ingestion and the expanded retail catalog.
 *   **Verification:** Verify TDD tests pass and database scale increases across retail & regulatory sources.
+
+## Phase 10: CIR Scientific Findings, US FDA MoCRA Allergens, EWG Toxicological Registry, and K-Beauty Formulations [COMPLETED]
+*   **Goal:** Expand INCIDB into a comprehensive global scientific and functional cosmetic database by adding 4 major sources: CIR expert safety panel verdicts, FDA MoCRA mandatory contact dermatitis warnings, EWG granular cancer/endocrine toxicological scores, and K-Beauty botanical/ferment formulations.
+*   **Tasks:**
+    *   **Schema Update (`docs/schema.sql` & `src/db.py`):** Add `cir_safety_verdict`, `fda_warning`, `cancer_hazard_flag`, and `endocrine_hazard_flag` to `ingredients`. Add automatic table migration in `init_database`.
+    *   **CIR Scientific Ingestor (`src/cir_ingest.py` & `tests/test_cir_ingest.py`):** Ingest CIR expert panel verdicts and concentration limits (Retinol, Glycolic Acid, Salicylic Acid, Hydroquinone, etc.).
+    *   **FDA MoCRA Registry (`src/fda_cosmetics_ingest.py` & `tests/test_fda_ingest.py`):** Ingest FDA MoCRA fragrance allergen warning thresholds (Linalool, Limonene, Geraniol, Eugenol, Coumarin, Citral, etc.).
+    *   **EWG Toxicological Registry (`src/ewg_ingest.py` & `tests/test_ewg_ingest.py`):** Ingest IARC/NTP toxicological hazard classifications (Carcinogenicity & Endocrine Disruption flags).
+    *   **K-Beauty Formulations Registry (`src/kbeauty_ingest.py` & `tests/test_kbeauty_ingest.py`):** Ingest MFDS functional standards and 100+ iconic Korean skincare formulations (Centella Asiatica/CICA, Snail Mucin, Ginseng Ferment, Heartleaf/Houttuynia Cordata, Birch Juice, Bifida Ferment).
+    *   **Pipeline Orchestration:** Update `run_pipeline.py` to run all 4 new modules and export scaled datasets.
+*   **Verification:** Run full TDD pytest suite and verify database metrics across all new sources.

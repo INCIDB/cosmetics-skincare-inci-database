@@ -30,6 +30,10 @@ CREATE TABLE IF NOT EXISTS ingredients (
     ewg_hazard_score INTEGER CHECK(ewg_hazard_score BETWEEN 1 AND 10),
     is_common_allergen BOOLEAN DEFAULT 0,
     is_fungal_acne_trigger BOOLEAN DEFAULT 0,
+    cir_safety_verdict VARCHAR(100),
+    fda_warning VARCHAR(255),
+    cancer_hazard_flag BOOLEAN DEFAULT 0,
+    endocrine_hazard_flag BOOLEAN DEFAULT 0,
     description TEXT
 );
 

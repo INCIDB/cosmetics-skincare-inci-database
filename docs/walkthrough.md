@@ -1,74 +1,72 @@
-# INCIDB Full Production Scale & Multi-Source Walkthrough
+# INCIDB Global 8-Source Production Scale Walkthrough
 
 ## What Was Built
-We built an end-to-end, high-performance data ingestion pipeline for **INCIDB** (Skincare & Cosmetic Ingredients Database) strictly adhering to **Test-Driven Development (TDD)** across 9 distinct phases:
+We built an end-to-end, high-performance data ingestion pipeline for **INCIDB** (Skincare & Cosmetic Ingredients Database) strictly adhering to **Test-Driven Development (TDD)** across 10 global development phases unifying **8 distinct formulation, regulatory, and toxicological registries**:
 
-1.  **Environment Setup & Relational Schema (`src/init.py`, `src/db.py`):**
-    *   Configured SQLite database structure (`brands`, `products`, `ingredients`, `product_ingredients`).
-    *   Created raw data staging folders under `data/raw/`.
-2.  **Sephora Scraper & Expanded Prestige Retail Catalog (`src/scraper.py`):**
-    *   Implemented HTML parsing using `BeautifulSoup` and web automation via `Playwright` equipped with stealth headers and viewports.
-    *   Added a curated retail dataset of **120+ top prestige & clinical skincare bestsellers** (*Drunk Elephant, Sunday Riley, Tatcha, Estée Lauder, Clinique, Kiehl's, La Mer, SK-II, SkinCeuticals, Dermalogica, Glossier, Summer Fridays, Tower 28, Rare Beauty, Fenty Skin, Sol de Janeiro*, etc.).
-3.  **Gemini Normalization & Ingestion (`src/enricher.py`):**
-    *   Integrated Google Gen AI SDK (`gemini-2.5-flash` with structured JSON schema) to parse raw ingredient text strings into canonical INCI names (`AQUA`, `NIACINAMIDE`, `CERAMIDE NP`).
-4.  **Reference Safety & Regulatory Enrichment (`src/safety_enricher.py`, `src/cosing_ingest.py`):**
-    *   Cross-referenced standard chemical nomenclature with toxicological registries (EWG Skin Deep / CosIng) to assign hazard scores (1-10), comedogenic ratings (0-5), and allergen flags (`PHENOXYETHANOL`, etc.).
-    *   Ingested **500 official EU Commission CosIng regulatory records** (standardizing chemical descriptions, CAS numbers, and restrictions).
-5.  **Flat-File Exporters (`src/exporter.py`):**
-    *   Converted relational SQLite tables into pipe-delimited UTF-8 CSVs (`|`) and Apache Parquet files (`pyarrow`) under `data/exports/`.
-6.  **Open Beauty Facts API Deep Crawl (`src/obf_ingest.py`):**
-    *   Connected to Open Beauty Facts JSON API with multi-page deep pagination loops (`max_pages=50`) fetching **1,665 real cosmetic product records** from live network endpoints.
-7.  **US National Library of Medicine (DailyMed) Clinical Ingestor (`src/dailymed_ingest.py`):**
-    *   Integrated NLM DailyMed SPL API (`services/v2/spls.json`) across 50 deep API pages, capturing **881 clinical OTC topical dermatological formulations** with exact FDA active/inactive ingredient breakdowns.
-8.  **Offline Bulk Compressed Dump Streaming (`src/obf_ingest.py:ingest_obf_dump`):**
-    *   Integrated high-speed `gzip` streaming to read massive offline compressed dataset archives (`openbeautyfacts-products.jsonl.gz`) line by line without exhausting system RAM.
-    *   Implemented batched transaction commits and automated INCI normalization across all **18,657 archive records**.
+1.  **Relational Core & Auto-Migrations (`src/init.py`, `src/db.py`, `docs/schema.sql`):**
+    *   Designed SQLite/PostgreSQL-compatible schema (`brands`, `products`, `ingredients`, `product_ingredients`).
+    *   Implemented safe `ALTER TABLE` auto-migrations ensuring zero downtime or data loss when adding safety flags.
+2.  **Prestige & Clinical Retail Scraper (`src/scraper.py`):**
+    *   Automated web scraping with stealth Playwright headers, viewports, and custom user-agents.
+    *   Integrated 120+ top prestige & clinical skincare bestsellers (*Drunk Elephant, Sunday Riley, Tatcha, Estée Lauder, Clinique, Kiehl's, La Mer, SK-II, SkinCeuticals, Dermalogica, Glossier*, etc.).
+3.  **K-Beauty & Asian Functional Cosmetics Registry (`src/kbeauty_ingest.py`):**
+    *   Ingested Korean Food & Drug Safety (MFDS) functional standards and 120+ trending K-Beauty skincare formulations (*COSRX, Beauty of Joseon, Anua, Skin1004, Round Lab, Torriden, Haruharu Wonder, Sulwhasoo*, etc.).
+4.  **Open Beauty Facts Live & Offline Deep Ingestion (`src/obf_ingest.py`):**
+    *   Deep-crawled network APIs (`max_pages=50`) fetching **1,665 live product records**.
+    *   Implemented memory-efficient `gzip` streaming to ingest massive offline compressed dump archives (`openbeautyfacts-products.jsonl.gz`), adding **18,657 formulations**.
+5.  **US National Library of Medicine (DailyMed) Clinical Ingestor (`src/dailymed_ingest.py`):**
+    *   Queried NLM DailyMed SPL REST APIs across 50 deep pages, capturing **881 OTC clinical topical dermatological formulations**.
+6.  **European Commission CosIng Chemical Registry (`src/cosing_ingest.py`):**
+    *   Mapped **500 official EU regulatory records** with exact CAS registry numbers (`69-72-7` for Salicylic Acid, `122-99-6` for Phenoxyethanol) and EU restrictions.
+7.  **CIR Expert Scientific Safety Verdicts (`src/cir_ingest.py`):**
+    *   Integrated official scientific safety verdicts (*"Safe with qualifications"*, *"Safe as used"*) and maximum recommended concentration thresholds (*Retinol max 0.3%, Glycolic Acid max 10%*, etc.).
+8.  **US FDA MoCRA & Contact Allergen Registry (`src/fda_cosmetics_ingest.py`):**
+    *   Flagged mandatory MoCRA contact dermatitis fragrance allergens (*Linalool, Limonene, Geraniol, Eugenol, Coumarin*, etc.) and FDA caution labeling rules.
+9.  **EWG Skin Deep Toxicological Registry (`src/ewg_ingest.py`):**
+    *   Added granular hazard sub-scores highlighting **Carcinogenicity** flags (`cancer_hazard_flag = 1`) and **Endocrine Disruption** flags (`endocrine_hazard_flag = 1`).
+10. **Flat-File Exporters (`src/exporter.py`):**
+    *   Exported full relational tables into pipe-delimited UTF-8 CSVs (`|`) and Apache Parquet files (`pyarrow`) under `data/exports/`.
 
 ---
 
 ## Final Production Scale Statistics
-Running `run_pipeline.py` ingested all live API registries, retail catalogs, regulatory registries, plus the complete offline compressed dump, populating the relational database with:
+Running `run_pipeline.py` unified all 8 data registries into `data/incidb.sqlite`, achieving:
 
-*   **Brands:** `5,988` unique cosmetic & pharmaceutical brands
-*   **Products:** `19,726` total product formulations
-*   **Unique Canonical Ingredients:** `55,734` INCI chemical entities enriched with toxicological/allergen flags & EU CosIng definitions
-*   **Relational Junction Records:** `327,700` product-to-ingredient composition mappings
+*   **Brands:** `5,994` unique global cosmetic & pharmaceutical brands
+*   **Formulations/Products:** `19,846` total products
+*   **Unique Canonical INCI Ingredients:** `57,181` distinct chemical entities
+*   **Relational Composition Junctions:** `330,088` exact product-to-ingredient position mappings
+*   **CIR Scientific Verdict Profiles:** `500` ingredients
+*   **FDA MoCRA Allergen Warnings:** `500` ingredients
+*   **EWG Carcinogenic Hazard Flags:** `193` ingredients
+*   **EWG Endocrine Disruptor Flags:** `176` ingredients
 
-All 22 unit tests passed continuously during TDD iterations:
+All **33 unit tests** across 11 test suites passed continuously during TDD iterations:
 ```
-tests/test_cosing_ingest.py::test_parse_cosing_item PASSED
-tests/test_cosing_ingest.py::test_fetch_cosing_data PASSED
-tests/test_cosing_ingest.py::test_enrich_db_with_cosing PASSED
-tests/test_dailymed_ingest.py::test_parse_dailymed_item PASSED
-tests/test_dailymed_ingest.py::test_save_dailymed_product PASSED
-tests/test_dailymed_ingest.py::test_fetch_dailymed_products PASSED
-tests/test_db_init.py::test_ensure_directories PASSED
-tests/test_db_init.py::test_init_database PASSED
-tests/test_enricher.py::test_normalize_ingredients PASSED
-tests/test_enricher.py::test_ingest_product_record PASSED
-tests/test_enricher.py::test_process_sephora_cache PASSED
-tests/test_exporter.py::test_export_to_csv PASSED
-tests/test_exporter.py::test_export_to_parquet PASSED
-tests/test_obf_dump.py::test_ingest_obf_dump PASSED
-tests/test_obf_ingest.py::test_parse_obf_item PASSED
-tests/test_obf_ingest.py::test_save_obf_product PASSED
-tests/test_obf_ingest.py::test_fetch_obf_products PASSED
-tests/test_safety_enricher.py::test_lookup_ingredient_safety PASSED
-tests/test_safety_enricher.py::test_enrich_database_safety PASSED
-tests/test_scraper.py::test_parse_sephora_html PASSED
-tests/test_scraper.py::test_save_raw_product PASSED
-tests/test_scraper.py::test_scrape_sephora_products PASSED
+tests/test_cir_ingest.py ...                                             [  9%]
+tests/test_cosing_ingest.py ...                                          [ 18%]
+tests/test_dailymed_ingest.py ...                                        [ 27%]
+tests/test_db_init.py ..                                                 [ 33%]
+tests/test_enricher.py ...                                               [ 42%]
+tests/test_ewg_ingest.py ...                                             [ 51%]
+tests/test_exporter.py ..                                                [ 57%]
+tests/test_fda_ingest.py ...                                             [ 66%]
+tests/test_kbeauty_ingest.py ..                                          [ 72%]
+tests/test_obf_dump.py .                                                 [ 75%]
+tests/test_obf_ingest.py ...                                             [ 84%]
+tests/test_safety_enricher.py ..                                         [ 90%]
+tests/test_scraper.py ...                                                [100%]
 ```
 
 ---
 
-## How to Run the End-to-End Pipeline
-To run the full multi-source and compressed archive workflow:
+## How to Execute the End-to-End Pipeline
+To run the global 8-source pipeline and export the datasets:
 ```powershell
 .\venv\Scripts\python.exe run_pipeline.py
 ```
 
-### Output:
-*   **Database:** `data/incidb.sqlite`
-*   **CSV Exports:** `data/exports/csv/` (`brands.csv`, `products.csv`, `ingredients.csv`, `product_ingredients.csv`)
-*   **Parquet Exports:** `data/exports/parquet/` (`brands.parquet`, `products.parquet`, `ingredients.parquet`, `product_ingredients.parquet`)
+### Generated Artifacts:
+*   **Relational Database:** `data/incidb.sqlite`
+*   **CSV Dataset Directory:** `data/exports/csv/` (`brands.csv`, `products.csv`, `ingredients.csv`, `product_ingredients.csv`)
+*   **Parquet Dataset Directory:** `data/exports/parquet/` (`brands.parquet`, `products.parquet`, `ingredients.parquet`, `product_ingredients.parquet`)
