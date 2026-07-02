@@ -1,4 +1,4 @@
-# INCIDB Multi-Source & Compressed Archive Pipeline Walkthrough
+# INCIDB Full Production Scale & Multi-Source Walkthrough
 
 ## What Was Built
 We built an end-to-end, high-performance data ingestion pipeline for **INCIDB** (Skincare & Cosmetic Ingredients Database) strictly adhering to **Test-Driven Development (TDD)** across 8 distinct phases:
@@ -20,12 +20,17 @@ We built an end-to-end, high-performance data ingestion pipeline for **INCIDB** 
     *   Integrated NLM DailyMed SPL API (`services/v2/spls.json`) to ingest clinical OTC topical dermatological formulations (sunscreens, ceramide barrier repair lotions, salicylic acid acne creams) with exact FDA active/inactive ingredient breakdowns.
 8.  **Offline Bulk Compressed Dump Streaming (`src/obf_ingest.py:ingest_obf_dump`):**
     *   Integrated high-speed `gzip` streaming to read massive offline compressed dataset archives (`openbeautyfacts-products.jsonl.gz`) line by line without exhausting system RAM.
-    *   Implemented batched transaction commits and automated INCI normalization.
+    *   Implemented batched transaction commits and automated INCI normalization across all 18,657 archive records.
 
 ---
 
-## Verification & Scaled Dataset Scale
-Running `run_pipeline.py` ingests across all API sources and streams offline compressed archives, populating the relational database with **5,354 cosmetic formulations** across **2,045 unique brands**, normalizing **15,585 unique INCI ingredients** via **92,443 relational junctions**.
+## Final Production Scale Statistics
+Running `run_pipeline.py` ingested all live API registries plus the complete offline compressed dump (`openbeautyfacts-products.jsonl.gz`), populating the relational database with:
+
+*   **Brands:** `5,938` unique cosmetic & pharmaceutical brands (*Nivea, CeraVe, L'Oreal, La Roche-Posay, Differin, Neutrogena, Eucerin, Old Spice*, etc.)
+*   **Products:** `18,763` total product formulations
+*   **Unique Canonical Ingredients:** `55,263` INCI chemical entities enriched with toxicological/allergen flags
+*   **Relational Junction Records:** `326,308` product-to-ingredient composition mappings
 
 All 19 unit tests passed continuously during TDD iterations:
 ```

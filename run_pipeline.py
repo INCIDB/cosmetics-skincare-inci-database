@@ -7,7 +7,7 @@ from src.dailymed_ingest import fetch_dailymed_products
 from src.safety_enricher import enrich_database_safety
 from src.exporter import export_to_csv, export_to_parquet
 
-def run(max_dump_records: int = 5000):
+def run(max_dump_records: int = None):
     print("=== INCIDB Multi-Source Ingestion Pipeline ===")
     
     # Step 1: Init DB & dirs
