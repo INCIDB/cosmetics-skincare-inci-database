@@ -62,8 +62,6 @@ The INCIDB production datasets ship across transparent commercial tiers tailored
 | **Free Sample** | `$0` | 10 rows | Sample preview | Referenced | Static preview |
 | **One-Time Core** | `$250` | ✅ Yes | ❌ No | Basic INCI | One-time snapshot |
 | **One-Time Full** | `$500` | ✅ Yes | ✅ Yes | ✅ Full toxicology | One-time snapshot |
-| **Annual Subscription** | `$2,400/yr` | ✅ Yes | ✅ Yes | ✅ Full toxicology | **Bi-weekly releases (26x/yr)** |
-| **Lifetime VIP Access** | `$6,000` | ✅ Yes | ✅ Yes | ✅ Full toxicology | **Permanent VIP releases** |
 
 👉 **Explore interactive live preview & purchase data at our Landing Page (`index.html`) or [docs/pricing_plan.md](docs/pricing_plan.md).**
 
