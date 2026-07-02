@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INCIDB Data Schema & Relational Dictionary</title>
+    <meta name="description" content="Complete relational schema specifications for INCIDB's 4 core tables: brands, ingredients, products, and product_ingredients.">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .doc-header {
+            padding: 4rem 0 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 3rem;
+        }
+        .doc-section {
+            margin-bottom: 4rem;
+        }
+        .table-container {
+            overflow-x: auto;
+            background: #0E1015;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        th {
+            background: rgba(255,255,255,0.02);
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        code.type-tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-cyan);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-overlay"></div>
+
+    <!-- Header / Nav -->
+    <header>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                INCIDB <span class="logo-badge">v1.0.0</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#explorer" class="nav-link">Live Explorer</a>
+                <a href="index.html#registries" class="nav-link">8-Source Registry</a>
+                <a href="schema.html" class="nav-link" style="color: var(--accent-cyan);">Data Schema</a>
+                <a href="index.html#pricing" class="nav-link">Pricing Plans</a>
+                <a href="documentation.html" class="btn btn-secondary">Documentation</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="doc-header">
+            <div class="section-eyebrow">Data Dictionary</div>
+            <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Relational Schema Specification</h1>
+            <p style="color: var(--text-secondary); max-width: 700px; margin-top: 1rem;">
+                INCIDB ships as a 4-table normalized relational schema exported into pipe-delimited UTF-8 CSV (`|`) and high-performance Apache Parquet (`pyarrow`) archives.
+            </p>
+        </div>
+
+        <!-- Brands Table -->
+        <div class="doc-section">
+            <h2>1. brands.csv / brands.parquet</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Contains canonical brand identities and ethical certifications across 5,994 global cosmetic lines.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Field Name</th><th>Data Type</th><th>Description</th><th>Sample Value</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Primary key unique identifier</td><td><code>1</code></td></tr>
+                        <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Standardized commercial brand name</td><td><code>Laneige</code></td></tr>
+                        <tr><td><code>country_of_origin</code></td><td><code class="type-tag">STRING</code></td><td>Country of formulation or headquarters</td><td><code>South Korea</code></td></tr>
+                        <tr><td><code>is_cruelty_free</code></td><td><code class="type-tag">INTEGER</code></td><td>Cruelty-free certification (<code>1</code> = Yes, <code>0</code> = No)</td><td><code>0</code></td></tr>
+                        <tr><td><code>is_vegan</code></td><td><code class="type-tag">INTEGER</code></td><td>100% vegan formulation line (<code>1</code> = Yes, <code>0</code> = No)</td><td><code>0</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ingredients Table -->
+        <div class="doc-section">
+            <h2>2. ingredients.csv / ingredients.parquet</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Contains 57,181 canonical chemical compounds enriched with toxicology, allergen, and regulatory data from 8 international bodies.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Field Name</th><th>Data Type</th><th>Description</th><th>Sample Value</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Primary key unique identifier</td><td><code>1</code></td></tr>
+                        <tr><td><code>inci_name</code></td><td><code class="type-tag">STRING</code></td><td>International Nomenclature Cosmetic Ingredient name</td><td><code>DIISOSTEARYL MALATE</code></td></tr>
+                        <tr><td><code>cas_number</code></td><td><code class="type-tag">STRING</code></td><td>Chemical Abstracts Service registry number</td><td><code>50-81-7</code></td></tr>
+                        <tr><td><code>common_name</code></td><td><code class="type-tag">STRING</code></td><td>Plain English common compound name</td><td><code>Diisostearyl Malate</code></td></tr>
+                        <tr><td><code>primary_function</code></td><td><code class="type-tag">STRING</code></td><td>Functional category (CosIng taxonomy)</td><td><code>Skin-Conditioning Agent</code></td></tr>
+                        <tr><td><code>comedogenic_rating</code></td><td><code class="type-tag">FLOAT</code></td><td>Pore-clogging likelihood scale (<code>0.0</code> - <code>5.0</code>)</td><td><code>0.0</code></td></tr>
+                        <tr><td><code>ewg_hazard_score</code></td><td><code class="type-tag">FLOAT</code></td><td>EWG Skin Deep hazard score (<code>1.0</code> low - <code>10.0</code> high)</td><td><code>1.0</code></td></tr>
+                        <tr><td><code>is_common_allergen</code></td><td><code class="type-tag">INTEGER</code></td><td>FDA MoCRA contact dermatitis allergen (<code>1</code>/<code>0</code>)</td><td><code>0</code></td></tr>
+                        <tr><td><code>is_fungal_acne_trigger</code></td><td><code class="type-tag">INTEGER</code></td><td>Malassezia folliculitis feeding trigger (<code>1</code>/<code>0</code>)</td><td><code>0</code></td></tr>
+                        <tr><td><code>description</code></td><td><code class="type-tag">STRING</code></td><td>Scientific or regulatory monograph summary</td><td><code>Standard cosmetic emollient...</code></td></tr>
+                        <tr><td><code>cir_safety_verdict</code></td><td><code class="type-tag">STRING</code></td><td>Cosmetic Ingredient Review scientific verdict</td><td><code>Safe as used</code></td></tr>
+                        <tr><td><code>fda_warning</code></td><td><code class="type-tag">STRING</code></td><td>US FDA OTC warning monograph</td><td><code>No warning required</code></td></tr>
+                        <tr><td><code>cancer_hazard_flag</code></td><td><code class="type-tag">INTEGER</code></td><td>Carcinogenic hazard alert (<code>1</code> = Flagged, <code>0</code> = Clean)</td><td><code>0</code></td></tr>
+                        <tr><td><code>endocrine_hazard_flag</code></td><td><code class="type-tag">INTEGER</code></td><td>Endocrine disruptor alert (<code>1</code> = Flagged, <code>0</code> = Clean)</td><td><code>0</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Products Table -->
+        <div class="doc-section">
+            <h2>3. products.csv / products.parquet</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Contains 19,847 commercial cosmetic formulations harvested from prestige retailers, K-Beauty standards, and clinical registries.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Field Name</th><th>Data Type</th><th>Description</th><th>Sample Value</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Primary key unique identifier</td><td><code>67455</code></td></tr>
+                        <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Foreign key referencing <code>brands.brand_id</code></td><td><code>46067</code></td></tr>
+                        <tr><td><code>barcode_ean</code></td><td><code class="type-tag">STRING</code></td><td>Universal GTIN / EAN-13 barcode</td><td><code>P309308</code></td></tr>
+                        <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Full commercial product title</td><td><code>Good Genes Lactic Acid Treatment</code></td></tr>
+                        <tr><td><code>category</code></td><td><code class="type-tag">STRING</code></td><td>Primary skincare taxonomy category</td><td><code>Skincare</code></td></tr>
+                        <tr><td><code>retail_price_usd</code></td><td><code class="type-tag">FLOAT</code></td><td>Retail price in USD</td><td><code>85.0</code></td></tr>
+                        <tr><td><code>raw_ingredient_text</code></td><td><code class="type-tag">STRING</code></td><td>Full unbroken ingredient listing from package label</td><td><code>Botanical Blend [Water/Eau/Aqua...</code></td></tr>
+                        <tr><td><code>created_at</code></td><td><code class="type-tag">STRING</code></td><td>Ingestion timestamp (ISO 8601)</td><td><code>2026-07-02 14:01:48</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Product Ingredients Table -->
+        <div class="doc-section">
+            <h2>4. product_ingredients.csv / product_ingredients.parquet</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Relational junction table containing 330,088 mappings preserving exact label order and concentration index.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Field Name</th><th>Data Type</th><th>Description</th><th>Sample Value</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Foreign key referencing <code>products.product_id</code></td><td><code>67455</code></td></tr>
+                        <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Foreign key referencing <code>ingredients.ingredient_id</code></td><td><code>12404</code></td></tr>
+                        <tr><td><code>position_index</code></td><td><code class="type-tag">INTEGER</code></td><td>Exact label position index (<code>1</code> = highest concentration)</td><td><code>1</code></td></tr>
+                        <tr><td><code>concentration_percentage</code></td><td><code class="type-tag">FLOAT</code></td><td>Explicit clinical concentration percentage (when disclosed)</td><td><code>10.0</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>INCIDB Data Engineering Pipeline v1.0.0 · Normalized & Audited July 2026</p>
+            <p style="margin-top: 0.5rem;"><a href="schema.html" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="index.html#pricing" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="documentation.html" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
+        </div>
+    </footer>
+</body>
+</html>

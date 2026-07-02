@@ -102,9 +102,9 @@
             <nav class="nav-links">
                 <a href="#explorer" class="nav-link">Live Explorer</a>
                 <a href="#registries" class="nav-link">8-Source Registry</a>
-                <a href="DATA_DICTIONARY.md" class="nav-link">Data Schema</a>
+                <a href="schema.html" class="nav-link">Data Schema</a>
                 <a href="#pricing" class="nav-link">Pricing Plans</a>
-                <a href="README.md" class="btn btn-secondary">Documentation</a>
+                <a href="documentation.html" class="btn btn-secondary">Documentation</a>
             </nav>
         </div>
     </header>
@@ -123,7 +123,7 @@
             </p>
             <div class="hero-actions">
                 <a href="#pricing" class="btn btn-primary">Explore Commercial Tiers →</a>
-                <a href="samples/products.csv" download class="btn btn-secondary">Download Free CSV Samples</a>
+                <a href="samples/incidb_free_samples.zip" download class="btn btn-secondary">Download Free CSV & Parquet Samples</a>
             </div>
 
             <div class="metrics-grid">
@@ -261,7 +261,7 @@
                         <li><span class="cross-icon">✕</span> EWG Carcinogenicity Flags</li>
                         <li><span class="cross-icon">✕</span> Continuous updates</li>
                     </ul>
-                    <a href="samples/products.csv" download class="btn btn-secondary" style="justify-content: center;">Download Free Samples</a>
+                    <a href="samples/incidb_free_samples.zip" download class="btn btn-secondary" style="justify-content: center;">Download Free Samples Archive</a>
                 </div>
 
                 <!-- One-Time Core -->
@@ -302,17 +302,38 @@
 
     <!-- Modal Overlay -->
     <div class="modal-overlay" id="checkoutModal">
-        <div class="modal-card">
+        <div class="modal-card" style="max-width: 520px;">
             <button class="close-btn" onclick="closeModal()">×</button>
             <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Request Commercial License</h3>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;" id="modalTierDesc">You selected a licensing tier.</p>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;" id="modalTierDesc">You are requesting a commercial data license.</p>
             
-            <div style="background: #0E1015; padding: 1rem; border-radius: 6px; font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 1.5rem; border: 1px solid var(--border-subtle);">
-                <span style="color: var(--accent-cyan);">B2B Direct Ingestion Ready:</span><br>
-                Instant delivery via AWS S3 signed bucket or direct GitHub private repository access upon license verification.
-            </div>
+            <form action="https://formsubmit.co/amine.ahtitiche@gmail.com" method="POST" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+                <input type="hidden" name="_subject" id="formSubject" value="New Commercial License Request — INCIDB">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="Selected_Tier" id="formTierInput" value="">
+                
+                <div>
+                    <label style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">YOUR FULL NAME *</label>
+                    <input type="text" name="Name" required placeholder="Dr. Sarah Jenkins" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
+                </div>
 
-            <button onclick="alert('Thank you for your interest! Please contact enterprise@incidb.net or submit a GitHub issue to finalize your data license invoice.'); closeModal();" class="btn btn-primary" style="width: 100%; justify-content: center;">Proceed to B2B Invoice Checkout</button>
+                <div>
+                    <label style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">WORK EMAIL ADDRESS *</label>
+                    <input type="email" name="Email" required placeholder="sarah@cosmetic-app.io" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
+                </div>
+
+                <div>
+                    <label style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">COMPANY OR APP NAME</label>
+                    <input type="text" name="Company" placeholder="CleanBeauty AI Inc." style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
+                </div>
+
+                <div>
+                    <label style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">USE CASE & DATA REQUIREMENTS</label>
+                    <textarea name="Message" rows="3" placeholder="We need EWG hazard flags and Parquet files for our mobile barcode scanner app..." style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem; font-family: var(--font-sans); resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem; padding: 0.85rem;">Send Email Request →</button>
+            </form>
         </div>
     </div>
 
@@ -320,7 +341,7 @@
     <footer>
         <div class="container">
             <p>INCIDB Data Engineering Pipeline v1.0.0 · Normalized & Audited July 2026</p>
-            <p style="margin-top: 0.5rem;"><a href="DATA_DICTIONARY.md" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="docs/pricing_plan.md" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="README.md" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
+            <p style="margin-top: 0.5rem;"><a href="schema.html" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="docs/pricing_plan.md" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="documentation.html" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
         </div>
     </footer>
 
@@ -378,7 +399,9 @@ print(<span class="string">f"Flagged {len(high_risk)} toxicological hazard compo
         }
 
         function openModal(tier) {
-            document.getElementById('modalTierDesc').innerText = `You are requesting a commercial data license for: ${tier}.`;
+            document.getElementById('modalTierDesc').innerText = `Requesting commercial data license for: ${tier}.`;
+            document.getElementById('formTierInput').value = tier;
+            document.getElementById('formSubject').value = `New License Request: ${tier} — INCIDB`;
             document.getElementById('checkoutModal').style.display = 'flex';
         }
 

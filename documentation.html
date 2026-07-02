@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INCIDB Documentation & Quick Start</title>
+    <meta name="description" content="Technical documentation, regulatory architecture, and quick-start Python/DuckDB code snippets for the INCIDB skincare database.">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .doc-header {
+            padding: 4rem 0 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 3rem;
+        }
+        .doc-section {
+            margin-bottom: 3.5rem;
+            max-width: 850px;
+        }
+        .doc-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .doc-section p, .doc-section li {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+        .doc-section ul {
+            padding-left: 1.5rem;
+        }
+        .doc-section li strong {
+            color: var(--text-primary);
+        }
+        pre.doc-code {
+            background: #0E1015;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-overlay"></div>
+
+    <!-- Header / Nav -->
+    <header>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                INCIDB <span class="logo-badge">v1.0.0</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#explorer" class="nav-link">Live Explorer</a>
+                <a href="index.html#registries" class="nav-link">8-Source Registry</a>
+                <a href="schema.html" class="nav-link">Data Schema</a>
+                <a href="index.html#pricing" class="nav-link">Pricing Plans</a>
+                <a href="documentation.html" class="btn btn-secondary" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">Documentation</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="doc-header">
+            <div class="section-eyebrow">Developer Portal</div>
+            <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">INCIDB Technical Documentation</h1>
+            <p style="color: var(--text-secondary); max-width: 700px; margin-top: 1rem;">
+                Comprehensive guide to data architecture, regulatory integrations, and analytical integration with Python PyArrow and DuckDB.
+            </p>
+        </div>
+
+        <div class="doc-section">
+            <h2>1. Production Scale Metrics</h2>
+            <p>INCIDB unifies high-precision chemical composition data across four core tables:</p>
+            <ul>
+                <li><strong>19,847 Commercial Formulations:</strong> Covering prestige skincare lines, K-Beauty functional cosmetics, and OTC clinical topicals.</li>
+                <li><strong>57,181 Canonical INCI Compounds:</strong> Standardized according to International Nomenclature Cosmetic Ingredient conventions.</li>
+                <li><strong>5,994 Global Brands:</strong> Enriched with ethical certifications (cruelty-free and vegan indicators).</li>
+                <li><strong>330,088 Relational Junction Mappings:</strong> Preserving exact package label concentration order (`position_index`).</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>2. 8-Source Regulatory & Clinical Architecture</h2>
+            <p>Every ingredient profile is cross-referenced against 8 international regulatory monographs:</p>
+            <ul>
+                <li><strong>EU Commission CosIng Registry:</strong> Official restricted thresholds and CAS registry numbers (`69-72-7` Salicylic Acid).</li>
+                <li><strong>US FDA MoCRA Allergen Registry:</strong> Flags mandatory contact dermatitis fragrance allergens (*Linalool, Limonene, Geraniol*).</li>
+                <li><strong>EWG Skin Deep Toxicology:</strong> Granular hazard sub-scores highlighting explicit <strong>Carcinogenicity</strong> alerts (`cancer_hazard_flag = 1`) and <strong>Endocrine Disruption</strong> flags (`endocrine_hazard_flag = 1`).</li>
+                <li><strong>CIR Scientific Safety Verdicts:</strong> Expert Panel safety conclusions (*"Safe as used"*, *"Safe with qualifications"*).</li>
+                <li><strong>NLM DailyMed Clinical OTC:</strong> Formulations harvested from US National Library of Medicine topical dermatological labels.</li>
+                <li><strong>K-Beauty MFDS Standards:</strong> Functional whitening, anti-wrinkle, and barrier repair standards from South Korean regulations.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>3. Audit & Verification Results</h2>
+            <p>All database releases pass rigorous 1-to-1 physical parity and string sanitization audits:</p>
+            <ul>
+                <li><strong>Zero Linebreak Corruption:</strong> Stripped unescaped carriage returns (`\r`) and linebreaks (`\n`) inside string fields to guarantee exact line count correspondence (`wc -l` exactly equals record counts).</li>
+                <li><strong>82% Parquet Compression Ratio:</strong> Compressed via Apache PyArrow snappy/zstd algorithms for rapid cloud ingestion.</li>
+                <li><strong>Full Foreign Key Integrity:</strong> Audited 100% referential integrity across all 330,088 junction records.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>4. Quick Start — Python PyArrow & Pandas</h2>
+            <p>Load high-performance Parquet datasets directly into memory for filtering toxicological flags:</p>
+            <pre class="doc-code"><code>import pyarrow.parquet as pq
+import pandas as pd
+
+# Load formulations and canonical ingredients
+products = pq.read_table('data/exports/parquet/products.parquet').to_pandas()
+ingredients = pq.read_table('data/exports/parquet/ingredients.parquet').to_pandas()
+
+# Filter endocrine disruptors and carcinogenic flagged ingredients
+high_risk = ingredients[(ingredients['cancer_hazard_flag'] == 1) | (ingredients['endocrine_hazard_flag'] == 1)]
+print(f"Flagged {len(high_risk)} toxicological hazard compounds across {len(products):,} formulations.")</code></pre>
+        </div>
+
+        <div class="doc-section">
+            <h2>5. Quick Start — DuckDB In-Memory SQL</h2>
+            <p>Execute analytical joins directly over flat Parquet files without database servers:</p>
+            <pre class="doc-code"><code>import duckdb
+
+query = """
+SELECT 
+    b.name AS brand,
+    p.name AS product,
+    COUNT(pi.ingredient_id) AS total_ingredients,
+    SUM(i.is_common_allergen) AS mocra_allergens
+FROM 'data/exports/parquet/products.parquet' p
+JOIN 'data/exports/parquet/brands.parquet' b ON p.brand_id = b.brand_id
+JOIN 'data/exports/parquet/product_ingredients.parquet' pi ON p.product_id = pi.product_id
+JOIN 'data/exports/parquet/ingredients.parquet' i ON pi.ingredient_id = i.ingredient_id
+GROUP BY b.name, p.name
+HAVING SUM(i.is_common_allergen) > 0
+ORDER BY mocra_allergens DESC
+LIMIT 5;
+"""
+
+print(duckdb.query(query).to_df())</code></pre>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>INCIDB Data Engineering Pipeline v1.0.0 · Normalized & Audited July 2026</p>
+            <p style="margin-top: 0.5rem;"><a href="schema.html" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="index.html#pricing" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="documentation.html" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
+        </div>
+    </footer>
+</body>
+</html>
