@@ -44,6 +44,6 @@ CREATE TABLE IF NOT EXISTS product_ingredients (
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id)
 );
 
-CREATE INDEX idx_products_brand ON products(brand_id);
-CREATE INDEX idx_ingredients_inci ON ingredients(inci_name);
-CREATE INDEX idx_prod_ing_position ON product_ingredients(product_id, position_index);
+CREATE INDEX IF NOT EXISTS idx_products_brand ON products(brand_id);
+CREATE INDEX IF NOT EXISTS idx_ingredients_inci ON ingredients(inci_name);
+CREATE INDEX IF NOT EXISTS idx_prod_ing_position ON product_ingredients(product_id, position_index);
