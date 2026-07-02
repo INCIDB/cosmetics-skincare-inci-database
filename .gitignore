@@ -1,4 +1,4 @@
-# Python
+# Python & Environments
 __pycache__/
 *.py[cod]
 *$py.class
@@ -7,12 +7,27 @@ venv/
 env/
 .env
 
-# Data & Databases
+# Data & Databases (Commercial Assets)
 data/
+exports/
 *.sqlite
 *.sqlite3
 *.db
 
-# OS
+# Internal Data Engineering Pipeline & Scrapers (Private)
+src/
+tests/
+run_pipeline.py
+clean_exports.py
+pytest.ini
+
+# Agent & Internal Audit Reports
+.agents/
+ACTION-PLAN.md
+FULL-AUDIT-REPORT.md
+SEO-REPORT.html
+
+# OS & Logs
 .DS_Store
 Thumbs.db
+*.log
