@@ -1,0 +1,4 @@
+[flake8]
+max-line-length = 150
+ignore = E501, W293, E302, E305, W291, E226
+exclude = .git, .agents, __pycache__, venv, build, dist, data, exports, landing, samples, docs, src, tests

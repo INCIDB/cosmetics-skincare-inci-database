@@ -1,0 +1,16 @@
+line-length = 150
+exclude = [
+    ".git",
+    ".agents",
+    "__pycache__",
+    "venv",
+    "build",
+    "dist",
+    "data",
+    "exports",
+    "landing",
+    "samples",
+    "docs",
+    "src",
+    "tests",
+]

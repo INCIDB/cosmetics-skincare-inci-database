@@ -1,0 +1,50 @@
+INCIDB — LICENSING TERMS
+
+Copyright (c) 2026 INCIDB
+
+================================================================
+1. DATABASE CONTENTS — Open Database License (ODbL) v1.0
+================================================================
+
+The INCIDB database (the `products`, `ingredients`, `brands`, and
+`product_ingredients` tables, in all CSV and Apache Parquet exports and in the
+preview samples) is a derivative of the Open Beauty Facts database and is
+therefore licensed under the Open Database License (ODbL) v1.0:
+
+    https://opendatacommons.org/licenses/odbl/1-0/
+
+You are free to share, create works from, and adapt the database — including
+for commercial purposes — provided that you:
+
+  (a) ATTRIBUTE Open Beauty Facts contributors and INCIDB;
+  (b) SHARE-ALIKE — if you publicly use or distribute an adapted version of
+      the database, you offer that adapted database under ODbL; and
+  (c) KEEP-OPEN — you do not use technological measures that restrict others
+      from obtaining the database in an ODbL-licensed form.
+
+Product data © Open Beauty Facts contributors (https://openbeautyfacts.org),
+licensed under ODbL. Regulatory and chemical fields (EU CosIng functional
+categories, FDA MoCRA allergen flags, NLM DailyMed labels, and CAS registry
+numbers) are factual data compiled from public government and open sources.
+
+================================================================
+2. DOCUMENTATION & SCHEMA — CC BY 4.0
+================================================================
+
+The schema documentation (`DATA_DICTIONARY.md`, `SPEC.md`, `README.md`) and
+the website source are licensed under Creative Commons Attribution 4.0
+(https://creativecommons.org/licenses/by/4.0/).
+
+================================================================
+3. COMMERCIAL SERVICES
+================================================================
+
+Because the database is ODbL-licensed, the data itself may be redistributed by
+anyone under ODbL. INCIDB does NOT sell, and cannot grant, exclusive or
+proprietary rights to the data. Paid INCIDB plans provide optional CONVENIENCE
+AND SERVICES — hosted delivery, ready-to-query formats, incremental updates,
+and support — and do not restrict the ODbL rights described in Section 1.
+Contact: incidb@proton.me
+
+THE DATABASE AND SAMPLES ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED.
