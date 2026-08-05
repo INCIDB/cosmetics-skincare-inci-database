@@ -1,0 +1,17 @@
+# INCIDB — The Complete Skincare & Cosmetics INCI Database
+
+> Normalized, multi-source skincare and cosmetic formulation database unifying 19,645 commercial products, 44,816 canonical INCI ingredients, 5,994 global brands, and 323,730 relational composition mappings. Built from public regulatory and open data — EU CosIng functional categories, FDA MoCRA contact-allergen flags, NLM DailyMed clinical OTC labels, K-Beauty MFDS standards, and the Open Beauty Facts product corpus (ODbL).
+
+## Key Links & Documentation
+- [Landing Page](https://cosmetics-skincare-database.pages.dev/)
+- [GitHub Repository](https://github.com/INCIDB/cosmetics-skincare-inci-database)
+- [Data Dictionary & Field Definitions](https://cosmetics-skincare-database.pages.dev/DATA_DICTIONARY.md)
+- [Apache Parquet Technical Schema](https://cosmetics-skincare-database.pages.dev/SPEC.md)
+- [Pricing & Access Plans (data is ODbL)](https://cosmetics-skincare-database.pages.dev/docs/pricing_plan.md)
+- [Free Preview Samples (zip)](https://cosmetics-skincare-database.pages.dev/samples/incidb_free_samples.zip)
+
+## Core Capabilities & Specs
+- **Data Formats:** Pipe-delimited CSV (`|`) and Apache Parquet (`pyarrow`).
+- **Data Sources:** EU CosIng, US FDA MoCRA Contact Allergens, NLM DailyMed Clinical OTC, K-Beauty MFDS Functional Standards, and Open Beauty Facts (ODbL).
+- **Attribution:** Product data © Open Beauty Facts contributors, licensed under the Open Database License (ODbL). Regulatory data sourced from public government registries.
+- **Licensing Tiers:** Free Sample ($0), One-Time Core ($49 USD, instant Stripe checkout: https://buy.stripe.com/aFa5kEcVybjg37tbeE3840b), One-Time Full Database ($99 USD, instant Stripe checkout: https://buy.stripe.com/6oU00k6xagDAazV2I83840c). Core ships all four CSV tables with CosIng functions and MoCRA allergen flags; Full adds Apache Parquet archives plus the comedogenic_rating and is_fungal_acne_trigger enrichment columns.

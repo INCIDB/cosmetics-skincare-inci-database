@@ -1,0 +1,7 @@
+ruff>=0.1.0
+flake8>=7.0.0
+pytest>=8.0.0
+pandas>=2.0.0
+pyarrow>=14.0.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0

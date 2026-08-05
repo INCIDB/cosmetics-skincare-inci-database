@@ -1,0 +1,47 @@
+{
+  "name": "INCIDB — Canonical INCI & Cosmetic Skincare Database",
+  "short_name": "INCIDB",
+  "description": "Normalized chemical nomenclature, EU CosIng functions, CAS numbers, and MoCRA allergen flags across 19,645 commercial skincare formulations.",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#0A0B0E",
+  "theme_color": "#0A0B0E",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Live Formulation Explorer",
+      "short_name": "Explorer",
+      "description": "Interactive SQL & Python code queries across formulations",
+      "url": "/#explorer",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Commercial Parquet Licensing",
+      "short_name": "Licensing",
+      "description": "Request full 19,645 product Parquet dataset delivery",
+      "url": "/#pricing",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    }
+  ],
+  "categories": ["developer", "education", "medical", "productivity"]
+}

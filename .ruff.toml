@@ -1,0 +1,21 @@
+line-length = 150
+exclude = [
+    ".git",
+    ".agents",
+    "__pycache__",
+    "venv",
+    "build",
+    "dist",
+    "data",
+    "exports",
+    "landing",
+    "samples",
+    "docs",
+    "src",
+    "tests",
+]
+
+[lint]
+# Pin the classic default rule set so an unpinned `ruff>=0.1.0` upgrade can't
+# silently start enforcing new rule groups (I/EXE/PERF/RUF) on existing code.
+select = ["E4", "E7", "E9", "F"]

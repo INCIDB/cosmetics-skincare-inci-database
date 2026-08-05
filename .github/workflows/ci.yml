@@ -1,0 +1,41 @@
+name: CI Quality Gates
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Ruff Linter
+        run: |
+          if [ -d "src" ]; then ruff check src tests run_pipeline.py clean_exports.py hf_space_app.py; else ruff check scripts/; fi
+
+      - name: Run Flake8 Linter
+        run: |
+          if [ -d "src" ]; then flake8 src tests run_pipeline.py clean_exports.py hf_space_app.py; else flake8 scripts/; fi
+
+      - name: Run Pytest Test Suite
+        run: |
+          if [ -d "tests" ]; then pytest; else echo "No tests directory in public release bundle."; fi
