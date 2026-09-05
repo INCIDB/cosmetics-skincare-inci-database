@@ -13,4 +13,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://cosmetics-skincare-database.pages.dev/sitemap.xml
+Sitemap: https://incidb.dataengineered.io/sitemap.xml

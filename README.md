@@ -1,16 +1,16 @@
 # INCIDB — The Skincare & Cosmetics INCI Database
 
-[![Live Portal](https://img.shields.io/badge/Live_Portal-cosmetics--skincare--database.pages.dev-0080d0?style=flat-square)](https://cosmetics-skincare-database.pages.dev/)
+[![Live Portal](https://img.shields.io/badge/Live_Portal-incidb.dataengineered.io-0080d0?style=flat-square)](https://incidb.dataengineered.io/)
 [![License](https://img.shields.io/badge/License-ODbL_v1.0-008080?style=flat-square)](https://opendatacommons.org/licenses/odbl/1-0/)
-[![Formulations](https://img.shields.io/badge/Formulations-19%2C645-0080d0?style=flat-square)](https://cosmetics-skincare-database.pages.dev/schema.html)
-[![INCI Compounds](https://img.shields.io/badge/INCI_Compounds-44%2C816-d03030?style=flat-square)](https://cosmetics-skincare-database.pages.dev/schema.html)
-[![Global Brands](https://img.shields.io/badge/Global_Brands-5%2C994-800080?style=flat-square)](https://cosmetics-skincare-database.pages.dev/schema.html)
-[![Relational Pairs](https://img.shields.io/badge/Relational_Pairs-323%2C730-60a020?style=flat-square)](https://cosmetics-skincare-database.pages.dev/schema.html)
-[![CSV Files](https://img.shields.io/badge/CSV_Files-4-e06020?style=flat-square)](https://cosmetics-skincare-database.pages.dev/samples/incidb_free_samples.zip)
-[![Parquet Files](https://img.shields.io/badge/Parquet_Files-4-7020d0?style=flat-square)](https://cosmetics-skincare-database.pages.dev/samples/incidb_free_samples.zip)
-[![Data Sources](https://img.shields.io/badge/Data_Sources-5-008080?style=flat-square)](https://cosmetics-skincare-database.pages.dev/#registries)
+[![Formulations](https://img.shields.io/badge/Formulations-19%2C645-0080d0?style=flat-square)](https://incidb.dataengineered.io/schema.html)
+[![INCI Compounds](https://img.shields.io/badge/INCI_Compounds-44%2C816-d03030?style=flat-square)](https://incidb.dataengineered.io/schema.html)
+[![Global Brands](https://img.shields.io/badge/Global_Brands-5%2C994-800080?style=flat-square)](https://incidb.dataengineered.io/schema.html)
+[![Relational Pairs](https://img.shields.io/badge/Relational_Pairs-323%2C730-60a020?style=flat-square)](https://incidb.dataengineered.io/schema.html)
+[![CSV Files](https://img.shields.io/badge/CSV_Files-4-e06020?style=flat-square)](https://incidb.dataengineered.io/samples/incidb_free_samples.zip)
+[![Parquet Files](https://img.shields.io/badge/Parquet_Files-4-7020d0?style=flat-square)](https://incidb.dataengineered.io/samples/incidb_free_samples.zip)
+[![Data Sources](https://img.shields.io/badge/Data_Sources-5-008080?style=flat-square)](https://incidb.dataengineered.io/#registries)
 
-> **🌐 Live Database Portal, Interactive Schema & Free Samples:** [https://cosmetics-skincare-database.pages.dev/](https://cosmetics-skincare-database.pages.dev/)
+> **🌐 Live Database Portal, Interactive Schema & Free Samples:** [https://incidb.dataengineered.io/](https://incidb.dataengineered.io/)
 
 Comprehensive, multi-source skincare and cosmetic formulation database unifying **19,645 commercial products**, **44,816 canonical INCI ingredients**, **5,994 global brands**, and **323,730 relational composition mappings**.
 
@@ -133,7 +133,7 @@ print(duckdb.query(query).to_df())
 * [DATA_DICTIONARY.md](DATA_DICTIONARY.md) — Full column descriptions and sample data.
 * [SPEC.md](SPEC.md) — Apache Parquet compression and PyArrow schema.
 * [docs/pricing_plan.md](docs/pricing_plan.md) — Pricing & access plans (data is ODbL; plans cover delivery + support).
-* [Live schema & interactive explorer](https://cosmetics-skincare-database.pages.dev/schema.html) — full column reference and query demos.
+* [Live schema & interactive explorer](https://incidb.dataengineered.io/schema.html) — full column reference and query demos.
 
 ---
 

@@ -3,12 +3,12 @@
 > Normalized, multi-source skincare and cosmetic formulation database unifying 19,645 commercial products, 44,816 canonical INCI ingredients, 5,994 global brands, and 323,730 relational composition mappings. Built from public regulatory and open data — EU CosIng functional categories, FDA MoCRA contact-allergen flags, NLM DailyMed clinical OTC labels, K-Beauty MFDS standards, and the Open Beauty Facts product corpus (ODbL).
 
 ## Key Links & Documentation
-- [Landing Page](https://cosmetics-skincare-database.pages.dev/)
+- [Landing Page](https://incidb.dataengineered.io/)
 - [GitHub Repository](https://github.com/INCIDB/cosmetics-skincare-inci-database)
-- [Data Dictionary & Field Definitions](https://cosmetics-skincare-database.pages.dev/DATA_DICTIONARY.md)
-- [Apache Parquet Technical Schema](https://cosmetics-skincare-database.pages.dev/SPEC.md)
-- [Pricing & Access Plans (data is ODbL)](https://cosmetics-skincare-database.pages.dev/docs/pricing_plan.md)
-- [Free Preview Samples (zip)](https://cosmetics-skincare-database.pages.dev/samples/incidb_free_samples.zip)
+- [Data Dictionary & Field Definitions](https://incidb.dataengineered.io/DATA_DICTIONARY.md)
+- [Apache Parquet Technical Schema](https://incidb.dataengineered.io/SPEC.md)
+- [Pricing & Access Plans (data is ODbL)](https://incidb.dataengineered.io/docs/pricing_plan.md)
+- [Free Preview Samples (zip)](https://incidb.dataengineered.io/samples/incidb_free_samples.zip)
 
 ## Core Capabilities & Specs
 - **Data Formats:** Pipe-delimited CSV (`|`) and Apache Parquet (`pyarrow`).

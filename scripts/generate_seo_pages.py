@@ -16,7 +16,7 @@ SAMPLES_DIR = os.path.join(ROOT_DIR, "samples")
 LANDING_DIR = os.path.join(ROOT_DIR, "landing")
 SITEMAP_PATH = os.path.join(ROOT_DIR, "sitemap.xml")
 
-BASE_URL = "https://cosmetics-skincare-database.pages.dev"
+BASE_URL = "https://incidb.dataengineered.io"
 
 def clean_slug(name):
     slug = re.sub(r'[^a-zA-Z0-9]+', '_', name.lower()).strip('_')
