@@ -31,7 +31,7 @@ Shipped as pipe-delimited UTF-8 CSV (`|`) and Apache Parquet.
 
 | Table | Rows | What it is |
 | :--- | ---: | :--- |
-| `products` | 18,583 | One row per Open Beauty Facts product: name, brand FK, EAN, category, raw label text |
+| `products` | 18,583 | One row per Open Beauty Facts product: name, brand FK, EAN, the source's own tag list, raw label text |
 | `brands` | 5,925 | Canonical brand identities |
 | `ingredients` | 46,973 | Distinct canonical INCI names, plus their CosIng enrichment where CosIng lists them |
 | `product_ingredients` | 318,758 | Ordered composition links (`position_index` = label order) |
@@ -111,14 +111,13 @@ instead of taking it on trust.
 [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) — the
 same five tables, the same columns, as CSV and Parquet:
 
-* **200 products** spanning all **15** product categories, with their brands,
-  their **1,075** referenced ingredients, all their composition links, and
-  the name-map rows for those ingredients.
+* **200 products**, with their brands, their **1,109** referenced
+  ingredients, all their composition links, and the name-map rows for those
+  ingredients.
 * Selection is disclosed and reproducible
   ([`scripts/make_sample.py`](scripts/make_sample.py)): a product is
   *eligible* when at least 80% of its linked ingredients are CosIng-matched;
-  the draw is stratified across categories **on that eligible pool**, seeded,
-  with a minimum of one product per category.
+  the draw is then a seeded uniform random sample of that eligible pool.
 * That rule biases the sample toward products with longer, better-resolved
   ingredient lists — i.e. **the sample looks better than the corpus average**.
   The corpus-wide numbers in the table above are the ones to plan against.

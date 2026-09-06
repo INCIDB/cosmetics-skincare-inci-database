@@ -41,7 +41,7 @@ declaration.
 | `brand_id` | `INTEGER` | FK → `brands.brand_id`. **`NULL` = no brand on the source label** — 1,151 products carry no brand in Open Beauty Facts, and are given NULL rather than being attached to a placeholder brand row | `55` |
 | `barcode_ean` | `STRING` | GTIN / EAN barcode | `4006381333931` |
 | `name` | `STRING` | Product name as recorded upstream | `Good Genes Lactic Acid Treatment` |
-| `category` | `STRING` | Product category — 15 distinct values across the corpus | `Skincare` |
+| `obf_categories_tags` | `STRING` | Open Beauty Facts' own `categories_tags` list for this product, joined with `;` and otherwise **verbatim** — not normalised, not translated, not collapsed into a taxonomy of ours. Present on 12,860 of 18,583 products (69.2%); `NULL` where the source record carries no tags | `en:hygiene;en:soaps` |
 | `raw_ingredient_text` | `STRING` | The unparsed on-pack ingredient declaration, kept verbatim so you can re-derive the parse | `Water, Glycerin, ...` |
 | `created_at` | `STRING` | Ingestion timestamp (ISO 8601) | `2026-07-02T14:01:48Z` |
 

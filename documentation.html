@@ -96,7 +96,7 @@
             <h2>2. Sources and the join</h2>
             <p>Two sources, one documented join. Every source file's URL, download timestamp and SHA-256 is recorded in the <code>build_report.json</code> shipped with the data.</p>
             <ul>
-                <li><strong>Open Beauty Facts</strong> — the product corpus (barcodes, brands, categories, raw ingredient declarations) under the Open Database License (ODbL).</li>
+                <li><strong>Open Beauty Facts</strong> — the product corpus (barcodes, brands, the source's own <code>categories_tags</code>, raw ingredient declarations) under the Open Database License (ODbL).</li>
                 <li><strong>European Commission CosIng</strong> — the ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names are <code>NULL</code> in every CosIng-derived column, never a placeholder.</li>
                 <li><strong>EU Annex III fragrance allergens</strong> — Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545, the single list behind <code>is_common_allergen</code>. The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists in this dataset.</li>
                 <li><strong>Authored layer</strong> — 145 comedogenic ratings transcribed from one published table, and 270 rule-derived fungal-acne flags. Both carry their citation per row in <code>rating_source</code>, and are <code>NULL</code> everywhere else.</li>

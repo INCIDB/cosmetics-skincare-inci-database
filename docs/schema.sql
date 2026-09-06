@@ -13,7 +13,13 @@ CREATE TABLE IF NOT EXISTS products (
     brand_id INTEGER,
     barcode_ean VARCHAR(50) UNIQUE,
     name VARCHAR(300) NOT NULL,
-    category VARCHAR(100), -- e.g., 'Cleanser', 'Moisturizer', 'Serum'
+    -- The Open Beauty Facts `categories_tags` list for this product, joined
+    -- with ';', VERBATIM. NULL when the source record carries none. The
+    -- pre-rebuild `category` column was a hard-coded default plus a keyword
+    -- heuristic with no per-row provenance -- a fabricated value -- and was
+    -- dropped. Nothing here is normalised, translated or collapsed into a
+    -- taxonomy of our own; that would only be a new guess.
+    obf_categories_tags TEXT,
     raw_ingredient_text TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (brand_id) REFERENCES brands(brand_id)

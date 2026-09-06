@@ -111,7 +111,6 @@ def load_data():
                 if pid in products:
                     prod_ing[iid].append({
                         'product_name': products[pid].get('name', 'Product #' + pid),
-                        'category': products[pid].get('category', ''),
                         'position': row.get('position_index', ''),
                     })
 
@@ -185,15 +184,10 @@ def ingredient_profile(ing, prod_list):
             f"corresponding Annex entry before formulating.")
 
     n_prod = len(prod_list)
-    cats = sorted({(p.get('category') or '').strip() for p in prod_list
-                   if (p.get('category') or '').strip()})
     ranked = [p for p in prod_list if str(p.get('position', '')).strip().isdigit()]
     if n_prod:
         s2 = (f"In the free INCIDB sample it appears on {n_prod} product label"
               + ("s" if n_prod != 1 else ""))
-        if cats:
-            s2 += (f" across {len(cats)} categor" + ("ies" if len(cats) != 1 else "y")
-                   + f" ({', '.join(e(c) for c in cats)})")
         if ranked:
             best = min(ranked, key=lambda p: int(p['position']))
             best_pos = int(best['position'])
@@ -290,14 +284,13 @@ def generate_monograph(ing, prod_list, hub_info, claims):
             prod_rows += f"""
             <tr style="border-bottom: 1px solid #232838;">
                 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;">{e(p['product_name'])}</td>
-                <td style="padding: 0.75rem; color: #94A3B8;">{e(p['category'])}</td>
                 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#{e(str(p['position']))}</td>
             </tr>
             """
     else:
         prod_rows = f"""
         <tr>
-            <td colspan="3" style="padding: 1rem; color: #64748B; text-align: center;">No sample product links this ingredient. The full snapshot covers {products_total} products.</td>
+            <td colspan="2" style="padding: 1rem; color: #64748B; text-align: center;">No sample product links this ingredient. The full snapshot covers {products_total} products.</td>
         </tr>
         """
 
@@ -414,7 +407,6 @@ def generate_monograph(ing, prod_list, hub_info, claims):
                     <thead>
                         <tr style="background: #161922; border-bottom: 1px solid #232838; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: #64748B;">
                             <th style="padding: 0.85rem;">PRODUCT</th>
-                            <th style="padding: 0.85rem;">CATEGORY</th>
                             <th style="padding: 0.85rem;">LABEL POSITION</th>
                         </tr>
                     </thead>

@@ -5,9 +5,9 @@ One product. One price. Snapshot 2026.09.
 | | Free sample | **INCIDB Complete** |
 | :--- | :--- | :--- |
 | **Price** | `$0` | **`$79`** one-time |
-| **Products** | 200 (all 15 categories) | 18,583 |
+| **Products** | 200 (seeded random draw) | 18,583 |
 | **Brands** | the 200 products' brands | 5,925 |
-| **Distinct canonical INCI names** | 1,075 | 46,973 |
+| **Distinct canonical INCI names** | 1,109 | 46,973 |
 | **Composition links** | the 200 products' links | 318,758 |
 | **`ingredient_name_map` rows** | for the sampled ingredients | 55,426 |
 | **Tables** | all 5 | all 5 |

@@ -143,7 +143,7 @@
                         <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>brands.brand_id</code>. <strong>NULL</strong> when the source label records no brand</td><td><code>55</code></td></tr>
                         <tr><td><code>barcode_ean</code></td><td><code class="type-tag">STRING</code></td><td>GTIN / EAN barcode</td><td><code>4006381333931</code></td></tr>
                         <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Product name as recorded upstream</td><td><code>Good Genes Lactic Acid Treatment</code></td></tr>
-                        <tr><td><code>category</code></td><td><code class="type-tag">STRING</code></td><td>Product category — 15 distinct values</td><td><code>Skincare</code></td></tr>
+                        <tr><td><code>obf_categories_tags</code></td><td><code class="type-tag">STRING</code></td><td>Open Beauty Facts' own tag list, joined with <code>;</code>, verbatim — present on 12,860 of 18,583 products (69.2%), NULL where the source has none</td><td><code>en:hygiene;en:soaps</code></td></tr>
                         <tr><td><code>raw_ingredient_text</code></td><td><code class="type-tag">STRING</code></td><td>The unparsed declaration, kept verbatim so the parse can be re-derived</td><td><code>Water, Glycerin, ...</code></td></tr>
                         <tr><td><code>created_at</code></td><td><code class="type-tag">STRING</code></td><td>Ingestion timestamp (ISO 8601)</td><td><code>2026-07-02T14:01:48Z</code></td></tr>
                     </tbody>

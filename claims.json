@@ -3,7 +3,6 @@
   "brands": 5925,
   "cas_link_weighted_pct": 76.4,
   "cas_pct": 8.3,
-  "categories": 15,
   "chemical_description_distinct": 3965,
   "chemical_description_pct": 8.5,
   "cosing_link_weighted_pct": 82.5,
@@ -14,11 +13,13 @@
   "ingredients": 46973,
   "links": 318758,
   "name_map_rows": 55426,
+  "obf_categories_filled": 12860,
+  "obf_categories_pct": 69.2,
   "price_usd": 79,
   "products": 18583,
   "products_without_brand": 1151,
   "rated_comedogenic": 145,
-  "sample_ingredients": 1075,
+  "sample_ingredients": 1109,
   "sample_products": 200,
   "snapshot": "2026.09"
 }

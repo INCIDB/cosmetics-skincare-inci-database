@@ -20,22 +20,24 @@ execute anyway.
 
 Sample design
 -------------
-`select_sample_products()` draws `n` products (default 200), stratified by
-`products.category` proportionally (largest-remainder rounding, minimum 1 per
-category that has at least one eligible product), from the pool of ELIGIBLE
-products only, deterministically for a given `seed`.
+`select_sample_products()` draws `n` products (default 200) from the pool of
+ELIGIBLE products, uniformly at random and deterministically for a given
+`seed`. Nothing stratifies the draw. The sample used to be stratified across
+`products.category`, but that column was a hard-coded default plus a keyword
+heuristic with no per-row provenance — a fabricated value — so it was dropped
+(see `src/enrichment/obf_categories.py`). Stratifying on the source's own
+`obf_categories_tags` instead is not a like-for-like swap: it is present on
+only about 69% of products, and a draw stratified over it would silently
+over-represent classified products. A seeded uniform draw over the eligible
+pool makes no claim the data cannot support.
 
 A product is ELIGIBLE when it has at least one linked ingredient AND at least
 80% of its linked ingredients (`product_ingredients` rows) have
 `ingredients.cosing_matched = 1`. Products with zero linked ingredients are
 excluded (the match ratio is undefined for them, and including them would
-misrepresent the enrichment quality the sample exists to showcase). A
-category with zero eligible products cannot receive its guaranteed minimum
-of 1 and is simply absent from the sample. Conversely, `n` must be at least
-the number of categories that DO have eligible products — otherwise the
-guaranteed minimum of 1 per category cannot fit inside `n` and
-`select_sample_products()` raises `ValueError` rather than silently
-returning more than `n` products.
+misrepresent the enrichment quality the sample exists to showcase). This
+eligibility rule is disclosed on every surface that quotes a sample number:
+the sample reads better than the corpus average BY CONSTRUCTION.
 
 `write_sample()` then writes the 5 relational tables (`brands`, `products`,
 `ingredients`, `product_ingredients`, `ingredient_name_map`) restricted to
@@ -73,90 +75,44 @@ def _sanitize(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905) -> list:
-    """Returns a deterministic, category-stratified sample of eligible product_ids.
+    """Returns a deterministic, uniformly random sample of eligible product_ids.
 
-    See module docstring for the eligibility rule and the stratification method.
-
-    Raises `ValueError` if `n` is smaller than the number of categories that have at
-    least one eligible product: the guaranteed minimum of 1 per category cannot be
-    honored for every category without exceeding `n`, so the caller must either raise
-    `n` or accept that this function cannot also promise a seat to every category.
+    See the module docstring for the eligibility rule and for why the draw is
+    unstratified. Returns every eligible product when the pool is smaller than
+    `n`, sorted by product_id in all cases.
     """
     conn = sqlite3.connect(db_path)
     try:
         rows = conn.execute(
             """
-            SELECT p.product_id, p.category,
+            SELECT p.product_id,
                    COUNT(pi.ingredient_id) AS total_ing,
                    SUM(CASE WHEN i.cosing_matched = 1 THEN 1 ELSE 0 END) AS matched_ing
             FROM products p
             LEFT JOIN product_ingredients pi ON pi.product_id = p.product_id
             LEFT JOIN ingredients i ON i.ingredient_id = pi.ingredient_id
-            GROUP BY p.product_id, p.category
+            GROUP BY p.product_id
             ORDER BY p.product_id
             """
         ).fetchall()
     finally:
         conn.close()
 
-    by_category = {}
-    for product_id, category, total_ing, matched_ing in rows:
+    eligible = []
+    for product_id, total_ing, matched_ing in rows:
         total_ing = total_ing or 0
         matched_ing = matched_ing or 0
         if total_ing == 0:
             continue
         if (matched_ing / total_ing) >= ELIGIBILITY_THRESHOLD:
-            by_category.setdefault(category, []).append(product_id)
+            eligible.append(product_id)
 
-    categories = sorted(by_category)
-    if not categories:
+    if not eligible:
         return []
 
-    if n < len(categories):
-        raise ValueError(
-            f"n={n} is smaller than the {len(categories)} categories with eligible "
-            "products; raise n or drop the per-category minimum"
-        )
-
-    counts = {c: len(by_category[c]) for c in categories}
-    total_eligible = sum(counts.values())
-    n = min(n, total_eligible)
-
-    quotas = {c: counts[c] / total_eligible * n for c in categories}
-    allocation = {c: min(counts[c], max(1, int(quotas[c]))) for c in categories}
-
-    remainder = n - sum(allocation.values())
-    if remainder > 0:
-        # Largest-remainder method: give the leftover seats to the categories whose
-        # floor rounded down the most, in order, skipping any that are already full.
-        order = sorted(categories, key=lambda c: (-(quotas[c] - int(quotas[c])), c))
-        idx = 0
-        while remainder > 0 and any(allocation[c] < counts[c] for c in categories):
-            c = order[idx % len(order)]
-            if allocation[c] < counts[c]:
-                allocation[c] += 1
-                remainder -= 1
-            idx += 1
-    elif remainder < 0:
-        # More categories than seats: min-1 pushed the total over n. Shrink the
-        # categories with the largest surplus over their proportional quota first,
-        # never below 1, so every eligible category still gets its guaranteed seat.
-        order = sorted(categories, key=lambda c: -(allocation[c] - quotas[c]))
-        idx = 0
-        while remainder < 0 and any(allocation[c] > 1 for c in categories):
-            c = order[idx % len(order)]
-            if allocation[c] > 1:
-                allocation[c] -= 1
-                remainder += 1
-            idx += 1
-
+    eligible.sort()
     rng = random.Random(seed)
-    selected = []
-    for c in categories:
-        pool = sorted(by_category[c])
-        selected.extend(rng.sample(pool, allocation[c]))
-
-    return sorted(selected)
+    return sorted(rng.sample(eligible, min(n, len(eligible))))
 
 
 def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
@@ -242,7 +198,6 @@ def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
         "ingredients": len(ingredients_df),
         "links": len(links_df),
         "name_map_rows": len(name_map_df),
-        "categories": int(products_df["category"].nunique()) if len(products_df) else 0,
         "ingredients_cosing_matched": int((ingredients_df["cosing_matched"] == 1).sum()) if len(ingredients_df) else 0,
         "ingredients_with_functions": int(ingredients_df["functions"].notna().sum()) if len(ingredients_df) else 0,
         "ingredients_with_cas": int(ingredients_df["cas_number"].notna().sum()) if len(ingredients_df) else 0,

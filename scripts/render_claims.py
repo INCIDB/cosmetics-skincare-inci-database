@@ -103,6 +103,7 @@ def build_claims(report_path=REPORT_PATH, csv_dir=CSV_DIR,
 
     counts = report["counts"]
     ing = report["tables"]["ingredients"]
+    prod = report["tables"]["products"]
     lw = link_weighted_coverage(csv_dir)
 
     # "2026-09-06T13:35:09+00:00" -> "2026.09"
@@ -129,6 +130,12 @@ def build_claims(report_path=REPORT_PATH, csv_dir=CSV_DIR,
         "cas_pct": pct(ing["cas_number"]["fill_rate"]),
         "chemical_description_pct": pct(ing["chemical_description"]["fill_rate"]),
         "chemical_description_distinct": ing["chemical_description"]["distinct"],
+        # The source's own product classification (Open Beauty Facts
+        # `categories_tags`), joined verbatim. Published as the exact measured
+        # fill, count and percent, because it is well below 90% and the copy
+        # may never round a partial column up to "every product".
+        "obf_categories_filled": prod["obf_categories_tags"]["non_null"],
+        "obf_categories_pct": pct(prod["obf_categories_tags"]["fill_rate"]),
         # Link-weighted coverage: share of ingredient OCCURRENCES on labels.
         "cosing_link_weighted_pct": pct(lw["cosing_matched"]),
         "functions_link_weighted_pct": pct(lw["functions"]),
@@ -140,7 +147,6 @@ def build_claims(report_path=REPORT_PATH, csv_dir=CSV_DIR,
         # Free sample.
         "sample_products": sample["products"],
         "sample_ingredients": sample["ingredients"],
-        "categories": sample["categories"],
         # Release metadata.
         "snapshot": snapshot,
         "price_usd": PRICE_USD,
