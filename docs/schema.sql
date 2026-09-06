@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS products (
     barcode_ean VARCHAR(50) UNIQUE,
     name VARCHAR(300) NOT NULL,
     category VARCHAR(100), -- e.g., 'Cleanser', 'Moisturizer', 'Serum'
-    retail_price_usd DECIMAL(10, 2),
     raw_ingredient_text TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (brand_id) REFERENCES brands(brand_id)
@@ -19,15 +18,30 @@ CREATE TABLE IF NOT EXISTS products (
 
 CREATE TABLE IF NOT EXISTS ingredients (
     ingredient_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    inci_name VARCHAR(255) NOT NULL UNIQUE,
-    cas_number VARCHAR(50),
+    inci_name VARCHAR(255) NOT NULL UNIQUE,          -- canonical (CosIng-style upper-case)
     common_name VARCHAR(255),
-    primary_function VARCHAR(150), -- e.g., 'Humectant', 'Preservative', 'UV Filter'
+    cosing_matched BOOLEAN,                          -- NULL until enrichment runs
+    cosing_ref_no VARCHAR(20),
+    cas_number VARCHAR(50),
+    ec_number VARCHAR(50),
+    functions TEXT,                                  -- ';'-separated CosIng functions
+    chemical_description TEXT,
+    cosing_restriction TEXT,
+    cosing_update_date VARCHAR(10),
+    annex_ii BOOLEAN, annex_iii BOOLEAN, annex_iv BOOLEAN, annex_v BOOLEAN, annex_vi BOOLEAN,
+    is_common_allergen BOOLEAN,
+    allergen_source VARCHAR(30),                     -- EU_ANNEX_III | FDA_MOCRA | BOTH
     comedogenic_rating INTEGER CHECK(comedogenic_rating BETWEEN 0 AND 5),
-    is_common_allergen BOOLEAN DEFAULT 0,
-    is_fungal_acne_trigger BOOLEAN DEFAULT 0,
-    fda_warning VARCHAR(255),
-    description TEXT
+    is_fungal_acne_trigger BOOLEAN,
+    rating_source TEXT                               -- citation for the two authored columns
+);
+CREATE TABLE IF NOT EXISTS ingredient_name_map (
+    raw_name VARCHAR(255) NOT NULL,
+    canonical_name VARCHAR(255) NOT NULL,
+    method VARCHAR(20) NOT NULL,
+    confidence REAL NOT NULL,
+    ingredient_id INTEGER NOT NULL REFERENCES ingredients(ingredient_id),
+    PRIMARY KEY (raw_name, canonical_name)
 );
 
 -- Junction table mapping products to ingredients with exact order index
