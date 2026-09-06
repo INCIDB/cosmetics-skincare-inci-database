@@ -85,7 +85,7 @@
             <p>Five tables, exported as pipe-delimited UTF-8 CSV and Apache Parquet with identical columns:</p>
             <ul>
                 <li><strong>18,583 products</strong> — one row per Open Beauty Facts product carrying a usable on-pack ingredient declaration, with the raw declaration kept verbatim so the parse can be re-derived.</li>
-                <li><strong>5,926 brands</strong> — brand identities as recorded upstream.</li>
+                <li><strong>5,925 brands</strong> — brand identities as recorded upstream.</li>
                 <li><strong>46,973 distinct canonical INCI names</strong> — the result of canonicalising every raw label token, enriched from CosIng where CosIng lists them.</li>
                 <li><strong>318,758 ordered composition links</strong> — preserving label order in <code>position_index</code>.</li>
                 <li><strong>55,426 name-map rows</strong> — how each raw label token was resolved, and by which method.</li>
@@ -110,7 +110,7 @@
                 <li><strong>CosIng match (any):</strong> 11.0% of the 46,973 distinct canonical names; 82.5% of the 318,758 ingredient occurrences across product labels.</li>
                 <li><strong><code>functions</code>:</strong> 10.9% of distinct names; 81.5% of label occurrences.</li>
                 <li><strong><code>cas_number</code>:</strong> 8.3% of distinct names; 76.4% of label occurrences.</li>
-                <li><strong><code>chemical_description</code>:</strong> 8.5% of distinct names, 3,966 distinct values.</li>
+                <li><strong><code>chemical_description</code>:</strong> 8.5% of distinct names, 3,965 distinct values.</li>
             </ul>
             <p>A label corpus contains far more distinct strings — botanical variants, multilingual spellings, marketing tokens — than any regulatory inventory lists, which is why the first number in each pair is low. The slots on a real label are filled overwhelmingly by ingredients CosIng does cover, which is why the second is high. Neither number alone describes the data.</p>
         </div>

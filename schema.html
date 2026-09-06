@@ -103,7 +103,7 @@
                     <thead><tr><th>Table</th><th>Rows</th></tr></thead>
                     <tbody>
                         <tr><td><code>products</code></td><td>18,583</td></tr>
-                        <tr><td><code>brands</code></td><td>5,926</td></tr>
+                        <tr><td><code>brands</code></td><td>5,925</td></tr>
                         <tr><td><code>ingredients</code></td><td>46,973</td></tr>
                         <tr><td><code>product_ingredients</code></td><td>318,758</td></tr>
                         <tr><td><code>ingredient_name_map</code></td><td>55,426</td></tr>
@@ -115,7 +115,7 @@
         <!-- Brands -->
         <div class="doc-section">
             <h2>1. brands</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">5,926 brand identities as recorded in Open Beauty Facts.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">5,925 brand identities as recorded in Open Beauty Facts.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -140,7 +140,7 @@
                     </thead>
                     <tbody>
                         <tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Primary key</td><td><code>68597</code></td></tr>
-                        <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>brands.brand_id</code></td><td><code>55</code></td></tr>
+                        <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>brands.brand_id</code>. <strong>NULL</strong> when the source label records no brand</td><td><code>55</code></td></tr>
                         <tr><td><code>barcode_ean</code></td><td><code class="type-tag">STRING</code></td><td>GTIN / EAN barcode</td><td><code>4006381333931</code></td></tr>
                         <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Product name as recorded upstream</td><td><code>Good Genes Lactic Acid Treatment</code></td></tr>
                         <tr><td><code>category</code></td><td><code class="type-tag">STRING</code></td><td>Product category — 15 distinct values</td><td><code>Skincare</code></td></tr>
@@ -163,8 +163,7 @@
                     <tbody>
                         <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>—</td><td>Primary key</td></tr>
                         <tr><td><code>inci_name</code></td><td><code class="type-tag">STRING</code></td><td>canonicalisation</td><td>The canonical name every raw label token was resolved to</td></tr>
-                        <tr><td><code>common_name</code></td><td><code class="type-tag">STRING</code></td><td>—</td><td>Always <code>NULL</code> in this snapshot; no source supplies it</td></tr>
-                        <tr><td><code>cosing_matched</code></td><td><code class="type-tag">INTEGER</code></td><td>CosIng</td><td><code>1</code> when the canonical name matched the inventory. Gates every CosIng column below</td></tr>
+                                                <tr><td><code>cosing_matched</code></td><td><code class="type-tag">INTEGER</code></td><td>CosIng</td><td><code>1</code> when the canonical name matched the inventory. Gates every CosIng column below</td></tr>
                         <tr><td><code>cosing_ref_no</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>CosIng reference number</td></tr>
                         <tr><td><code>cas_number</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>CAS registry number — from CosIng only, never inferred</td></tr>
                         <tr><td><code>ec_number</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>EC number</td></tr>
@@ -192,7 +191,7 @@
                         <tr><td>CosIng match (any)</td><td>11.0%</td><td>82.5%</td></tr>
                         <tr><td><code>functions</code></td><td>10.9%</td><td>81.5%</td></tr>
                         <tr><td><code>cas_number</code></td><td>8.3%</td><td>76.4%</td></tr>
-                        <tr><td><code>chemical_description</code></td><td>8.5% · 3,966 distinct values</td><td>—</td></tr>
+                        <tr><td><code>chemical_description</code></td><td>8.5% · 3,965 distinct values</td><td>—</td></tr>
                     </tbody>
                 </table>
             </div>

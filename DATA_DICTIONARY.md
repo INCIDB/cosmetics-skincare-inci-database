@@ -14,7 +14,7 @@ disagree.
 | Table | Rows |
 | :--- | ---: |
 | `products` | 18,583 |
-| `brands` | 5,926 |
+| `brands` | 5,925 |
 | `ingredients` | 46,973 |
 | `product_ingredients` | 318,758 |
 | `ingredient_name_map` | 55,426 |
@@ -26,7 +26,7 @@ disagree.
 | Field | Type | Description | Example |
 | :--- | :--- | :--- | :--- |
 | `brand_id` | `INTEGER` | Primary key | `1` |
-| `name` | `STRING` | Brand name as recorded in Open Beauty Facts | `Laneige` |
+| `name` | `STRING` | Brand name as recorded in Open Beauty Facts. Never blank: a product whose source label records no brand carries `products.brand_id = NULL` instead of pointing at an unnamed brand row | `Laneige` |
 
 ---
 
@@ -38,7 +38,7 @@ declaration.
 | Field | Type | Description | Example |
 | :--- | :--- | :--- | :--- |
 | `product_id` | `INTEGER` | Primary key | `68597` |
-| `brand_id` | `INTEGER` | FK → `brands.brand_id` | `55` |
+| `brand_id` | `INTEGER` | FK → `brands.brand_id`. **`NULL` = no brand on the source label** — 1,151 products carry no brand in Open Beauty Facts, and are given NULL rather than being attached to a placeholder brand row | `55` |
 | `barcode_ean` | `STRING` | GTIN / EAN barcode | `4006381333931` |
 | `name` | `STRING` | Product name as recorded upstream | `Good Genes Lactic Acid Treatment` |
 | `category` | `STRING` | Product category — 15 distinct values across the corpus | `Skincare` |
@@ -57,11 +57,10 @@ Commission CosIng inventory on an exact name match; they are `NULL` otherwise.
 | :--- | :--- | :--- | :--- |
 | `ingredient_id` | `INTEGER` | — | Primary key |
 | `inci_name` | `STRING` | canonicalisation | The canonical name. Every raw label token that resolved here is listed in `ingredient_name_map` |
-| `common_name` | `STRING` | — | **Always `NULL` in this snapshot.** No source supplies it; the column is retained for schema stability rather than dropped mid-series |
 | `cosing_matched` | `INTEGER` | CosIng | `1` when the canonical name matched the CosIng inventory, else `0`. Gates every column below it that is marked CosIng |
 | `cosing_ref_no` | `STRING` | CosIng | CosIng reference number |
 | `cas_number` | `STRING` | CosIng | CAS registry number, taken from CosIng only |
-| `ec_number` | `STRING` | CosIng | EC number |
+| `ec_number` | `STRING` | CosIng | EC number. A CosIng entry covering several substances joins their EC numbers with ` / `; a substance CosIng lists no EC number for is omitted from that join, and an entry with none at all is `NULL` — the `-` placeholder is never shipped |
 | `functions` | `STRING` | CosIng | CosIng functional categories, multi-valued, `;`-separated (`SKIN CONDITIONING;HUMECTANT`) |
 | `chemical_description` | `STRING` | CosIng | CosIng chemical / IUPAC description text |
 | `cosing_restriction` | `STRING` | CosIng | CosIng restriction reference (`V/21` = Annex V entry 21) |
@@ -80,7 +79,7 @@ Commission CosIng inventory on an exact name match; they are `NULL` otherwise.
 | CosIng match (any) | 11.0% | 82.5% |
 | `functions` | 10.9% | 81.5% |
 | `cas_number` | 8.3% | 76.4% |
-| `chemical_description` | 8.5% (3,966 distinct values) | — |
+| `chemical_description` | 8.5% (3,965 distinct values) | — |
 
 The left column counts distinct names; the right counts ingredient
 occurrences across product labels. They differ by an order of magnitude
@@ -185,12 +184,12 @@ above.
 ## Columns present but empty in this snapshot
 
 Named here so nothing in the archive is a surprise. They carry no data and
-must not be relied on: `ingredients.common_name`,
-`ingredients.cosing_update_date`,
-`product_ingredients.concentration_percentage`, and
-`products.retail_price_usd` (retained from an earlier schema; no source
-supplies it and it is `NULL` throughout — it is not a data feature of this
-product).
+must not be relied on: `ingredients.cosing_update_date` and
+`product_ingredients.concentration_percentage`.
+
+Two columns inherited from a much earlier schema — a product price and an
+ingredient common name — were filled for 0 rows and have been dropped
+outright in this snapshot rather than shipped empty.
 
 ---
 

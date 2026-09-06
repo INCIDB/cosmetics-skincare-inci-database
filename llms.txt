@@ -1,6 +1,6 @@
 # INCIDB — The Skincare & Cosmetics INCI Database
 
-> A normalised relational snapshot of cosmetic ingredient labels: 18,583 products, 5,926 brands, 46,973 distinct canonical INCI names, 318,758 ordered product→ingredient composition links, and a 55,426-row `ingredient_name_map` recording how every raw label token was resolved to a canonical name. Product/brand/composition data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS, EC numbers, chemical descriptions, Annex II–VI membership, restrictions) joined on exact canonical name from the European Commission CosIng inventory. Where a source has no value the column is NULL — nothing is defaulted or inferred. Snapshot 2026.09.
+> A normalised relational snapshot of cosmetic ingredient labels: 18,583 products, 5,925 brands, 46,973 distinct canonical INCI names, 318,758 ordered product→ingredient composition links, and a 55,426-row `ingredient_name_map` recording how every raw label token was resolved to a canonical name. Product/brand/composition data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS, EC numbers, chemical descriptions, Annex II–VI membership, restrictions) joined on exact canonical name from the European Commission CosIng inventory. Where a source has no value the column is NULL — nothing is defaulted or inferred. Snapshot 2026.09.
 
 ## Key Links & Documentation
 - [Landing Page](https://incidb.dataengineered.io/)
@@ -16,7 +16,7 @@ Coverage is reported two ways, because they differ by an order of magnitude and 
 - **CosIng match:** 11.0% of the 46,973 distinct canonical names; 82.5% of the 318,758 ingredient occurrences on product labels (link-weighted).
 - **`functions` (CosIng vocabulary, multi-valued):** 10.9% of distinct names; 81.5% link-weighted.
 - **`cas_number`:** 8.3% of distinct names; 76.4% link-weighted.
-- **`chemical_description`:** 8.5% of distinct names, 3,966 distinct values.
+- **`chemical_description`:** 8.5% of distinct names, 3,965 distinct values.
 - **`is_common_allergen`:** 99 names flagged, from the EU Annex III fragrance-allergen list (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545). The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists here.
 - **`comedogenic_rating`:** 145 ingredients rated 0–5, transcribed from Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Table I); NULL elsewhere.
 - **`is_fungal_acne_trigger`:** 270 rule-derived flags (C11–C24 fatty acids and their esters, polysorbates 20/40/60/80, applied only to CosIng-matched ingredients). A heuristic, not a measured property. Basis: DOI 10.3389/fcimb.2020.00112, DOI 10.1093/femsyr/foaf043.

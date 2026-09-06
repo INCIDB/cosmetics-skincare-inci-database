@@ -4,4 +4,6 @@ pytest>=8.0.0
 pandas>=2.0.0
 pyarrow>=14.0.0
 requests>=2.31.0
-beautifulsoup4>=4.12.0
+# scripts/render_og_image.py renders assets/og-image.html to og-image.png at
+# the exact 1200x630 OpenGraph size with headless Chromium.
+playwright==1.61.0

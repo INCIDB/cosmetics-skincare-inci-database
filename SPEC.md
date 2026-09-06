@@ -9,7 +9,7 @@ prototype against the CSV and ship against the Parquet.
 
 | Table | Parquet size | CSV size | Rows | Columns |
 | :--- | ---: | ---: | ---: | ---: |
-| `brands` | 0.11 MiB | 0.12 MiB | 5,926 | 2 |
+| `brands` | 0.11 MiB | 0.12 MiB | 5,925 | 2 |
 | `products` | 4.77 MiB | 9.55 MiB | 18,583 | 8 |
 | `ingredients` | 2.33 MiB | 4.96 MiB | 46,973 | 21 |
 | `product_ingredients` | 1.18 MiB | 4.97 MiB | 318,758 | 4 |

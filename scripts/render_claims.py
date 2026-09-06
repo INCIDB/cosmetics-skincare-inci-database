@@ -113,6 +113,13 @@ def build_claims(report_path=REPORT_PATH, csv_dir=CSV_DIR,
         # Corpus row counts.
         "products": counts["products"],
         "brands": counts["brands"],
+        # Products whose source label records no brand: they carry
+        # products.brand_id = NULL rather than pointing at a placeholder brand
+        # row. column_profile counts a blank/NULL as "not non_null".
+        "products_without_brand": (
+            report["tables"]["products"]["brand_id"]["rows"]
+            - report["tables"]["products"]["brand_id"]["non_null"]
+        ),
         "ingredients": counts["ingredients"],
         "links": counts["product_ingredients"],
         "name_map_rows": counts["ingredient_name_map"],

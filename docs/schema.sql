@@ -7,7 +7,10 @@ CREATE TABLE IF NOT EXISTS brands (
 
 CREATE TABLE IF NOT EXISTS products (
     product_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    brand_id INTEGER NOT NULL,
+    -- NULLABLE on purpose: a source label with no brand recorded upstream gets
+    -- brand_id NULL rather than a synthetic blank brand row (see
+    -- DATA_DICTIONARY.md, "brand_id NULL = no brand on the source label").
+    brand_id INTEGER,
     barcode_ean VARCHAR(50) UNIQUE,
     name VARCHAR(300) NOT NULL,
     category VARCHAR(100), -- e.g., 'Cleanser', 'Moisturizer', 'Serum'
@@ -19,7 +22,6 @@ CREATE TABLE IF NOT EXISTS products (
 CREATE TABLE IF NOT EXISTS ingredients (
     ingredient_id INTEGER PRIMARY KEY AUTOINCREMENT,
     inci_name VARCHAR(255) NOT NULL UNIQUE,          -- canonical (CosIng-style upper-case)
-    common_name VARCHAR(255),
     cosing_matched BOOLEAN,                          -- NULL until enrichment runs
     cosing_ref_no VARCHAR(20),
     cas_number VARCHAR(50),

@@ -6,7 +6,7 @@ One product. One price. Snapshot 2026.09.
 | :--- | :--- | :--- |
 | **Price** | `$0` | **`$79`** one-time |
 | **Products** | 200 (all 15 categories) | 18,583 |
-| **Brands** | the 200 products' brands | 5,926 |
+| **Brands** | the 200 products' brands | 5,925 |
 | **Distinct canonical INCI names** | 1,075 | 46,973 |
 | **Composition links** | the 200 products' links | 318,758 |
 | **`ingredient_name_map` rows** | for the sampled ingredients | 55,426 |
@@ -67,7 +67,7 @@ magnitude, and quoting only one of them would be a lie by omission.
 | CosIng match (any) | 11.0% | 82.5% |
 | `functions` | 10.9% | 81.5% |
 | `cas_number` | 8.3% | 76.4% |
-| `chemical_description` | 8.5% (3,966 distinct values) | — |
+| `chemical_description` | 8.5% (3,965 distinct values) | — |
 
 A cosmetic label corpus contains far more distinct strings than a regulatory
 inventory lists — botanical variants, multilingual spellings, marketing

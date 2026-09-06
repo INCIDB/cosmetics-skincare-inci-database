@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/License-ODbL_v1.0-008080?style=flat-square)](https://opendatacommons.org/licenses/odbl/1-0/)
 [![Products](https://img.shields.io/badge/Products-18,583-0080d0?style=flat-square)](https://incidb.dataengineered.io/schema)
 [![INCI names](https://img.shields.io/badge/INCI_names-46,973-d03030?style=flat-square)](https://incidb.dataengineered.io/schema)
-[![Brands](https://img.shields.io/badge/Brands-5,926-800080?style=flat-square)](https://incidb.dataengineered.io/schema)
+[![Brands](https://img.shields.io/badge/Brands-5,925-800080?style=flat-square)](https://incidb.dataengineered.io/schema)
 [![Composition links](https://img.shields.io/badge/Composition_links-318,758-60a020?style=flat-square)](https://incidb.dataengineered.io/schema)
 [![Name map rows](https://img.shields.io/badge/Name_map_rows-55,426-e06020?style=flat-square)](https://incidb.dataengineered.io/schema)
 [![Snapshot](https://img.shields.io/badge/Snapshot-2026.09-7020d0?style=flat-square)](https://incidb.dataengineered.io/)
@@ -12,7 +12,7 @@
 > **Live portal, interactive schema & free sample:** [https://incidb.dataengineered.io/](https://incidb.dataengineered.io/)
 
 A normalised, relational snapshot of what is actually printed on cosmetic
-ingredient labels: **18,583 products**, **5,926 brands**, **46,973 distinct
+ingredient labels: **18,583 products**, **5,925 brands**, **46,973 distinct
 canonical INCI names**, **318,758 ordered product→ingredient links**, and the
 **55,426-row `ingredient_name_map`** that shows how every raw label token was
 resolved to a canonical name.
@@ -32,7 +32,7 @@ Shipped as pipe-delimited UTF-8 CSV (`|`) and Apache Parquet.
 | Table | Rows | What it is |
 | :--- | ---: | :--- |
 | `products` | 18,583 | One row per Open Beauty Facts product: name, brand FK, EAN, category, raw label text |
-| `brands` | 5,926 | Canonical brand identities |
+| `brands` | 5,925 | Canonical brand identities |
 | `ingredients` | 46,973 | Distinct canonical INCI names, plus their CosIng enrichment where CosIng lists them |
 | `product_ingredients` | 318,758 | Ordered composition links (`position_index` = label order) |
 | `ingredient_name_map` | 55,426 | Raw label token → canonical name, with the resolution `method` and a confidence |
@@ -49,7 +49,7 @@ very different depending on what you count:
 | CosIng match (any) | 11.0% | **82.5%** |
 | `functions` | 10.9% | **81.5%** |
 | `cas_number` | 8.3% | **76.4%** |
-| `chemical_description` | 8.5% (3,966 distinct values) | — |
+| `chemical_description` | 8.5% (3,965 distinct values) | — |
 
 Read it like this: **most distinct names in the long tail are not in CosIng,
 but most of the ingredient slots on an actual product label are.** If you are
