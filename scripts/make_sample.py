@@ -31,7 +31,11 @@ A product is ELIGIBLE when it has at least one linked ingredient AND at least
 excluded (the match ratio is undefined for them, and including them would
 misrepresent the enrichment quality the sample exists to showcase). A
 category with zero eligible products cannot receive its guaranteed minimum
-of 1 and is simply absent from the sample.
+of 1 and is simply absent from the sample. Conversely, `n` must be at least
+the number of categories that DO have eligible products — otherwise the
+guaranteed minimum of 1 per category cannot fit inside `n` and
+`select_sample_products()` raises `ValueError` rather than silently
+returning more than `n` products.
 
 `write_sample()` then writes the 5 relational tables (`brands`, `products`,
 `ingredients`, `product_ingredients`, `ingredient_name_map`) restricted to
@@ -68,6 +72,11 @@ def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905) ->
     """Returns a deterministic, category-stratified sample of eligible product_ids.
 
     See module docstring for the eligibility rule and the stratification method.
+
+    Raises `ValueError` if `n` is smaller than the number of categories that have at
+    least one eligible product: the guaranteed minimum of 1 per category cannot be
+    honored for every category without exceeding `n`, so the caller must either raise
+    `n` or accept that this function cannot also promise a seat to every category.
     """
     conn = sqlite3.connect(db_path)
     try:
@@ -98,6 +107,12 @@ def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905) ->
     categories = sorted(by_category)
     if not categories:
         return []
+
+    if n < len(categories):
+        raise ValueError(
+            f"n={n} is smaller than the {len(categories)} categories with eligible "
+            "products; raise n or drop the per-category minimum"
+        )
 
     counts = {c: len(by_category[c]) for c in categories}
     total_eligible = sum(counts.values())
