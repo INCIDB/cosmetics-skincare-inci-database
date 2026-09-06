@@ -23,7 +23,10 @@ Category-hub pages (`/landing/skin_conditioning` etc., no `inci_<id>_`
 prefix) are left alone: they are not renamed by the rebuild and either still
 exist (no redirect needed) or genuinely retired (404 is fine).
 
-Any existing `_redirects` content is preserved — new rules are appended, not
+Existing `_redirects` monograph rules whose TARGET page no longer exists
+under `landing/` (a later sample redraw can retire the page a rule points
+at, turning a 301 into a 301->404 chain) are dropped and re-derived from the
+previous sitemap on the same run. All other existing `_redirects` content is preserved — new rules are appended, not
 overwritten, and existing lines are not duplicated when re-run.
 
 Usage:  PYTHONUTF8=1 python scripts/landing_redirects.py <previous-sitemap.xml>
@@ -83,16 +86,32 @@ def build_rules(sitemap_path, landing_dir=LANDING_DIR):
     return rules, unmapped
 
 
-def write_redirects(rules, redirects_path=REDIRECTS_PATH):
+RULE_RE = re.compile(r"^(\S+)\s+(/landing/inci_\d+_[a-z0-9_]+)\s+301\s*$")
+
+
+def stale_rules(lines, landing_dir=LANDING_DIR):
+    """The existing monograph rules whose target page no longer exists."""
+    stale = []
+    for line in lines:
+        m = RULE_RE.match(line)
+        if m and not (Path(landing_dir) / (m.group(2).rsplit("/", 1)[1] + ".html")).exists():
+            stale.append(line)
+    return stale
+
+
+def write_redirects(rules, redirects_path=REDIRECTS_PATH, landing_dir=LANDING_DIR):
+    """Returns (written, pruned): new rules appended, dead rules dropped."""
     existing_lines = []
     if Path(redirects_path).exists():
         existing_lines = Path(redirects_path).read_text(encoding="utf-8").splitlines()
-    existing_set = set(existing_lines)
+    dead = set(stale_rules(existing_lines, landing_dir))
+    kept = [l for l in existing_lines if l not in dead]
+    kept_set = set(kept)
 
-    new_lines = [r for r in rules if r not in existing_set]
-    all_lines = existing_lines + new_lines
+    new_lines = [r for r in rules if r not in kept_set]
+    all_lines = kept + new_lines
     Path(redirects_path).write_text("\n".join(all_lines) + "\n", encoding="utf-8")
-    return len(new_lines)
+    return len(new_lines), len(dead)
 
 
 def main(argv=None):
@@ -102,9 +121,10 @@ def main(argv=None):
         return 2
 
     rules, unmapped = build_rules(argv[0])
-    written = write_redirects(rules)
+    written, pruned = write_redirects(rules)
 
-    print(f"mapped: {len(rules)} (wrote {written} new rule(s) to {REDIRECTS_PATH})")
+    print(f"mapped: {len(rules)} (wrote {written} new rule(s) to {REDIRECTS_PATH}, "
+          f"pruned {pruned} rule(s) whose target page no longer exists)")
     print(f"unmapped: {len(unmapped)}")
     for old_path, reason in unmapped:
         print(f"  {old_path}  ({reason})")

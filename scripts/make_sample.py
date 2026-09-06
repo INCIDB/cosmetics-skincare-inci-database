@@ -53,6 +53,7 @@ instead of hand-typed ones.
 """
 
 import argparse
+import shutil
 import json
 import random
 import sqlite3
@@ -60,6 +61,22 @@ import zipfile
 from pathlib import Path
 
 import pandas as pd
+
+
+def integer_columns(conn, table):
+    """Column names the table declares as INTEGER (PRAGMA table_info)."""
+    return [row[1] for row in conn.execute(f"PRAGMA table_info({table})")
+            if (row[2] or "").upper().startswith("INT")]
+
+
+def coerce_integer_columns(df, columns):
+    """Nullable Int64 for declared INTEGER columns: pandas turns a NULL-bearing
+    integer column (products.brand_id, ingredients.comedogenic_rating) into
+    float64 and would write `927.0` to the CSV."""
+    for col in columns:
+        if col in df.columns:
+            df[col] = df[col].astype("Int64")
+    return df
 
 TABLES = ["brands", "products", "ingredients", "product_ingredients", "ingredient_name_map"]
 ELIGIBILITY_THRESHOLD = 0.80
@@ -170,6 +187,7 @@ def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
         else:
             ingredients_df = pd.read_sql_query("SELECT * FROM ingredients WHERE 0", conn)
             name_map_df = pd.read_sql_query("SELECT * FROM ingredient_name_map WHERE 0", conn)
+        int_cols = {t: integer_columns(conn, t) for t in TABLES}
     finally:
         conn.close()
 
@@ -182,7 +200,7 @@ def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
     }
 
     for name, df in tables.items():
-        df = _sanitize(df)
+        df = _sanitize(coerce_integer_columns(df, int_cols[name]))
         df.to_csv(out_dir / f"{name}.csv", sep="|", index=False, encoding="utf-8")
         df.to_parquet(out_dir / f"{name}.parquet", engine="pyarrow", index=False)
 
@@ -215,15 +233,38 @@ def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
     return stats
 
 
+def mirror_to_kaggle(out_dir, kaggle_dir):
+    """Copy the five sample CSVs into the Kaggle upload directory.
+
+    The Kaggle listing is the same free sample; a hand-copied directory lagged
+    a schema change once (it kept three dropped columns next to a dataset card
+    that denied them), so the mirror is part of the build. Returns the number
+    of files copied (0 when `kaggle_dir` does not exist -- a clone without the
+    gitignored Kaggle directory is fine).
+    """
+    out_dir, kaggle_dir = Path(out_dir), Path(kaggle_dir)
+    if not kaggle_dir.is_dir():
+        return 0
+    for table in TABLES:
+        shutil.copyfile(out_dir / f"{table}.csv", kaggle_dir / f"{table}.csv")
+    return len(TABLES)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build the INCIDB free sample zip from data/incidb.sqlite.")
     parser.add_argument("--db", type=Path, default=Path("data/incidb.sqlite"))
     parser.add_argument("--out", type=Path, default=Path("samples"))
     parser.add_argument("--n", type=int, default=200)
     parser.add_argument("--seed", type=int, default=20260905)
+    parser.add_argument("--kaggle-dir", type=Path, default=Path("kaggle_dataset"),
+                        help="mirror the five sample CSVs here (the Kaggle upload directory); "
+                             "skipped when the directory does not exist")
     args = parser.parse_args()
 
     product_ids = select_sample_products(args.db, n=args.n, seed=args.seed)
     result = write_sample(args.db, product_ids, args.out)
+    mirrored = mirror_to_kaggle(args.out, args.kaggle_dir)
+    if mirrored:
+        print(f"[Success] Mirrored {mirrored} CSVs into {args.kaggle_dir}")
     print(f"[Success] Sampled {len(product_ids)} products -> {args.out / 'incidb_free_samples.zip'}")
     print(result)
