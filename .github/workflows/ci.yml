@@ -30,11 +30,11 @@ jobs:
 
       - name: Run Ruff Linter
         run: |
-          if [ -d "src" ]; then ruff check src tests run_pipeline.py clean_exports.py hf_space_app.py; else ruff check scripts/; fi
+          if [ -d "src" ]; then ruff check src tests run_pipeline.py hf_space_app.py; else ruff check scripts/; fi
 
       - name: Run Flake8 Linter
         run: |
-          if [ -d "src" ]; then flake8 src tests run_pipeline.py clean_exports.py hf_space_app.py; else flake8 scripts/; fi
+          if [ -d "src" ]; then flake8 src tests run_pipeline.py hf_space_app.py; else flake8 scripts/; fi
 
       - name: Run Pytest Test Suite
         run: |
