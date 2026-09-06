@@ -1,46 +1,109 @@
-# INCIDB Pricing & Access Plans
+# INCIDB Pricing & Access
 
-INCIDB is a normalized Skincare & Cosmetics INCI database built from public regulatory and open-data sources (EU CosIng, FDA MoCRA, NLM DailyMed, K-Beauty MFDS, and Open Beauty Facts).
+One product. One price. Snapshot 2026.09.
 
-> **Licensing:** The dataset is derived from Open Beauty Facts and is licensed under the **Open Database License (ODbL) v1.0** — you may use and redistribute it, including commercially, with **attribution** and **share-alike**. The plans below are **not** a license to the data (which is already open); they cover optional **hosted delivery, ready-to-query formats, incremental updates, and support**, tailored for beauty tech startups, research institutions, e-commerce retailers, and enterprise AI developers.
+| | Free sample | **INCIDB Complete** |
+| :--- | :--- | :--- |
+| **Price** | `$0` | **`$79`** one-time |
+| **Products** | 200 (all 15 categories) | 18,583 |
+| **Brands** | the 200 products' brands | 5,926 |
+| **Distinct canonical INCI names** | 1,075 | 46,973 |
+| **Composition links** | the 200 products' links | 318,758 |
+| **`ingredient_name_map` rows** | for the sampled ingredients | 55,426 |
+| **Tables** | all 5 | all 5 |
+| **Formats** | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet |
+| **CosIng enrichment columns** | included | included |
+| **Allergen flags, authored ratings** | included | included |
+| **`build_report.json` quality report** | — | included |
+| **Delivery** | direct download | Stripe checkout, instant download |
+| **Updates** | static | one-time snapshot |
+
+The sample is not a crippled subset: it has the identical schema and the
+identical columns. It is smaller, and it is drawn from products whose
+ingredient lists are at least 80% CosIng-matched, so its enrichment looks
+better than the corpus average. Evaluate against the coverage table below,
+not against the sample.
+
+👉 [Buy INCIDB Complete — $79](https://buy.stripe.com/REPLACE-WITH-INCIDB-COMPLETE-LINK)
 
 ---
 
-## Comparative Tier Matrix
+## What you are actually buying
 
-| Feature / Metric | Free Sample | One-Time Core ($49) | One-Time Full ($99) |
-| :--- | :---: | :---: | :---: |
-| **Brands Catalog** | 9 brands | 5,994 brands | 5,994 brands |
-| **Cosmetic Formulations** | 10 products | 19,645 products | 19,645 products |
-| **Canonical INCI Compounds** | 130 ingredients | 44,816 ingredients | 44,816 ingredients |
-| **Relational Composition Junctions** | 191 mappings | 323,730 mappings | 323,730 mappings |
-| **EU CosIng Functional Categories** | Referenced | ✅ Yes | ✅ Yes |
-| **US FDA MoCRA Contact Allergens** | Referenced | ✅ Yes | ✅ Yes |
-| **Comedogenic & Fungal-Acne Flags** | Referenced | ❌ No | ✅ Yes |
-| **CAS Registry Mapping** | Referenced | ✅ Yes | ✅ Yes |
-| **NLM DailyMed Clinical Dermatology** | Referenced | ❌ No | ✅ Yes |
-| **Pipe-Delimited CSV Format (`\|`)** | ✅ Yes | ✅ Yes | ✅ Yes |
-| **Apache Parquet Format (`pyarrow`)** | Preview only | ❌ No | ✅ Yes |
-| **Updates Frequency** | Static | One-time snapshot | One-time snapshot |
-| **Support & Delivery Scope** | Self-serve | Single App / Site | Multi-App / Enterprise |
+The underlying product data is **open**: it is derived from Open Beauty
+Facts and licensed under the Open Database License (ODbL) v1.0, with
+attribution and share-alike. You could assemble something like this yourself
+from the OBF dump and the CosIng inventory.
+
+What `$79` buys is the work between those raw sources and a table you can
+query today:
+
+* **Canonicalisation.** Raw label tokens (HTML entities, stray punctuation,
+  declared percentages, parenthetical synonyms, slash-joined multilingual
+  variants, run-together fragments) resolved to canonical INCI names by an
+  explicit, ordered method — and the `ingredient_name_map` table that records
+  which method resolved each token, so you can audit or override it.
+* **The CosIng join.** Exact canonical-name match against the European
+  Commission CosIng inventory, giving functions, CAS and EC numbers, chemical
+  descriptions, restrictions and Annex II–VI membership. Unmatched names get
+  `NULL` in every CosIng-derived column, never a placeholder.
+* **Measurement.** A `build_report.json` with per-column fill rates,
+  distinct-value counts and the SHA-256 of every source file downloaded, so
+  you can check the claims below rather than believe them.
+* **Delivery.** Both formats, zipped, instant download after checkout.
+
+You are **not** buying exclusive rights to the data. Redistribute it under
+ODbL if you want to.
 
 ---
 
-## Detailed Tier breakdown
+## Measured coverage — read this before you buy
 
-### 1. Free Sample (`$0`)
-* **Best for:** Developers evaluating data schema and integration pipelines before purchase.
-* **Includes:** a coherent sample slice (10 products with their full ingredient lists, plus referenced ingredients & brands) (`brands.csv`, `products.csv`, `ingredients.csv`, `product_ingredients.csv`) and Parquet previews under `samples/`.
-* **License:** Data under ODbL v1.0 (attribution + share-alike) — free for any use, including commercial.
+Coverage is reported two ways because the two differ by an order of
+magnitude, and quoting only one of them would be a lie by omission.
 
-### 2. One-Time Core (`$49 USD`) — [instant Stripe checkout](https://buy.stripe.com/aFa5kEcVybjg37tbeE3840b)
-* **Best for:** Indie mobile apps, small e-commerce catalogs, and basic ingredient scanner tools.
-* **Includes:** Complete CSV dataset (`brands.csv`, `products.csv`, `ingredients.csv`, `product_ingredients.csv`) covering all 19,645 formulations and 44,816 canonical INCI names, with CosIng functional categories and FDA MoCRA allergen flags. The `comedogenic_rating` and `is_fungal_acne_trigger` columns are Full-tier only.
-* **Format:** UTF-8 Pipe-delimited CSV (`|`).
-* **Data license:** ODbL v1.0 (attribution + share-alike) — the data is open. **Plan includes:** hosted CSV delivery + integration support for 1 production application.
+| Column | Share of the 46,973 distinct names | Share of the 318,758 label occurrences |
+| :--- | ---: | ---: |
+| CosIng match (any) | 11.0% | 82.5% |
+| `functions` | 10.9% | 81.5% |
+| `cas_number` | 8.3% | 76.4% |
+| `chemical_description` | 8.5% (3,966 distinct values) | — |
 
-### 3. One-Time Full Database (`$99 USD`) — [instant Stripe checkout](https://buy.stripe.com/6oU00k6xagDAazV2I83840c)
-* **Best for:** AI/ML teams, dermatological research labs, and serious beauty platforms needing full ingredient enrichment.
-* **Includes:** Everything in Core + full Apache Parquet datasets (`.parquet`) + complete enrichment fields (CosIng functional categories, comedogenic & fungal-acne flags, NLM DailyMed OTC mappings, FDA MoCRA allergen/warning flags).
-* **Format:** Both CSV (`|`) and high-performance Apache Parquet (`pyarrow`).
-* **Data license:** ODbL v1.0 (attribution + share-alike) — the data is open. **Plan includes:** priority delivery (CSV + Parquet) + support for up to 3 production apps or research pipelines.
+A cosmetic label corpus contains far more distinct strings than a regulatory
+inventory lists — botanical variants, multilingual spellings, marketing
+names, one-off blends. Those make up the long tail of the 46,973 names and
+are mostly unmatched. The ingredients that actually fill label slots are
+overwhelmingly the ones CosIng covers, which is why the right-hand column is
+high. Pick the column that matches your use case.
+
+Flags and ratings are deliberately small:
+
+* `is_common_allergen` — **99** names, from the EU Annex III fragrance-allergen
+  list (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545).
+  The US FDA has not yet published its MoCRA fragrance-allergen list, so
+  there is no US flag in this dataset.
+* `comedogenic_rating` — **145** ingredients rated 0–5, transcribed from
+  Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Table I). `NULL`
+  everywhere the paper does not reach.
+* `is_fungal_acne_trigger` — **270** flags from an explicit rule (C11–C24
+  fatty acids and their esters, polysorbates 20/40/60/80, applied only to
+  CosIng-matched ingredients). A heuristic, not a measured property. Basis:
+  DOI 10.3389/fcimb.2020.00112 and DOI 10.1093/femsyr/foaf043.
+
+---
+
+## Licence
+
+* **Product data:** © Open Beauty Facts contributors, Open Database License
+  (ODbL) v1.0 — https://opendatacommons.org/licenses/odbl/1-0/. Use and
+  redistribute freely, including commercially, with attribution and
+  share-alike.
+* **Ingredient enrichment:** contains data from the European Commission
+  CosIng database, reused under the Commission's public-sector information
+  reuse policy, with attribution.
+* **Schema & documentation:** CC BY 4.0.
+* Provided as-is, without warranty. Flags and ratings are informational, not
+  medical, safety or regulatory-compliance advice.
+
+Company invoice, a custom slice, or a question before buying? Use the contact
+form on [the portal](https://incidb.dataengineered.io/#pricing).

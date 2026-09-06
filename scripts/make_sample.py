@@ -44,10 +44,14 @@ link to, the ingredient_name_map rows for those ingredients, and the
 product-ingredient links themselves — as pipe-delimited CSV and Parquet,
 using the same column set as the full dataset export (`src/exporter.py`'s
 `SELECT * FROM <table>`), and zips all 10 files flat (no directory prefix)
-into `<out_dir>/incidb_free_samples.zip`.
+into `<out_dir>/incidb_free_samples.zip`. It also writes
+`<out_dir>/sample_stats.json` — the same counts it returns — so that
+`scripts/render_claims.py` can build `claims.json` from measured numbers
+instead of hand-typed ones.
 """
 
 import argparse
+import json
 import random
 import sqlite3
 import zipfile
@@ -232,18 +236,28 @@ def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
             zf.write(out_dir / f"{name}.csv", arcname=f"{name}.csv")
             zf.write(out_dir / f"{name}.parquet", arcname=f"{name}.parquet")
 
-    return {
+    stats = {
         "products": len(products_df),
         "brands": len(brands_df),
         "ingredients": len(ingredients_df),
         "links": len(links_df),
         "name_map_rows": len(name_map_df),
+        "categories": int(products_df["category"].nunique()) if len(products_df) else 0,
         "ingredients_cosing_matched": int((ingredients_df["cosing_matched"] == 1).sum()) if len(ingredients_df) else 0,
         "ingredients_with_functions": int(ingredients_df["functions"].notna().sum()) if len(ingredients_df) else 0,
         "ingredients_with_cas": int(ingredients_df["cas_number"].notna().sum()) if len(ingredients_df) else 0,
         "allergen_flagged": int((ingredients_df["is_common_allergen"] == 1).sum()) if len(ingredients_df) else 0,
         "rated": int(ingredients_df["comedogenic_rating"].notna().sum()) if len(ingredients_df) else 0,
     }
+
+    # Published alongside the zip so the public copy generator (scripts/render_claims.py)
+    # never has to hand-type the sample's numbers. Written outside the zip on purpose:
+    # it describes the sample, it is not part of it.
+    (out_dir / "sample_stats.json").write_text(
+        json.dumps(stats, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+
+    return stats
 
 
 if __name__ == "__main__":

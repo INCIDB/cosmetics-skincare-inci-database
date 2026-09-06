@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4">
     <title>INCIDB — Skincare & Cosmetics INCI Database for Developers</title>
-    <meta name="description" content="Normalized INCI composition data for 19,645 beauty products — EU CosIng functions, FDA MoCRA allergen flags & DailyMed clinical labels in CSV & Apache Parquet.">
-    <meta name="keywords" content="skincare database, cosmetic ingredients database, inci database, perfume api, beauty dataset, fda mocra allergens, cosing chemicals, skincare csv download, apache parquet cosmetic data, formulation dataset, open beauty facts">
+    <meta name="description" content="18,583 cosmetic products, 46,973 canonical INCI names and 318,758 ordered composition links, with EU CosIng enrichment on 82.5% of label occurrences. CSV + Parquet, $79.">
+    <meta name="keywords" content="skincare database, cosmetic ingredients database, inci database, beauty dataset, cosing functions, inci canonicalization, skincare csv download, apache parquet cosmetic data, formulation dataset, open beauty facts">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://incidb.dataengineered.io/">
     <link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/">
@@ -15,16 +15,16 @@
 
     <!-- OpenGraph Meta Tags -->
     <meta property="og:title" content="INCIDB — The Skincare & Cosmetics INCI Database for Developers">
-    <meta property="og:description" content="19,645 formulations across 44,816 INCI compounds — normalized from EU CosIng, FDA MoCRA, DailyMed and Open Beauty Facts into query-ready CSV and Apache Parquet.">
+    <meta property="og:description" content="18,583 products, 46,973 canonical INCI names, 318,758 ordered composition links and the 55,426-row name map that shows how every label token was resolved. CSV + Parquet.">
     <meta property="og:url" content="https://incidb.dataengineered.io/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="INCIDB Multilanguage Skincare Database">
+    <meta property="og:site_name" content="INCIDB — Skincare & Cosmetics INCI Database">
     <meta property="og:image" content="https://incidb.dataengineered.io/og-image.png">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="INCIDB — Skincare & Cosmetics INCI Database">
-    <meta name="twitter:description" content="Download normalized, multi-source chemical composition data for 19,645 beauty products across 44,816 canonical INCI compounds.">
+    <meta name="twitter:description" content="Normalised label composition data: 18,583 products, 46,973 canonical INCI names, measured CosIng coverage published up front.">
     <meta name="twitter:image" content="https://incidb.dataengineered.io/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,18 +33,19 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="index.css">
 
-    <!-- JSON-LD Structured Data: Dataset & Product Offerings -->
+    <!-- JSON-LD Structured Data: Dataset & Product -->
     <script type="application/ld+json">
     [
       {
         "@context": "https://schema.org",
         "@type": "Dataset",
         "name": "INCIDB Skincare & Cosmetics INCI Database",
-        "description": "Normalized chemical composition dataset for 19,645 commercial beauty products across 44,816 canonical INCI ingredients, built from public regulatory and open data: EU CosIng functional categories, FDA MoCRA contact-allergen flags, NLM DailyMed clinical labels, and the Open Beauty Facts product corpus (ODbL).",
+        "description": "Normalised relational snapshot of cosmetic ingredient labels: 18,583 products, 5,926 brands, 46,973 distinct canonical INCI names, 318,758 ordered product-ingredient composition links and a 55,426-row raw-to-canonical name map. Product data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS and EC numbers, chemical descriptions, Annex II-VI membership) joined on exact canonical name from the European Commission CosIng inventory. Columns are NULL where the source has no value.",
         "url": "https://incidb.dataengineered.io/",
+        "version": "2026.09",
         "license": "https://opendatacommons.org/licenses/odbl/1-0/",
         "isBasedOn": "https://world.openbeautyfacts.org/",
-        "keywords": ["skincare database", "cosmetics database", "INCI names", "FDA MoCRA contact allergens", "CosIng functional categories", "Open Beauty Facts", "Apache Parquet dataset"],
+        "keywords": ["skincare database", "cosmetics database", "INCI names", "INCI canonicalization", "CosIng functional categories", "EU Annex III fragrance allergens", "Open Beauty Facts", "Apache Parquet dataset"],
         "creator": {
           "@type": "Organization",
           "name": "INCIDB",
@@ -59,32 +60,32 @@
         "distribution": [
           {
             "@type": "DataDownload",
-            "encodingFormat": "CSV",
+            "name": "Free sample (5 tables, CSV + Parquet)",
+            "encodingFormat": "application/zip",
             "contentUrl": "https://incidb.dataengineered.io/samples/incidb_free_samples.zip"
-          },
-          {
-            "@type": "DataDownload",
-            "encodingFormat": "Apache Parquet",
-            "contentUrl": "https://incidb.dataengineered.io/#pricing"
           }
         ],
         "variableMeasured": [
-          "INCI chemical nomenclature",
-          "CAS registry number",
-          "CosIng functional category",
-          "FDA MoCRA allergen flags",
-          "Comedogenic rating",
-          "Primary function",
-          "Fungal acne trigger"
+          "Canonical INCI name",
+          "Raw label token to canonical name mapping method",
+          "CosIng functional categories",
+          "CAS registry number (from CosIng)",
+          "EC number (from CosIng)",
+          "CosIng chemical description",
+          "EU Annex II-VI membership",
+          "EU Annex III fragrance allergen flag",
+          "Comedogenic rating (authored subset)",
+          "Fungal-acne trigger flag (rule-derived)",
+          "Label position index"
         ]
       },
       {
         "@context": "https://schema.org",
         "@type": "Product",
-        "name": "INCIDB One-Time Full Database",
-        "description": "Complete CSV + Apache Parquet dataset covering 19,645 skincare formulations and 44,816 INCI compounds normalized from public regulatory and open-data sources with FDA MoCRA allergen flags and CosIng functional categories.",
+        "name": "INCIDB Complete",
+        "description": "The complete INCIDB 2026.09 snapshot: all five tables (products, brands, ingredients, product_ingredients, ingredient_name_map) as pipe-delimited CSV and Apache Parquet, plus the build_report.json quality report, data dictionary and licence. One-time purchase, instant download.",
         "image": "https://incidb.dataengineered.io/og-image.png",
-        "sku": "INCIDB-FULL-2026",
+        "sku": "INCIDB-COMPLETE-2026-09",
         "brand": {
           "@type": "Brand",
           "name": "INCIDB"
@@ -92,7 +93,7 @@
         "category": "Software > Data & Databases",
         "offers": {
           "@type": "Offer",
-          "price": "99.00",
+          "price": "79.00",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
           "url": "https://incidb.dataengineered.io/#pricing",
@@ -109,34 +110,34 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How is INCI chemical nomenclature normalized across different regional cosmetic registries?",
+          "name": "How much of the ingredient data is actually enriched?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "INCIDB cross-references compound designations against EU CosIng and US FDA substance registries, mapping synonym variations, botanical Latin binominals, and trade names to canonical INCI primary keys alongside verified CAS numbers."
+            "text": "Two numbers, both published. CosIng matches 11.0% of the 46,973 distinct canonical INCI names, but 82.5% of the 318,758 ingredient occurrences across product labels. CosIng functions are present on 10.9% of names and 81.5% of label occurrences; CAS numbers on 8.3% of names and 76.4% of occurrences. The long tail of distinct names is botanical variants, multilingual spellings and marketing tokens that no regulatory inventory lists; the slots on a real label are filled overwhelmingly by ingredients CosIng does cover."
           }
         },
         {
           "@type": "Question",
-          "name": "What are FDA MoCRA contact allergens and how are they flagged in the database?",
+          "name": "How are raw label tokens turned into canonical INCI names?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The Modernization of Cosmetics Regulation Act (MoCRA) mandates explicit disclosure of fragrance and contact allergens. INCIDB sets a binary flag (is_common_allergen = 1) for all mandatory regulatory sensitizers, including Citral, Linalool, Limonene, and Phenoxyethanol."
+            "text": "By an explicit ordered procedure: HTML-entity decode, character stripping, whitespace collapse and upper-casing, then exact inventory match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Anything that fails all of these is kept verbatim and recorded as unresolved rather than guessed. The method used for each token is shipped as the 55,426-row ingredient_name_map table, so every decision is auditable."
           }
         },
         {
           "@type": "Question",
-          "name": "Why is the dataset distributed in both CSV and Apache Parquet formats?",
+          "name": "Which allergen list are the flags taken from?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "While CSV provides universal compatibility for Excel and basic scripts, columnar Apache Parquet files reduce storage footprint by up to 80% and enable sub-second filtering of 19,645+ formulations using PyArrow, Pandas, or DuckDB without loading the entire dataset into memory."
+            "text": "One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched on exact canonical name. 99 names are flagged and allergen_source records the list. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag."
           }
         },
         {
           "@type": "Question",
-          "name": "How are comedogenic ratings and fungal acne triggers determined?",
+          "name": "Where do the comedogenic ratings and fungal-acne flags come from?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Comedogenic ratings (0.0 to 5.0 scale) and Malassezia (fungal acne) trigger flags are derived from peer-reviewed dermatological literature and CosIng lipid/ester profiles, highlighting pore-clogging fatty acids and esters."
+            "text": "145 ingredients carry a comedogenic rating on the 0-5 scale, transcribed from Table I of Fulton JE Jr., J Soc Cosmet Chem 1989;40:321-333; every other ingredient is NULL. The fungal-acne flag is not a measured property: it is a rule-derived heuristic covering C11-C24 fatty acids and their esters and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, producing 270 flags. Its basis is the lipid dependence of Malassezia (DOI 10.3389/fcimb.2020.00112, chain-length window per DOI 10.1093/femsyr/foaf043)."
           }
         }
       ]
@@ -146,13 +147,15 @@
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": "Top INCI Skincare Ingredient Functional Categories",
-      "description": "Canonical functional classifications for cosmetic and skincare ingredients.",
+      "name": "INCI ingredient monographs by CosIng functional category",
+      "description": "Ingredient monographs grouped by the CosIng functional categories actually recorded on them.",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Skin-Conditioning Agents & Emollients", "url": "https://incidb.dataengineered.io/landing/skin_conditioning.html"},
-        {"@type": "ListItem", "position": 2, "name": "Preservatives & Antimicrobial Stabilizers", "url": "https://incidb.dataengineered.io/landing/preservatives.html"},
-        {"@type": "ListItem", "position": 3, "name": "Solvents & Viscosity Controlling Agents", "url": "https://incidb.dataengineered.io/landing/solvents.html"},
-        {"@type": "ListItem", "position": 4, "name": "Active Treatments, Exfoliants & Humectants", "url": "https://incidb.dataengineered.io/landing/active_treatments.html"}
+        {"@type": "ListItem", "position": 1, "name": "Skin-Conditioning & Emollient Agents", "url": "https://incidb.dataengineered.io/landing/skin_conditioning"},
+        {"@type": "ListItem", "position": 2, "name": "Surfactants, Cleansing & Emulsifying Agents", "url": "https://incidb.dataengineered.io/landing/surfactants_cleansing"},
+        {"@type": "ListItem", "position": 3, "name": "Preservatives, Antimicrobials & Antioxidants", "url": "https://incidb.dataengineered.io/landing/preservatives"},
+        {"@type": "ListItem", "position": 4, "name": "Solvents, Viscosity & Structure Agents", "url": "https://incidb.dataengineered.io/landing/solvents"},
+        {"@type": "ListItem", "position": 5, "name": "Fragrance, Perfuming & Colorant Agents", "url": "https://incidb.dataengineered.io/landing/fragrance_colour"},
+        {"@type": "ListItem", "position": 6, "name": "Active Treatments, Exfoliants & UV Filters", "url": "https://incidb.dataengineered.io/landing/active_treatments"}
       ]
     }
     </script>
@@ -162,8 +165,8 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://incidb.dataengineered.io/"},
-        {"@type": "ListItem", "position": 2, "name": "Live Explorer", "item": "https://incidb.dataengineered.io/#explorer"},
-        {"@type": "ListItem", "position": 3, "name": "Pricing & Licensing", "item": "https://incidb.dataengineered.io/#pricing"}
+        {"@type": "ListItem", "position": 2, "name": "Coverage", "item": "https://incidb.dataengineered.io/#coverage"},
+        {"@type": "ListItem", "position": 3, "name": "Pricing", "item": "https://incidb.dataengineered.io/#pricing"}
       ]
     }
     </script>
@@ -178,10 +181,10 @@
                 INCIDB
             </a>
             <nav class="nav-links">
+                <a href="#coverage" class="nav-link">Coverage</a>
                 <a href="#explorer" class="nav-link">Live Explorer</a>
-                <a href="#registries" class="nav-link">Data Sources</a>
                 <a href="/schema" class="nav-link">Data Schema</a>
-                <a href="#pricing" class="nav-link">Pricing Plans</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
                 <a href="/documentation" class="btn btn-secondary">Documentation</a>
             </nav>
         </div>
@@ -191,35 +194,83 @@
     <section class="hero">
         <div class="container">
             <div class="hero-pill">
-                <span>●</span> Audited 1-to-1 Parquet & CSV Flat Files · Released July 2026
+                <span>●</span> Snapshot 2026.09 · every number on this page is generated from the build report
             </div>
             <h1 class="hero-title">
                 The Skincare & Cosmetics INCI Database for <span>Developers & AI Platforms</span>
             </h1>
             <p class="hero-subtitle">
-                Normalized chemical composition data for <strong>19,645 commercial beauty products</strong> across <strong>44,816 canonical INCI compounds</strong>. Cleaned, joined, and canonicalized from public regulatory registries and open cosmetic data into query-ready flat files.
+                A normalised relational snapshot of what is actually printed on cosmetic labels: <strong>18,583 products</strong>, <strong>46,973 distinct canonical INCI names</strong>, and <strong>318,758 ordered composition links</strong> — plus the <strong>55,426-row name map</strong> that shows how every raw label token was resolved. Enrichment comes from the EU CosIng inventory; where a source has no value, the column is <code>NULL</code>.
             </p>
             <div class="hero-actions">
-                <a href="#pricing" class="btn btn-primary">Explore Commercial Tiers →</a>
-                <a href="samples/incidb_free_samples.zip" download class="btn btn-secondary">Download Free CSV & Parquet Samples</a>
+                <a href="#pricing" class="btn btn-primary">Get INCIDB Complete — $79 →</a>
+                <a href="samples/incidb_free_samples.zip" download class="btn btn-secondary">Download the free sample</a>
             </div>
 
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-number">19,645</div>
-                    <div class="metric-label">Commercial Formulations</div>
+                    <div class="metric-number">18,583</div>
+                    <div class="metric-label">Products</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-number">44,816</div>
-                    <div class="metric-label">Canonical INCI Compounds</div>
+                    <div class="metric-number">46,973</div>
+                    <div class="metric-label">Distinct canonical INCI names</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-number">323,730</div>
-                    <div class="metric-label">Relational Junction Mappings</div>
+                    <div class="metric-number">318,758</div>
+                    <div class="metric-label">Ordered composition links</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-number">5,994</div>
-                    <div class="metric-label">Global Cosmetic Brands</div>
+                    <div class="metric-number">5,926</div>
+                    <div class="metric-label">Brands</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Measured coverage: the honest centrepiece -->
+    <section id="coverage" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Measured, not advertised</div>
+                <h2 class="section-title">Enrichment coverage, stated two ways</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem; max-width: 780px;">These two views of the same data differ by an order of magnitude. Publishing only the flattering one would be a lie by omission, so both are here — and a test in the repository fails the build if this page and the corpus ever disagree.</p>
+            </div>
+
+            <div class="table-container" style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border-subtle);">
+                            <th style="padding: 0.9rem 1.1rem; text-align: left; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Column</th>
+                            <th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Share of the 46,973 distinct names</th>
+                            <th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Share of the 318,758 label occurrences</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;">CosIng match (any)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11.0%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">82.5%</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>functions</code> (CosIng vocabulary)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">10.9%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">81.5%</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>cas_number</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8.3%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">76.4%</td></tr>
+                        <tr><td style="padding: 0.85rem 1.1rem;"><code>chemical_description</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8.5% · 3,966 distinct values</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--text-secondary);">—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="color: var(--text-secondary); margin-top: 1.25rem; max-width: 820px; font-size: 0.95rem; line-height: 1.7;">
+                A cosmetic label corpus contains far more distinct strings — botanical variants, multilingual spellings, marketing tokens, one-off blends — than any regulatory inventory lists. That long tail is why the left column is low. The slots on a real label are filled overwhelmingly by the ingredients CosIng does cover, which is why the right column is high. If you are building a scanner or a formulation model, the right column governs what your users see; if you need a chemical reference, the left column is the honest ceiling.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
+                    <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">99 allergen-flagged names</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">From the EU Annex III fragrance-allergen list (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched on exact canonical name. The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists here.</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
+                    <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">145 comedogenic ratings</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Ingredients rated 0–5, transcribed from Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Table I). <code>NULL</code> everywhere the paper does not reach — absence means "not covered", never "safe".</p>
+                </div>
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
+                    <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">270 fungal-acne flags</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">A rule-derived heuristic, not a measured property: C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients. Basis: DOI 10.3389/fcimb.2020.00112 and DOI 10.1093/femsyr/foaf043.</p>
                 </div>
             </div>
         </div>
@@ -230,7 +281,7 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-eyebrow">Interactive Preview</div>
-                <h2 class="section-title">Query High-Performance Apache Parquet & CSV</h2>
+                <h2 class="section-title">Query the shipped CSV & Apache Parquet</h2>
             </div>
 
             <div class="explorer-window">
@@ -241,202 +292,197 @@
                         <div class="dot dot-green"></div>
                     </div>
                     <div class="explorer-tabs">
-                        <button class="tab-btn active" onclick="switchTab('sql')">DuckDB SQL Query</button>
+                        <button class="tab-btn active" onclick="switchTab('sql')">DuckDB SQL</button>
                         <button class="tab-btn" onclick="switchTab('python')">PyArrow / Pandas</button>
-                        <button class="tab-btn" onclick="switchTab('json')">Live Formulation Record</button>
+                        <button class="tab-btn" onclick="switchTab('json')">Name-map audit trail</button>
                     </div>
                 </div>
                 <div class="explorer-body" id="code-content">
                     <!-- Default SQL View -->
-<pre><code><span class="keyword">SELECT</span> 
+<pre><code><span class="keyword">SELECT</span>
     i.inci_name,
-    i.primary_function,
+    i.functions,
+    i.cas_number,
     i.is_common_allergen,
-    pi.position_index AS concentration_rank
+    pi.position_index
 <span class="keyword">FROM</span> <span class="string">'product_ingredients.parquet'</span> pi
 <span class="keyword">JOIN</span> <span class="string">'ingredients.parquet'</span> i <span class="keyword">ON</span> pi.ingredient_id = i.ingredient_id
-<span class="keyword">WHERE</span> pi.product_id = <span class="number">67455</span>
+<span class="keyword">WHERE</span> pi.product_id = <span class="number">68597</span>
 <span class="keyword">ORDER BY</span> pi.position_index <span class="keyword">ASC</span>;
 
-<span class="comment">-- Output: Good Genes All-In-One Lactic Acid Treatment (Brand: Sunday Riley)</span>
-<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span>
-<span class="comment">-- | inci_name                       | primary_function | is_common_allergen | concentration_rank|</span>
-<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span>
-<span class="comment">-- | WATER/EAU/AQUA                  | Solvent          | 0                  | 1                |</span>
-<span class="comment">-- | LACTIC ACID                     | Exfoliant        | 0                  | 2                |</span>
-<span class="comment">-- | OPUNTIA TUNA FRUIT EXTRACT      | Humectant        | 0                  | 3                |</span>
-<span class="comment">-- | SQUALANE                        | Emollient        | 0                  | 4                |</span>
-<span class="comment">-- | CYMBOPOGON SCHOENANTHUS OIL     | Fragrance        | 1 (FDA MoCRA Alert)| 12               |</span>
-<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span></code></pre>
+<span class="comment">-- Real rows from the snapshot; long values elided with … for display.</span>
+<span class="comment">-- NULL means CosIng has no value — it is never a placeholder.</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span>
+<span class="comment">-- | inci_name           | functions                         | cas_number | is_common_allergen | position_index |</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span>
+<span class="comment">-- | AQUA                | SOLVENT                           | 7732-18-5  | 0                  | 1              |</span>
+<span class="comment">-- | GLYCERIN            | DENATURANT;HAIR CONDITIONING;…    | 56-81-5    | 0                  | 4              |</span>
+<span class="comment">-- | ALUMINUM STEARATES  | ANTICAKING;SKIN CONDITIONING - …  | NULL       | 0                  | 11             |</span>
+<span class="comment">-- | LIMONENE            | DEODORANT;SOLVENT;PERFUMING       | 138-86-3   | 1                  | 14             |</span>
+<span class="comment">-- | GERANIOL            | TONIC;PERFUMING                   | 106-24-1   | 1                  | 15             |</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span></code></pre>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 8-Source Regulatory Integration Grid -->
+    <!-- Sources & method -->
     <section id="registries" class="section">
         <div class="container">
             <div class="section-header">
                 <div class="section-eyebrow">Data Architecture</div>
-                <h2 class="section-title">Normalized from Public & Open Cosmetic Data</h2>
+                <h2 class="section-title">Two sources, one documented join</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem; max-width: 780px;">No third-party mirrors, no scraped enrichment, no hand-typed chemistry. Every source file's URL, download timestamp and SHA-256 is recorded in the <code>build_report.json</code> shipped with the data.</p>
             </div>
 
             <div class="registry-grid">
                 <div class="registry-card">
+                    <span class="registry-badge">Open Data</span>
+                    <h3 class="registry-title">Open Beauty Facts</h3>
+                    <p class="registry-desc">The product corpus: barcodes, brands, categories and the raw on-pack ingredient declarations that everything else is derived from. Licensed ODbL; the raw label text ships alongside the parse so you can re-derive it.</p>
+                </div>
+                <div class="registry-card">
                     <span class="registry-badge">EU Regulation</span>
                     <h3 class="registry-title">European Commission CosIng</h3>
-                    <p class="registry-desc">Official EU chemical inventory mappings with exact CAS registry numbers and restricted formulation thresholds.</p>
+                    <p class="registry-desc">The ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names get <code>NULL</code>, not a guess.</p>
                 </div>
                 <div class="registry-card">
-                    <span class="registry-badge">US FDA</span>
-                    <h3 class="registry-title">FDA MoCRA Allergen Registry</h3>
-                    <p class="registry-desc">Explicit flags for mandatory Modernization of Cosmetics Regulation Act contact dermatitis fragrance allergens.</p>
-                </div>
-                <div class="registry-card">
-                    <span class="registry-badge">Open Data</span>
-                    <h3 class="registry-title">Open Beauty Facts Corpus</h3>
-                    <p class="registry-desc">Community product database (barcodes, brands, on-pack ingredient lists) under the Open Database License (ODbL).</p>
+                    <span class="registry-badge">EU Regulation</span>
+                    <h3 class="registry-title">Annex III fragrance allergens</h3>
+                    <p class="registry-desc">Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545 — the single list behind <code>is_common_allergen</code>, recorded per row in <code>allergen_source</code>.</p>
                 </div>
                 <div class="registry-card">
                     <span class="registry-badge">Engineering</span>
-                    <h3 class="registry-title">INCI Canonicalization Engine</h3>
-                    <p class="registry-desc">Deduplicated INCI nomenclature with CAS mapping, ordered position indexes, and referential integrity across every table.</p>
+                    <h3 class="registry-title">Canonicalisation & the name map</h3>
+                    <p class="registry-desc">Raw label tokens resolved by an explicit ordered method — exact, cleaned, typo map, percent-stripped, parenthesis-stripped, synonym map, slash variant, split, or <code>unresolved</code>. The method used is shipped per row.</p>
                 </div>
                 <div class="registry-card">
-                    <span class="registry-badge">Clinical Dermatology</span>
-                    <h3 class="registry-title">NLM DailyMed Clinical OTC</h3>
-                    <p class="registry-desc">Formulations harvested from US National Library of Medicine clinical dermatological topical drug labels.</p>
+                    <span class="registry-badge">Literature</span>
+                    <h3 class="registry-title">Authored ratings</h3>
+                    <p class="registry-desc">A deliberately small, cited layer: comedogenic ratings transcribed from one published table, and a rule-derived fungal-acne flag with its rule text stored per row in <code>rating_source</code>.</p>
                 </div>
                 <div class="registry-card">
-                    <span class="registry-badge">Asian Standard</span>
-                    <h3 class="registry-title">K-Beauty MFDS Standards</h3>
-                    <p class="registry-desc">Functional whitening, barrier repair, and anti-wrinkle actives from the Korean Ministry of Food and Drug Safety.</p>
+                    <span class="registry-badge">Verification</span>
+                    <h3 class="registry-title">build_report.json</h3>
+                    <p class="registry-desc">Per-column fill rates, distinct-value counts, match rates and source hashes for this exact snapshot — shipped in the archive so you can check the claims on this page instead of believing them.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Commercial Pricing Plans -->
+    <!-- Pricing -->
     <section id="pricing" class="section">
         <div class="container">
             <div class="section-header" style="text-align: center;">
-                <div class="section-eyebrow">Transparent Licensing</div>
-                <h2 class="section-title">Commercial Data Licensing Plans</h2>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Open data (ODbL) — one-time delivery with optional support.</p>
+                <div class="section-eyebrow">One product, one price</div>
+                <h2 class="section-title">INCIDB Complete</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">The data is open (ODbL). What you pay for is the normalisation, the canonicalisation, the join, the measurement — and instant delivery.</p>
             </div>
 
-            <div class="pricing-grid">
+            <div class="pricing-grid" style="max-width: 860px; margin: 0 auto;">
                 <!-- Free Sample -->
                 <div class="pricing-card">
-                    <div class="tier-name">Free Sample</div>
-                    <div class="tier-desc">Preview schema and integration pipelines before purchasing.</div>
-                    <div class="tier-price">$0 <span>/ sample</span></div>
+                    <div class="tier-name">Free sample</div>
+                    <div class="tier-desc">The identical schema, small enough to evaluate in an afternoon.</div>
+                    <div class="tier-price">$0</div>
                     <ul class="tier-features">
-                        <li class="included"><span class="check-icon">✓</span> 10 sample rows per table</li>
-                        <li class="included"><span class="check-icon">✓</span> Pipe-delimited CSV (`|`)</li>
-                        <li class="included"><span class="check-icon">✓</span> PyArrow Parquet previews</li>
-                        <li><span class="cross-icon">✕</span> Full 19,645 product catalog</li>
-                        <li><span class="cross-icon">✕</span> Full ingredient enrichment fields</li>
-                        <li><span class="cross-icon">✕</span> Continuous updates</li>
+                        <li class="included"><span class="check-icon">✓</span> 200 products across all 15 categories</li>
+                        <li class="included"><span class="check-icon">✓</span> Their brands, links and 1,075 ingredients</li>
+                        <li class="included"><span class="check-icon">✓</span> All 5 tables, CSV <em>and</em> Parquet</li>
+                        <li class="included"><span class="check-icon">✓</span> Same enrichment columns, same NULLs</li>
+                        <li><span class="cross-icon">✕</span> Drawn from products that are ≥80% CosIng-matched, so it reads better than the corpus average</li>
                     </ul>
-                    <a href="samples/incidb_free_samples.zip" download class="btn btn-secondary" style="justify-content: center;">Download Free Samples Archive</a>
+                    <a href="samples/incidb_free_samples.zip" download class="btn btn-secondary" style="justify-content: center;">Download the sample</a>
                 </div>
 
-                <!-- One-Time Core -->
-                <div class="pricing-card">
-                    <div class="tier-name">One-Time Core</div>
-                    <div class="tier-desc">Complete CSV database snapshot for indie mobile apps & catalogs.</div>
-                    <div class="tier-price">$49 <span>USD one-time</span></div>
-                    <ul class="tier-features">
-                        <li class="included"><span class="check-icon">✓</span> All 19,645 formulations</li>
-                        <li class="included"><span class="check-icon">✓</span> All 44,816 INCI compounds</li>
-                        <li class="included"><span class="check-icon">✓</span> All 5,994 global brands</li>
-                        <li class="included"><span class="check-icon">✓</span> Pipe-delimited CSV format</li>
-                        <li class="included"><span class="check-icon">✓</span> CosIng functions &amp; MoCRA allergen flags</li>
-                        <li><span class="cross-icon">✕</span> Comedogenic &amp; fungal-acne flags</li>
-                        <li><span class="cross-icon">✕</span> Apache Parquet archives</li>
-                        <li><span class="cross-icon">✕</span> Bi-weekly release updates</li>
-                    </ul>
-                    <a href="https://buy.stripe.com/aFa5kEcVybjg37tbeE3840b" class="btn btn-secondary" style="width: 100%; justify-content: center;">Buy now · Instant download</a>
-                </div>
-
-                <!-- One-Time Full -->
+                <!-- INCIDB Complete -->
                 <div class="pricing-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <div class="tier-name">One-Time Full Database</div>
-                    <div class="tier-desc">Complete CSV + Parquet archive with CosIng functions, MoCRA allergens & comedogenic flags.</div>
-                    <div class="tier-price">$99 <span>USD one-time</span></div>
+                    <div class="featured-badge">Everything</div>
+                    <div class="tier-name">INCIDB Complete</div>
+                    <div class="tier-desc">The full 2026.09 snapshot, both formats, instant download.</div>
+                    <div class="tier-price">$79 <span>USD one-time</span></div>
                     <ul class="tier-features">
-                        <li class="included"><span class="check-icon">✓</span> Everything in Core</li>
-                        <li class="included"><span class="check-icon">✓</span> High-Performance Parquet (`pyarrow`)</li>
-                        <li class="included"><span class="check-icon">✓</span> Comedogenic &amp; fungal-acne flags</li>
-                        <li class="included"><span class="check-icon">✓</span> Commercial-use license (ODbL-compatible)</li>
-                        <li><span class="cross-icon">✕</span> Bi-weekly release updates</li>
+                        <li class="included"><span class="check-icon">✓</span> 18,583 products · 5,926 brands</li>
+                        <li class="included"><span class="check-icon">✓</span> 46,973 canonical INCI names</li>
+                        <li class="included"><span class="check-icon">✓</span> 318,758 ordered composition links</li>
+                        <li class="included"><span class="check-icon">✓</span> The 55,426-row <code>ingredient_name_map</code></li>
+                        <li class="included"><span class="check-icon">✓</span> Pipe-delimited CSV <em>and</em> Apache Parquet</li>
+                        <li class="included"><span class="check-icon">✓</span> CosIng enrichment at the coverage published above</li>
+                        <li class="included"><span class="check-icon">✓</span> <code>build_report.json</code>, data dictionary, licence</li>
                     </ul>
-                    <a href="https://buy.stripe.com/6oU00k6xagDAazV2I83840c" class="btn btn-primary" style="width: 100%; justify-content: center;">Buy now · Instant download</a>
+                    <a href="https://buy.stripe.com/REPLACE-WITH-INCIDB-COMPLETE-LINK" class="btn btn-primary" style="width: 100%; justify-content: center;">Buy now · Instant download</a>
                 </div>
             </div>
-            <p style="text-align:center; margin-top: 24px; font-size: 0.9rem; opacity: 0.85;">Secure card checkout via Stripe (card / Apple&nbsp;Pay / Google&nbsp;Pay) with <b>instant download</b> after payment. Company invoice, custom slices, or questions? <a href="#" onclick="openModal('Custom / Invoice Inquiry'); return false;">Open the contact form</a>.</p>
+            <p style="text-align:center; margin-top: 24px; font-size: 0.9rem; opacity: 0.85; max-width: 700px; margin-left: auto; margin-right: auto;">Secure card checkout via Stripe (card / Apple&nbsp;Pay / Google&nbsp;Pay) with <b>instant download</b> after payment. The purchase covers delivery and the engineering, <b>not</b> exclusive rights to the data — it stays ODbL. Company invoice, a custom slice, or a question first? <a href="#" onclick="openModal('Custom / Invoice Inquiry'); return false;">Open the contact form</a>.</p>
         </div>
     </section>
 
-    <!-- Visible FAQ Section for Pillar 1 SEO & User Trust -->
+    <!-- Visible FAQ -->
     <section id="faq" class="section" style="background: var(--bg-surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
         <div class="container">
             <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
                 <div class="section-eyebrow">Technical Reference</div>
-                <h2 class="section-title">§ FAQ · Frequently Asked Questions</h2>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Core regulatory, chemical normalization, and data integration queries for beauty developers and formulators.</p>
+                <h2 class="section-title">§ FAQ · The questions an evaluator asks</h2>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
-                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">How is INCI chemical nomenclature normalized across regional registries?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">INCIDB cross-references compound designations against EU CosIng and US FDA substance registries, mapping synonym variations, botanical Latin binominals, and trade names to canonical INCI primary keys alongside verified CAS registry numbers.</p>
+                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">How much of the ingredient data is actually enriched?</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Two numbers, both published above. CosIng matches 11.0% of the 46,973 distinct canonical names but 82.5% of the 318,758 ingredient occurrences on labels; functions 10.9% / 81.5%; CAS 8.3% / 76.4%. The long tail of distinct names is botanical variants, multilingual spellings and marketing tokens no inventory lists.</p>
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
-                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">What are FDA MoCRA contact allergens and how are they flagged?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">The Modernization of Cosmetics Regulation Act (MoCRA) mandates explicit disclosure of fragrance and contact allergens. INCIDB sets a binary flag (`is_common_allergen = 1`) for all mandatory regulatory sensitizers, including Citral, Linalool, Limonene, and Phenoxyethanol.</p>
+                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">How are raw label tokens turned into canonical names?</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">By an explicit ordered procedure — entity decode, character strip, whitespace collapse, upper-case, then exact match, cleaned match, typo map, percent stripping, parenthesis stripping, synonym map, slash variant, and concatenation splitting only when both halves match. Anything that fails all of them is recorded as <code>unresolved</code>, never guessed. The method per token ships as the <code>ingredient_name_map</code> table.</p>
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
-                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Why is the dataset distributed in both CSV and Apache Parquet formats?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">While CSV provides universal compatibility for Excel and basic scripts, columnar Apache Parquet files reduce storage footprint by up to 80% and enable sub-second filtering of 19,645+ formulations using PyArrow, Pandas, or DuckDB without loading the entire dataset into memory.</p>
+                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Which allergen list are the flags taken from?</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">One list only: EU Annex III fragrance allergens (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched on exact canonical name — 99 names flagged, with <code>allergen_source</code> recording the list. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.</p>
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
-                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">How are comedogenic ratings and fungal acne triggers determined?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Comedogenic ratings (0.0 to 5.0 scale) and Malassezia (fungal acne) trigger flags are derived from peer-reviewed dermatological literature and CosIng lipid/ester profiles, highlighting pore-clogging fatty acids and esters.</p>
+                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Where do the comedogenic ratings and fungal-acne flags come from?</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">145 ingredients rated 0–5, transcribed from Table I of Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333; <code>NULL</code> elsewhere. The fungal-acne flag is a rule-derived heuristic, not a measured property: C11–C24 fatty acids and their esters plus polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, giving 270 flags. Use it as a filter, not as a finding.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- INCI Functional Category & Monograph Hubs -->
+    <!-- Category hubs, driven by the CosIng functions actually recorded -->
     <section id="directory-hubs" class="section">
         <div class="container">
             <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto;">
                 <div class="section-eyebrow">Directory Index</div>
-                <h2 class="section-title">Top INCI Skincare Functional Categories</h2>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Explore canonical ingredient monographs by cosmetic functional role.</p>
+                <h2 class="section-title">Monographs by CosIng functional category</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Grouped by the <code>functions</code> values actually recorded on each ingredient. Ingredients with no CosIng function have no monograph — there would be nothing to say.</p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto;">
-                <a href="/landing/skin_conditioning" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none; transition: border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='var(--accent-blue)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--border-subtle)'; this.style.transform='none';">
+                <a href="/landing/skin_conditioning" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
                     <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Category Hub</div>
-                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem;">Skin-Conditioning Agents & Emollients →</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Squalane, Caprylic/Capric Triglyceride, Petrolatum, and essential barrier-repair lipids.</p>
+                    <h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Skin-Conditioning & Emollient Agents →</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>SKIN CONDITIONING</code>, <code>SKIN CONDITIONING - EMOLLIENT</code>, <code>HUMECTANT</code>, <code>SKIN PROTECTING</code>, <code>ANTISTATIC</code>.</p>
                 </a>
-                <a href="/landing/preservatives" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none; transition: border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='var(--accent-blue)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--border-subtle)'; this.style.transform='none';">
+                <a href="/landing/surfactants_cleansing" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
                     <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Category Hub</div>
-                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem;">Preservatives & Antimicrobials →</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Phenoxyethanol, Methylparaben, and regulatory antimicrobial stabilizers.</p>
+                    <h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Surfactants, Cleansing & Emulsifying →</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>SURFACTANT - CLEANSING</code>, <code>SURFACTANT - EMULSIFYING</code>, <code>CLEANSING</code>, <code>EMULSION STABILISING</code>, <code>FOAMING</code>.</p>
                 </a>
-                <a href="/landing/solvents" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none; transition: border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='var(--accent-blue)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--border-subtle)'; this.style.transform='none';">
+                <a href="/landing/preservatives" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
                     <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Category Hub</div>
-                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem;">Solvents & Viscosity Controllers →</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Water/Eau/Aqua, Glycerin, Cetearyl Alcohol, and emulsion-forming bases.</p>
+                    <h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Preservatives & Antioxidants →</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>PRESERVATIVE</code>, <code>ANTIMICROBIAL</code>, <code>ANTIOXIDANT</code>, <code>CHELATING</code>.</p>
                 </a>
-                <a href="/landing/active_treatments" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none; transition: border-color 0.2s, transform 0.2s;" onmouseover="this.style.borderColor='var(--accent-blue)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--border-subtle)'; this.style.transform='none';">
+                <a href="/landing/solvents" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
                     <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Category Hub</div>
-                    <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.5rem;">Active Treatments & Exfoliants →</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Lactic Acid, AHA/BHA exfoliants, botanical extracts, and clinical humectants.</p>
+                    <h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Solvents, Viscosity & Structure →</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>SOLVENT</code>, <code>VISCOSITY CONTROLLING</code>, <code>FILM FORMING</code>, <code>BINDING</code>, <code>BULKING</code>, <code>OPACIFYING</code>.</p>
+                </a>
+                <a href="/landing/fragrance_colour" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Category Hub</div>
+                    <h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Fragrance, Perfuming & Colorants →</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>FRAGRANCE</code>, <code>PERFUMING</code>, <code>COLORANT</code>, <code>HAIR DYEING</code> — where the Annex III flags cluster.</p>
+                </a>
+                <a href="/landing/active_treatments" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Category Hub</div>
+                    <h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Actives, Exfoliants & UV Filters →</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>UV FILTER</code>, <code>UV ABSORBER</code>, <code>EXFOLIATING</code>, <code>KERATOLYTIC</code>, <code>ASTRINGENT</code>, <code>DEODORANT</code>.</p>
                 </a>
             </div>
         </div>
@@ -446,15 +492,15 @@
     <div class="modal-overlay" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-card" style="max-width: 520px;">
             <button class="close-btn" onclick="closeModal()" aria-label="Close modal">×</button>
-            <h3 id="modalTitle" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Request Access & Support</h3>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;" id="modalTierDesc">You are requesting a data delivery & support plan. The dataset itself is open (ODbL v1.0).</p>
-            
+            <h3 id="modalTitle" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Questions, invoices & custom slices</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;" id="modalTierDesc">Ask anything before you buy. The dataset itself is open (ODbL v1.0).</p>
+
             <div id="modalStatusAlert" style="display: none; padding: 0.85rem; border-radius: 8px; font-size: 0.88rem; margin-bottom: 1rem; font-family: var(--font-mono);"></div>
             <form id="checkoutForm" action="https://formsubmit.co/incidb@proton.me" method="POST" onsubmit="handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
-                <input type="hidden" name="_subject" id="formSubject" value="New Access & Support Request — INCIDB">
+                <input type="hidden" name="_subject" id="formSubject" value="New INCIDB inquiry">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="Selected_Tier" id="formTierInput" value="">
-                
+
                 <div>
                     <label for="inputName" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">YOUR FULL NAME *</label>
                     <input type="text" id="inputName" name="Name" required placeholder="Dr. Sarah Jenkins" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
@@ -472,10 +518,10 @@
 
                 <div>
                     <label for="inputMessage" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">USE CASE & DATA REQUIREMENTS</label>
-                    <textarea id="inputMessage" name="Message" rows="3" placeholder="We need MoCRA allergen flags and Parquet files for our mobile barcode scanner app..." style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem; font-family: var(--font-sans); resize: vertical;"></textarea>
+                    <textarea id="inputMessage" name="Message" rows="3" placeholder="We need the name map and Annex III flags for a barcode scanner app..." style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem; font-family: var(--font-sans); resize: vertical;"></textarea>
                 </div>
 
-                <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem; padding: 0.85rem;">Send Email Request →</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem; padding: 0.85rem;">Send inquiry →</button>
             </form>
         </div>
     </div>
@@ -483,57 +529,62 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>INCIDB Data Engineering Pipeline v1.0.0 · Normalized & Audited July 2026</p>
+            <p>INCIDB · snapshot 2026.09 · counts generated from the build report</p>
             <p style="margin-top: 0.5rem;"><a href="/schema" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="LICENSE" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
-            <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Product data © <a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a> contributors, under the <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL)</a>. Regulatory fields sourced from public EU CosIng, US FDA, NLM DailyMed, and MFDS registries.</p>
+            <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Product data © <a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a> contributors, under the <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL) v1.0</a> — attribution and share-alike apply to derivatives. Ingredient enrichment contains data from the European Commission CosIng database, reused with attribution.</p>
         </div>
     </footer>
 
     <script>
         const tabContents = {
-            sql: `<pre><code><span class="keyword">SELECT</span> 
+            sql: `<pre><code><span class="keyword">SELECT</span>
     i.inci_name,
-    i.primary_function,
+    i.functions,
+    i.cas_number,
     i.is_common_allergen,
-    pi.position_index AS concentration_rank
+    pi.position_index
 <span class="keyword">FROM</span> <span class="string">'product_ingredients.parquet'</span> pi
 <span class="keyword">JOIN</span> <span class="string">'ingredients.parquet'</span> i <span class="keyword">ON</span> pi.ingredient_id = i.ingredient_id
-<span class="keyword">WHERE</span> pi.product_id = <span class="number">67455</span>
+<span class="keyword">WHERE</span> pi.product_id = <span class="number">68597</span>
 <span class="keyword">ORDER BY</span> pi.position_index <span class="keyword">ASC</span>;
 
-<span class="comment">-- Output: Good Genes All-In-One Lactic Acid Treatment (Brand: Sunday Riley)</span>
-<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span>
-<span class="comment">-- | inci_name                       | primary_function | is_common_allergen | concentration_rank|</span>
-<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span>
-<span class="comment">-- | WATER/EAU/AQUA                  | Solvent          | 0                  | 1                |</span>
-<span class="comment">-- | LACTIC ACID                     | Exfoliant        | 0                  | 2                |</span>
-<span class="comment">-- | OPUNTIA TUNA FRUIT EXTRACT      | Humectant        | 0                  | 3                |</span>
-<span class="comment">-- | SQUALANE                        | Emollient        | 0                  | 4                |</span>
-<span class="comment">-- | CYMBOPOGON SCHOENANTHUS OIL     | Fragrance        | 1 (FDA MoCRA Alert)| 12               |</span>
-<span class="comment">-- +---------------------------------+------------------+--------------------+------------------+</span></code></pre>`,
+<span class="comment">-- Real rows from the snapshot; long values elided with … for display.</span>
+<span class="comment">-- NULL means CosIng has no value — it is never a placeholder.</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span>
+<span class="comment">-- | inci_name           | functions                         | cas_number | is_common_allergen | position_index |</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span>
+<span class="comment">-- | AQUA                | SOLVENT                           | 7732-18-5  | 0                  | 1              |</span>
+<span class="comment">-- | GLYCERIN            | DENATURANT;HAIR CONDITIONING;…    | 56-81-5    | 0                  | 4              |</span>
+<span class="comment">-- | ALUMINUM STEARATES  | ANTICAKING;SKIN CONDITIONING - …  | NULL       | 0                  | 11             |</span>
+<span class="comment">-- | LIMONENE            | DEODORANT;SOLVENT;PERFUMING       | 138-86-3   | 1                  | 14             |</span>
+<span class="comment">-- | GERANIOL            | TONIC;PERFUMING                   | 106-24-1   | 1                  | 15             |</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span></code></pre>`,
             python: `<pre><code><span class="keyword">import</span> pyarrow.parquet <span class="keyword">as</span> pq
-<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
 
-<span class="comment"># Load high-performance Parquet datasets</span>
-products = pq.read_table(<span class="string">'products.parquet'</span>).to_pandas()
 ingredients = pq.read_table(<span class="string">'ingredients.parquet'</span>).to_pandas()
+links = pq.read_table(<span class="string">'product_ingredients.parquet'</span>).to_pandas()
 
-<span class="comment"># Filter FDA MoCRA contact allergens</span>
-allergens = ingredients[ingredients[<span class="string">'is_common_allergen'</span>] == <span class="number">1</span>]
-print(<span class="string">f"Flagged {len(allergens)} MoCRA contact allergens across {len(products):,} formulations."</span>)</code></pre>`,
-            json: `<pre><code>{
-  <span class="string">"product_id"</span>: <span class="number">67455</span>,
-  <span class="string">"name"</span>: <span class="string">"Good Genes All-In-One Lactic Acid Treatment"</span>,
-  <span class="string">"brand"</span>: <span class="string">"Sunday Riley"</span>,
-  <span class="string">"category"</span>: <span class="string">"Skincare"</span>,
-  <span class="string">"retail_price_usd"</span>: <span class="number">85.0</span>,
-  <span class="string">"composition_profile"</span>: {
-    <span class="string">"total_ingredients"</span>: <span class="number">28</span>,
-    <span class="string">"mocra_allergens_flagged"</span>: <span class="number">1</span>,
-    <span class="string">"comedogenic_max"</span>: <span class="number">1.0</span>,
-    <span class="string">"primary_function_top"</span>: <span class="string">"Exfoliant / Skin-Conditioning"</span>
-  }
-}</code></pre>`
+<span class="comment"># Coverage the way it actually matters: weighted by label occurrence.</span>
+merged = links.merge(ingredients, on=<span class="string">'ingredient_id'</span>, how=<span class="string">'left'</span>)
+print(merged[<span class="string">'functions'</span>].notna().mean())
+
+<span class="comment"># EU Annex III fragrance allergens</span>
+allergens = ingredients[ingredients[<span class="string">'is_common_allergen'</span>] == <span class="number">1</span>]</code></pre>`,
+            json: `<pre><code><span class="comment"># Every raw label token, and how it was resolved.</span>
+name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, sep=<span class="string">'|'</span>, dtype=str)
+
+<span class="comment">-- Real rows, one per resolution method:</span>
+<span class="comment">-- raw_name                  | canonical_name  | method           | confidence</span>
+<span class="comment">-- --------------------------+-----------------+------------------+-----------</span>
+<span class="comment">-- 1,2,4-TRIHYDROXYBENZENE   | 1,2,4-TRIHYD... | exact            | 1.0</span>
+<span class="comment">-- %WATER                    | WATER           | cleaned          | 0.95</span>
+<span class="comment">-- 1-2-HEXANEDIOL            | 1,2-HEXANEDIOL  | typo_map         | 0.9</span>
+<span class="comment">-- ALCOHOL (0.7%)            | ALCOHOL         | percent_stripped | 0.9</span>
+<span class="comment">-- (#701 M NOW): ISODODECANE | ISODODECANE     | paren_stripped   | 0.9</span>
+<span class="comment">-- *FRAGRANCE                | PARFUM          | synonym_map      | 0.85</span>
+<span class="comment">-- AQUA (WATER) / EAU        | AQUA            | slash_variant    | 0.8</span>
+<span class="comment">-- 1,2-HEXANEDIOL CETEARY... | 1,2-HEXANEDIOL  | split            | 0.8</span>
+<span class="comment">-- &lt;unparseable token&gt;       | (kept verbatim) | unresolved       | 0.0</span></code></pre>`
         };
 
         function switchTab(tab) {
@@ -546,9 +597,9 @@ print(<span class="string">f"Flagged {len(allergens)} MoCRA contact allergens ac
 
         function openModal(tier) {
             lastFocus = document.activeElement || (event && event.currentTarget);
-            document.getElementById('modalTierDesc').innerText = `Requesting delivery & support plan: ${tier}. The dataset itself is open (ODbL v1.0).`;
+            document.getElementById('modalTierDesc').innerText = `Inquiry: ${tier}. The dataset itself is open (ODbL v1.0).`;
             document.getElementById('formTierInput').value = tier;
-            document.getElementById('formSubject').value = `New Access Request: ${tier} — INCIDB`;
+            document.getElementById('formSubject').value = `INCIDB inquiry: ${tier}`;
             const modal = document.getElementById('checkoutModal');
             modal.style.display = 'flex';
             setTimeout(() => {
@@ -589,13 +640,13 @@ print(<span class="string">f"Flagged {len(allergens)} MoCRA contact allergens ac
             const form = event.target;
             const submitBtn = document.getElementById('submitBtn');
             const alertBox = document.getElementById('modalStatusAlert');
-            
+
             const name = document.getElementById('inputName').value.trim();
             const email = document.getElementById('inputEmail').value.trim();
             const company = document.getElementById('inputCompany').value.trim();
             const message = document.getElementById('inputMessage').value.trim();
             const tier = document.getElementById('formTierInput').value || "Data Request";
-            const subject = document.getElementById('formSubject').value || `Access Request: ${tier} — INCIDB`;
+            const subject = document.getElementById('formSubject').value || `INCIDB inquiry: ${tier}`;
 
             if (!name || !email) {
                 alertBox.style.display = 'block';
@@ -615,7 +666,7 @@ print(<span class="string">f"Flagged {len(allergens)} MoCRA contact allergens ac
 
             const formData = new FormData(form);
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 7000); // 7-second zero-outage SLA
+            const timeoutId = setTimeout(() => controller.abort(), 7000);
 
             try {
                 const response = await fetch(form.action, {
@@ -630,7 +681,7 @@ print(<span class="string">f"Flagged {len(allergens)} MoCRA contact allergens ac
                     alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
                     alertBox.style.color = 'var(--accent-emerald)';
                     alertBox.style.border = '1px solid var(--accent-emerald)';
-                    alertBox.innerText = 'Thank you! Your access request has been sent successfully. We will follow up shortly.';
+                    alertBox.innerText = 'Thank you! Your inquiry has been sent. We will follow up shortly.';
                     form.reset();
                     if (submitBtn) submitBtn.disabled = false;
                 } else {
@@ -641,10 +692,10 @@ print(<span class="string">f"Flagged {len(allergens)} MoCRA contact allergens ac
                 alertBox.style.background = 'rgba(245, 158, 11, 0.15)';
                 alertBox.style.color = 'var(--accent-amber)';
                 alertBox.style.border = '1px solid var(--accent-amber)';
-                alertBox.innerHTML = `Network delay or CORS restriction detected. Launching your email client...<br><br><a href="mailto:incidb@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nTier Requested: ${tier}\n\nMessage:\n${message}`)}" style="color: var(--text-primary); font-weight: 600; text-decoration: underline;">Click here if your email app does not open automatically →</a>`;
-                
+                alertBox.innerHTML = `Network delay or CORS restriction detected. Launching your email client...<br><br><a href="mailto:incidb@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSubject: ${tier}\n\nMessage:\n${message}`)}" style="color: var(--text-primary); font-weight: 600; text-decoration: underline;">Click here if your email app does not open automatically →</a>`;
+
                 setTimeout(() => {
-                    const mailtoUrl = `mailto:incidb@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nTier Requested: ${tier}\n\nMessage:\n${message}`)}`;
+                    const mailtoUrl = `mailto:incidb@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSubject: ${tier}\n\nMessage:\n${message}`)}`;
                     window.location.href = mailtoUrl;
                 }, 1200);
                 if (submitBtn) submitBtn.disabled = false;

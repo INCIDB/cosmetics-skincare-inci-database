@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INCIDB Data Schema & Relational Dictionary</title>
-    <meta name="description" content="Complete relational schema specifications for INCIDB's 4 core tables: brands, ingredients, products, and product_ingredients.">
+    <meta name="description" content="Relational schema for INCIDB's 5 tables — brands, products, ingredients, product_ingredients and ingredient_name_map — with the source and measured coverage of every enrichment column.">
     <link rel="canonical" href="https://incidb.dataengineered.io/schema">
     <meta property="og:title" content="INCIDB Data Schema & Relational Dictionary">
-    <meta property="og:description" content="Relational schema specifications for INCIDB's core tables: brands, ingredients, products, and product_ingredients.">
+    <meta property="og:description" content="The 5-table INCIDB schema, column by column, with the source and measured coverage of every enrichment field.">
     <meta property="og:url" content="https://incidb.dataengineered.io/schema">
     <meta property="og:image" content="https://incidb.dataengineered.io/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -59,6 +59,17 @@
             font-family: var(--font-mono);
             font-size: 0.8rem;
         }
+        .note {
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent-cyan);
+            border-radius: 0 8px 8px 0;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+        .note strong { color: var(--text-primary); }
     </style>
 </head>
 <body>
@@ -67,109 +78,197 @@
     <!-- Header / Nav -->
     <header>
         <div class="container nav-content">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 INCIDB
             </a>
             <nav class="nav-links">
-                <a href="index.html#explorer" class="nav-link">Live Explorer</a>
-                <a href="index.html#registries" class="nav-link">Data Sources</a>
-                <a href="schema.html" class="nav-link" style="color: var(--accent-cyan);">Data Schema</a>
-                <a href="index.html#pricing" class="nav-link">Pricing Plans</a>
-                <a href="documentation.html" class="btn btn-secondary">Documentation</a>
+                <a href="/#coverage" class="nav-link">Coverage</a>
+                <a href="/#explorer" class="nav-link">Live Explorer</a>
+                <a href="/schema" class="nav-link" style="color: var(--accent-cyan);">Data Schema</a>
+                <a href="/#pricing" class="nav-link">Pricing</a>
+                <a href="/documentation" class="btn btn-secondary">Documentation</a>
             </nav>
         </div>
     </header>
 
     <div class="container">
         <div class="doc-header">
-            <div class="section-eyebrow">Data Dictionary</div>
+            <div class="section-eyebrow">Data Dictionary · snapshot 2026.09</div>
             <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Relational Schema Specification</h1>
-            <p style="color: var(--text-secondary); max-width: 700px; margin-top: 1rem;">
-                INCIDB ships as a 4-table normalized relational schema exported into pipe-delimited UTF-8 CSV (`|`) and high-performance Apache Parquet (`pyarrow`) archives.
+            <p style="color: var(--text-secondary); max-width: 760px; margin-top: 1rem;">
+                Five tables, exported as pipe-delimited UTF-8 CSV and Apache Parquet with identical columns. Every enrichment column is either populated from a named public source with a documented join, or <code>NULL</code>. There are no default values and no placeholder rows.
             </p>
-        </div>
-
-        <!-- Brands Table -->
-        <div class="doc-section">
-            <h2>1. brands.csv / brands.parquet</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Contains canonical brand identities and identities across 5,994 global cosmetic lines.</p>
-            <div class="table-container">
+            <div class="table-container" style="max-width: 520px;">
                 <table>
-                    <thead>
-                        <tr><th>Field Name</th><th>Data Type</th><th>Description</th><th>Sample Value</th></tr>
-                    </thead>
+                    <thead><tr><th>Table</th><th>Rows</th></tr></thead>
                     <tbody>
-                        <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Primary key unique identifier</td><td><code>1</code></td></tr>
-                        <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Standardized commercial brand name</td><td><code>Laneige</code></td></tr>
+                        <tr><td><code>products</code></td><td>18,583</td></tr>
+                        <tr><td><code>brands</code></td><td>5,926</td></tr>
+                        <tr><td><code>ingredients</code></td><td>46,973</td></tr>
+                        <tr><td><code>product_ingredients</code></td><td>318,758</td></tr>
+                        <tr><td><code>ingredient_name_map</code></td><td>55,426</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- Ingredients Table -->
+        <!-- Brands -->
         <div class="doc-section">
-            <h2>2. ingredients.csv / ingredients.parquet</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Contains 44,816 canonical chemical compounds normalized from public regulatory and open-data sources.</p>
+            <h2>1. brands</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">5,926 brand identities as recorded in Open Beauty Facts.</p>
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr><th>Field Name</th><th>Data Type</th><th>Description</th><th>Sample Value</th></tr>
+                        <tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Primary key unique identifier</td><td><code>1</code></td></tr>
-                        <tr><td><code>inci_name</code></td><td><code class="type-tag">STRING</code></td><td>International Nomenclature Cosmetic Ingredient name</td><td><code>DIISOSTEARYL MALATE</code></td></tr>
-                        <tr><td><code>cas_number</code></td><td><code class="type-tag">STRING</code></td><td>Chemical Abstracts Service registry number</td><td><code>50-81-7</code></td></tr>
-                        <tr><td><code>common_name</code></td><td><code class="type-tag">STRING</code></td><td>Plain English common compound name</td><td><code>Diisostearyl Malate</code></td></tr>
-                        <tr><td><code>primary_function</code></td><td><code class="type-tag">STRING</code></td><td>Functional category (CosIng taxonomy)</td><td><code>Skin-Conditioning Agent</code></td></tr>
-                        <tr><td><code>comedogenic_rating</code></td><td><code class="type-tag">FLOAT</code></td><td>Pore-clogging likelihood scale (<code>0.0</code> - <code>5.0</code>)</td><td><code>0.0</code></td></tr>
-                        <tr><td><code>is_common_allergen</code></td><td><code class="type-tag">INTEGER</code></td><td>FDA MoCRA contact dermatitis allergen (<code>1</code>/<code>0</code>)</td><td><code>0</code></td></tr>
-                        <tr><td><code>is_fungal_acne_trigger</code></td><td><code class="type-tag">INTEGER</code></td><td>Malassezia folliculitis feeding trigger (<code>1</code>/<code>0</code>)</td><td><code>0</code></td></tr>
-                        <tr><td><code>description</code></td><td><code class="type-tag">STRING</code></td><td>Plain-language functional summary</td><td><code>Standard cosmetic emollient...</code></td></tr>
-                        <tr><td><code>fda_warning</code></td><td><code class="type-tag">STRING</code></td><td>US FDA OTC warning monograph</td><td><code>No warning required</code></td></tr>
+                        <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Primary key</td><td><code>1</code></td></tr>
+                        <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Brand name as recorded upstream</td><td><code>Laneige</code></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- Products Table -->
+        <!-- Products -->
         <div class="doc-section">
-            <h2>3. products.csv / products.parquet</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Contains 19,645 commercial cosmetic formulations harvested from prestige retailers, K-Beauty standards, and clinical registries.</p>
+            <h2>2. products</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">18,583 products, one row each, every one carrying a usable on-pack ingredient declaration.</p>
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr><th>Field Name</th><th>Data Type</th><th>Description</th><th>Sample Value</th></tr>
+                        <tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Primary key unique identifier</td><td><code>67455</code></td></tr>
-                        <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Foreign key referencing <code>brands.brand_id</code></td><td><code>46067</code></td></tr>
-                        <tr><td><code>barcode_ean</code></td><td><code class="type-tag">STRING</code></td><td>Universal GTIN / EAN-13 barcode</td><td><code>4006381333931</code></td></tr>
-                        <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Full commercial product title</td><td><code>Good Genes Lactic Acid Treatment</code></td></tr>
-                        <tr><td><code>category</code></td><td><code class="type-tag">STRING</code></td><td>Primary skincare taxonomy category</td><td><code>Skincare</code></td></tr>
-                        <tr><td><code>retail_price_usd</code></td><td><code class="type-tag">FLOAT</code></td><td>Retail price in USD</td><td><code>85.0</code></td></tr>
-                        <tr><td><code>raw_ingredient_text</code></td><td><code class="type-tag">STRING</code></td><td>Full unbroken ingredient listing from package label</td><td><code>Botanical Blend [Water/Eau/Aqua...</code></td></tr>
+                        <tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Primary key</td><td><code>68597</code></td></tr>
+                        <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>brands.brand_id</code></td><td><code>55</code></td></tr>
+                        <tr><td><code>barcode_ean</code></td><td><code class="type-tag">STRING</code></td><td>GTIN / EAN barcode</td><td><code>4006381333931</code></td></tr>
+                        <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Product name as recorded upstream</td><td><code>Good Genes Lactic Acid Treatment</code></td></tr>
+                        <tr><td><code>category</code></td><td><code class="type-tag">STRING</code></td><td>Product category — 15 distinct values</td><td><code>Skincare</code></td></tr>
+                        <tr><td><code>raw_ingredient_text</code></td><td><code class="type-tag">STRING</code></td><td>The unparsed declaration, kept verbatim so the parse can be re-derived</td><td><code>Water, Glycerin, ...</code></td></tr>
                         <tr><td><code>created_at</code></td><td><code class="type-tag">STRING</code></td><td>Ingestion timestamp (ISO 8601)</td><td><code>2026-07-02T14:01:48Z</code></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- Product Ingredients Table -->
+        <!-- Ingredients -->
         <div class="doc-section">
-            <h2>4. product_ingredients.csv / product_ingredients.parquet</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Relational junction table containing 323,730 mappings preserving exact label order and concentration index.</p>
+            <h2>3. ingredients</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">One row per distinct canonical INCI name — 46,973 of them. Every CosIng-derived column is populated only where the canonical name matched the European Commission CosIng inventory on an exact name match, and is <code>NULL</code> otherwise.</p>
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr><th>Field Name</th><th>Data Type</th><th>Description</th><th>Sample Value</th></tr>
+                        <tr><th>Field</th><th>Type</th><th>Source</th><th>Description</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Foreign key referencing <code>products.product_id</code></td><td><code>67455</code></td></tr>
-                        <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Foreign key referencing <code>ingredients.ingredient_id</code></td><td><code>12404</code></td></tr>
-                        <tr><td><code>position_index</code></td><td><code class="type-tag">INTEGER</code></td><td>Exact label position index (<code>1</code> = highest concentration)</td><td><code>1</code></td></tr>
-                        <tr><td><code>concentration_percentage</code></td><td><code class="type-tag">FLOAT</code></td><td>Explicit clinical concentration percentage (when disclosed)</td><td><code>10.0</code></td></tr>
+                        <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>—</td><td>Primary key</td></tr>
+                        <tr><td><code>inci_name</code></td><td><code class="type-tag">STRING</code></td><td>canonicalisation</td><td>The canonical name every raw label token was resolved to</td></tr>
+                        <tr><td><code>common_name</code></td><td><code class="type-tag">STRING</code></td><td>—</td><td>Always <code>NULL</code> in this snapshot; no source supplies it</td></tr>
+                        <tr><td><code>cosing_matched</code></td><td><code class="type-tag">INTEGER</code></td><td>CosIng</td><td><code>1</code> when the canonical name matched the inventory. Gates every CosIng column below</td></tr>
+                        <tr><td><code>cosing_ref_no</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>CosIng reference number</td></tr>
+                        <tr><td><code>cas_number</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>CAS registry number — from CosIng only, never inferred</td></tr>
+                        <tr><td><code>ec_number</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>EC number</td></tr>
+                        <tr><td><code>functions</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>CosIng functional categories, multi-valued, <code>;</code>-separated</td></tr>
+                        <tr><td><code>chemical_description</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>CosIng chemical / IUPAC description text</td></tr>
+                        <tr><td><code>cosing_restriction</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Restriction reference, e.g. an Annex V entry</td></tr>
+                        <tr><td><code>cosing_update_date</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Always <code>NULL</code> in this snapshot — the export carries no update date</td></tr>
+                        <tr><td><code>annex_ii</code> … <code>annex_vi</code></td><td><code class="type-tag">FLOAT</code></td><td>CosIng</td><td>Membership of Annexes II (prohibited), III (restricted), IV (colorants), V (preservatives), VI (UV filters)</td></tr>
+                        <tr><td><code>is_common_allergen</code></td><td><code class="type-tag">INTEGER</code></td><td>EU Annex III</td><td>EU fragrance-allergen flag — see the method note below</td></tr>
+                        <tr><td><code>allergen_source</code></td><td><code class="type-tag">STRING</code></td><td>EU Annex III</td><td>The list a flag came from</td></tr>
+                        <tr><td><code>comedogenic_rating</code></td><td><code class="type-tag">FLOAT</code></td><td>authored</td><td>0–5 rating for the ingredients the cited paper covers; <code>NULL</code> otherwise</td></tr>
+                        <tr><td><code>is_fungal_acne_trigger</code></td><td><code class="type-tag">FLOAT</code></td><td>rule</td><td>Rule-derived flag — a heuristic, not a measured property</td></tr>
+                        <tr><td><code>rating_source</code></td><td><code class="type-tag">STRING</code></td><td>authored / rule</td><td>The per-row citation or rule text behind the two columns above</td></tr>
                     </tbody>
                 </table>
+            </div>
+
+            <h3 style="margin-top: 2.5rem;">Measured coverage of the CosIng columns</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Column</th><th>Share of the 46,973 distinct names</th><th>Share of the 318,758 label occurrences</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>CosIng match (any)</td><td>11.0%</td><td>82.5%</td></tr>
+                        <tr><td><code>functions</code></td><td>10.9%</td><td>81.5%</td></tr>
+                        <tr><td><code>cas_number</code></td><td>8.3%</td><td>76.4%</td></tr>
+                        <tr><td><code>chemical_description</code></td><td>8.5% · 3,966 distinct values</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note">
+                The left column counts distinct names; the right counts ingredient occurrences across product labels. They differ by an order of magnitude because a label corpus contains far more distinct strings — botanical variants, multilingual spellings, marketing tokens — than any regulatory inventory lists, while the slots on a real label are filled overwhelmingly by ingredients CosIng does cover. <strong>Neither number alone describes the data.</strong> <code>ec_number</code>, <code>cosing_restriction</code> and the Annex flags are populated on the CosIng-matched subset only, at their own rates — see the <code>build_report.json</code> shipped with the archive.
+            </div>
+
+            <div class="note">
+                <strong>Method — allergen flags.</strong> One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched on exact canonical name. 99 names are flagged. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.
+            </div>
+
+            <div class="note">
+                <strong>Method — comedogenic ratings.</strong> 145 ingredients carry a rating on the 0–5 scale, transcribed from Table I (pp. 324–326) of Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Where the paper prints a range rather than a single grade, the rating is left <code>NULL</code>. Absence of a rating means "not covered by the cited source", never "safe".
+            </div>
+
+            <div class="note">
+                <strong>Method — fungal-acne flag.</strong> A rule-derived heuristic, not a measured property: no per-ingredient <em>Malassezia</em> assay exists to transcribe. The rule flags C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, giving 270 flags. Basis: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), with the chain-length window from Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Specific oils, butters and waxes are not flagged — the literature does not support ingredient-level calls on them.
+            </div>
+        </div>
+
+        <!-- Product Ingredients -->
+        <div class="doc-section">
+            <h2>4. product_ingredients</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">318,758 ordered composition links, preserving the order in which ingredients are declared on the label.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>products.product_id</code></td><td><code>68597</code></td></tr>
+                        <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>ingredients.ingredient_id</code></td><td><code>1214</code></td></tr>
+                        <tr><td><code>position_index</code></td><td><code class="type-tag">INTEGER</code></td><td>1-indexed label position; lower means declared earlier, i.e. present in a higher proportion</td><td><code>1</code></td></tr>
+                        <tr><td><code>concentration_percentage</code></td><td><code class="type-tag">STRING</code></td><td>Always <code>NULL</code> in this snapshot — labels almost never declare percentages</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Name map -->
+        <div class="doc-section">
+            <h2>5. ingredient_name_map</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">55,426 rows: the canonicalisation evidence, shipped with the data so every decision the pipeline made can be audited or overridden.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>raw_name</code></td><td><code class="type-tag">STRING</code></td><td>The token as it appeared in <code>products.raw_ingredient_text</code></td><td><code>AQUA (WATER)</code></td></tr>
+                        <tr><td><code>canonical_name</code></td><td><code class="type-tag">STRING</code></td><td>The canonical INCI name it resolved to</td><td><code>AQUA</code></td></tr>
+                        <tr><td><code>method</code></td><td><code class="type-tag">STRING</code></td><td>How it resolved — see below</td><td><code>paren_stripped</code></td></tr>
+                        <tr><td><code>confidence</code></td><td><code class="type-tag">FLOAT</code></td><td>Confidence attached to the method</td><td><code>0.9</code></td></tr>
+                        <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>ingredients.ingredient_id</code></td><td><code>162</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>method</th><th>Meaning</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>exact</code></td><td>The cleaned token is already a CosIng inventory name</td></tr>
+                        <tr><td><code>cleaned</code></td><td>Resolved after entity decoding, character stripping and whitespace collapse</td></tr>
+                        <tr><td><code>typo_map</code></td><td>Resolved through a small, explicit, cited typo table</td></tr>
+                        <tr><td><code>percent_stripped</code></td><td>A declared percentage was removed</td></tr>
+                        <tr><td><code>paren_stripped</code></td><td>A parenthetical was removed</td></tr>
+                        <tr><td><code>synonym_map</code></td><td>Resolved through an explicit synonym table</td></tr>
+                        <tr><td><code>slash_variant</code></td><td>A slash-joined multilingual variant</td></tr>
+                        <tr><td><code>split</code></td><td>A run-together token split into two names, both of which matched the inventory</td></tr>
+                        <tr><td><code>unresolved</code></td><td>No canonical match — kept verbatim and flagged, never guessed</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note">
+                <code>unresolved</code> is the largest bucket by distinct token and a small one by label occurrence — the same long-tail effect that produces the two coverage columns above.
             </div>
         </div>
     </div>
@@ -177,8 +276,9 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>INCIDB Data Engineering Pipeline v1.0.0 · Normalized & Audited July 2026</p>
-            <p style="margin-top: 0.5rem;"><a href="schema.html" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="LICENSE" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="documentation.html" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
+            <p>INCIDB · snapshot 2026.09 · counts generated from the build report</p>
+            <p style="margin-top: 0.5rem;"><a href="/schema" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="LICENSE" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
+            <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Product data © Open Beauty Facts contributors, under the Open Database License (ODbL) v1.0. Ingredient enrichment contains data from the European Commission CosIng database, reused with attribution.</p>
         </div>
     </footer>
 </body>

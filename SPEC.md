@@ -1,60 +1,81 @@
 # INCIDB Apache Parquet Technical Specification
 
-INCIDB ships high-performance Apache Parquet archives formatted with `pyarrow` (`products.parquet`, `ingredients.parquet`, `brands.parquet`, `product_ingredients.parquet`), plus preview samples in the free download.
+Snapshot 2026.09. Every table ships twice: as pipe-delimited (`|`) UTF-8 CSV
+and as an Apache Parquet archive written with `pyarrow` (Snappy compression,
+dictionary encoding where it pays). Both carry identical columns, so you can
+prototype against the CSV and ship against the Parquet.
 
-## Parquet Archive Metrics
+## Archive metrics
 
-| Dataset Name | File Size | Row Count | Column Count | Compression / Encoding |
-| :--- | :---: | :---: | :---: | :--- |
-| `brands.parquet` | 121 KB | 5,994 | 5 | Snappy / Dictionary |
-| `ingredients.parquet` | 4.84 MB | 44,816 | 14 | Snappy / Dictionary |
-| `products.parquet` | 5.13 MB | 19,645 | 8 | Snappy / Plain |
-| `product_ingredients.parquet` | 1.09 MB | 323,730 | 4 | Snappy / Bit-Packed |
+| Table | Parquet size | CSV size | Rows | Columns |
+| :--- | ---: | ---: | ---: | ---: |
+| `brands` | 0.11 MiB | 0.12 MiB | 5,926 | 2 |
+| `products` | 4.77 MiB | 9.55 MiB | 18,583 | 8 |
+| `ingredients` | 2.33 MiB | 4.96 MiB | 46,973 | 21 |
+| `product_ingredients` | 1.18 MiB | 4.97 MiB | 318,758 | 4 |
+| `ingredient_name_map` | 4.06 MiB | 7.72 MiB | 55,426 | 5 |
 
-## Quick Start in Python (PyArrow / Pandas)
+Parquet is roughly **54%** smaller than the equivalent CSV across the whole
+snapshot — less than the headline figures compression benchmarks usually
+quote, because most of the payload is high-cardinality free text (raw label
+declarations, chemical descriptions, per-row citations) rather than the
+repeated low-cardinality columns dictionary encoding thrives on.
+
+## Quick start — PyArrow / Pandas
 
 ```python
 import pyarrow.parquet as pq
 import pandas as pd
 
-# Load 19,645 cosmetic products
 products = pq.read_table('products.parquet').to_pandas()
-print(f"Loaded {len(products):,} products across {products['brand_id'].nunique():,} brands.")
-
-# Load 44,816 canonical INCI ingredients
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
+links = pq.read_table('product_ingredients.parquet').to_pandas()
 
-# Filter for FDA MoCRA contact allergens
+# Coverage on your slice, weighted by label occurrence rather than by
+# distinct name — the two differ by an order of magnitude.
+merged = links.merge(ingredients, on='ingredient_id', how='left')
+print(merged['functions'].notna().mean())
+
+# EU Annex III fragrance allergens
 allergens = ingredients[ingredients['is_common_allergen'] == 1]
-print(f"Flagged {len(allergens)} MoCRA contact allergens.")
 
-# Join product formulations with ingredient functional profiles
-junction = pq.read_table('product_ingredients.parquet').to_pandas()
-full_formulations = junction.merge(products[['product_id', 'name']], on='product_id') \
-                            .merge(ingredients[['ingredient_id', 'inci_name', 'primary_function']], on='ingredient_id')
-
-print(full_formulations.head(10))
+# Full composition, in label order
+full = (links.merge(products[['product_id', 'name']], on='product_id')
+             .merge(ingredients[['ingredient_id', 'inci_name', 'functions', 'cas_number']],
+                    on='ingredient_id')
+             .sort_values(['product_id', 'position_index']))
 ```
 
-## SQL Querying with DuckDB
-
-You can execute blazing-fast analytical SQL directly against the Parquet files without loading them into RAM:
+## Quick start — DuckDB
 
 ```python
 import duckdb
 
-# Find the 5 most-used ingredients that are flagged MoCRA contact allergens
-query = """
-SELECT 
-    i.inci_name,
-    i.primary_function,
-    COUNT(pi.product_id) AS formulation_count
+# Which CosIng functional categories fill the most label slots?
+duckdb.query("""
+SELECT f.function, COUNT(*) AS label_slots
 FROM 'product_ingredients.parquet' pi
-JOIN 'ingredients.parquet' i ON pi.ingredient_id = i.ingredient_id
-WHERE i.is_common_allergen = 1
-GROUP BY i.inci_name, i.primary_function
-ORDER BY formulation_count DESC
-LIMIT 5;
-"""
-print(duckdb.query(query).to_df())
+JOIN 'ingredients.parquet' i USING (ingredient_id)
+CROSS JOIN UNNEST(string_split(i.functions, ';')) AS f(function)
+WHERE i.functions IS NOT NULL
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10;
+""").show()
 ```
+
+```python
+# Audit the canonicalisation: how was each raw label token resolved?
+duckdb.query("""
+SELECT method, COUNT(*) AS rows
+FROM 'ingredient_name_map.parquet'
+GROUP BY 1
+ORDER BY 2 DESC;
+""").show()
+```
+
+`functions` is multi-valued and `;`-separated; `cas_number`,
+`chemical_description`, `ec_number` and the Annex flags are `NULL` wherever
+the canonical name did not match the CosIng inventory. See
+[DATA_DICTIONARY.md](DATA_DICTIONARY.md) for the measured coverage of each
+column and the method notes behind the flags.

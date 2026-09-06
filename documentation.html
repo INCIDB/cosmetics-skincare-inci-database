@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INCIDB Documentation & Quick Start</title>
-    <meta name="description" content="Technical documentation, regulatory architecture, and quick-start Python/DuckDB code snippets for the INCIDB skincare database.">
+    <meta name="description" content="Technical documentation for INCIDB: the five-table schema, the CosIng join and its measured coverage, the canonicalisation method, and quick-start PyArrow/DuckDB snippets.">
     <link rel="canonical" href="https://incidb.dataengineered.io/documentation">
     <meta property="og:title" content="INCIDB Documentation & Quick Start">
-    <meta property="og:description" content="Technical docs, regulatory architecture, and quick-start Python/DuckDB snippets for the INCIDB skincare database.">
+    <meta property="og:description" content="The five-table INCIDB schema, the CosIng join and its measured coverage, and quick-start PyArrow/DuckDB snippets.">
     <meta property="og:url" content="https://incidb.dataengineered.io/documentation">
     <meta property="og:image" content="https://incidb.dataengineered.io/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -58,15 +58,15 @@
     <!-- Header / Nav -->
     <header>
         <div class="container nav-content">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 INCIDB
             </a>
             <nav class="nav-links">
-                <a href="index.html#explorer" class="nav-link">Live Explorer</a>
-                <a href="index.html#registries" class="nav-link">Data Sources</a>
-                <a href="schema.html" class="nav-link">Data Schema</a>
-                <a href="index.html#pricing" class="nav-link">Pricing Plans</a>
-                <a href="documentation.html" class="btn btn-secondary" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">Documentation</a>
+                <a href="/#coverage" class="nav-link">Coverage</a>
+                <a href="/#explorer" class="nav-link">Live Explorer</a>
+                <a href="/schema" class="nav-link">Data Schema</a>
+                <a href="/#pricing" class="nav-link">Pricing</a>
+                <a href="/documentation" class="btn btn-secondary" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">Documentation</a>
             </nav>
         </div>
     </header>
@@ -76,88 +76,92 @@
             <div class="section-eyebrow">Developer Portal</div>
             <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">INCIDB Technical Documentation</h1>
             <p style="color: var(--text-secondary); max-width: 700px; margin-top: 1rem;">
-                Comprehensive guide to data architecture, regulatory integrations, and analytical integration with Python PyArrow and DuckDB.
+                The five tables, the two sources they come from, the coverage each enrichment column actually has, and how to query the result.
             </p>
         </div>
 
         <div class="doc-section">
-            <h2>1. Production Scale Metrics</h2>
-            <p>INCIDB unifies high-precision chemical composition data across four core tables:</p>
+            <h2>1. What is in the snapshot</h2>
+            <p>Five tables, exported as pipe-delimited UTF-8 CSV and Apache Parquet with identical columns:</p>
             <ul>
-                <li><strong>19,645 Commercial Formulations:</strong> Covering prestige skincare lines, K-Beauty functional cosmetics, and OTC clinical topicals.</li>
-                <li><strong>44,816 Canonical INCI Compounds:</strong> Standardized according to International Nomenclature Cosmetic Ingredient conventions.</li>
-                <li><strong>5,994 Global Brands:</strong> Enriched with ethical certifications (cruelty-free and vegan indicators).</li>
-                <li><strong>323,730 Relational Junction Mappings:</strong> Preserving exact package label concentration order (<code>position_index</code>).</li>
+                <li><strong>18,583 products</strong> — one row per Open Beauty Facts product carrying a usable on-pack ingredient declaration, with the raw declaration kept verbatim so the parse can be re-derived.</li>
+                <li><strong>5,926 brands</strong> — brand identities as recorded upstream.</li>
+                <li><strong>46,973 distinct canonical INCI names</strong> — the result of canonicalising every raw label token, enriched from CosIng where CosIng lists them.</li>
+                <li><strong>318,758 ordered composition links</strong> — preserving label order in <code>position_index</code>.</li>
+                <li><strong>55,426 name-map rows</strong> — how each raw label token was resolved, and by which method.</li>
             </ul>
         </div>
 
         <div class="doc-section">
-            <h2>2. Public-Source Regulatory & Open-Data Architecture</h2>
-            <p>Every ingredient profile is normalized from public regulatory and open-data sources:</p>
+            <h2>2. Sources and the join</h2>
+            <p>Two sources, one documented join. Every source file's URL, download timestamp and SHA-256 is recorded in the <code>build_report.json</code> shipped with the data.</p>
             <ul>
-                <li><strong>EU Commission CosIng Registry:</strong> Official functional categories, restricted thresholds, and CAS registry numbers (<code>69-72-7</code> Salicylic Acid).</li>
-                <li><strong>US FDA MoCRA Allergen Registry:</strong> Flags mandatory contact dermatitis fragrance allergens (<em>Linalool, Limonene, Geraniol</em>).</li>
-                <li><strong>NLM DailyMed Clinical OTC:</strong> Formulations harvested from US National Library of Medicine topical dermatological labels.</li>
-                <li><strong>K-Beauty MFDS Standards:</strong> Functional whitening, anti-wrinkle, and barrier repair standards from South Korean regulations.</li>
-                <li><strong>Open Beauty Facts:</strong> Community product corpus (barcodes, brands, ingredient lists) under the Open Database License (ODbL).</li>
+                <li><strong>Open Beauty Facts</strong> — the product corpus (barcodes, brands, categories, raw ingredient declarations) under the Open Database License (ODbL).</li>
+                <li><strong>European Commission CosIng</strong> — the ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names are <code>NULL</code> in every CosIng-derived column, never a placeholder.</li>
+                <li><strong>EU Annex III fragrance allergens</strong> — Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545, the single list behind <code>is_common_allergen</code>. The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists in this dataset.</li>
+                <li><strong>Authored layer</strong> — 145 comedogenic ratings transcribed from one published table, and 270 rule-derived fungal-acne flags. Both carry their citation per row in <code>rating_source</code>, and are <code>NULL</code> everywhere else.</li>
             </ul>
         </div>
 
         <div class="doc-section">
-            <h2>3. Audit & Verification Results</h2>
-            <p>All database releases pass rigorous 1-to-1 physical parity and string sanitization audits:</p>
+            <h2>3. Measured coverage</h2>
+            <p>Reported two ways, because the two differ by an order of magnitude and quoting only one would mislead:</p>
             <ul>
-                <li><strong>Zero Linebreak Corruption:</strong> Stripped unescaped carriage returns (<code>\r</code>) and linebreaks (<code>\n</code>) inside string fields to guarantee exact line count correspondence (<code>wc -l</code> exactly equals record counts).</li>
-                <li><strong>82% Parquet Compression Ratio:</strong> Compressed via Apache PyArrow snappy/zstd algorithms for rapid cloud ingestion.</li>
-                <li><strong>Full Foreign Key Integrity:</strong> Audited 100% referential integrity across all 323,730 junction records.</li>
+                <li><strong>CosIng match (any):</strong> 11.0% of the 46,973 distinct canonical names; 82.5% of the 318,758 ingredient occurrences across product labels.</li>
+                <li><strong><code>functions</code>:</strong> 10.9% of distinct names; 81.5% of label occurrences.</li>
+                <li><strong><code>cas_number</code>:</strong> 8.3% of distinct names; 76.4% of label occurrences.</li>
+                <li><strong><code>chemical_description</code>:</strong> 8.5% of distinct names, 3,966 distinct values.</li>
             </ul>
+            <p>A label corpus contains far more distinct strings — botanical variants, multilingual spellings, marketing tokens — than any regulatory inventory lists, which is why the first number in each pair is low. The slots on a real label are filled overwhelmingly by ingredients CosIng does cover, which is why the second is high. Neither number alone describes the data.</p>
         </div>
 
         <div class="doc-section">
-            <h2>4. Quick Start — Python PyArrow & Pandas</h2>
-            <p>Load high-performance Parquet datasets directly into memory for filtering allergens and functional categories:</p>
+            <h2>4. Canonicalisation</h2>
+            <p>Raw label tokens are resolved to canonical INCI names by an explicit ordered procedure — entity decode, character strip, whitespace collapse, upper-case, then exact match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Anything that fails all of them is kept verbatim and recorded as <code>unresolved</code>, never guessed. The method used is stored per row in <code>ingredient_name_map.method</code>, so every decision is auditable and reversible.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>5. Quick start — PyArrow &amp; Pandas</h2>
             <pre class="doc-code"><code>import pyarrow.parquet as pq
-import pandas as pd
 
-# Load formulations and canonical ingredients
-products = pq.read_table('products.parquet').to_pandas()
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
+links = pq.read_table('product_ingredients.parquet').to_pandas()
 
-# Filter FDA MoCRA contact allergens
-allergens = ingredients[ingredients['is_common_allergen'] == 1]
-print(f"Flagged {len(allergens)} MoCRA contact allergens across {len(products):,} formulations.")</code></pre>
+# Coverage the way it actually matters: weighted by label occurrence.
+merged = links.merge(ingredients, on='ingredient_id', how='left')
+print(merged['functions'].notna().mean())
+
+# EU Annex III fragrance allergens
+allergens = ingredients[ingredients['is_common_allergen'] == 1]</code></pre>
         </div>
 
         <div class="doc-section">
-            <h2>5. Quick Start — DuckDB In-Memory SQL</h2>
-            <p>Execute analytical joins directly over flat Parquet files without database servers:</p>
+            <h2>6. Quick start — DuckDB</h2>
             <pre class="doc-code"><code>import duckdb
 
-query = """
-SELECT 
-    b.name AS brand,
-    p.name AS product,
-    COUNT(pi.ingredient_id) AS total_ingredients,
-    SUM(i.is_common_allergen) AS mocra_allergens
-FROM 'products.parquet' p
-JOIN 'brands.parquet' b ON p.brand_id = b.brand_id
-JOIN 'product_ingredients.parquet' pi ON p.product_id = pi.product_id
-JOIN 'ingredients.parquet' i ON pi.ingredient_id = i.ingredient_id
-GROUP BY b.name, p.name
-HAVING SUM(i.is_common_allergen) > 0
-ORDER BY mocra_allergens DESC
-LIMIT 5;
-"""
+duckdb.query("""
+SELECT f.function, COUNT(*) AS label_slots
+FROM 'product_ingredients.parquet' pi
+JOIN 'ingredients.parquet' i USING (ingredient_id)
+CROSS JOIN UNNEST(string_split(i.functions, ';')) AS f(function)
+WHERE i.functions IS NOT NULL
+GROUP BY 1 ORDER BY 2 DESC LIMIT 10;
+""").show()
 
-print(duckdb.query(query).to_df())</code></pre>
+# Audit the canonicalisation itself
+duckdb.query("""
+SELECT method, COUNT(*) AS n
+FROM 'ingredient_name_map.parquet'
+GROUP BY 1 ORDER BY 2 DESC;
+""").show()</code></pre>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>INCIDB Data Engineering Pipeline v1.0.0 · Normalized & Audited July 2026</p>
-            <p style="margin-top: 0.5rem;"><a href="schema.html" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="LICENSE" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="documentation.html" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
+            <p>INCIDB · snapshot 2026.09 · counts generated from the build report</p>
+            <p style="margin-top: 0.5rem;"><a href="/schema" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="LICENSE" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
         </div>
     </footer>
 </body>

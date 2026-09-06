@@ -1,0 +1,23 @@
+{
+  "allergen_flagged": 99,
+  "brands": 5926,
+  "cas_link_weighted_pct": 76.4,
+  "cas_pct": 8.3,
+  "categories": 15,
+  "chemical_description_distinct": 3966,
+  "chemical_description_pct": 8.5,
+  "cosing_link_weighted_pct": 82.5,
+  "cosing_matched_pct": 11.0,
+  "functions_link_weighted_pct": 81.5,
+  "functions_pct": 10.9,
+  "fungal_flagged": 270,
+  "ingredients": 46973,
+  "links": 318758,
+  "name_map_rows": 55426,
+  "price_usd": 79,
+  "products": 18583,
+  "rated_comedogenic": 145,
+  "sample_ingredients": 1075,
+  "sample_products": 200,
+  "snapshot": "2026.09"
+}
