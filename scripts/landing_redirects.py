@@ -105,7 +105,7 @@ def write_redirects(rules, redirects_path=REDIRECTS_PATH, landing_dir=LANDING_DI
     if Path(redirects_path).exists():
         existing_lines = Path(redirects_path).read_text(encoding="utf-8").splitlines()
     dead = set(stale_rules(existing_lines, landing_dir))
-    kept = [l for l in existing_lines if l not in dead]
+    kept = [line for line in existing_lines if line not in dead]
     kept_set = set(kept)
 
     new_lines = [r for r in rules if r not in kept_set]
