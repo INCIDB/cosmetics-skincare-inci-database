@@ -24,7 +24,7 @@ ingredient lists are at least 80% CosIng-matched, so its enrichment looks
 better than the corpus average. Evaluate against the coverage table below,
 not against the sample.
 
-👉 [Buy INCIDB Complete — $79](https://buy.stripe.com/REPLACE-WITH-INCIDB-COMPLETE-LINK)
+👉 [Buy INCIDB Complete — $79](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g)
 
 ---
 

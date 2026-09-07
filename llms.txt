@@ -30,5 +30,5 @@ Reason for the gap between the two views: a real-world label corpus contains far
 - **Sources:** Open Beauty Facts (product corpus, ODbL) and European Commission CosIng (ingredient enrichment, EU open data).
 - **Attribution:** "Product data © Open Beauty Facts contributors", licensed ODbL v1.0 (attribution + share-alike). "Contains data from the European Commission CosIng database."
 - **Free sample:** 200 products with their brands, 1,109 referenced ingredients, their composition links and name-map rows. The draw is a seeded uniform random sample of the products whose ingredient lists are at least 80% CosIng-matched, so it reads better than the corpus average — plan against the corpus figures above.
-- **Product:** INCIDB Complete — $79 one-time, all 5 tables in both formats plus the build report, instant Stripe checkout: https://buy.stripe.com/REPLACE-WITH-INCIDB-COMPLETE-LINK
+- **Product:** INCIDB Complete — $79 one-time, all 5 tables in both formats plus the build report, instant Stripe checkout: https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g
 - **What the price buys:** the normalisation, canonicalisation, joining and measurement, plus hosted instant delivery. Not exclusive rights to the underlying data, which remains ODbL.

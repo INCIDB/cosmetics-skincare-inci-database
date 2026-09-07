@@ -138,7 +138,7 @@ One product. Everything measured above, both formats, instant download.
 | Delivery | Stripe checkout, instant download |
 | Updates | One-time snapshot (2026.09) |
 
-👉 [Buy INCIDB Complete](https://buy.stripe.com/REPLACE-WITH-INCIDB-COMPLETE-LINK) ·
+👉 [Buy INCIDB Complete](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g) ·
 [pricing details](docs/pricing_plan.md)
 
 What you are paying for is the engineering: a corpus of raw label strings

@@ -45,7 +45,7 @@ BASE_URL = "https://incidb.dataengineered.io"
 # swaps it in (Task 13). Until then every buy button carries this literal,
 # and `tests/test_public_claims.py::test_no_stripe_placeholder_when_releasing`
 # fails the release while it is still present.
-STRIPE_COMPLETE_LINK_PLACEHOLDER = "https://buy.stripe.com/REPLACE-WITH-INCIDB-COMPLETE-LINK"
+STRIPE_COMPLETE_LINK_PLACEHOLDER = "https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g"
 
 # Hub definitions, evaluated IN THIS ORDER. An ingredient joins the first hub
 # whose vocabulary appears in its `functions` value; the substrings below are
