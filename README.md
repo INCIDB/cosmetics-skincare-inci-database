@@ -10,8 +10,16 @@
 [![Snapshot](https://img.shields.io/badge/Snapshot-2026.09-7020d0?style=flat-square)](https://incidb.dataengineered.io/)
 
 > **Live portal, interactive schema & free sample:** [https://incidb.dataengineered.io/](https://incidb.dataengineered.io/)
+>
+> **Free sample:** [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) (200 products, 1,109 ingredients) · **INCIDB Complete: $79 one-time, CSV + Parquet** → [Buy on Stripe](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g)
 
-A normalised, relational snapshot of what is actually printed on cosmetic
+**For ML/NLP teams training ingredient-normalisation models and compliance
+analysts running bulk EU Annex audits:** INCIDB ships the **55,426-row
+`ingredient_name_map`** — every raw label token resolved to a canonical INCI
+name, with the resolution `method` and a `confidence` on each row — as one
+offline, auditable artifact that no free source or live API provides.
+
+Underneath it, a normalised, relational snapshot of what is actually printed on cosmetic
 ingredient labels: **18,583 products**, **5,925 brands**, **46,973 distinct
 canonical INCI names**, **318,758 ordered product→ingredient links**, and the
 **55,426-row `ingredient_name_map`** that shows how every raw label token was
