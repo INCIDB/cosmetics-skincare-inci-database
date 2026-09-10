@@ -44,4 +44,4 @@ If you want to improve `DATA_DICTIONARY.md`, `SPEC.md`, or the sample datasets u
 ## 3. Commercial Dataset Additions & Partnerships
 
 If you represent an international beauty brand or formulation lab and wish to ingest your product catalog directly into the INCIDB Core Database:
-* Please email our data engineering team directly at `incidb@proton.me`.
+* Please email our data engineering team directly at `incidb@dataengineered.io`.

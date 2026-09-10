@@ -54,7 +54,7 @@
           "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "customer support",
-            "email": "incidb@proton.me"
+            "email": "incidb@dataengineered.io"
           }
         },
         "distribution": [
@@ -496,7 +496,7 @@
             <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;" id="modalTierDesc">Ask anything before you buy. The dataset itself is open (ODbL v1.0).</p>
 
             <div id="modalStatusAlert" style="display: none; padding: 0.85rem; border-radius: 8px; font-size: 0.88rem; margin-bottom: 1rem; font-family: var(--font-mono);"></div>
-            <form id="checkoutForm" action="https://formsubmit.co/incidb@proton.me" method="POST" onsubmit="handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+            <form id="checkoutForm" action="https://formsubmit.co/incidb@dataengineered.io" method="POST" onsubmit="handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
                 <input type="hidden" name="_subject" id="formSubject" value="New INCIDB inquiry">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="Selected_Tier" id="formTierInput" value="">
@@ -692,10 +692,10 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
                 alertBox.style.background = 'rgba(245, 158, 11, 0.15)';
                 alertBox.style.color = 'var(--accent-amber)';
                 alertBox.style.border = '1px solid var(--accent-amber)';
-                alertBox.innerHTML = `Network delay or CORS restriction detected. Launching your email client...<br><br><a href="mailto:incidb@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSubject: ${tier}\n\nMessage:\n${message}`)}" style="color: var(--text-primary); font-weight: 600; text-decoration: underline;">Click here if your email app does not open automatically →</a>`;
+                alertBox.innerHTML = `Network delay or CORS restriction detected. Launching your email client...<br><br><a href="mailto:incidb@dataengineered.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSubject: ${tier}\n\nMessage:\n${message}`)}" style="color: var(--text-primary); font-weight: 600; text-decoration: underline;">Click here if your email app does not open automatically →</a>`;
 
                 setTimeout(() => {
-                    const mailtoUrl = `mailto:incidb@proton.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSubject: ${tier}\n\nMessage:\n${message}`)}`;
+                    const mailtoUrl = `mailto:incidb@dataengineered.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSubject: ${tier}\n\nMessage:\n${message}`)}`;
                     window.location.href = mailtoUrl;
                 }, 1200);
                 if (submitBtn) submitBtn.disabled = false;

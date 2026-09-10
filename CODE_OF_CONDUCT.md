@@ -30,11 +30,11 @@ Community leaders are responsible for clarifying and enforcing our standards of 
 
 ## Scope
 
-This Code of Conduct applies within all project spaces, including GitHub Issues, Pull Requests, email communications (`incidb@proton.me`), and public developer forums.
+This Code of Conduct applies within all project spaces, including GitHub Issues, Pull Requests, email communications (`incidb@dataengineered.io`), and public developer forums.
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project team at `incidb@proton.me`. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project team at `incidb@dataengineered.io`. All complaints will be reviewed and investigated promptly and fairly.
 
 ## Enforcement Guidelines
 
