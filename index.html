@@ -496,29 +496,32 @@
             <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;" id="modalTierDesc">Ask anything before you buy. The dataset itself is open (ODbL v1.0).</p>
 
             <div id="modalStatusAlert" style="display: none; padding: 0.85rem; border-radius: 8px; font-size: 0.88rem; margin-bottom: 1rem; font-family: var(--font-mono);"></div>
-            <form id="checkoutForm" action="https://formsubmit.co/incidb@dataengineered.io" method="POST" onsubmit="handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
-                <input type="hidden" name="_subject" id="formSubject" value="New INCIDB inquiry">
-                <input type="hidden" name="_captcha" value="false">
+            <form id="checkoutForm" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+                <input type="hidden" name="subject" id="formSubject" value="New INCIDB inquiry">
+                <input type="hidden" name="access_key" value="bf34ff48-fcc6-4823-b386-9ae3d0712797">
+                <input type="hidden" name="from_name" value="INCIDB Contact Form">
+                <input type="hidden" name="brand_desk" value="incidb">
+                <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
                 <input type="hidden" name="Selected_Tier" id="formTierInput" value="">
 
                 <div>
                     <label for="inputName" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">YOUR FULL NAME *</label>
-                    <input type="text" id="inputName" name="Name" required placeholder="Dr. Sarah Jenkins" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
+                    <input type="text" id="inputName" name="name" required placeholder="Dr. Sarah Jenkins" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
                 </div>
 
                 <div>
                     <label for="inputEmail" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">WORK EMAIL ADDRESS *</label>
-                    <input type="email" id="inputEmail" name="Email" required placeholder="sarah@cosmetic-app.io" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
+                    <input type="email" id="inputEmail" name="email" required placeholder="sarah@cosmetic-app.io" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
                 </div>
 
                 <div>
                     <label for="inputCompany" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">COMPANY OR APP NAME</label>
-                    <input type="text" id="inputCompany" name="Company" placeholder="CleanBeauty AI Inc." style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
+                    <input type="text" id="inputCompany" name="company" placeholder="CleanBeauty AI Inc." style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;">
                 </div>
 
                 <div>
                     <label for="inputMessage" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">USE CASE & DATA REQUIREMENTS</label>
-                    <textarea id="inputMessage" name="Message" rows="3" placeholder="We need the name map and Annex III flags for a barcode scanner app..." style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem; font-family: var(--font-sans); resize: vertical;"></textarea>
+                    <textarea id="inputMessage" name="message" rows="3" placeholder="We need the name map and Annex III flags for a barcode scanner app..." style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem; font-family: var(--font-sans); resize: vertical;"></textarea>
                 </div>
 
                 <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem; padding: 0.85rem;">Send inquiry →</button>
@@ -661,7 +664,7 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
             alertBox.style.background = 'rgba(6, 182, 212, 0.15)';
             alertBox.style.color = 'var(--accent-cyan)';
             alertBox.style.border = '1px solid var(--accent-cyan)';
-            alertBox.innerText = 'Submitting your inquiry securely via FormSubmit...';
+            alertBox.innerText = 'Sending your inquiry...';
             if (submitBtn) submitBtn.disabled = true;
 
             const formData = new FormData(form);
@@ -677,7 +680,8 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
                 });
                 clearTimeout(timeoutId);
 
-                if (response.ok) {
+                const result = await response.json().catch(() => null);
+                if (response.ok && result && result.success === true) {
                     alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
                     alertBox.style.color = 'var(--accent-emerald)';
                     alertBox.style.border = '1px solid var(--accent-emerald)';
@@ -685,19 +689,14 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
                     form.reset();
                     if (submitBtn) submitBtn.disabled = false;
                 } else {
-                    throw new Error('FormSubmit gateway responded with non-200 status.');
+                    throw new Error('Form gateway did not confirm delivery.');
                 }
             } catch (err) {
                 clearTimeout(timeoutId);
                 alertBox.style.background = 'rgba(245, 158, 11, 0.15)';
                 alertBox.style.color = 'var(--accent-amber)';
                 alertBox.style.border = '1px solid var(--accent-amber)';
-                alertBox.innerHTML = `Network delay or CORS restriction detected. Launching your email client...<br><br><a href="mailto:incidb@dataengineered.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSubject: ${tier}\n\nMessage:\n${message}`)}" style="color: var(--text-primary); font-weight: 600; text-decoration: underline;">Click here if your email app does not open automatically →</a>`;
-
-                setTimeout(() => {
-                    const mailtoUrl = `mailto:incidb@dataengineered.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\nSubject: ${tier}\n\nMessage:\n${message}`)}`;
-                    window.location.href = mailtoUrl;
-                }, 1200);
+                alertBox.innerHTML = 'We could not send this automatically. Please write to <strong style="user-select:all">incidb@dataengineered.io</strong> with your name, company and use case — we reply within 1 business day.';
                 if (submitBtn) submitBtn.disabled = false;
             }
         }
