@@ -294,12 +294,58 @@ def generate_monograph(ing, prod_list, hub_info, claims):
         </tr>
         """
 
-    meta_bits = [f"INCI monograph for {inci_name}"]
-    if cas:
-        meta_bits.append(f"CAS {cas}")
+    # Title and description lead with the answer, not with boilerplate.
+    #
+    # GSC on 13 Sep 2026 showed these monographs already holding page one for
+    # the questions they answer -- "aqua cas no" at position 8.2, "aqua cas
+    # number" 7.1, "parfum cas no" 6.7, "purified water inci name" 8.0,
+    # "octyldodecanol inci name" 9.7 -- and taking 0% CTR on every one of
+    # them. The ranking was never the problem: every page carried the same
+    # title, "<NAME> - INCI profile, CosIng functions & CAS number", which
+    # tells a searcher looking for a CAS number nothing about whether this
+    # result has it. So the CAS number now goes in the title itself.
+    #
+    # Budgets are 60 characters for the title and 155 for the description --
+    # roughly where Google truncates. Both trim tail-first, so the ingredient
+    # name and its CAS number always survive; only the trailing descriptive
+    # clause and the function list are ever cut.
+    # CosIng lists multiple CAS numbers separated by "/" or ";", sometimes with
+    # a parenthetical note ("10034-99-8 (heptahydrate)"). Take the first and
+    # drop the note -- the title has room for one number, not a list.
+    primary_cas = re.split(r"[/;]", cas)[0].strip() if cas else ""
+    primary_cas = re.sub(r"\s*\(.*$", "", primary_cas).strip()
+
+    if primary_cas:
+        title_head = f"{inci_name} — CAS {primary_cas}"
+    else:
+        title_head = inci_name
+    page_title = title_head
+    for tail in (" · INCI Name & CosIng Functions", " · INCI Name & Functions",
+                 " · INCI Name", ""):
+        if len(title_head + tail) <= 60:
+            page_title = title_head + tail
+            break
+
+    if primary_cas:
+        desc = f"{inci_name} — CAS {primary_cas}."
+        closer = " INCI name as listed in the EU CosIng inventory."
+    else:
+        desc = f"{inci_name} — INCI name in the EU CosIng inventory."
+        # State the absence rather than staying silent about it: a reader
+        # searching for the CAS number deserves to know CosIng has none.
+        closer = " CosIng lists no CAS number for this name."
+
     if functions:
-        meta_bits.append(f"CosIng functions: {functions_label}")
-    meta_description = ". ".join(meta_bits) + ". Sourced from the EU CosIng inventory; NULL where CosIng has no value."
+        fn = functions_label
+        # Drop functions from the end until the whole description fits.
+        while fn and len(desc) + len(f" CosIng functions: {fn}.") + len(closer) > 155:
+            if ", " not in fn:
+                fn = ""
+                break
+            fn = fn.rsplit(", ", 1)[0]
+        if fn:
+            desc += f" CosIng functions: {fn}."
+    meta_description = desc + closer
 
     keyword_bits = [inci_name, "INCI database", "cosmetic ingredient"]
     if cas:
@@ -312,7 +358,7 @@ def generate_monograph(ing, prod_list, hub_info, claims):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{e(inci_name)} — INCI profile, CosIng functions & CAS number</title>
+    <title>{e(page_title)}</title>
     <meta name="description" content="{e(meta_description)}">
     <meta name="keywords" content="{e(', '.join(keyword_bits))}">
     <meta name="robots" content="index, follow">
