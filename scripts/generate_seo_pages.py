@@ -31,7 +31,10 @@ import html
 import json
 import os
 import re
-from datetime import datetime, timezone
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import seo_common
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SAMPLES_DIR = os.path.join(ROOT_DIR, "samples")
@@ -76,6 +79,40 @@ HUBS = [
 def clean_slug(name):
     slug = re.sub(r'[^a-zA-Z0-9]+', '_', name.lower()).strip('_')
     return slug or "unknown"
+
+
+def monograph_filename(ing):
+    iid = field(ing, 'ingredient_id') or '0'
+    inci_name = field(ing, 'inci_name') or 'UNKNOWN INCI'
+    slug = clean_slug(inci_name)
+    return f"inci_{iid}_{slug}.html"
+
+
+def related_neighbors(hub_members, idx, hub_key, hub_order, buckets):
+    """4 other members of the same hub for the related-ingredients block: the
+    two before and two after `idx` in the hub's sorted (by INCI name) order,
+    wrapping at the ends -- the same order the hub page lists its cards in.
+
+    A hub with fewer than 5 members fills any remaining slots from the next
+    non-empty hub's first entries (alphabetical). That path never triggers
+    with the current data (every hub has 46+ members) but keeps the rule
+    well-defined if a future refresh ever produces a tiny hub.
+    """
+    n = len(hub_members)
+    if n >= 5:
+        return [hub_members[(idx + offset) % n] for offset in (-2, -1, 1, 2)]
+    others = [m for j, m in enumerate(hub_members) if j != idx]
+    if len(others) >= 4:
+        return others[:4]
+    needed = 4 - len(others)
+    start = hub_order.index(hub_key)
+    for step in range(1, len(hub_order)):
+        nb_key = hub_order[(start + step) % len(hub_order)]
+        nb_members = buckets.get(nb_key, [])
+        if nb_members:
+            others = others + nb_members[:needed]
+            break
+    return others[:4]
 
 
 def load_claims():
@@ -223,9 +260,8 @@ def ingredient_profile(ing, prod_list):
     )
 
 
-def generate_monograph(ing, prod_list, hub_info, claims):
+def generate_monograph(ing, prod_list, hub_info, claims, related_members):
     e = html.escape
-    iid = field(ing, 'ingredient_id') or '0'
     inci_name = field(ing, 'inci_name') or 'UNKNOWN INCI'
     cas = field(ing, 'cas_number')
     functions = function_list(ing)
@@ -236,8 +272,7 @@ def generate_monograph(ing, prod_list, hub_info, claims):
     fungal = is_flag(ing, 'is_fungal_acne_trigger')
     cosing_matched = field(ing, 'cosing_matched') == '1'
 
-    slug = clean_slug(inci_name)
-    filename = f"inci_{iid}_{slug}.html"
+    filename = monograph_filename(ing)
     filepath = os.path.join(LANDING_DIR, filename)
 
     hub_key, hub_name, hub_file = hub_info
@@ -347,11 +382,16 @@ def generate_monograph(ing, prod_list, hub_info, claims):
             desc += f" CosIng functions: {fn}."
     meta_description = desc + closer
 
-    keyword_bits = [inci_name, "INCI database", "cosmetic ingredient"]
-    if cas:
-        keyword_bits.append(f"CAS {cas}")
-    if functions:
-        keyword_bits.extend(f.title() for f in functions)
+    # 4 other ingredients from the same CosIng-function hub (the two before
+    # and two after this one in the hub's sorted order -- see
+    # `related_neighbors`), each labelled with the reason they're grouped,
+    # plus the hub itself.
+    related_items = [
+        (f"/landing/{m['filename'][:-5]}", m['inci_name'], "same CosIng function group")
+        for m in related_members
+    ]
+    related_items.append((f"/landing/{hub_file[:-5]}", hub_name, None))
+    related_html = seo_common.related_block(related_items, "Related ingredients")
 
     page = f"""<!DOCTYPE html>
 <html lang="en">
@@ -360,7 +400,6 @@ def generate_monograph(ing, prod_list, hub_info, claims):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{e(page_title)}</title>
     <meta name="description" content="{e(meta_description)}">
-    <meta name="keywords" content="{e(', '.join(keyword_bits))}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{BASE_URL}/landing/{filename[:-5]}">
     <link rel="alternate" hreflang="en" href="{BASE_URL}/landing/{filename[:-5]}">
@@ -371,6 +410,15 @@ def generate_monograph(ing, prod_list, hub_info, claims):
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="../index.css">
+    <style>
+        .related {{ margin-top: 2.5rem; }}
+        .related h2 {{ font-size: 1.3rem; margin-bottom: 1rem; color: #F8FAFC; }}
+        .related ul {{ list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }}
+        .related li {{ background: #161922; border: 1px solid #232838; border-radius: 8px; padding: 0.5rem 0.9rem; font-size: 0.85rem; }}
+        .related a {{ color: #38BDF8; text-decoration: none; }}
+        .related a:hover {{ text-decoration: underline; }}
+        .related-why {{ color: #64748B; font-size: 0.78rem; }}
+    </style>
 
     <script type="application/ld+json">
     [
@@ -475,6 +523,8 @@ print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']]
                 <a href="{STRIPE_COMPLETE_LINK_PLACEHOLDER}" class="btn btn-primary" style="padding: 0.75rem 1.5rem; text-decoration: none;">Get INCIDB Complete — ${price} →</a>
             </div>
         </div>
+
+        {related_html}
     </main>
 
     <footer style="background: #111318; border-top: 1px solid #232838; padding: 2rem 0; text-align: center; font-size: 0.85rem; color: #64748B; margin-top: auto;">
@@ -531,7 +581,6 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{e(hub_name)} — INCI ingredient monographs</title>
     <meta name="description" content="INCI monographs for ingredients whose EU CosIng functions place them under {e(hub_name)}. CAS numbers, functional categories and label occurrences, sourced from CosIng.">
-    <meta name="keywords" content="{e(hub_name)}, INCI ingredient directory, CosIng functional categories, cosmetic ingredient monographs">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{BASE_URL}/landing/{hub_file[:-5]}">
     <link rel="alternate" hreflang="en" href="{BASE_URL}/landing/{hub_file[:-5]}">
@@ -611,61 +660,66 @@ def main():
     ingredients, products, prod_ing = load_data()
     print(f"Loaded {len(ingredients)} sample ingredients and {len(products)} sample products.")
 
-    buckets = {hub_key: [] for hub_key, _, _, _ in HUBS}
+    hub_order = [hub_key for hub_key, _, _, _ in HUBS]
     hub_meta = {hub_key: (hub_name, hub_file) for hub_key, hub_name, hub_file, _ in HUBS}
-
-    generated_urls = []
+    buckets = {hub_key: [] for hub_key in hub_order}
     skipped = 0
 
+    # Pass 1: sort every ingredient into its hub bucket (filename computed up
+    # front, page not written yet) so the related-ingredients block on each
+    # monograph -- computed from its neighbours in the hub's sorted order --
+    # can be built before that monograph's page is rendered.
     for ing in ingredients:
         hub_info = categorize_ingredient(function_list(ing))
         if hub_info is None:
             skipped += 1
             continue
         hub_key, hub_name, hub_file = hub_info
-        p_list = prod_ing.get(field(ing, 'ingredient_id'), [])
-        filename = generate_monograph(ing, p_list, hub_info, claims)
-        buckets[hub_key].append({'ingredient': ing, 'filename': filename})
-        generated_urls.append((f"{BASE_URL}/landing/{filename[:-5]}", "0.8", "monthly"))
+        buckets[hub_key].append({
+            'ingredient': ing,
+            'filename': monograph_filename(ing),
+            'inci_name': field(ing, 'inci_name') or 'UNKNOWN INCI',
+        })
 
     print(f"Skipped {skipped} ingredients with no publishable CosIng function.")
 
-    for hub_key, (hub_name, hub_file) in hub_meta.items():
+    # Sorted by INCI name -- the same order the hub page lists its cards in --
+    # so "the two before and two after" means what a reader would expect.
+    for hub_key in buckets:
+        buckets[hub_key].sort(key=lambda m: m['inci_name'])
+
+    sitemap_entries = [
+        (BASE_URL + "/", os.path.join(ROOT_DIR, "index.html"), "weekly", "1.0"),
+        (BASE_URL + "/schema", os.path.join(ROOT_DIR, "schema.html"), "monthly", "0.8"),
+        (BASE_URL + "/documentation", os.path.join(ROOT_DIR, "documentation.html"), "monthly", "0.8"),
+    ]
+
+    # Pass 2: render every monograph, now that each hub's full sorted
+    # membership is known.
+    for hub_key in hub_order:
+        hub_name, hub_file = hub_meta[hub_key]
+        members = buckets[hub_key]
+        for idx, member in enumerate(members):
+            ing = member['ingredient']
+            p_list = prod_ing.get(field(ing, 'ingredient_id'), [])
+            related_members = related_neighbors(members, idx, hub_key, hub_order, buckets)
+            filename = generate_monograph(ing, p_list, (hub_key, hub_name, hub_file), claims, related_members)
+            sitemap_entries.append(
+                (f"{BASE_URL}/landing/{filename[:-5]}", os.path.join(LANDING_DIR, filename), "monthly", "0.8"))
+
+    for hub_key in hub_order:
+        hub_name, hub_file = hub_meta[hub_key]
         ing_list = buckets[hub_key]
         if not ing_list:
             print(f"Hub {hub_file} has no ingredients — not generated.")
             continue
         generate_hub(hub_name, hub_file, ing_list, claims)
-        generated_urls.append((f"{BASE_URL}/landing/{hub_file[:-5]}", "0.9", "weekly"))
+        sitemap_entries.append(
+            (f"{BASE_URL}/landing/{hub_file[:-5]}", os.path.join(LANDING_DIR, hub_file), "weekly", "0.9"))
         print(f"Generated hub {hub_file} ({len(ing_list)} monographs)")
 
-    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-    sitemap_lines = [
-        '<?xml version="1.0" encoding="UTF-8"?>',
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ]
-
-    core_pages = [
-        (BASE_URL + "/", "1.0", "weekly"),
-        (BASE_URL + "/schema", "0.8", "monthly"),
-        (BASE_URL + "/documentation", "0.8", "monthly"),
-    ]
-
-    for url, prio, freq in core_pages + sorted(generated_urls):
-        sitemap_lines.append("  <url>")
-        sitemap_lines.append(f"    <loc>{url}</loc>")
-        sitemap_lines.append(f"    <lastmod>{now_utc}</lastmod>")
-        sitemap_lines.append(f"    <changefreq>{freq}</changefreq>")
-        sitemap_lines.append(f"    <priority>{prio}</priority>")
-        sitemap_lines.append("  </url>")
-
-    sitemap_lines.append("</urlset>")
-
-    with open(SITEMAP_PATH, mode='w', encoding='utf-8') as f:
-        f.write("\n".join(sitemap_lines) + "\n")
-
-    print(f"Sitemap written to {SITEMAP_PATH} with {len(core_pages) + len(generated_urls)} entries.")
+    n_urls = seo_common.write_sitemap(ROOT_DIR, sitemap_entries)
+    print(f"Sitemap written to {SITEMAP_PATH} with {n_urls} entries.")
 
 
 if __name__ == "__main__":
