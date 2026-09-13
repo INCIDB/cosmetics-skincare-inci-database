@@ -574,13 +574,23 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
         </a>
         """
 
+    # Title and description are budgeted the same way the monograph ones are
+    # (`seo_common.fit_title` / `fit_desc`): the hub name is kept intact
+    # whenever a shorter descriptor allows it, and the description's first
+    # sentence states what the hub groups and how many monographs it holds.
+    page_title = seo_common.fit_title(
+        hub_name, [f"{len(ing_list)} INCI monographs", "INCI ingredient hub"], "INCIDB")
+    meta_description = seo_common.fit_desc(
+        f"{len(ing_list)} INCI monographs whose recorded CosIng functions place them under "
+        f"{hub_name}. CAS numbers, functional categories and label occurrences, sourced from CosIng.")
+
     page = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{e(hub_name)} — INCI ingredient monographs</title>
-    <meta name="description" content="INCI monographs for ingredients whose EU CosIng functions place them under {e(hub_name)}. CAS numbers, functional categories and label occurrences, sourced from CosIng.">
+    <title>{e(page_title)}</title>
+    <meta name="description" content="{e(meta_description)}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{BASE_URL}/landing/{hub_file[:-5]}">
     <link rel="alternate" hreflang="en" href="{BASE_URL}/landing/{hub_file[:-5]}">
