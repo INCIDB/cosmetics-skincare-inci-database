@@ -12,6 +12,10 @@ from pathlib import Path
 TITLE_MAX = 60
 DESC_MAX = 155
 _TRAIL = " ,;:-–—(/"
+# a cut must not end on one of these — the reader loses the word that mattered ("Loss of")
+# "a"/"an" are deliberately NOT here: a trailing "A" is often a designator ("Sensor A", "Vitamin A")
+_STOPWORDS = {"and", "at", "by", "for", "from", "in", "into", "of", "on", "or", "the",
+              "to", "with", "without", "vs", "&"}
 
 
 def _cut(text, room):
@@ -26,7 +30,11 @@ def _cut(text, room):
     for open_, close in (("(", ")"), ("[", "]")):
         if cut.count(open_) > cut.count(close):
             cut = cut[: cut.rfind(open_)].rstrip(_TRAIL)
-    return cut
+    # never end on a stopword (only when more than one word remains)
+    words = cut.split(" ")
+    while len(words) > 1 and words[-1].lower().strip(",;:") in _STOPWORDS:
+        words.pop()
+    return " ".join(words).rstrip(_TRAIL)
 
 
 def fit_title(entity, descriptor, brand, max_len=TITLE_MAX, sep=" — "):
