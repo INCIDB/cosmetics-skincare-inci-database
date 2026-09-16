@@ -50,6 +50,40 @@ BASE_URL = "https://incidb.dataengineered.io"
 # fails the release while it is still present.
 STRIPE_COMPLETE_LINK_PLACEHOLDER = "https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g"
 
+# Layout rules shared by monographs and hubs. They live in classes, not inline
+# styles, so the phone breakpoint can override them.
+#
+# `.page-main` needs `width: 100%`: <body> is a flex column and <main> carries
+# `margin: 0 auto` (from .container), so without it <main> is not stretched but
+# shrink-wrapped to its min-content width -- and the code <pre>'s longest line
+# made that 801px on a 375px phone. `overflow-x: auto` on the <pre> does not
+# lower its min-content contribution; a definite width on <main> does.
+LAYOUT_CSS = """
+        .page-header { border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .page-header-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem 1.5rem; }
+        .page-nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center; }
+        .page-main { flex: 1; width: 100%; padding: 3rem 1rem; overflow-wrap: anywhere; }
+        /* Beats the `h1,h2,h3{overflow-wrap:break-word}` that i18n_common.py adds to the
+           localized copies: break-word does not lower min-content, so a slash-joined INCI
+           name ("ETHYLENE/PROPYLENE/STYRENE COPOLYMER") would still widen the title row. */
+        .page-main h1, .page-main h2, .page-main h3 { overflow-wrap: anywhere; }
+        .crumbs { margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .page-main pre { max-width: 100%; }
+        .monograph-card { background: #111318; border: 1px solid #232838; border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7); }
+        .fact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1.25rem; background: #161922; border: 1px solid #232838; border-radius: 12px; padding: 1.5rem; }
+        .fact-grid > div { min-width: 0; }
+        .query-card { background: #161922; border: 1px solid #232838; border-radius: 16px; padding: 2rem; }
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+        @media (max-width: 600px) {
+            .page-header { position: static; }
+            .page-header > .container, footer > .container { padding: 0 1rem; }
+            .page-main { padding: 2rem 1rem; }
+            .page-main h1 { font-size: 1.75rem !important; }
+            .monograph-card { padding: 1.25rem; }
+            .fact-grid { padding: 1rem; }
+            .query-card { padding: 1.25rem; }
+        }"""
+
 # Hub definitions, evaluated IN THIS ORDER. An ingredient joins the first hub
 # whose vocabulary appears in its `functions` value; the substrings below are
 # matched against the real CosIng function vocabulary present in the data.
@@ -428,7 +462,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
         .related li {{ background: #161922; border: 1px solid #232838; border-radius: 8px; padding: 0.5rem 0.9rem; font-size: 0.85rem; }}
         .related a {{ color: #38BDF8; text-decoration: none; }}
         .related a:hover {{ text-decoration: underline; }}
-        .related-why {{ color: #64748B; font-size: 0.78rem; }}
+        .related-why {{ color: #64748B; font-size: 0.78rem; }}{LAYOUT_CSS}
     </style>
 
     <script type="application/ld+json">
@@ -465,10 +499,10 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
 <body style="background: #0A0B0E; color: #F8FAFC; font-family: 'Space Grotesk', -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column;">
     <div class="grid-overlay"></div>
 
-    <header style="border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <header class="page-header">
+        <div class="container page-header-inner">
             <a href="/" class="logo" style="font-weight: 700; font-size: 1.3rem; color: #F8FAFC; text-decoration: none;">INCIDB</a>
-            <nav style="display: flex; gap: 1.5rem; align-items: center;">
+            <nav class="page-nav">
                 <a href="/#coverage" style="color: #94A3B8; text-decoration: none; font-size: 0.9rem;">Coverage</a>
                 <a href="/landing/{hub_file[:-5]}" style="color: #38BDF8; text-decoration: none; font-size: 0.9rem;">{e(hub_name)}</a>
                 <a href="/#pricing" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Get INCIDB Complete — ${price}</a>
@@ -476,14 +510,14 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
         </div>
     </header>
 
-    <main class="container" style="flex: 1; padding: 3rem 1rem; max-width: 900px;">
-        <div style="margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+    <main class="container page-main" style="max-width: 900px;">
+        <div class="crumbs">
             <a href="/" style="color: #64748B; text-decoration: none;">HOME</a> /
             <a href="/landing/{hub_file[:-5]}" style="color: #38BDF8; text-decoration: none;">{e(hub_name.upper())}</a> /
             <span translate="no" style="color: #F8FAFC;">{e(inci_name)}</span>
         </div>
 
-        <div style="background: #111318; border: 1px solid #232838; border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);">
+        <div class="monograph-card">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
                 <div>
                     <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #06B6D4; text-transform: uppercase; letter-spacing: 1px;">Canonical INCI monograph</span>
@@ -498,7 +532,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
 
             {ingredient_profile(ing, prod_list)}
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; background: #161922; border: 1px solid #232838; border-radius: 12px; padding: 1.5rem;">
+            <div class="fact-grid">
 {facts_html}
             </div>
         </div>
@@ -522,7 +556,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
             </div>
         </div>
 
-        <div style="background: #161922; border: 1px solid #232838; border-radius: 16px; padding: 2rem;">
+        <div class="query-card">
             <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #F8FAFC;">Query <span translate="no">{e(inci_name)}</span> in the full snapshot</h3>
             <pre style="background: #0A0B0E; border: 1px solid #232838; padding: 1.25rem; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #38BDF8; overflow-x: auto; margin-bottom: 1.5rem;"><code>import pyarrow.parquet as pq
 
@@ -613,6 +647,8 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="../index.css">
+    <style>{LAYOUT_CSS}
+    </style>
 
     <script type="application/ld+json">
     {{
@@ -627,10 +663,10 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
 <body style="background: #0A0B0E; color: #F8FAFC; font-family: 'Space Grotesk', -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column;">
     <div class="grid-overlay"></div>
 
-    <header style="border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <header class="page-header">
+        <div class="container page-header-inner">
             <a href="/" class="logo" style="font-weight: 700; font-size: 1.3rem; color: #F8FAFC; text-decoration: none;">INCIDB</a>
-            <nav style="display: flex; gap: 1.5rem; align-items: center;">
+            <nav class="page-nav">
                 <a href="/#coverage" style="color: #94A3B8; text-decoration: none; font-size: 0.9rem;">Coverage</a>
                 <a href="/schema" style="color: #94A3B8; text-decoration: none; font-size: 0.9rem;">Schema</a>
                 <a href="/#pricing" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Get INCIDB Complete — ${price}</a>
@@ -638,8 +674,8 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
         </div>
     </header>
 
-    <main class="container" style="flex: 1; padding: 3rem 1rem; max-width: 1100px;">
-        <div style="margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+    <main class="container page-main" style="max-width: 1100px;">
+        <div class="crumbs">
             <a href="/" style="color: #64748B; text-decoration: none;">HOME</a> /
             <span style="color: #38BDF8;">{e(hub_name.upper())}</span>
         </div>
@@ -650,7 +686,7 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
             <p style="color: #94A3B8; font-size: 1.02rem; margin-top: 0.75rem; line-height: 1.7;">{len(ing_list)} ingredients from the free INCIDB sample whose recorded CosIng <code>functions</code> place them here. Membership is read from the data, not assigned by hand — an ingredient with no CosIng function has no monograph, because there would be nothing to say about it.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; margin-bottom: 3rem;">
+        <div class="hub-grid">
             {cards}
         </div>
     </main>

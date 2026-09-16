@@ -36,6 +36,30 @@
         .related a { color: #38BDF8; text-decoration: none; }
         .related a:hover { text-decoration: underline; }
         .related-why { color: #64748B; font-size: 0.78rem; }
+        .page-header { border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .page-header-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem 1.5rem; }
+        .page-nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center; }
+        .page-main { flex: 1; width: 100%; padding: 3rem 1rem; overflow-wrap: anywhere; }
+        /* Beats the `h1,h2,h3{overflow-wrap:break-word}` that i18n_common.py adds to the
+           localized copies: break-word does not lower min-content, so a slash-joined INCI
+           name ("ETHYLENE/PROPYLENE/STYRENE COPOLYMER") would still widen the title row. */
+        .page-main h1, .page-main h2, .page-main h3 { overflow-wrap: anywhere; }
+        .crumbs { margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .page-main pre { max-width: 100%; }
+        .monograph-card { background: #111318; border: 1px solid #232838; border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7); }
+        .fact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1.25rem; background: #161922; border: 1px solid #232838; border-radius: 12px; padding: 1.5rem; }
+        .fact-grid > div { min-width: 0; }
+        .query-card { background: #161922; border: 1px solid #232838; border-radius: 16px; padding: 2rem; }
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+        @media (max-width: 600px) {
+            .page-header { position: static; }
+            .page-header > .container, footer > .container { padding: 0 1rem; }
+            .page-main { padding: 2rem 1rem; }
+            .page-main h1 { font-size: 1.75rem !important; }
+            .monograph-card { padding: 1.25rem; }
+            .fact-grid { padding: 1rem; }
+            .query-card { padding: 1.25rem; }
+        }
     </style>
 <script type="application/ld+json">
 [
@@ -93,23 +117,23 @@
 </head>
 <body style="background: #0A0B0E; color: #F8FAFC; font-family: 'Space Grotesk', -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column;">
 <div class="grid-overlay"></div>
-<header style="border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
-<div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+<header class="page-header">
+<div class="container page-header-inner">
 <a class="logo" href="/fr/" style="font-weight: 700; font-size: 1.3rem; color: #F8FAFC; text-decoration: none;">INCIDB</a>
-<nav style="display: flex; gap: 1.5rem; align-items: center;">
+<nav class="page-nav">
 <a href="/fr/#coverage" style="color: #94A3B8; text-decoration: none; font-size: 0.9rem;">Couverture</a>
 <a href="/fr/landing/fragrance_colour" style="color: #38BDF8; text-decoration: none; font-size: 0.9rem;">Parfums, agents parfumants et colorants</a>
 <a class="btn btn-primary" href="/fr/#pricing" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Obtenir INCIDB Complete — $79</a>
 </nav>
 </div>
 </header>
-<main class="container" style="flex: 1; padding: 3rem 1rem; max-width: 900px;">
-<div style="margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+<main class="container page-main" style="max-width: 900px;">
+<div class="crumbs">
 <a href="/fr/" style="color: #64748B; text-decoration: none;">ACCUEIL</a> /
             <a href="/fr/landing/fragrance_colour" style="color: #38BDF8; text-decoration: none;">PARFUMS, AGENTS PARFUMANTS ET COLORANTS</a> /
             <span style="color: #F8FAFC;" translate="no">CERA ALBA</span>
 </div>
-<div style="background: #111318; border: 1px solid #232838; border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);">
+<div class="monograph-card">
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
 <div>
 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #06B6D4; text-transform: uppercase; letter-spacing: 1px;">Monographie INCI canonique</span>
@@ -121,7 +145,7 @@
 </div>
 <p lang="en" style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; margin-bottom: 1.75rem;" translate="no">Beeswax. The wax obtained from the honeycomb of the bee. It consists primarily of myricyl palmitate, cerotic acid and esters and some high-carbon paraffins</p>
 <p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">CERA ALBA</strong> est inscrit dans l’inventaire CosIng de la Commission européenne sous les catégories fonctionnelles <span translate="no">Skin Conditioning - Emollient, Surfactant - Emulsifying, Film Forming, Perfuming</span>, avec le numéro CAS <span translate="no">8012-89-3</span> et le numéro CE <span translate="no">232-383-7</span>.</span> <span>Dans l’échantillon gratuit INCIDB, il figure sur l’étiquette de 1 produit et atteint la position 3 sur <span translate="no">Labello Blackberry Shine 5.5ml</span>.</span></p>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; background: #161922; border: 1px solid #232838; border-radius: 12px; padding: 1.5rem;">
+<div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">NUMÉRO D’ENREGISTREMENT CAS</div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #38BDF8; font-weight: 600;" translate="no">8012-89-3</div>
@@ -156,7 +180,7 @@
 </table>
 </div>
 </div>
-<div style="background: #161922; border: 1px solid #232838; border-radius: 16px; padding: 2rem;">
+<div class="query-card">
 <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #F8FAFC;">Interroger <span translate="no">CERA ALBA</span> dans le snapshot complet</h3>
 <pre style="background: #0A0B0E; border: 1px solid #232838; padding: 1.25rem; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #38BDF8; overflow-x: auto; margin-bottom: 1.5rem;"><code>import pyarrow.parquet as pq
 
