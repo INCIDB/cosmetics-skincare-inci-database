@@ -200,24 +200,29 @@ def ingredient_profile(ing, prod_list):
 
     sentences = []
 
-    ident = f"<strong>{e(inci_name)}</strong>" if inci_name else "This ingredient"
+    # Data values carry translate="no" (see scripts/i18n_common.py): the localized copies
+    # keep them verbatim and translate only the sentence around them.
+    def data(value):
+        return f'<span translate="no">{e(value)}</span>'
+
+    ident = f'<strong translate="no">{e(inci_name)}</strong>' if inci_name else "This ingredient"
     if functions:
         s1 = (f"{ident} is listed in the European Commission CosIng inventory under "
               f"{'the functional category' if len(functions) == 1 else 'the functional categories'} "
-              + ", ".join(e(f.title()) for f in functions))
+              + data(", ".join(f.title() for f in functions)))
     else:
         s1 = f"{ident} is catalogued in INCIDB"
     if cas and ec:
-        s1 += f", with CAS number {e(cas)} and EC number {e(ec)}."
+        s1 += f", with CAS number {data(cas)} and EC number {data(ec)}."
     elif cas:
-        s1 += f", with CAS number {e(cas)}."
+        s1 += f", with CAS number {data(cas)}."
     else:
         s1 += ". CosIng records no CAS number for it, so the column is NULL rather than guessed."
     sentences.append(s1)
 
     if restriction:
         sentences.append(
-            f"CosIng records a restriction against it ({e(restriction)}), so check the "
+            f"CosIng records a restriction against it ({data(restriction)}), so check the "
             f"corresponding Annex entry before formulating.")
 
     n_prod = len(prod_list)
@@ -230,9 +235,9 @@ def ingredient_profile(ing, prod_list):
             best_pos = int(best['position'])
             best_name = (best.get('product_name') or '').strip()
             if best_pos == 1 and best_name:
-                s2 += f", leading the declaration on {e(best_name)}"
+                s2 += f", leading the declaration on {data(best_name)}"
             elif best_name:
-                s2 += f", reaching position {best_pos} on {e(best_name)}"
+                s2 += f", reaching position {best_pos} on {data(best_name)}"
         s2 += "."
         sentences.append(s2)
 
@@ -252,7 +257,9 @@ def ingredient_profile(ing, prod_list):
             "(fungal-acne) trigger. That is a rule, not a measurement — treat it as a "
             "filter rather than a finding.")
 
-    body = " ".join(sentences)
+    # one <span> per sentence: each optional clause is its own translation segment
+    # instead of every combination of clauses being a different paragraph
+    body = " ".join(f"<span>{s}</span>" for s in sentences)
     return (
         '<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; '
         'margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;">'
@@ -290,20 +297,24 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
 
     description_block = ""
     if description:
+        # CosIng's English chemical description is source data, not site copy.
         description_block = (
-            '<p style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; '
+            '<p translate="no" lang="en" style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; '
             f'margin-bottom: 1.75rem;">{e(description)}</p>')
 
     # Fact grid: only facts that exist.
     facts = []
     if cas:
-        facts.append(("CAS REGISTRY NUMBER", f'<div style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: #38BDF8; font-weight: 600;">{e(cas)}</div>'))
+        facts.append(("CAS REGISTRY NUMBER", f'<div translate="no" style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: #38BDF8; font-weight: 600;">{e(cas)}</div>'))
     if field(ing, 'ec_number'):
-        facts.append(("EC NUMBER", f'<div style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: #38BDF8; font-weight: 600;">{e(field(ing, "ec_number"))}</div>'))
+        facts.append(("EC NUMBER", f'<div translate="no" style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: #38BDF8; font-weight: 600;">{e(field(ing, "ec_number"))}</div>'))
     if functions:
-        facts.append(("COSING FUNCTIONS", f'<div style="font-size: 1.05rem; color: #F8FAFC; font-weight: 500;">{e(functions_label)}</div>'))
+        # one span per function so a truncated list in the meta description still
+        # matches term by term (i18n_common.py placeholders them in <meta> too)
+        fn_spans = ", ".join(f'<span translate="no">{e(f.title())}</span>' for f in functions)
+        facts.append(("COSING FUNCTIONS", f'<div translate="no" style="font-size: 1.05rem; color: #F8FAFC; font-weight: 500;">{fn_spans}</div>'))
     if field(ing, 'cosing_restriction'):
-        facts.append(("COSING RESTRICTION", f'<div style="font-family: \'JetBrains Mono\', monospace; font-size: 1.05rem; color: #F59E0B;">{e(field(ing, "cosing_restriction"))}</div>'))
+        facts.append(("COSING RESTRICTION", f'<div translate="no" style="font-family: \'JetBrains Mono\', monospace; font-size: 1.05rem; color: #F59E0B;">{e(field(ing, "cosing_restriction"))}</div>'))
     if comedo:
         colour = '#F43F5E' if float(comedo) >= 3 else '#10B981'
         facts.append(("COMEDOGENIC RATING (FULTON 1989)", f'<div style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: {colour}; font-weight: 600;">{e(comedo)} / 5</div>'))
@@ -318,7 +329,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
         for p in prod_list[:8]:
             prod_rows += f"""
             <tr style="border-bottom: 1px solid #232838;">
-                <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;">{e(p['product_name'])}</td>
+                <td translate="no" style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;">{e(p['product_name'])}</td>
                 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#{e(str(p['position']))}</td>
             </tr>
             """
@@ -387,7 +398,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
     # `related_neighbors`), each labelled with the reason they're grouped,
     # plus the hub itself.
     related_items = [
-        (f"/landing/{m['filename'][:-5]}", m['inci_name'], "same CosIng function group")
+        (f"/landing/{m['filename'][:-5]}", m['inci_name'], "same CosIng function group", False)
         for m in related_members
     ]
     related_items.append((f"/landing/{hub_file[:-5]}", hub_name, None))
@@ -469,14 +480,14 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
         <div style="margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
             <a href="/" style="color: #64748B; text-decoration: none;">HOME</a> /
             <a href="/landing/{hub_file[:-5]}" style="color: #38BDF8; text-decoration: none;">{e(hub_name.upper())}</a> /
-            <span style="color: #F8FAFC;">{e(inci_name)}</span>
+            <span translate="no" style="color: #F8FAFC;">{e(inci_name)}</span>
         </div>
 
         <div style="background: #111318; border: 1px solid #232838; border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
                 <div>
                     <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #06B6D4; text-transform: uppercase; letter-spacing: 1px;">Canonical INCI monograph</span>
-                    <h1 style="font-size: 2.2rem; line-height: 1.2; margin-top: 0.25rem; color: #F8FAFC;">{e(inci_name)}</h1>
+                    <h1 translate="no" style="font-size: 2.2rem; line-height: 1.2; margin-top: 0.25rem; color: #F8FAFC;">{e(inci_name)}</h1>
                 </div>
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                     {badges_html}
@@ -493,7 +504,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
         </div>
 
         <div style="margin-bottom: 2.5rem;">
-            <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: #F8FAFC;">Sample products containing {e(inci_name)}</h2>
+            <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: #F8FAFC;">Sample products containing <span translate="no">{e(inci_name)}</span></h2>
             <p style="color: #94A3B8; font-size: 0.92rem; margin-bottom: 1.25rem;">Label positions from the free INCIDB sample. A lower position means the ingredient is declared earlier, i.e. present in a higher proportion.</p>
 
             <div style="background: #111318; border: 1px solid #232838; border-radius: 12px; overflow: hidden;">
@@ -512,7 +523,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
         </div>
 
         <div style="background: #161922; border: 1px solid #232838; border-radius: 16px; padding: 2rem;">
-            <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #F8FAFC;">Query {e(inci_name)} in the full snapshot</h3>
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #F8FAFC;">Query <span translate="no">{e(inci_name)}</span> in the full snapshot</h3>
             <pre style="background: #0A0B0E; border: 1px solid #232838; padding: 1.25rem; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #38BDF8; overflow-x: auto; margin-bottom: 1.5rem;"><code>import pyarrow.parquet as pq
 
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
@@ -560,7 +571,7 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
         flag_tag = ('<span style="color: #F43F5E; font-size: 0.75rem; font-family: \'JetBrains Mono\', '
                     'monospace; font-weight: 600;">[Annex III]</span>') if allergen else ""
         cas_tag = (f'<span style="font-family: \'JetBrains Mono\', monospace; font-size: 0.75rem; '
-                   f'color: #06B6D4;">CAS {e(cas)}</span>') if cas else \
+                   f'color: #06B6D4;">CAS <span translate="no">{e(cas)}</span></span>') if cas else \
                   ('<span style="font-family: \'JetBrains Mono\', monospace; font-size: 0.75rem; '
                    'color: #475569;">no CAS in CosIng</span>')
 
@@ -570,8 +581,8 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
                 {cas_tag}
                 {flag_tag}
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">{e(inci)}</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">{e(functions)}</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">{e(inci)}</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">{e(functions)}</div>
         </a>
         """
 

@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4" name="google-site-verification"/>
+<title>INCIDB — Banco de dados INCI de skincare e cosméticos para devs</title>
+<meta content="18.583 produtos cosméticos, 46.973 nomes INCI canônicos e 318.758 vínculos de composição ordenados, com enriquecimento CosIng da UE em 82,5% das ocorrências em rótulos. CSV + Parquet, $79." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://incidb.dataengineered.io/pt-br/" rel="canonical"/>
+<!-- i18n:alternates -->
+<link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/">
+<link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/">
+<link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/">
+<link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/">
+<link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/">
+<style>th,td{overflow-wrap:anywhere;hyphens:auto}h1,h2,h3,h4,button,.btn{overflow-wrap:break-word;hyphens:auto}</style>
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="fr_FR">
+<script src="/i18n/i18n.js?v=1" defer></script>
+<!-- /i18n:alternates -->
+<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
+<!-- OpenGraph Meta Tags -->
+<meta content="INCIDB — O banco de dados INCI de skincare e cosméticos para desenvolvedores" property="og:title"/>
+<meta content="18.583 produtos, 46.973 nomes INCI canônicos, 318.758 vínculos de composição ordenados e o mapa de nomes de 55.426 linhas, que mostra como cada token dos rótulos foi resolvido. CSV + Parquet." property="og:description"/>
+<meta content="https://incidb.dataengineered.io/pt-br/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="INCIDB — Banco de dados INCI de skincare e cosméticos" property="og:site_name"/>
+<meta content="https://incidb.dataengineered.io/og-image.png" property="og:image"/>
+<!-- Twitter Card Meta Tags -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="INCIDB — Banco de dados INCI de skincare e cosméticos" name="twitter:title"/>
+<meta content="Dados normalizados de composição de rótulos: 18.583 produtos, 46.973 nomes INCI canônicos e cobertura CosIng medida, publicada logo de início." name="twitter:description"/>
+<meta content="https://incidb.dataengineered.io/og-image.png" name="twitter:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" media="print" onload="this.media='all'" rel="stylesheet"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
+<link href="/index.css" rel="stylesheet"/>
+<!-- JSON-LD Structured Data: Dataset & Product -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "INCIDB Banco de dados INCI de skincare e cosméticos",
+    "description": "Snapshot relacional normalizado de rótulos de ingredientes cosméticos: 18.583 produtos, 5.925 marcas, 46.973 nomes INCI canônicos distintos, 318.758 vínculos ordenados de composição produto-ingrediente e um mapa de 55.426 linhas de nomes brutos para canônicos. Dados de produtos do Open Beauty Facts (ODbL); enriquecimento de ingredientes (funções, números CAS e CE, descrições químicas, inclusão nos Anexos II-VI) unido pelo nome canônico exato a partir do inventário CosIng da Comissão Europeia. As colunas ficam NULL quando a fonte não tem valor.",
+    "url": "https://incidb.dataengineered.io/pt-br/",
+    "version": "2026.09",
+    "license": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "isBasedOn": "https://world.openbeautyfacts.org/",
+    "keywords": [
+      "banco de dados de skincare",
+      "banco de dados de cosméticos",
+      "nomes INCI",
+      "canonicalização INCI",
+      "categorias funcionais do CosIng",
+      "Alergênicos de fragrância do Anexo III da UE",
+      "Open Beauty Facts",
+      "Conjunto de dados em Apache Parquet"
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "INCIDB",
+      "url": "https://incidb.dataengineered.io/pt-br/",
+      "logo": "https://incidb.dataengineered.io/favicon.svg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "incidb@dataengineered.io"
+      }
+    },
+    "distribution": [
+      {
+        "@type": "DataDownload",
+        "name": "Amostra gratuita (5 tabelas, CSV + Parquet)",
+        "encodingFormat": "application/zip",
+        "contentUrl": "https://incidb.dataengineered.io/samples/incidb_free_samples.zip"
+      }
+    ],
+    "variableMeasured": [
+      "Canonical INCI name",
+      "Raw label token to canonical name mapping method",
+      "CosIng functional categories",
+      "CAS registry number (from CosIng)",
+      "EC number (from CosIng)",
+      "CosIng chemical description",
+      "EU Annex II-VI membership",
+      "EU Annex III fragrance allergen flag",
+      "Comedogenic rating (authored subset)",
+      "Fungal-acne trigger flag (rule-derived)",
+      "Label position index"
+    ],
+    "inLanguage": "pt-BR"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "INCIDB Complete",
+    "description": "O snapshot completo do INCIDB 2026.09: as cinco tabelas (products, brands, ingredients, product_ingredients, ingredient_name_map) em CSV delimitado por barra vertical e Apache Parquet, além do relatório de qualidade build_report.json, do dicionário de dados e da licença. Pagamento único, download imediato.",
+    "image": "https://incidb.dataengineered.io/og-image.png",
+    "sku": "INCIDB-COMPLETE-2026-09",
+    "brand": {
+      "@type": "Brand",
+      "name": "INCIDB"
+    },
+    "category": "Software > Data & Databases",
+    "offers": {
+      "@type": "Offer",
+      "price": "79.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://incidb.dataengineered.io/pt-br/#pricing",
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "USD"
+        },
+        "shippingDestination": [
+          {
+            "@type": "DefinedRegion",
+            "addressCountry": "US"
+          },
+          {
+            "@type": "DefinedRegion",
+            "addressCountry": "GB"
+          },
+          {
+            "@type": "DefinedRegion",
+            "addressCountry": "CA"
+          },
+          {
+            "@type": "DefinedRegion",
+            "addressCountry": "AU"
+          }
+        ],
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 0,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 0,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": [
+          "US",
+          "GB",
+          "CA",
+          "AU"
+        ],
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      }
+    }
+  }
+]
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto dos dados de ingredientes é realmente enriquecido?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dois números, ambos publicados. O CosIng corresponde a 11,0% dos 46.973 nomes INCI canônicos distintos, mas a 82,5% das 318.758 ocorrências de ingredientes nos rótulos dos produtos. As funções CosIng estão presentes em 10,9% dos nomes e em 81,5% das ocorrências em rótulos; os números CAS, em 8,3% dos nomes e em 76,4% das ocorrências. A cauda longa de nomes distintos são variantes botânicas, grafias multilíngues e tokens de marketing que nenhum inventário regulatório lista; as posições em um rótulo real são preenchidas, em sua esmagadora maioria, por ingredientes que o CosIng cobre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como os tokens brutos dos rótulos são transformados em nomes INCI canônicos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Por um procedimento explícito e ordenado: decodificação de entidades HTML, remoção de caracteres, colapso de espaços em branco e conversão para maiúsculas e, em seguida, correspondência exata com o inventário, correspondência limpa, um pequeno mapa de erros de digitação com citação, remoção de percentuais, remoção de parênteses, um mapa de sinônimos, divisão de variantes com barra e divisão de concatenações somente quando ambas as metades correspondem ao inventário. Tudo o que falha em todas essas etapas é mantido literalmente e registrado como unresolved, em vez de adivinhado. O método usado para cada token é fornecido na tabela ingredient_name_map de 55.426 linhas, de modo que cada decisão é auditável."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "De qual lista de alergênicos vêm as sinalizações?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apenas uma lista: os alergênicos de fragrância do Anexo III do Regulamento de Cosméticos da UE (Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545), com correspondência pelo nome canônico exato. 99 nomes são sinalizados e allergen_source registra a lista. A FDA dos EUA ainda não publicou sua lista de alergênicos de fragrância da MoCRA; por isso, este conjunto de dados não traz sinalização dos EUA."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "De onde vêm as classificações comedogênicas e as sinalizações de acne fúngica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "145 ingredientes têm classificação comedogênica na escala 0-5, transcrita da Tabela I de Fulton JE Jr., J Soc Cosmet Chem 1989;40:321-333; todos os demais ingredientes ficam NULL. A sinalização de acne fúngica não é uma propriedade medida: é uma heurística derivada de regras que abrange ácidos graxos C11-C24 e seus ésteres e polissorbatos 20/40/60/80, aplicada somente a ingredientes com correspondência no CosIng, gerando 270 sinalizações. Sua base é a dependência lipídica da Malassezia (DOI 10.3389/fcimb.2020.00112; faixa de comprimento de cadeia conforme DOI 10.1093/femsyr/foaf043)."
+      }
+    }
+  ],
+  "inLanguage": "pt-BR"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Monografias de ingredientes INCI por categoria funcional do CosIng",
+  "description": "Monografias de ingredientes agrupadas pelas categorias funcionais do CosIng efetivamente registradas para eles.",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Agentes condicionantes da pele e emolientes",
+      "url": "https://incidb.dataengineered.io/pt-br/landing/skin_conditioning"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tensoativos, agentes de limpeza e emulsificantes",
+      "url": "https://incidb.dataengineered.io/pt-br/landing/surfactants_cleansing"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Conservantes, antimicrobianos e antioxidantes",
+      "url": "https://incidb.dataengineered.io/pt-br/landing/preservatives"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Solventes, agentes de viscosidade e estrutura",
+      "url": "https://incidb.dataengineered.io/pt-br/landing/solvents"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Agentes de fragrância, perfume e corantes",
+      "url": "https://incidb.dataengineered.io/pt-br/landing/fragrance_colour"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "Tratamentos ativos, esfoliantes e filtros UV",
+      "url": "https://incidb.dataengineered.io/pt-br/landing/active_treatments"
+    }
+  ],
+  "inLanguage": "pt-BR"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://incidb.dataengineered.io/pt-br/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cobertura",
+      "item": "https://incidb.dataengineered.io/pt-br/#coverage"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Preços",
+      "item": "https://incidb.dataengineered.io/pt-br/#pricing"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="grid-overlay"></div>
+<!-- Header / Nav -->
+<header>
+<div class="container nav-content">
+<a class="logo" href="#">
+                INCIDB
+            </a>
+<nav class="nav-links">
+<a class="nav-link" href="#coverage">Cobertura</a>
+<a class="nav-link" href="#explorer">Explorador ao vivo</a>
+<a class="nav-link" href="/pt-br/schema">Esquema de dados</a>
+<a class="nav-link" href="#pricing">Preços</a>
+<a class="btn btn-secondary" href="/pt-br/documentation">Documentação</a>
+</nav>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero">
+<div class="container">
+<div class="hero-pill">
+<span>●</span> Snapshot 2026.09 · todos os números desta página são gerados a partir do relatório de build
+            </div>
+<h1 class="hero-title">
+                O banco de dados INCI de skincare e cosméticos <span>para equipes de ML, NLP e conformidade</span>
+</h1>
+<p class="hero-subtitle">
+                A tabela <strong><code>ingredient_name_map</code> de 55.426 linhas</strong> registra como cada token bruto dos rótulos foi resolvido em um nome INCI canônico — <code>method</code> e <code>confidence</code> da resolução em cada linha — como um único artefato offline e auditável para equipes de ML/NLP e analistas de conformidade. Nenhuma fonte gratuita ou API ao vivo oferece isso. Por baixo: <strong>18.583 produtos</strong>, <strong>46.973 nomes INCI canônicos</strong>, <strong>318.758 vínculos de composição ordenados</strong>, enriquecidos com o CosIng da UE; onde uma fonte não tem valor, a coluna fica NULL.
+            </p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#pricing">Adquira o INCIDB Complete — $79 →</a>
+<a class="btn btn-secondary" download="" href="/samples/incidb_free_samples.zip">Baixar a amostra gratuita</a>
+</div>
+<p class="hero-persona" style="font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5; color: var(--text-secondary); margin: 0.9rem 0 1.75rem; max-width: 60ch;"><strong style="color: var(--text-primary);">$79 pagamento único</strong> · CSV + Parquet · snapshot 2026.09 — para equipes de ML/NLP que criam modelos de normalização de ingredientes e analistas de conformidade que fazem auditorias em massa dos Anexos</p>
+<div class="metrics-grid">
+<div class="metric-card">
+<div class="metric-number">18.583</div>
+<div class="metric-label">Produtos</div>
+</div>
+<div class="metric-card">
+<div class="metric-number">46.973</div>
+<div class="metric-label">Nomes INCI canônicos distintos</div>
+</div>
+<div class="metric-card">
+<div class="metric-number">318.758</div>
+<div class="metric-label">Vínculos de composição ordenados</div>
+</div>
+<div class="metric-card">
+<div class="metric-number">5.925</div>
+<div class="metric-label">Marcas</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Measured coverage: the honest centrepiece -->
+<section class="section" id="coverage">
+<div class="container">
+<div class="section-header">
+<div class="section-eyebrow">Medido, não anunciado</div>
+<h2 class="section-title">Cobertura do enriquecimento, apresentada de duas formas</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem; max-width: 780px;">Essas duas visões dos mesmos dados diferem em uma ordem de grandeza. Publicar apenas a mais favorável seria mentir por omissão, por isso as duas estão aqui — e um teste no repositório faz o build falhar se esta página e o corpus divergirem.</p>
+</div>
+<div class="table-container" style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px;">
+<table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+<thead>
+<tr style="border-bottom: 1px solid var(--border-subtle);">
+<th style="padding: 0.9rem 1.1rem; text-align: left; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Coluna</th>
+<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Percentual dos 46.973 nomes distintos</th>
+<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Percentual das 318.758 ocorrências em rótulos</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;">Correspondência CosIng (qualquer)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11,0%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">82,5%</td></tr>
+<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>functions</code> (vocabulário CosIng)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">10,9%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">81,5%</td></tr>
+<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>cas_number</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8,3%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">76,4%</td></tr>
+<tr><td style="padding: 0.85rem 1.1rem;"><code>chemical_description</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8,5% · 3.965 valores distintos</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--text-secondary);">—</td></tr>
+</tbody>
+</table>
+</div>
+<p style="color: var(--text-secondary); margin-top: 1.25rem; max-width: 820px; font-size: 0.95rem; line-height: 1.7;">
+                Um corpus de rótulos cosméticos contém muito mais strings distintas — variantes botânicas, grafias multilíngues, tokens de marketing, misturas pontuais — do que qualquer inventário regulatório lista. Essa cauda longa é o motivo de a coluna da esquerda ser baixa. As posições em um rótulo real são preenchidas, em sua esmagadora maioria, pelos ingredientes que o CosIng cobre, e é por isso que a coluna da direita é alta. Se você está desenvolvendo um leitor de rótulos ou um modelo de formulação, é a coluna da direita que determina o que seus usuários veem; se você precisa de uma referência química, a coluna da esquerda é o teto honesto.
+            </p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem;">
+<div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
+<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">99 nomes sinalizados como alergênicos</h3>
+<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Da lista de alergênicos de fragrância do Anexo III da UE (Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545), com correspondência pelo nome canônico exato. A FDA dos EUA ainda não publicou sua lista de alergênicos de fragrância da MoCRA; por isso, não existe sinalização dos EUA aqui.</p>
+</div>
+<div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
+<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">145 classificações comedogênicas</h3>
+<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Ingredientes com classificação 0–5, transcritos de Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Tabela I). <code>NULL</code> em tudo o que o artigo não abrange — ausência significa "não coberto", nunca "seguro".</p>
+</div>
+<div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
+<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">270 sinalizações de acne fúngica</h3>
+<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Uma heurística derivada de regras, não uma propriedade medida: ácidos graxos C11–C24 e seus ésteres, e polissorbatos 20/40/60/80, aplicada somente a ingredientes com correspondência no CosIng. Base: DOI 10.3389/fcimb.2020.00112 e DOI 10.1093/femsyr/foaf043.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Query Explorer -->
+<section class="section" id="explorer">
+<div class="container">
+<div class="section-header">
+<div class="section-eyebrow">Prévia interativa</div>
+<h2 class="section-title">Consulte o CSV e o Apache Parquet fornecidos</h2>
+</div>
+<div class="explorer-window">
+<div class="explorer-toolbar">
+<div class="dots">
+<div class="dot dot-red"></div>
+<div class="dot dot-yellow"></div>
+<div class="dot dot-green"></div>
+</div>
+<div class="explorer-tabs">
+<button class="tab-btn active" onclick="switchTab('sql')">DuckDB SQL</button>
+<button class="tab-btn" onclick="switchTab('python')">PyArrow / Pandas</button>
+<button class="tab-btn" onclick="switchTab('json')">Trilha de auditoria do mapa de nomes</button>
+</div>
+</div>
+<div class="explorer-body" id="code-content">
+<!-- Default SQL View -->
+<pre><code><span class="keyword">SELECT</span>
+    i.inci_name,
+    i.functions,
+    i.cas_number,
+    i.is_common_allergen,
+    pi.position_index
+<span class="keyword">FROM</span> <span class="string">'product_ingredients.parquet'</span> pi
+<span class="keyword">JOIN</span> <span class="string">'ingredients.parquet'</span> i <span class="keyword">ON</span> pi.ingredient_id = i.ingredient_id
+<span class="keyword">WHERE</span> pi.product_id = <span class="number">68597</span>
+<span class="keyword">ORDER BY</span> pi.position_index <span class="keyword">ASC</span>;
+
+<span class="comment">-- Real rows from the snapshot; long values elided with … for display.</span>
+<span class="comment">-- NULL means CosIng has no value — it is never a placeholder.</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span>
+<span class="comment">-- | inci_name           | functions                         | cas_number | is_common_allergen | position_index |</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span>
+<span class="comment">-- | AQUA                | SOLVENT                           | 7732-18-5  | 0                  | 1              |</span>
+<span class="comment">-- | GLYCERIN            | DENATURANT;HAIR CONDITIONING;…    | 56-81-5    | 0                  | 4              |</span>
+<span class="comment">-- | ALUMINUM STEARATES  | ANTICAKING;SKIN CONDITIONING - …  | NULL       | 0                  | 11             |</span>
+<span class="comment">-- | LIMONENE            | DEODORANT;SOLVENT;PERFUMING       | 138-86-3   | 1                  | 14             |</span>
+<span class="comment">-- | GERANIOL            | TONIC;PERFUMING                   | 106-24-1   | 1                  | 15             |</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span></code></pre>
+</div>
+</div>
+</div>
+</section>
+<!-- Sources & method -->
+<section class="section" id="registries">
+<div class="container">
+<div class="section-header">
+<div class="section-eyebrow">Arquitetura de dados</div>
+<h2 class="section-title">Duas fontes, uma junção documentada</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem; max-width: 780px;">Sem espelhos de terceiros, sem enriquecimento obtido por scraping, sem química digitada à mão. A URL, o horário de download e o SHA-256 de cada arquivo de origem ficam registrados no <code>build_report.json</code> fornecido com os dados.</p>
+</div>
+<div class="registry-grid">
+<div class="registry-card">
+<span class="registry-badge">Dados abertos</span>
+<h3 class="registry-title">Open Beauty Facts</h3>
+<p class="registry-desc">O corpus de produtos: códigos de barras, marcas, as próprias tags de categoria da fonte e as listas de ingredientes brutas das embalagens, das quais todo o resto é derivado. Licenciado sob ODbL; o texto bruto do rótulo é fornecido junto com a análise, para que você possa refazê-la.</p>
+</div>
+<div class="registry-card">
+<span class="registry-badge">Regulamento da UE</span>
+<h3 class="registry-title">CosIng da Comissão Europeia</h3>
+<p class="registry-desc">O inventário de ingredientes: categorias funcionais, números CAS e CE, descrições químicas, restrições e inclusão nos Anexos II–VI. Junção pelo nome canônico exato; nomes sem correspondência recebem <code>NULL</code>, não um palpite.</p>
+</div>
+<div class="registry-card">
+<span class="registry-badge">Regulamento da UE</span>
+<h3 class="registry-title">Alergênicos de fragrância do Anexo III</h3>
+<p class="registry-desc">Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545 — a única lista por trás de <code>is_common_allergen</code>, registrada por linha em <code>allergen_source</code>.</p>
+</div>
+<div class="registry-card">
+<span class="registry-badge">Engenharia</span>
+<h3 class="registry-title">Canonicalização e o mapa de nomes</h3>
+<p class="registry-desc">Tokens brutos dos rótulos resolvidos por um método explícito e ordenado — exato, limpo, mapa de erros de digitação, sem percentual, sem parênteses, mapa de sinônimos, variante com barra, divisão ou <code>unresolved</code>. O método usado é fornecido por linha.</p>
+</div>
+<div class="registry-card">
+<span class="registry-badge">Literatura</span>
+<h3 class="registry-title">Classificações autorais</h3>
+<p class="registry-desc">Uma camada deliberadamente pequena e com citações: classificações comedogênicas transcritas de uma única tabela publicada e uma sinalização de acne fúngica derivada de regras, com o texto da regra armazenado por linha em <code>rating_source</code>.</p>
+</div>
+<div class="registry-card">
+<span class="registry-badge">Verificação</span>
+<h3 class="registry-title">build_report.json</h3>
+<p class="registry-desc">Taxas de preenchimento por coluna, contagens de valores distintos, taxas de correspondência e hashes das fontes para este snapshot exato — incluídos no arquivo para que você possa verificar as afirmações desta página em vez de simplesmente acreditar nelas.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing -->
+<section class="section" id="pricing">
+<div class="container">
+<div class="section-header" style="text-align: center;">
+<div class="section-eyebrow">Um produto, um preço</div>
+<h2 class="section-title">INCIDB Complete</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Os dados são abertos (ODbL). O que você paga é a normalização, a canonicalização, a junção, a medição — e a entrega imediata.</p>
+</div>
+<div class="pricing-grid" style="max-width: 860px; margin: 0 auto;">
+<!-- Free Sample -->
+<div class="pricing-card">
+<div class="tier-name">Amostra gratuita</div>
+<div class="tier-desc">O mesmo esquema, pequeno o bastante para ser avaliado em uma tarde.</div>
+<div class="tier-price">$0</div>
+<ul class="tier-features">
+<li class="included"><span class="check-icon">✓</span> 200 produtos, sorteados aleatoriamente de um conjunto com semente fixa</li>
+<li class="included"><span class="check-icon">✓</span> Suas marcas, vínculos e 1.109 ingredientes</li>
+<li class="included"><span class="check-icon">✓</span> Todas as 5 tabelas, CSV <em>e</em> Parquet</li>
+<li class="included"><span class="check-icon">✓</span> Mesmas colunas de enriquecimento, mesmos NULLs</li>
+<li><span class="cross-icon">✕</span> Extraída de produtos com ≥80% de correspondência no CosIng, por isso parece melhor que a média do corpus</li>
+</ul>
+<a class="btn btn-secondary" download="" href="/samples/incidb_free_samples.zip" style="justify-content: center;">Baixar a amostra</a>
+</div>
+<!-- INCIDB Complete -->
+<div class="pricing-card featured">
+<div class="featured-badge">Tudo</div>
+<div class="tier-name">INCIDB Complete</div>
+<div class="tier-desc">O snapshot 2026.09 completo, nos dois formatos, com download imediato.</div>
+<div class="tier-price">$79 <span>USD, pagamento único</span></div>
+<ul class="tier-features">
+<li class="included"><span class="check-icon">✓</span> 18.583 produtos · 5.925 marcas</li>
+<li class="included"><span class="check-icon">✓</span> 46.973 nomes INCI canônicos</li>
+<li class="included"><span class="check-icon">✓</span> 318.758 vínculos de composição ordenados</li>
+<li class="included"><span class="check-icon">✓</span> A tabela <code>ingredient_name_map</code> de 55.426 linhas</li>
+<li class="included"><span class="check-icon">✓</span> CSV delimitado por barra vertical <em>e</em> Apache Parquet</li>
+<li class="included"><span class="check-icon">✓</span> Enriquecimento CosIng com a cobertura publicada acima</li>
+<li class="included"><span class="check-icon">✓</span> <code>build_report.json</code>, dicionário de dados, licença</li>
+</ul>
+<a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g" style="width: 100%; justify-content: center;">Comprar agora · Download imediato</a>
+</div>
+</div>
+<p style="text-align:center; margin-top: 24px; font-size: 0.9rem; opacity: 0.85; max-width: 700px; margin-left: auto; margin-right: auto;">Pagamento seguro com cartão via Stripe (cartão / Apple Pay / Google Pay) com <b>download imediato</b> após o pagamento. A compra cobre a entrega e a engenharia, <b>não</b> direitos exclusivos sobre os dados — eles continuam sob ODbL. Precisa de nota fiscal para empresa, de um recorte personalizado ou tem uma dúvida antes? <a href="#" onclick="openModal('Custom / Invoice Inquiry'); return false;">Abra o formulário de contato</a>.</p>
+</div>
+</section>
+<!-- Visible FAQ -->
+<section class="section" id="faq" style="background: var(--bg-surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+<div class="container">
+<div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+<div class="section-eyebrow">Referência técnica</div>
+<h2 class="section-title">§ FAQ · As perguntas que um avaliador faz</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
+<div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
+<h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Quanto dos dados de ingredientes é realmente enriquecido?</h3>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Dois números, ambos publicados acima. O CosIng corresponde a 11,0% dos 46.973 nomes canônicos distintos, mas a 82,5% das 318.758 ocorrências de ingredientes nos rótulos; funções 10,9% / 81,5%; CAS 8,3% / 76,4%. A cauda longa de nomes distintos são variantes botânicas, grafias multilíngues e tokens de marketing que nenhum inventário lista.</p>
+</div>
+<div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
+<h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Como os tokens brutos dos rótulos são transformados em nomes canônicos?</h3>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Por um procedimento explícito e ordenado — decodificação de entidades, remoção de caracteres, colapso de espaços em branco, conversão para maiúsculas e, em seguida, correspondência exata, correspondência limpa, mapa de erros de digitação, remoção de percentuais, remoção de parênteses, mapa de sinônimos, variante com barra e divisão de concatenações somente quando ambas as metades correspondem. Tudo o que falha em todas essas etapas é registrado como <code>unresolved</code>, nunca adivinhado. O método de cada token é fornecido na tabela <code>ingredient_name_map</code>.</p>
+</div>
+<div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
+<h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">De qual lista de alergênicos vêm as sinalizações?</h3>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Apenas uma lista: alergênicos de fragrância do Anexo III da UE (Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545), com correspondência pelo nome canônico exato — 99 nomes sinalizados, com <code>allergen_source</code> registrando a lista. A FDA dos EUA ainda não publicou sua lista de alergênicos de fragrância da MoCRA; por isso, este conjunto de dados não traz sinalização dos EUA.</p>
+</div>
+<div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
+<h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">De onde vêm as classificações comedogênicas e as sinalizações de acne fúngica?</h3>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">145 ingredientes com classificação 0–5, transcritos da Tabela I de Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333; <code>NULL</code> nos demais. A sinalização de acne fúngica é uma heurística derivada de regras, não uma propriedade medida: ácidos graxos C11–C24 e seus ésteres, além de polissorbatos 20/40/60/80, aplicada somente a ingredientes com correspondência no CosIng, gerando 270 sinalizações. Use-a como filtro, não como constatação.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Category hubs, driven by the CosIng functions actually recorded -->
+<section class="section" id="directory-hubs">
+<div class="container">
+<div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto;">
+<div class="section-eyebrow">Índice do diretório</div>
+<h2 class="section-title">Monografias por categoria funcional do CosIng</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Agrupadas pelos valores de <code>functions</code> efetivamente registrados em cada ingrediente. Ingredientes sem função CosIng, ou cuja função fica fora do vocabulário dos hubs, não têm monografia.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto;">
+<a href="/pt-br/landing/skin_conditioning" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
+<div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Hub de categorias</div>
+<h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Agentes condicionantes da pele e emolientes →</h3>
+<p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>SKIN CONDITIONING</code>, <code>SKIN CONDITIONING - EMOLLIENT</code>, <code>HUMECTANT</code>, <code>SKIN PROTECTING</code>, <code>ANTISTATIC</code>.</p>
+</a>
+<a href="/pt-br/landing/surfactants_cleansing" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
+<div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Hub de categorias</div>
+<h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Tensoativos, limpeza e emulsificantes →</h3>
+<p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>SURFACTANT - CLEANSING</code>, <code>SURFACTANT - EMULSIFYING</code>, <code>CLEANSING</code>, <code>EMULSION STABILISING</code>, <code>FOAMING</code>.</p>
+</a>
+<a href="/pt-br/landing/preservatives" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
+<div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Hub de categorias</div>
+<h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Conservantes e antioxidantes →</h3>
+<p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>PRESERVATIVE</code>, <code>ANTIMICROBIAL</code>, <code>ANTIOXIDANT</code>, <code>CHELATING</code>.</p>
+</a>
+<a href="/pt-br/landing/solvents" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
+<div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Hub de categorias</div>
+<h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Solventes, viscosidade e estrutura →</h3>
+<p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>SOLVENT</code>, <code>VISCOSITY CONTROLLING</code>, <code>FILM FORMING</code>, <code>BINDING</code>, <code>BULKING</code>, <code>OPACIFYING</code>.</p>
+</a>
+<a href="/pt-br/landing/fragrance_colour" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
+<div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Hub de categorias</div>
+<h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Fragrância, perfume e corantes →</h3>
+<p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>FRAGRANCE</code>, <code>PERFUMING</code>, <code>COLORANT</code>, <code>HAIR DYEING</code> — onde se concentram as sinalizações do Anexo III.</p>
+</a>
+<a href="/pt-br/landing/active_treatments" style="display: block; background: var(--bg-card); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border-subtle); text-decoration: none;">
+<div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.5rem;">Hub de categorias</div>
+<h3 style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 0.5rem;">Ativos, esfoliantes e filtros UV →</h3>
+<p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;"><code>UV FILTER</code>, <code>UV ABSORBER</code>, <code>EXFOLIATING</code>, <code>KERATOLYTIC</code>, <code>ASTRINGENT</code>, <code>DEODORANT</code>.</p>
+</a>
+</div>
+</div>
+</section>
+<!-- Modal Overlay -->
+<div aria-labelledby="modalTitle" aria-modal="true" class="modal-overlay" id="checkoutModal" role="dialog">
+<div class="modal-card" style="max-width: 520px;">
+<button aria-label="Fechar janela" class="close-btn" onclick="closeModal()">×</button>
+<h3 id="modalTitle" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Dúvidas, notas fiscais e recortes personalizados</h3>
+<p id="modalTierDesc" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">Pergunte o que quiser antes de comprar. O conjunto de dados em si é aberto (ODbL v1.0).</p>
+<div id="modalStatusAlert" style="display: none; padding: 0.85rem; border-radius: 8px; font-size: 0.88rem; margin-bottom: 1rem; font-family: var(--font-mono);"></div>
+<form action="https://api.web3forms.com/submit" id="checkoutForm" method="POST" onsubmit="handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem; text-align: left;"><input name="lang" type="hidden" value="pt-BR"/>
+<input id="formSubject" name="subject" type="hidden" value="New INCIDB inquiry"/>
+<input name="access_key" type="hidden" value="bf34ff48-fcc6-4823-b386-9ae3d0712797"/>
+<input name="from_name" type="hidden" value="INCIDB Contact Form"/>
+<input name="brand_desk" type="hidden" value="incidb"/>
+<input autocomplete="off" name="botcheck" style="display:none" tabindex="-1" type="checkbox"/>
+<input id="formTierInput" name="Selected_Tier" type="hidden" value=""/>
+<div>
+<label for="inputName" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">SEU NOME COMPLETO *</label>
+<input id="inputName" name="name" placeholder="Dra. Sarah Jenkins" required="" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;" type="text"/>
+</div>
+<div>
+<label for="inputEmail" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">E-MAIL CORPORATIVO *</label>
+<input id="inputEmail" name="email" placeholder="sarah@cosmetic-app.io" required="" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;" type="email"/>
+</div>
+<div>
+<label for="inputCompany" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">NOME DA EMPRESA OU DO APP</label>
+<input id="inputCompany" name="company" placeholder="CleanBeauty AI Ltda." style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem;" type="text"/>
+</div>
+<div>
+<label for="inputMessage" style="display: block; font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.35rem;">CASO DE USO E REQUISITOS DE DADOS</label>
+<textarea id="inputMessage" name="message" placeholder="We need the name map and Annex III flags for a barcode scanner app..." rows="3" style="width: 100%; padding: 0.75rem; background: #0E1015; border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-primary); font-size: 0.9rem; font-family: var(--font-sans); resize: vertical;"></textarea>
+</div>
+<button class="btn btn-primary" id="submitBtn" style="width: 100%; justify-content: center; margin-top: 0.5rem; padding: 0.85rem;" type="submit">Enviar solicitação →</button>
+</form>
+</div>
+</div>
+<!-- Footer -->
+<footer>
+<div class="container">
+<p>INCIDB · snapshot 2026.09 · contagens geradas a partir do relatório de build</p>
+<p style="margin-top: 0.5rem;"><a href="/pt-br/schema" style="color: var(--accent-blue); text-decoration: none;">Especificação do esquema</a> · <a href="/LICENSE" style="color: var(--accent-blue); text-decoration: none;">Termos de licença</a> · <a href="/pt-br/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentação</a></p>
+<p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Dados de produtos © colaboradores do <a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a>, sob a <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL) v1.0</a> — atribuição e compartilhamento pela mesma licença se aplicam a obras derivadas. O enriquecimento de ingredientes contém dados do banco de dados CosIng da Comissão Europeia, reutilizados com atribuição.</p>
+</div>
+<div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Parte do catálogo DataEngineered →</a> · <a href="https://dataengineered.io/about">Sobre</a> · <a href="https://dataengineered.io/terms">Termos</a> · <a href="https://dataengineered.io/privacy">Privacidade</a> · <a href="https://dataengineered.io/refund-policy">Política de reembolso</a></div>
+<!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Idioma" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><a href="/" hreflang="en" lang="en" data-i18n-lang="en">English</a> · <a href="/es/" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <a href="/de/" hreflang="de" lang="de" data-i18n-lang="de">Deutsch</a> · <a href="/fr/" hreflang="fr" lang="fr" data-i18n-lang="fr">Français</a> · <span aria-current="true" style="font-weight:600">Português</span></nav><!-- /i18n:switcher --></footer>
+<script data-i18n="" id="i18n-strings" type="application/json">
+{
+  "inquiry": "Solicitação:",
+  "datasetOpen": "O conjunto de dados em si é aberto (ODbL v1.0).",
+  "missingFields": "Informe seu nome completo e seu e-mail corporativo.",
+  "sending": "Enviando sua solicitação...",
+  "sent": "Obrigado! Sua solicitação foi enviada. Entraremos em contato em breve.",
+  "failBefore": "Não foi possível enviar automaticamente. Escreva para",
+  "failAfter": "com seu nome, empresa e caso de uso — respondemos em até 1 dia útil."
+}
+</script>
+<script>
+        const tabContents = {
+            sql: `<pre><code><span class="keyword">SELECT</span>
+    i.inci_name,
+    i.functions,
+    i.cas_number,
+    i.is_common_allergen,
+    pi.position_index
+<span class="keyword">FROM</span> <span class="string">'product_ingredients.parquet'</span> pi
+<span class="keyword">JOIN</span> <span class="string">'ingredients.parquet'</span> i <span class="keyword">ON</span> pi.ingredient_id = i.ingredient_id
+<span class="keyword">WHERE</span> pi.product_id = <span class="number">68597</span>
+<span class="keyword">ORDER BY</span> pi.position_index <span class="keyword">ASC</span>;
+
+<span class="comment">-- Real rows from the snapshot; long values elided with … for display.</span>
+<span class="comment">-- NULL means CosIng has no value — it is never a placeholder.</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span>
+<span class="comment">-- | inci_name           | functions                         | cas_number | is_common_allergen | position_index |</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span>
+<span class="comment">-- | AQUA                | SOLVENT                           | 7732-18-5  | 0                  | 1              |</span>
+<span class="comment">-- | GLYCERIN            | DENATURANT;HAIR CONDITIONING;…    | 56-81-5    | 0                  | 4              |</span>
+<span class="comment">-- | ALUMINUM STEARATES  | ANTICAKING;SKIN CONDITIONING - …  | NULL       | 0                  | 11             |</span>
+<span class="comment">-- | LIMONENE            | DEODORANT;SOLVENT;PERFUMING       | 138-86-3   | 1                  | 14             |</span>
+<span class="comment">-- | GERANIOL            | TONIC;PERFUMING                   | 106-24-1   | 1                  | 15             |</span>
+<span class="comment">-- +---------------------+-----------------------------------+------------+--------------------+----------------+</span></code></pre>`,
+            python: `<pre><code><span class="keyword">import</span> pyarrow.parquet <span class="keyword">as</span> pq
+
+ingredients = pq.read_table(<span class="string">'ingredients.parquet'</span>).to_pandas()
+links = pq.read_table(<span class="string">'product_ingredients.parquet'</span>).to_pandas()
+
+<span class="comment"># Coverage the way it actually matters: weighted by label occurrence.</span>
+merged = links.merge(ingredients, on=<span class="string">'ingredient_id'</span>, how=<span class="string">'left'</span>)
+print(merged[<span class="string">'functions'</span>].notna().mean())
+
+<span class="comment"># EU Annex III fragrance allergens</span>
+allergens = ingredients[ingredients[<span class="string">'is_common_allergen'</span>] == <span class="number">1</span>]</code></pre>`,
+            json: `<pre><code><span class="comment"># Every raw label token, and how it was resolved.</span>
+name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, sep=<span class="string">'|'</span>, dtype=str)
+
+<span class="comment">-- Real rows, one per resolution method:</span>
+<span class="comment">-- raw_name                  | canonical_name  | method           | confidence</span>
+<span class="comment">-- --------------------------+-----------------+------------------+-----------</span>
+<span class="comment">-- 1,2,4-TRIHYDROXYBENZENE   | 1,2,4-TRIHYD... | exact            | 1.0</span>
+<span class="comment">-- %WATER                    | WATER           | cleaned          | 0.95</span>
+<span class="comment">-- 1-2-HEXANEDIOL            | 1,2-HEXANEDIOL  | typo_map         | 0.9</span>
+<span class="comment">-- ALCOHOL (0.7%)            | ALCOHOL         | percent_stripped | 0.9</span>
+<span class="comment">-- (#701 M NOW): ISODODECANE | ISODODECANE     | paren_stripped   | 0.9</span>
+<span class="comment">-- *FRAGRANCE                | PARFUM          | synonym_map      | 0.85</span>
+<span class="comment">-- AQUA (WATER) / EAU        | AQUA            | slash_variant    | 0.8</span>
+<span class="comment">-- 1,2-HEXANEDIOL CETEARY... | 1,2-HEXANEDIOL  | split            | 0.8</span>
+<span class="comment">-- &lt;unparseable token&gt;       | (kept verbatim) | unresolved       | 0.0</span></code></pre>`
+        };
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('code-content').innerHTML = tabContents[tab];
+        }
+
+        let lastFocus = null;
+
+        // Runtime UI messages live in the #i18n-strings table above, so localized copies of
+        // this page (scripts/i18n_common.py) show them in the page's language.
+        const I18N = (() => {
+            try { return JSON.parse(document.getElementById('i18n-strings').textContent); }
+            catch (e) { return {}; }
+        })();
+
+        function openModal(tier) {
+            lastFocus = document.activeElement || (event && event.currentTarget);
+            document.getElementById('modalTierDesc').innerText = `${I18N.inquiry} ${tier}. ${I18N.datasetOpen}`;
+            document.getElementById('formTierInput').value = tier;
+            document.getElementById('formSubject').value = `INCIDB inquiry: ${tier}`;
+            const modal = document.getElementById('checkoutModal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                const firstInput = document.getElementById('inputName');
+                if (firstInput) firstInput.focus();
+            }, 50);
+        }
+
+        function closeModal() {
+            document.getElementById('checkoutModal').style.display = 'none';
+            if (lastFocus && typeof lastFocus.focus === 'function') {
+                lastFocus.focus();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('checkoutModal');
+            if (modal && modal.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'Tab') {
+                    const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    const first = focusable[0];
+                    const last = focusable[focusable.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        last.focus();
+                        e.preventDefault();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        first.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+
+        async function handleSupportSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const alertBox = document.getElementById('modalStatusAlert');
+
+            const name = document.getElementById('inputName').value.trim();
+            const email = document.getElementById('inputEmail').value.trim();
+            const company = document.getElementById('inputCompany').value.trim();
+            const message = document.getElementById('inputMessage').value.trim();
+            const tier = document.getElementById('formTierInput').value || "Data Request";
+            const subject = document.getElementById('formSubject').value || `INCIDB inquiry: ${tier}`;
+
+            if (!name || !email) {
+                alertBox.style.display = 'block';
+                alertBox.style.background = 'rgba(244, 63, 94, 0.15)';
+                alertBox.style.color = 'var(--accent-rose)';
+                alertBox.style.border = '1px solid var(--accent-rose)';
+                alertBox.innerText = I18N.missingFields;
+                return;
+            }
+
+            alertBox.style.display = 'block';
+            alertBox.style.background = 'rgba(6, 182, 212, 0.15)';
+            alertBox.style.color = 'var(--accent-cyan)';
+            alertBox.style.border = '1px solid var(--accent-cyan)';
+            alertBox.innerText = I18N.sending;
+            if (submitBtn) submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 7000);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' },
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+
+                const result = await response.json().catch(() => null);
+                if (response.ok && result && result.success === true) {
+                    alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
+                    alertBox.style.color = 'var(--accent-emerald)';
+                    alertBox.style.border = '1px solid var(--accent-emerald)';
+                    alertBox.innerText = I18N.sent;
+                    form.reset();
+                    if (submitBtn) submitBtn.disabled = false;
+                } else {
+                    throw new Error('Form gateway did not confirm delivery.');
+                }
+            } catch (err) {
+                clearTimeout(timeoutId);
+                alertBox.style.background = 'rgba(245, 158, 11, 0.15)';
+                alertBox.style.color = 'var(--accent-amber)';
+                alertBox.style.border = '1px solid var(--accent-amber)';
+                const desk = document.createElement('strong');
+                desk.style.userSelect = 'all';
+                desk.textContent = 'incidb@dataengineered.io';
+                alertBox.textContent = I18N.failBefore + ' ';
+                alertBox.append(desk, ' ' + I18N.failAfter);
+                if (submitBtn) submitBtn.disabled = false;
+            }
+        }
+
+        // Progressive Web App Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.error('PWA ServiceWorker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
