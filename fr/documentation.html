@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Documentation INCIDB et démarrage rapide</title>
+<meta content="Documentation technique d’INCIDB : schéma à cinq tables, couverture de la jointure CosIng, méthode de canonicalisation et extraits de démarrage rapide PyArrow/DuckDB." name="description"/>
+<link href="https://incidb.dataengineered.io/fr/documentation" rel="canonical"/>
+<!-- i18n:alternates -->
+<link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/documentation">
+<link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/documentation">
+<link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/documentation">
+<link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/documentation">
+<link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/documentation">
+<link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/documentation">
+<style>th,td{overflow-wrap:anywhere;hyphens:auto}h1,h2,h3,h4,button,.btn{overflow-wrap:break-word}</style>
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="pt_BR">
+<script src="/i18n/i18n.js?v=1" defer></script>
+<!-- /i18n:alternates -->
+<meta content="Documentation INCIDB et démarrage rapide" property="og:title"/>
+<meta content="Le schéma INCIDB à cinq tables, la jointure CosIng et sa couverture mesurée, et des extraits de démarrage rapide PyArrow/DuckDB." property="og:description"/>
+<meta content="https://incidb.dataengineered.io/fr/documentation" property="og:url"/>
+<meta content="https://incidb.dataengineered.io/og-image.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/index.css" rel="stylesheet"/>
+<style>
+        .doc-header {
+            padding: 4rem 0 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 3rem;
+        }
+        .doc-section {
+            margin-bottom: 3.5rem;
+            max-width: 850px;
+        }
+        .doc-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .doc-section p, .doc-section li {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+        .doc-section ul {
+            padding-left: 1.5rem;
+        }
+        .doc-section li strong {
+            color: var(--text-primary);
+        }
+        pre.doc-code {
+            background: #0E1015;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+<div class="grid-overlay"></div>
+<!-- Header / Nav -->
+<header>
+<div class="container nav-content">
+<a class="logo" href="/fr/">
+                INCIDB
+            </a>
+<nav class="nav-links">
+<a class="nav-link" href="/fr/#coverage">Couverture</a>
+<a class="nav-link" href="/fr/#explorer">Explorateur en direct</a>
+<a class="nav-link" href="/fr/schema">Schéma des données</a>
+<a class="nav-link" href="/fr/#pricing">Tarifs</a>
+<a class="btn btn-secondary" href="/fr/documentation" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">Documentation</a>
+</nav>
+</div>
+</header>
+<div class="container">
+<div class="doc-header">
+<div class="section-eyebrow">Portail développeurs</div>
+<h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Documentation technique INCIDB</h1>
+<p style="color: var(--text-secondary); max-width: 700px; margin-top: 1rem;">
+                Les cinq tables, les deux sources dont elles proviennent, la couverture réelle de chaque colonne d’enrichissement et la manière d’interroger le résultat.
+            </p>
+</div>
+<div class="doc-section">
+<h2>1. Contenu du snapshot</h2>
+<p>Cinq tables, exportées en CSV UTF-8 délimité par des barres verticales et en Apache Parquet, avec des colonnes identiques :</p>
+<ul>
+<li><strong>18 583 produits</strong> — une ligne par produit Open Beauty Facts comportant une liste des ingrédients exploitable sur l’emballage, la déclaration brute étant conservée telle quelle pour que l’analyse puisse être refaite.</li>
+<li><strong>5 925 marques</strong> — identités de marque telles qu’enregistrées à la source.</li>
+<li><strong>46 973 noms INCI canoniques distincts</strong> — résultat de la canonicalisation de chaque token brut d’étiquette, enrichis depuis CosIng lorsque CosIng les répertorie.</li>
+<li><strong>318 758 liens de composition ordonnés</strong> — l’ordre de l’étiquette est conservé dans <code>position_index</code>.</li>
+<li><strong>55 426 lignes de correspondance de noms</strong> — comment chaque token brut d’étiquette a été résolu, et par quelle méthode.</li>
+</ul>
+</div>
+<div class="doc-section">
+<h2>2. Les sources et la jointure</h2>
+<p>Deux sources, une jointure documentée. L’URL, l’horodatage de téléchargement et le SHA-256 de chaque fichier source sont consignés dans le <code>build_report.json</code> livré avec les données.</p>
+<ul>
+<li><strong>Open Beauty Facts</strong> — le corpus de produits (codes-barres, marques, <code>categories_tags</code> propres à la source, listes d’ingrédients brutes) sous Open Database License (ODbL).</li>
+<li><strong>CosIng (Commission européenne)</strong> — l’inventaire des ingrédients : catégories fonctionnelles, numéros CAS et CE, descriptions chimiques, restrictions et appartenance aux annexes II–VI. Jointure sur le nom canonique exact ; les noms sans correspondance valent <code>NULL</code> dans toutes les colonnes issues de CosIng, jamais une valeur de remplacement.</li>
+<li><strong>Allergènes parfumants de l’annexe III (UE)</strong> — règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545, la seule liste à l’origine de <code>is_common_allergen</code>. La FDA américaine n’a pas encore publié sa liste d’allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain.</li>
+<li><strong>Couche éditoriale</strong> — 145 indices de comédogénicité retranscrits d’un seul tableau publié, et 270 indicateurs d’acné fongique dérivés d’une règle. Les deux portent leur citation ligne par ligne dans <code>rating_source</code>, et valent <code>NULL</code> partout ailleurs.</li>
+</ul>
+</div>
+<div class="doc-section">
+<h2>3. Couverture mesurée</h2>
+<p>Présentée de deux façons, car les deux chiffres diffèrent d’un ordre de grandeur et n’en citer qu’un serait trompeur :</p>
+<ul>
+<li><strong>Correspondance CosIng (toutes) :</strong> 11,0% des 46 973 noms canoniques distincts ; 82,5% des 318 758 occurrences d’ingrédients sur les étiquettes de produits.</li>
+<li><strong><code>functions</code> :</strong> 10,9% des noms distincts ; 81,5% des occurrences sur les étiquettes.</li>
+<li><strong><code>cas_number</code> :</strong> 8,3% des noms distincts ; 76,4% des occurrences sur les étiquettes.</li>
+<li><strong><code>chemical_description</code> :</strong> 8,5% des noms distincts, 3 965 valeurs distinctes.</li>
+</ul>
+<p>Un corpus d’étiquettes contient bien plus de chaînes distinctes — variantes botaniques, graphies multilingues, tokens marketing — qu’aucun inventaire réglementaire n’en répertorie, d’où la faiblesse du premier chiffre de chaque paire. Les emplacements d’une étiquette réelle sont très majoritairement occupés par des ingrédients que CosIng couvre effectivement, d’où le niveau élevé du second. Aucun des deux chiffres ne décrit à lui seul les données.</p>
+</div>
+<div class="doc-section">
+<h2>4. Canonicalisation</h2>
+<p>Les tokens bruts d’étiquette sont résolus en noms INCI canoniques par une procédure explicite et ordonnée — décodage des entités, suppression de caractères, réduction des espaces, passage en majuscules, puis correspondance exacte, correspondance après nettoyage, une petite table de fautes de frappe sourcée, suppression des pourcentages, suppression des parenthèses, une table de synonymes, séparation des variantes à barre oblique, et découpage des concaténations uniquement lorsque les deux moitiés correspondent à l’inventaire. Tout ce qui échoue à toutes ces étapes est conservé tel quel et enregistré comme <code>unresolved</code>, jamais deviné. La méthode utilisée est stockée ligne par ligne dans <code>ingredient_name_map.method</code> : chaque décision est ainsi auditable et réversible.</p>
+</div>
+<div class="doc-section">
+<h2>5. Démarrage rapide — PyArrow et Pandas</h2>
+<pre class="doc-code"><code>import pyarrow.parquet as pq
+
+ingredients = pq.read_table('ingredients.parquet').to_pandas()
+links = pq.read_table('product_ingredients.parquet').to_pandas()
+
+# Coverage the way it actually matters: weighted by label occurrence.
+merged = links.merge(ingredients, on='ingredient_id', how='left')
+print(merged['functions'].notna().mean())
+
+# EU Annex III fragrance allergens
+allergens = ingredients[ingredients['is_common_allergen'] == 1]</code></pre>
+</div>
+<div class="doc-section">
+<h2>6. Démarrage rapide — DuckDB</h2>
+<pre class="doc-code"><code>import duckdb
+
+duckdb.query("""
+SELECT f.function, COUNT(*) AS label_slots
+FROM 'product_ingredients.parquet' pi
+JOIN 'ingredients.parquet' i USING (ingredient_id)
+CROSS JOIN UNNEST(string_split(i.functions, ';')) AS f(function)
+WHERE i.functions IS NOT NULL
+GROUP BY 1 ORDER BY 2 DESC LIMIT 10;
+""").show()
+
+# Audit the canonicalisation itself
+duckdb.query("""
+SELECT method, COUNT(*) AS n
+FROM 'ingredient_name_map.parquet'
+GROUP BY 1 ORDER BY 2 DESC;
+""").show()</code></pre>
+</div>
+</div>
+<!-- Footer -->
+<footer>
+<div class="container">
+<p>INCIDB · snapshot 2026.09 · chiffres générés à partir du rapport de build</p>
+<p style="margin-top: 0.5rem;"><a href="/fr/schema" style="color: var(--accent-blue); text-decoration: none;">Spécification du schéma</a> · <a href="/LICENSE" style="color: var(--accent-blue); text-decoration: none;">Conditions de licence</a> · <a href="/fr/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
+<div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Fait partie du catalogue DataEngineered →</a> · <a href="https://dataengineered.io/about">À propos</a> · <a href="https://dataengineered.io/terms">Conditions</a> · <a href="https://dataengineered.io/privacy">Confidentialité</a> · <a href="https://dataengineered.io/refund-policy">Politique de remboursement</a></div>
+</div>
+<!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Langue" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><a href="/documentation" hreflang="en" lang="en" data-i18n-lang="en">English</a> · <a href="/es/documentation" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <a href="/de/documentation" hreflang="de" lang="de" data-i18n-lang="de">Deutsch</a> · <span aria-current="true" style="font-weight:600">Français</span> · <a href="/pt-br/documentation" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></nav><!-- /i18n:switcher --></footer>
+</body>
+</html>

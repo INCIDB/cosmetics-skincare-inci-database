@@ -1,0 +1,20 @@
+{
+  "base_url": "https://incidb.dataengineered.io",
+  "locales": [
+    "es",
+    "de",
+    "fr",
+    "pt-br"
+  ],
+  "include": [
+    "index.html",
+    "schema.html",
+    "documentation.html",
+    "404.html",
+    "landing/*.html"
+  ],
+  "exclude": [],
+  "not_found": "404.html",
+  "sitemap": "sitemap.xml",
+  "min_coverage": 0.9
+}

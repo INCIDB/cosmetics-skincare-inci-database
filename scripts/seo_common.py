@@ -112,16 +112,23 @@ def write_sitemap(repo_dir, entries, out="sitemap.xml"):
 
 
 def related_block(items, heading="Related", css_class="related", limit=6):
-    """items: list of (href, label, reason_or_None). Empty list -> ''.
+    """items: list of (href, label, reason_or_None[, translatable]). Empty list -> ''.
 
     At most `limit` links (default 6); pass limit=None when every item must appear,
     e.g. to keep parent<->child links reciprocal.
+
+    The optional 4th element is False when the label is data (an ingredient, product or
+    code name): the link then carries translate="no" so i18n_common.py keeps it verbatim.
+    Omitted -> True, and the output is byte-identical to the 3-tuple form.
     """
     if not items:
         return ""
     lis = []
-    for href, label, reason in (items if limit is None else items[:limit]):
+    for item in (items if limit is None else items[:limit]):
+        href, label, reason = item[:3]
+        translatable = item[3] if len(item) > 3 else True
         why = f' <span class="{css_class}-why">— {html.escape(str(reason))}</span>' if reason else ""
-        lis.append(f'<li><a href="{html.escape(href)}">{html.escape(str(label))}</a>{why}</li>')
+        tn = "" if translatable else ' translate="no"'
+        lis.append(f'<li><a href="{html.escape(href)}"{tn}>{html.escape(str(label))}</a>{why}</li>')
     return (f'<section class="{css_class}"><h2>{html.escape(heading)}</h2><ul>'
             + "".join(lis) + "</ul></section>")

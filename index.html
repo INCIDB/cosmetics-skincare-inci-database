@@ -8,8 +8,20 @@
     <meta name="description" content="18,583 cosmetic products, 46,973 canonical INCI names and 318,758 ordered composition links, with EU CosIng enrichment on 82.5% of label occurrences. CSV + Parquet, $79.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://incidb.dataengineered.io/">
+    <!-- i18n:alternates -->
     <link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/">
+    <link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/">
+    <link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/">
+    <link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/">
+    <link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/">
     <link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <script src="/i18n/i18n.js?v=1" defer></script>
+    <!-- /i18n:alternates -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <!-- OpenGraph Meta Tags -->
@@ -537,8 +549,19 @@
             <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Product data © <a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a> contributors, under the <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL) v1.0</a> — attribution and share-alike apply to derivatives. Ingredient enrichment contains data from the European Commission CosIng database, reused with attribution.</p>
         </div>
     <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Part of the DataEngineered catalog →</a> · <a href="https://dataengineered.io/about">About</a> · <a href="https://dataengineered.io/terms">Terms</a> · <a href="https://dataengineered.io/privacy">Privacy</a> · <a href="https://dataengineered.io/refund-policy">Refund policy</a></div>
-</footer>
+<!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Language" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><span aria-current="true" style="font-weight:600">English</span> · <a href="/es/" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <a href="/de/" hreflang="de" lang="de" data-i18n-lang="de">Deutsch</a> · <a href="/fr/" hreflang="fr" lang="fr" data-i18n-lang="fr">Français</a> · <a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></nav><!-- /i18n:switcher --></footer>
 
+    <script type="application/json" id="i18n-strings" data-i18n>
+    {
+      "inquiry": "Inquiry:",
+      "datasetOpen": "The dataset itself is open (ODbL v1.0).",
+      "missingFields": "Please provide your full name and work email address.",
+      "sending": "Sending your inquiry...",
+      "sent": "Thank you! Your inquiry has been sent. We will follow up shortly.",
+      "failBefore": "We could not send this automatically. Please write to",
+      "failAfter": "with your name, company and use case — we reply within 1 business day."
+    }
+    </script>
     <script>
         const tabContents = {
             sql: `<pre><code><span class="keyword">SELECT</span>
@@ -599,9 +622,16 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
 
         let lastFocus = null;
 
+        // Runtime UI messages live in the #i18n-strings table above, so localized copies of
+        // this page (scripts/i18n_common.py) show them in the page's language.
+        const I18N = (() => {
+            try { return JSON.parse(document.getElementById('i18n-strings').textContent); }
+            catch (e) { return {}; }
+        })();
+
         function openModal(tier) {
             lastFocus = document.activeElement || (event && event.currentTarget);
-            document.getElementById('modalTierDesc').innerText = `Inquiry: ${tier}. The dataset itself is open (ODbL v1.0).`;
+            document.getElementById('modalTierDesc').innerText = `${I18N.inquiry} ${tier}. ${I18N.datasetOpen}`;
             document.getElementById('formTierInput').value = tier;
             document.getElementById('formSubject').value = `INCIDB inquiry: ${tier}`;
             const modal = document.getElementById('checkoutModal');
@@ -657,7 +687,7 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
                 alertBox.style.background = 'rgba(244, 63, 94, 0.15)';
                 alertBox.style.color = 'var(--accent-rose)';
                 alertBox.style.border = '1px solid var(--accent-rose)';
-                alertBox.innerText = 'Please provide your full name and work email address.';
+                alertBox.innerText = I18N.missingFields;
                 return;
             }
 
@@ -665,7 +695,7 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
             alertBox.style.background = 'rgba(6, 182, 212, 0.15)';
             alertBox.style.color = 'var(--accent-cyan)';
             alertBox.style.border = '1px solid var(--accent-cyan)';
-            alertBox.innerText = 'Sending your inquiry...';
+            alertBox.innerText = I18N.sending;
             if (submitBtn) submitBtn.disabled = true;
 
             const formData = new FormData(form);
@@ -686,7 +716,7 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
                     alertBox.style.background = 'rgba(16, 185, 129, 0.15)';
                     alertBox.style.color = 'var(--accent-emerald)';
                     alertBox.style.border = '1px solid var(--accent-emerald)';
-                    alertBox.innerText = 'Thank you! Your inquiry has been sent. We will follow up shortly.';
+                    alertBox.innerText = I18N.sent;
                     form.reset();
                     if (submitBtn) submitBtn.disabled = false;
                 } else {
@@ -697,7 +727,11 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
                 alertBox.style.background = 'rgba(245, 158, 11, 0.15)';
                 alertBox.style.color = 'var(--accent-amber)';
                 alertBox.style.border = '1px solid var(--accent-amber)';
-                alertBox.innerHTML = 'We could not send this automatically. Please write to <strong style="user-select:all">incidb@dataengineered.io</strong> with your name, company and use case — we reply within 1 business day.';
+                const desk = document.createElement('strong');
+                desk.style.userSelect = 'all';
+                desk.textContent = 'incidb@dataengineered.io';
+                alertBox.textContent = I18N.failBefore + ' ';
+                alertBox.append(desk, ' ' + I18N.failAfter);
                 if (submitBtn) submitBtn.disabled = false;
             }
         }

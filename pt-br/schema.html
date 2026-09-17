@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Esquema de dados e dicionário relacional do INCIDB</title>
+<meta content="Esquema relacional das 5 tabelas do INCIDB — brands, products, ingredients, product_ingredients, ingredient_name_map — com fonte e cobertura por coluna." name="description"/>
+<link href="https://incidb.dataengineered.io/pt-br/schema" rel="canonical"/>
+<!-- i18n:alternates -->
+<link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/schema">
+<link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/schema">
+<link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/schema">
+<link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/schema">
+<link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/schema">
+<link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/schema">
+<style>th,td{overflow-wrap:anywhere;hyphens:auto}h1,h2,h3,h4,button,.btn{overflow-wrap:break-word}</style>
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="fr_FR">
+<script src="/i18n/i18n.js?v=1" defer></script>
+<!-- /i18n:alternates -->
+<meta content="Esquema de dados e dicionário relacional do INCIDB" property="og:title"/>
+<meta content="O esquema do INCIDB com 5 tabelas, coluna por coluna, com a fonte e a cobertura medida de cada campo de enriquecimento." property="og:description"/>
+<meta content="https://incidb.dataengineered.io/pt-br/schema" property="og:url"/>
+<meta content="https://incidb.dataengineered.io/og-image.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/index.css" rel="stylesheet"/>
+<style>
+        .doc-header {
+            padding: 4rem 0 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 3rem;
+        }
+        .doc-section {
+            margin-bottom: 4rem;
+        }
+        .table-container {
+            overflow-x: auto;
+            background: #0E1015;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        th {
+            background: rgba(255,255,255,0.02);
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        code.type-tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-cyan);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+        .note {
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent-cyan);
+            border-radius: 0 8px 8px 0;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+        .note strong { color: var(--text-primary); }
+    </style>
+</head>
+<body>
+<div class="grid-overlay"></div>
+<!-- Header / Nav -->
+<header>
+<div class="container nav-content">
+<a class="logo" href="/pt-br/">
+                INCIDB
+            </a>
+<nav class="nav-links">
+<a class="nav-link" href="/pt-br/#coverage">Cobertura</a>
+<a class="nav-link" href="/pt-br/#explorer">Explorador ao vivo</a>
+<a class="nav-link" href="/pt-br/schema" style="color: var(--accent-cyan);">Esquema de dados</a>
+<a class="nav-link" href="/pt-br/#pricing">Preços</a>
+<a class="btn btn-secondary" href="/pt-br/documentation">Documentação</a>
+</nav>
+</div>
+</header>
+<div class="container">
+<div class="doc-header">
+<div class="section-eyebrow">Dicionário de dados · snapshot 2026.09</div>
+<h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Especificação do esquema relacional</h1>
+<p style="color: var(--text-secondary); max-width: 760px; margin-top: 1rem;">
+                Cinco tabelas, exportadas em CSV delimitado por barra vertical UTF-8 e em Apache Parquet, com colunas idênticas. Cada coluna de enriquecimento é preenchida a partir de uma fonte pública identificada, com uma junção documentada, ou é <code>NULL</code>. Não há valores padrão nem linhas de preenchimento.
+            </p>
+<div class="table-container" style="max-width: 520px;">
+<table>
+<thead><tr><th>Tabela</th><th>Linhas</th></tr></thead>
+<tbody>
+<tr><td><code>products</code></td><td>18.583</td></tr>
+<tr><td><code>brands</code></td><td>5.925</td></tr>
+<tr><td><code>ingredients</code></td><td>46.973</td></tr>
+<tr><td><code>product_ingredients</code></td><td>318.758</td></tr>
+<tr><td><code>ingredient_name_map</code></td><td>55.426</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Brands -->
+<div class="doc-section">
+<h2>1. brands</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">5.925 identidades de marca conforme registradas no Open Beauty Facts.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Campo</th><th>Tipo</th><th>Descrição</th><th>Exemplo</th></tr>
+</thead>
+<tbody>
+<tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Chave primária</td><td><code>1</code></td></tr>
+<tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Nome da marca conforme registrado na origem</td><td><code>Laneige</code></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Products -->
+<div class="doc-section">
+<h2>2. products</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">18.583 produtos, uma linha cada, todos com uma lista de ingredientes utilizável na embalagem.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Campo</th><th>Tipo</th><th>Descrição</th><th>Exemplo</th></tr>
+</thead>
+<tbody>
+<tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>Chave primária</td><td><code>68597</code></td></tr>
+<tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>brands.brand_id</code>. <strong>NULL</strong> quando o rótulo de origem não registra marca</td><td><code>55</code></td></tr>
+<tr><td><code>barcode_ean</code></td><td><code class="type-tag">STRING</code></td><td>Código de barras GTIN / EAN</td><td><code>4006381333931</code></td></tr>
+<tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Nome do produto conforme registrado na origem</td><td><code>Good Genes Lactic Acid Treatment</code></td></tr>
+<tr><td><code>obf_categories_tags</code></td><td><code class="type-tag">STRING</code></td><td>A própria lista de tags do Open Beauty Facts, unida com <code>;</code>, literalmente — presente em 12.860 de 18.583 produtos (69,2%), NULL quando a fonte não tem nenhuma</td><td><code>en:hygiene;en:soaps</code></td></tr>
+<tr><td><code>raw_ingredient_text</code></td><td><code class="type-tag">STRING</code></td><td>A declaração não analisada, mantida literalmente para que a análise possa ser refeita</td><td><code>Water, Glycerin, ...</code></td></tr>
+<tr><td><code>created_at</code></td><td><code class="type-tag">STRING</code></td><td>Data e hora da ingestão (ISO 8601)</td><td><code>2026-07-02T14:01:48Z</code></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Ingredients -->
+<div class="doc-section">
+<h2>3. ingredients</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Uma linha por nome INCI canônico distinto — 46.973 ao todo. Cada coluna derivada do CosIng só é preenchida quando o nome canônico teve correspondência exata de nome no inventário CosIng da Comissão Europeia; caso contrário, é <code>NULL</code>.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Campo</th><th>Tipo</th><th>Fonte</th><th>Descrição</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>—</td><td>Chave primária</td></tr>
+<tr><td><code>inci_name</code></td><td><code class="type-tag">STRING</code></td><td>canonicalização</td><td>O nome canônico em que cada token bruto do rótulo foi resolvido</td></tr>
+<tr><td><code>cosing_matched</code></td><td><code class="type-tag">INTEGER</code></td><td>CosIng</td><td><code>1</code> quando o nome canônico corresponde ao inventário. Condiciona todas as colunas CosIng abaixo</td></tr>
+<tr><td><code>cosing_ref_no</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Número de referência CosIng</td></tr>
+<tr><td><code>cas_number</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Número de registro CAS — somente do CosIng, nunca inferido</td></tr>
+<tr><td><code>ec_number</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Número CE</td></tr>
+<tr><td><code>functions</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Categorias funcionais do CosIng, multivaloradas, separadas por <code>;</code></td></tr>
+<tr><td><code>chemical_description</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Texto da descrição química / IUPAC do CosIng</td></tr>
+<tr><td><code>cosing_restriction</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Referência da restrição, por exemplo, uma entrada do Anexo V</td></tr>
+<tr><td><code>cosing_update_date</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Sempre <code>NULL</code> neste snapshot — a exportação não traz data de atualização</td></tr>
+<tr><td><code>annex_ii</code> … <code>annex_vi</code></td><td><code class="type-tag">FLOAT</code></td><td>CosIng</td><td>Inclusão nos Anexos II (proibidas), III (restritas), IV (corantes), V (conservantes), VI (filtros UV)</td></tr>
+<tr><td><code>is_common_allergen</code></td><td><code class="type-tag">INTEGER</code></td><td>Anexo III da UE</td><td>Sinalização de alergênico de fragrância da UE — veja a nota de método abaixo</td></tr>
+<tr><td><code>allergen_source</code></td><td><code class="type-tag">STRING</code></td><td>Anexo III da UE</td><td>A lista de onde veio a sinalização</td></tr>
+<tr><td><code>comedogenic_rating</code></td><td><code class="type-tag">FLOAT</code></td><td>authored</td><td>Classificação 0–5 para os ingredientes abrangidos pelo artigo citado; <code>NULL</code> nos demais casos</td></tr>
+<tr><td><code>is_fungal_acne_trigger</code></td><td><code class="type-tag">FLOAT</code></td><td>rule</td><td>Sinalização derivada de regra — uma heurística, não uma propriedade medida</td></tr>
+<tr><td><code>rating_source</code></td><td><code class="type-tag">STRING</code></td><td>authored / rule</td><td>A citação ou o texto da regra, por linha, por trás das duas colunas acima</td></tr>
+</tbody>
+</table>
+</div>
+<h3 style="margin-top: 2.5rem;">Cobertura medida das colunas CosIng</h3>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Coluna</th><th>Percentual dos 46.973 nomes distintos</th><th>Percentual das 318.758 ocorrências em rótulos</th></tr>
+</thead>
+<tbody>
+<tr><td>Correspondência CosIng (qualquer)</td><td>11,0%</td><td>82,5%</td></tr>
+<tr><td><code>functions</code></td><td>10,9%</td><td>81,5%</td></tr>
+<tr><td><code>cas_number</code></td><td>8,3%</td><td>76,4%</td></tr>
+<tr><td><code>chemical_description</code></td><td>8,5% · 3.965 valores distintos</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+                A coluna da esquerda conta nomes distintos; a da direita conta ocorrências de ingredientes nos rótulos dos produtos. Elas diferem em uma ordem de grandeza porque um corpus de rótulos contém muito mais strings distintas — variantes botânicas, grafias multilíngues, tokens de marketing — do que qualquer inventário regulatório lista, enquanto as posições em um rótulo real são preenchidas, em sua esmagadora maioria, por ingredientes que o CosIng cobre. <strong>Nenhum dos dois números, isoladamente, descreve os dados.</strong> <code>ec_number</code>, <code>cosing_restriction</code> e as sinalizações dos Anexos são preenchidos apenas no subconjunto com correspondência no CosIng, com taxas próprias — consulte o <code>build_report.json</code> incluído no arquivo.
+            </div>
+<div class="note">
+<strong>Método — sinalizações de alergênicos.</strong> Apenas uma lista: os alergênicos de fragrância do Anexo III do Regulamento de Cosméticos da UE (Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545), com correspondência pelo nome canônico exato. 99 nomes são sinalizados. A FDA dos EUA ainda não publicou sua lista de alergênicos de fragrância da MoCRA; por isso, este conjunto de dados não traz sinalização dos EUA.
+            </div>
+<div class="note">
+<strong>Método — classificações comedogênicas.</strong> 145 ingredientes têm classificação na escala 0–5, transcrita da Tabela I (pp. 324–326) de Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Quando o artigo traz uma faixa em vez de um grau único, a classificação fica <code>NULL</code>. A ausência de classificação significa "não coberto pela fonte citada", nunca "seguro".
+            </div>
+<div class="note">
+<strong>Método — sinalização de acne fúngica.</strong> Uma heurística derivada de regras, não uma propriedade medida: não existe ensaio de <em>Malassezia</em> por ingrediente que possa ser transcrito. A regra sinaliza ácidos graxos C11–C24 e seus ésteres, e polissorbatos 20/40/60/80, aplicada somente a ingredientes com correspondência no CosIng, gerando 270 sinalizações. Base: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), com a faixa de comprimento de cadeia de Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Óleos, manteigas e ceras específicos não são sinalizados — a literatura não sustenta conclusões por ingrediente sobre eles.
+            </div>
+</div>
+<!-- Product Ingredients -->
+<div class="doc-section">
+<h2>4. product_ingredients</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">318.758 vínculos de composição ordenados, preservando a ordem em que os ingredientes são declarados no rótulo.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Campo</th><th>Tipo</th><th>Descrição</th><th>Exemplo</th></tr>
+</thead>
+<tbody>
+<tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>products.product_id</code></td><td><code>68597</code></td></tr>
+<tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>ingredients.ingredient_id</code></td><td><code>1214</code></td></tr>
+<tr><td><code>position_index</code></td><td><code class="type-tag">INTEGER</code></td><td>Posição no rótulo (contando a partir de 1); quanto menor, mais cedo foi declarado, ou seja, maior a proporção</td><td><code>1</code></td></tr>
+<tr><td><code>concentration_percentage</code></td><td><code class="type-tag">STRING</code></td><td>Sempre <code>NULL</code> neste snapshot — os rótulos quase nunca declaram percentuais</td><td></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Name map -->
+<div class="doc-section">
+<h2>5. ingredient_name_map</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">55.426 linhas: a evidência da canonicalização, fornecida com os dados para que cada decisão tomada pelo pipeline possa ser auditada ou substituída.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Campo</th><th>Tipo</th><th>Descrição</th><th>Exemplo</th></tr>
+</thead>
+<tbody>
+<tr><td><code>raw_name</code></td><td><code class="type-tag">STRING</code></td><td>O token tal como aparecia em <code>products.raw_ingredient_text</code></td><td><code>AQUA (WATER)</code></td></tr>
+<tr><td><code>canonical_name</code></td><td><code class="type-tag">STRING</code></td><td>O nome INCI canônico em que foi resolvido</td><td><code>AQUA</code></td></tr>
+<tr><td><code>method</code></td><td><code class="type-tag">STRING</code></td><td>Como foi resolvido — veja abaixo</td><td><code>paren_stripped</code></td></tr>
+<tr><td><code>confidence</code></td><td><code class="type-tag">FLOAT</code></td><td>Confiança associada ao método</td><td><code>0.9</code></td></tr>
+<tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>ingredients.ingredient_id</code></td><td><code>162</code></td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead><tr><th>method</th><th>Significado</th></tr></thead>
+<tbody>
+<tr><td><code>exact</code></td><td>O token limpo já é um nome do inventário CosIng</td></tr>
+<tr><td><code>cleaned</code></td><td>Resolvido após decodificação de entidades, remoção de caracteres e colapso de espaços em branco</td></tr>
+<tr><td><code>typo_map</code></td><td>Resolvido por meio de uma pequena tabela explícita de erros de digitação, com citação</td></tr>
+<tr><td><code>percent_stripped</code></td><td>Um percentual declarado foi removido</td></tr>
+<tr><td><code>paren_stripped</code></td><td>Um trecho entre parênteses foi removido</td></tr>
+<tr><td><code>synonym_map</code></td><td>Resolvido por meio de uma tabela explícita de sinônimos</td></tr>
+<tr><td><code>slash_variant</code></td><td>Uma variante multilíngue unida por barra</td></tr>
+<tr><td><code>split</code></td><td>Um token aglutinado dividido em dois nomes, ambos com correspondência no inventário</td></tr>
+<tr><td><code>unresolved</code></td><td>Sem correspondência canônica — mantido literalmente e sinalizado, nunca adivinhado</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+<code>unresolved</code> é o maior grupo por token distinto e um grupo pequeno por ocorrência nos rótulos — o mesmo efeito de cauda longa que produz as duas colunas de cobertura acima.
+            </div>
+</div>
+</div>
+<!-- Footer -->
+<footer>
+<div class="container">
+<p>INCIDB · snapshot 2026.09 · contagens geradas a partir do relatório de build</p>
+<p style="margin-top: 0.5rem;"><a href="/pt-br/schema" style="color: var(--accent-blue); text-decoration: none;">Especificação do esquema</a> · <a href="/LICENSE" style="color: var(--accent-blue); text-decoration: none;">Termos de licença</a> · <a href="/pt-br/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentação</a></p>
+<p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Dados de produtos © colaboradores do Open Beauty Facts, sob a Open Database License (ODbL) v1.0. O enriquecimento de ingredientes contém dados do banco de dados CosIng da Comissão Europeia, reutilizados com atribuição.</p>
+<div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Parte do catálogo DataEngineered →</a> · <a href="https://dataengineered.io/about">Sobre</a> · <a href="https://dataengineered.io/terms">Termos</a> · <a href="https://dataengineered.io/privacy">Privacidade</a> · <a href="https://dataengineered.io/refund-policy">Política de reembolso</a></div>
+</div>
+<!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Idioma" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><a href="/schema" hreflang="en" lang="en" data-i18n-lang="en">English</a> · <a href="/es/schema" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <a href="/de/schema" hreflang="de" lang="de" data-i18n-lang="de">Deutsch</a> · <a href="/fr/schema" hreflang="fr" lang="fr" data-i18n-lang="fr">Français</a> · <span aria-current="true" style="font-weight:600">Português</span></nav><!-- /i18n:switcher --></footer>
+</body>
+</html>

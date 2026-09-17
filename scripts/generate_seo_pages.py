@@ -34,7 +34,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import seo_common
+import seo_common  # noqa: E402
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SAMPLES_DIR = os.path.join(ROOT_DIR, "samples")
@@ -49,6 +49,40 @@ BASE_URL = "https://incidb.dataengineered.io"
 # and `tests/test_public_claims.py::test_no_stripe_placeholder_when_releasing`
 # fails the release while it is still present.
 STRIPE_COMPLETE_LINK_PLACEHOLDER = "https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g"
+
+# Layout rules shared by monographs and hubs. They live in classes, not inline
+# styles, so the phone breakpoint can override them.
+#
+# `.page-main` needs `width: 100%`: <body> is a flex column and <main> carries
+# `margin: 0 auto` (from .container), so without it <main> is not stretched but
+# shrink-wrapped to its min-content width -- and the code <pre>'s longest line
+# made that 801px on a 375px phone. `overflow-x: auto` on the <pre> does not
+# lower its min-content contribution; a definite width on <main> does.
+LAYOUT_CSS = """
+        .page-header { border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .page-header-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem 1.5rem; }
+        .page-nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center; }
+        .page-main { flex: 1; width: 100%; padding: 3rem 1rem; overflow-wrap: anywhere; }
+        /* Beats the `h1,h2,h3{overflow-wrap:break-word}` that i18n_common.py adds to the
+           localized copies: break-word does not lower min-content, so a slash-joined INCI
+           name ("ETHYLENE/PROPYLENE/STYRENE COPOLYMER") would still widen the title row. */
+        .page-main h1, .page-main h2, .page-main h3 { overflow-wrap: anywhere; }
+        .crumbs { margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .page-main pre { max-width: 100%; }
+        .monograph-card { background: #111318; border: 1px solid #232838; border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7); }
+        .fact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1.25rem; background: #161922; border: 1px solid #232838; border-radius: 12px; padding: 1.5rem; }
+        .fact-grid > div { min-width: 0; }
+        .query-card { background: #161922; border: 1px solid #232838; border-radius: 16px; padding: 2rem; }
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+        @media (max-width: 600px) {
+            .page-header { position: static; }
+            .page-header > .container, footer > .container { padding: 0 1rem; }
+            .page-main { padding: 2rem 1rem; }
+            .page-main h1 { font-size: 1.75rem !important; }
+            .monograph-card { padding: 1.25rem; }
+            .fact-grid { padding: 1rem; }
+            .query-card { padding: 1.25rem; }
+        }"""
 
 # Hub definitions, evaluated IN THIS ORDER. An ingredient joins the first hub
 # whose vocabulary appears in its `functions` value; the substrings below are
@@ -200,24 +234,29 @@ def ingredient_profile(ing, prod_list):
 
     sentences = []
 
-    ident = f"<strong>{e(inci_name)}</strong>" if inci_name else "This ingredient"
+    # Data values carry translate="no" (see scripts/i18n_common.py): the localized copies
+    # keep them verbatim and translate only the sentence around them.
+    def data(value):
+        return f'<span translate="no">{e(value)}</span>'
+
+    ident = f'<strong translate="no">{e(inci_name)}</strong>' if inci_name else "This ingredient"
     if functions:
         s1 = (f"{ident} is listed in the European Commission CosIng inventory under "
               f"{'the functional category' if len(functions) == 1 else 'the functional categories'} "
-              + ", ".join(e(f.title()) for f in functions))
+              + data(", ".join(f.title() for f in functions)))
     else:
         s1 = f"{ident} is catalogued in INCIDB"
     if cas and ec:
-        s1 += f", with CAS number {e(cas)} and EC number {e(ec)}."
+        s1 += f", with CAS number {data(cas)} and EC number {data(ec)}."
     elif cas:
-        s1 += f", with CAS number {e(cas)}."
+        s1 += f", with CAS number {data(cas)}."
     else:
         s1 += ". CosIng records no CAS number for it, so the column is NULL rather than guessed."
     sentences.append(s1)
 
     if restriction:
         sentences.append(
-            f"CosIng records a restriction against it ({e(restriction)}), so check the "
+            f"CosIng records a restriction against it ({data(restriction)}), so check the "
             f"corresponding Annex entry before formulating.")
 
     n_prod = len(prod_list)
@@ -230,9 +269,9 @@ def ingredient_profile(ing, prod_list):
             best_pos = int(best['position'])
             best_name = (best.get('product_name') or '').strip()
             if best_pos == 1 and best_name:
-                s2 += f", leading the declaration on {e(best_name)}"
+                s2 += f", leading the declaration on {data(best_name)}"
             elif best_name:
-                s2 += f", reaching position {best_pos} on {e(best_name)}"
+                s2 += f", reaching position {best_pos} on {data(best_name)}"
         s2 += "."
         sentences.append(s2)
 
@@ -252,7 +291,9 @@ def ingredient_profile(ing, prod_list):
             "(fungal-acne) trigger. That is a rule, not a measurement — treat it as a "
             "filter rather than a finding.")
 
-    body = " ".join(sentences)
+    # one <span> per sentence: each optional clause is its own translation segment
+    # instead of every combination of clauses being a different paragraph
+    body = " ".join(f"<span>{s}</span>" for s in sentences)
     return (
         '<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; '
         'margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;">'
@@ -290,20 +331,24 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
 
     description_block = ""
     if description:
+        # CosIng's English chemical description is source data, not site copy.
         description_block = (
-            '<p style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; '
+            '<p translate="no" lang="en" style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; '
             f'margin-bottom: 1.75rem;">{e(description)}</p>')
 
     # Fact grid: only facts that exist.
     facts = []
     if cas:
-        facts.append(("CAS REGISTRY NUMBER", f'<div style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: #38BDF8; font-weight: 600;">{e(cas)}</div>'))
+        facts.append(("CAS REGISTRY NUMBER", f'<div translate="no" style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: #38BDF8; font-weight: 600;">{e(cas)}</div>'))
     if field(ing, 'ec_number'):
-        facts.append(("EC NUMBER", f'<div style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: #38BDF8; font-weight: 600;">{e(field(ing, "ec_number"))}</div>'))
+        facts.append(("EC NUMBER", f'<div translate="no" style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: #38BDF8; font-weight: 600;">{e(field(ing, "ec_number"))}</div>'))
     if functions:
-        facts.append(("COSING FUNCTIONS", f'<div style="font-size: 1.05rem; color: #F8FAFC; font-weight: 500;">{e(functions_label)}</div>'))
+        # one span per function so a truncated list in the meta description still
+        # matches term by term (i18n_common.py placeholders them in <meta> too)
+        fn_spans = ", ".join(f'<span translate="no">{e(f.title())}</span>' for f in functions)
+        facts.append(("COSING FUNCTIONS", f'<div translate="no" style="font-size: 1.05rem; color: #F8FAFC; font-weight: 500;">{fn_spans}</div>'))
     if field(ing, 'cosing_restriction'):
-        facts.append(("COSING RESTRICTION", f'<div style="font-family: \'JetBrains Mono\', monospace; font-size: 1.05rem; color: #F59E0B;">{e(field(ing, "cosing_restriction"))}</div>'))
+        facts.append(("COSING RESTRICTION", f'<div translate="no" style="font-family: \'JetBrains Mono\', monospace; font-size: 1.05rem; color: #F59E0B;">{e(field(ing, "cosing_restriction"))}</div>'))
     if comedo:
         colour = '#F43F5E' if float(comedo) >= 3 else '#10B981'
         facts.append(("COMEDOGENIC RATING (FULTON 1989)", f'<div style="font-family: \'JetBrains Mono\', monospace; font-size: 1.1rem; color: {colour}; font-weight: 600;">{e(comedo)} / 5</div>'))
@@ -318,7 +363,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
         for p in prod_list[:8]:
             prod_rows += f"""
             <tr style="border-bottom: 1px solid #232838;">
-                <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;">{e(p['product_name'])}</td>
+                <td translate="no" style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;">{e(p['product_name'])}</td>
                 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#{e(str(p['position']))}</td>
             </tr>
             """
@@ -387,7 +432,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
     # `related_neighbors`), each labelled with the reason they're grouped,
     # plus the hub itself.
     related_items = [
-        (f"/landing/{m['filename'][:-5]}", m['inci_name'], "same CosIng function group")
+        (f"/landing/{m['filename'][:-5]}", m['inci_name'], "same CosIng function group", False)
         for m in related_members
     ]
     related_items.append((f"/landing/{hub_file[:-5]}", hub_name, None))
@@ -417,7 +462,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
         .related li {{ background: #161922; border: 1px solid #232838; border-radius: 8px; padding: 0.5rem 0.9rem; font-size: 0.85rem; }}
         .related a {{ color: #38BDF8; text-decoration: none; }}
         .related a:hover {{ text-decoration: underline; }}
-        .related-why {{ color: #64748B; font-size: 0.78rem; }}
+        .related-why {{ color: #64748B; font-size: 0.78rem; }}{LAYOUT_CSS}
     </style>
 
     <script type="application/ld+json">
@@ -454,10 +499,10 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
 <body style="background: #0A0B0E; color: #F8FAFC; font-family: 'Space Grotesk', -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column;">
     <div class="grid-overlay"></div>
 
-    <header style="border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <header class="page-header">
+        <div class="container page-header-inner">
             <a href="/" class="logo" style="font-weight: 700; font-size: 1.3rem; color: #F8FAFC; text-decoration: none;">INCIDB</a>
-            <nav style="display: flex; gap: 1.5rem; align-items: center;">
+            <nav class="page-nav">
                 <a href="/#coverage" style="color: #94A3B8; text-decoration: none; font-size: 0.9rem;">Coverage</a>
                 <a href="/landing/{hub_file[:-5]}" style="color: #38BDF8; text-decoration: none; font-size: 0.9rem;">{e(hub_name)}</a>
                 <a href="/#pricing" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Get INCIDB Complete — ${price}</a>
@@ -465,18 +510,18 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
         </div>
     </header>
 
-    <main class="container" style="flex: 1; padding: 3rem 1rem; max-width: 900px;">
-        <div style="margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+    <main class="container page-main" style="max-width: 900px;">
+        <div class="crumbs">
             <a href="/" style="color: #64748B; text-decoration: none;">HOME</a> /
             <a href="/landing/{hub_file[:-5]}" style="color: #38BDF8; text-decoration: none;">{e(hub_name.upper())}</a> /
-            <span style="color: #F8FAFC;">{e(inci_name)}</span>
+            <span translate="no" style="color: #F8FAFC;">{e(inci_name)}</span>
         </div>
 
-        <div style="background: #111318; border: 1px solid #232838; border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);">
+        <div class="monograph-card">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
                 <div>
                     <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #06B6D4; text-transform: uppercase; letter-spacing: 1px;">Canonical INCI monograph</span>
-                    <h1 style="font-size: 2.2rem; line-height: 1.2; margin-top: 0.25rem; color: #F8FAFC;">{e(inci_name)}</h1>
+                    <h1 translate="no" style="font-size: 2.2rem; line-height: 1.2; margin-top: 0.25rem; color: #F8FAFC;">{e(inci_name)}</h1>
                 </div>
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                     {badges_html}
@@ -487,13 +532,13 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
 
             {ingredient_profile(ing, prod_list)}
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; background: #161922; border: 1px solid #232838; border-radius: 12px; padding: 1.5rem;">
+            <div class="fact-grid">
 {facts_html}
             </div>
         </div>
 
         <div style="margin-bottom: 2.5rem;">
-            <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: #F8FAFC;">Sample products containing {e(inci_name)}</h2>
+            <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: #F8FAFC;">Sample products containing <span translate="no">{e(inci_name)}</span></h2>
             <p style="color: #94A3B8; font-size: 0.92rem; margin-bottom: 1.25rem;">Label positions from the free INCIDB sample. A lower position means the ingredient is declared earlier, i.e. present in a higher proportion.</p>
 
             <div style="background: #111318; border: 1px solid #232838; border-radius: 12px; overflow: hidden;">
@@ -511,8 +556,8 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members):
             </div>
         </div>
 
-        <div style="background: #161922; border: 1px solid #232838; border-radius: 16px; padding: 2rem;">
-            <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #F8FAFC;">Query {e(inci_name)} in the full snapshot</h3>
+        <div class="query-card">
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #F8FAFC;">Query <span translate="no">{e(inci_name)}</span> in the full snapshot</h3>
             <pre style="background: #0A0B0E; border: 1px solid #232838; padding: 1.25rem; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #38BDF8; overflow-x: auto; margin-bottom: 1.5rem;"><code>import pyarrow.parquet as pq
 
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
@@ -560,7 +605,7 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
         flag_tag = ('<span style="color: #F43F5E; font-size: 0.75rem; font-family: \'JetBrains Mono\', '
                     'monospace; font-weight: 600;">[Annex III]</span>') if allergen else ""
         cas_tag = (f'<span style="font-family: \'JetBrains Mono\', monospace; font-size: 0.75rem; '
-                   f'color: #06B6D4;">CAS {e(cas)}</span>') if cas else \
+                   f'color: #06B6D4;">CAS <span translate="no">{e(cas)}</span></span>') if cas else \
                   ('<span style="font-family: \'JetBrains Mono\', monospace; font-size: 0.75rem; '
                    'color: #475569;">no CAS in CosIng</span>')
 
@@ -570,8 +615,8 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
                 {cas_tag}
                 {flag_tag}
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">{e(inci)}</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">{e(functions)}</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">{e(inci)}</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">{e(functions)}</div>
         </a>
         """
 
@@ -602,6 +647,8 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="../index.css">
+    <style>{LAYOUT_CSS}
+    </style>
 
     <script type="application/ld+json">
     {{
@@ -616,10 +663,10 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
 <body style="background: #0A0B0E; color: #F8FAFC; font-family: 'Space Grotesk', -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column;">
     <div class="grid-overlay"></div>
 
-    <header style="border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <header class="page-header">
+        <div class="container page-header-inner">
             <a href="/" class="logo" style="font-weight: 700; font-size: 1.3rem; color: #F8FAFC; text-decoration: none;">INCIDB</a>
-            <nav style="display: flex; gap: 1.5rem; align-items: center;">
+            <nav class="page-nav">
                 <a href="/#coverage" style="color: #94A3B8; text-decoration: none; font-size: 0.9rem;">Coverage</a>
                 <a href="/schema" style="color: #94A3B8; text-decoration: none; font-size: 0.9rem;">Schema</a>
                 <a href="/#pricing" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Get INCIDB Complete — ${price}</a>
@@ -627,8 +674,8 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
         </div>
     </header>
 
-    <main class="container" style="flex: 1; padding: 3rem 1rem; max-width: 1100px;">
-        <div style="margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+    <main class="container page-main" style="max-width: 1100px;">
+        <div class="crumbs">
             <a href="/" style="color: #64748B; text-decoration: none;">HOME</a> /
             <span style="color: #38BDF8;">{e(hub_name.upper())}</span>
         </div>
@@ -639,7 +686,7 @@ def generate_hub(hub_name, hub_file, ing_list, claims):
             <p style="color: #94A3B8; font-size: 1.02rem; margin-top: 0.75rem; line-height: 1.7;">{len(ing_list)} ingredients from the free INCIDB sample whose recorded CosIng <code>functions</code> place them here. Membership is read from the data, not assigned by hand — an ingredient with no CosIng function has no monograph, because there would be nothing to say about it.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; margin-bottom: 3rem;">
+        <div class="hub-grid">
             {cards}
         </div>
     </main>

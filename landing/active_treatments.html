@@ -7,14 +7,52 @@
     <meta name="description" content="46 INCI monographs whose recorded CosIng functions place them under Active Treatments, Exfoliants &amp; UV Filters. CAS numbers, functional categories…">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://incidb.dataengineered.io/landing/active_treatments">
+    <!-- i18n:alternates -->
     <link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/active_treatments">
+    <link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/landing/active_treatments">
+    <link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/landing/active_treatments">
+    <link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/landing/active_treatments">
+    <link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/landing/active_treatments">
     <link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/landing/active_treatments">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <script src="/i18n/i18n.js?v=1" defer></script>
+    <!-- /i18n:alternates -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="../index.css">
+    <style>
+        .page-header { border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .page-header-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem 1.5rem; }
+        .page-nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center; }
+        .page-main { flex: 1; width: 100%; padding: 3rem 1rem; overflow-wrap: anywhere; }
+        /* Beats the `h1,h2,h3{overflow-wrap:break-word}` that i18n_common.py adds to the
+           localized copies: break-word does not lower min-content, so a slash-joined INCI
+           name ("ETHYLENE/PROPYLENE/STYRENE COPOLYMER") would still widen the title row. */
+        .page-main h1, .page-main h2, .page-main h3 { overflow-wrap: anywhere; }
+        .crumbs { margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .page-main pre { max-width: 100%; }
+        .monograph-card { background: #111318; border: 1px solid #232838; border-radius: 16px; padding: 2.5rem; margin-bottom: 2.5rem; box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7); }
+        .fact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1.25rem; background: #161922; border: 1px solid #232838; border-radius: 12px; padding: 1.5rem; }
+        .fact-grid > div { min-width: 0; }
+        .query-card { background: #161922; border: 1px solid #232838; border-radius: 16px; padding: 2rem; }
+        .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+        @media (max-width: 600px) {
+            .page-header { position: static; }
+            .page-header > .container, footer > .container { padding: 0 1rem; }
+            .page-main { padding: 2rem 1rem; }
+            .page-main h1 { font-size: 1.75rem !important; }
+            .monograph-card { padding: 1.25rem; }
+            .fact-grid { padding: 1rem; }
+            .query-card { padding: 1.25rem; }
+        }
+    </style>
 
     <script type="application/ld+json">
     {
@@ -29,10 +67,10 @@
 <body style="background: #0A0B0E; color: #F8FAFC; font-family: 'Space Grotesk', -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column;">
     <div class="grid-overlay"></div>
 
-    <header style="border-bottom: 1px solid #232838; padding: 1rem 0; background: rgba(10, 11, 14, 0.85); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <header class="page-header">
+        <div class="container page-header-inner">
             <a href="/" class="logo" style="font-weight: 700; font-size: 1.3rem; color: #F8FAFC; text-decoration: none;">INCIDB</a>
-            <nav style="display: flex; gap: 1.5rem; align-items: center;">
+            <nav class="page-nav">
                 <a href="/#coverage" style="color: #94A3B8; text-decoration: none; font-size: 0.9rem;">Coverage</a>
                 <a href="/schema" style="color: #94A3B8; text-decoration: none; font-size: 0.9rem;">Schema</a>
                 <a href="/#pricing" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Get INCIDB Complete — $79</a>
@@ -40,8 +78,8 @@
         </div>
     </header>
 
-    <main class="container" style="flex: 1; padding: 3rem 1rem; max-width: 1100px;">
-        <div style="margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+    <main class="container page-main" style="max-width: 1100px;">
+        <div class="crumbs">
             <a href="/" style="color: #64748B; text-decoration: none;">HOME</a> /
             <span style="color: #38BDF8;">ACTIVE TREATMENTS, EXFOLIANTS &amp; UV FILTERS</span>
         </div>
@@ -52,87 +90,87 @@
             <p style="color: #94A3B8; font-size: 1.02rem; margin-top: 0.75rem; line-height: 1.7;">46 ingredients from the free INCIDB sample whose recorded CosIng <code>functions</code> place them here. Membership is read from the data, not assigned by hand — an ingredient with no CosIng function has no monograph, because there would be nothing to say about it.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; margin-bottom: 3rem;">
+        <div class="hub-grid">
             
         <a href="/landing/inci_4049_aluminum_chlorohydrate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 12042-91-0</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">12042-91-0</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ALUMINUM CHLOROHYDRATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiperspirant, Astringent, Deodorant</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ALUMINUM CHLOROHYDRATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiperspirant, Astringent, Deodorant</div>
         </a>
         
         <a href="/landing/inci_4077_aluminum_sesquichlorohydrate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 11089-92-2</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">11089-92-2</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ALUMINUM SESQUICHLOROHYDRATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiperspirant, Astringent, Deodorant</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ALUMINUM SESQUICHLOROHYDRATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiperspirant, Astringent, Deodorant</div>
         </a>
         
         <a href="/landing/inci_4100_aluminum_zirconium_tetrachlorohydrex_gly" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 134910-86-4</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">134910-86-4</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ALUMINUM ZIRCONIUM TETRACHLOROHYDREX GLY</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiperspirant, Astringent, Deodorant</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ALUMINUM ZIRCONIUM TETRACHLOROHYDREX GLY</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiperspirant, Astringent, Deodorant</div>
         </a>
         
         <a href="/landing/inci_4255_ammonium_alum" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 7784-25-0</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">7784-25-0</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">AMMONIUM ALUM</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiperspirant, Astringent</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">AMMONIUM ALUM</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiperspirant, Astringent</div>
         </a>
         
         <a href="/landing/inci_6650_benzophenone_1" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 131-56-6</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">131-56-6</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BENZOPHENONE-1</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BENZOPHENONE-1</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber</div>
         </a>
         
         <a href="/landing/inci_6652_benzophenone_3" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 131-57-7</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">131-57-7</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BENZOPHENONE-3</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BENZOPHENONE-3</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_6654_benzophenone_4" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 4065-45-6</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">4065-45-6</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BENZOPHENONE-4</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BENZOPHENONE-4</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_7287_bis_ethylhexyloxyphenol_methoxyphenyl_triazine" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 187393-00-6</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">187393-00-6</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BIS-ETHYLHEXYLOXYPHENOL METHOXYPHENYL TRIAZINE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Hair Conditioning, Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BIS-ETHYLHEXYLOXYPHENOL METHOXYPHENYL TRIAZINE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Hair Conditioning, Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_7882_butyl_methoxydibenzoylmethane" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 70356-09-1</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">70356-09-1</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BUTYL METHOXYDIBENZOYLMETHANE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">BUTYL METHOXYDIBENZOYLMETHANE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_8618_c12_22_alkyl_acrylate_hydroxyethylacrylate_copolymer" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
@@ -140,170 +178,170 @@
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #475569;">no CAS in CosIng</span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">C12-22 ALKYL ACRYLATE/HYDROXYETHYLACRYLATE COPOLYMER</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Binding, Light Stabilizer, Viscosity Controlling</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">C12-22 ALKYL ACRYLATE/HYDROXYETHYLACRYLATE COPOLYMER</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Binding, Light Stabilizer, Viscosity Controlling</div>
         </a>
         
         <a href="/landing/inci_8890_calcium_glycerophosphate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 27214-00-2 / 126-95-4 / 1336-00-1 / 58409-70-4</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">27214-00-2 / 126-95-4 / 1336-00-1 / 58409-70-4</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">CALCIUM GLYCEROPHOSPHATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Oral Care</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">CALCIUM GLYCEROPHOSPHATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Oral Care</div>
         </a>
         
         <a href="/landing/inci_10814_cholesterol" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 57-88-5</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">57-88-5</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">CHOLESTEROL</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Skin Conditioning - Emollient, Surfactant - Emulsifying, Skin Conditioning, Light Stabilizer, Viscosity Controlling</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">CHOLESTEROL</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Skin Conditioning - Emollient, Surfactant - Emulsifying, Skin Conditioning, Light Stabilizer, Viscosity Controlling</div>
         </a>
         
         <a href="/landing/inci_14186_copernicia_cerifera_wax" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 8015-86-9</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">8015-86-9</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">COPERNICIA CERIFERA WAX</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Abrasive, Epilating, Exfoliating, Film Forming, Skin Conditioning - Emollient, Viscosity Controlling</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">COPERNICIA CERIFERA WAX</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Abrasive, Epilating, Exfoliating, Film Forming, Skin Conditioning - Emollient, Viscosity Controlling</div>
         </a>
         
         <a href="/landing/inci_15764_diethylamino_hydroxybenzoyl_hexyl_benzoate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 302776-68-7</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">302776-68-7</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">DIETHYLAMINO HYDROXYBENZOYL HEXYL BENZOATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">DIETHYLAMINO HYDROXYBENZOYL HEXYL BENZOATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_15787_diethylhexyl_butamido_triazone" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 154702-15-5</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">154702-15-5</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">DIETHYLHEXYL BUTAMIDO TRIAZONE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">DIETHYLHEXYL BUTAMIDO TRIAZONE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_16468_disteardimonium_hectorite" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 97280-96-1</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">97280-96-1</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">DISTEARDIMONIUM HECTORITE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Viscosity Controlling</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">DISTEARDIMONIUM HECTORITE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Viscosity Controlling</div>
         </a>
         
         <a href="/landing/inci_16733_drometrizole_trisiloxane" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 155633-54-8</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">155633-54-8</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">DROMETRIZOLE TRISILOXANE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">DROMETRIZOLE TRISILOXANE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_18118_ethylhexyl_methoxycinnamate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 5466-77-3/83834-59-7 (trans-)</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">5466-77-3/83834-59-7 (trans-)</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ETHYLHEXYL METHOXYCINNAMATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ETHYLHEXYL METHOXYCINNAMATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_18146_ethylhexyl_salicylate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 118-60-5</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">118-60-5</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ETHYLHEXYL SALICYLATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ETHYLHEXYL SALICYLATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_18161_ethylhexyl_triazone" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 88122-99-0</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">88122-99-0</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ETHYLHEXYL TRIAZONE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ETHYLHEXYL TRIAZONE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_18277_etocrylene" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 5232-99-5</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">5232-99-5</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ETOCRYLENE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Uv Absorber</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ETOCRYLENE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Uv Absorber</div>
         </a>
         
         <a href="/landing/inci_22259_homosalate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 118-56-9</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">118-56-9</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">HOMOSALATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Fragrance, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">HOMOSALATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Fragrance, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_23204_hydroxyethylcellulose" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 9004-62-0</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">9004-62-0</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">HYDROXYETHYLCELLULOSE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Binding, Emulsion Stabilising, Film Forming, Light Stabilizer, Viscosity Controlling</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">HYDROXYETHYLCELLULOSE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Binding, Emulsion Stabilising, Film Forming, Light Stabilizer, Viscosity Controlling</div>
         </a>
         
         <a href="/landing/inci_24169_isoamyl_p_methoxycinnamate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 71617-10-2</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">71617-10-2</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ISOAMYL P-METHOXYCINNAMATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ISOAMYL P-METHOXYCINNAMATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_28549_microcrystalline_cellulose" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 9004-34-6</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">9004-34-6</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">MICROCRYSTALLINE CELLULOSE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Abrasive, Absorbent, Anticaking, Bulking, Emulsion Stabilising, Opacifying, Light Stabilizer, Viscosity Controlling</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">MICROCRYSTALLINE CELLULOSE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Abrasive, Absorbent, Anticaking, Bulking, Emulsion Stabilising, Opacifying, Light Stabilizer, Viscosity Controlling</div>
         </a>
         
         <a href="/landing/inci_30238_octocrylene" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 6197-30-4</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">6197-30-4</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">OCTOCRYLENE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">OCTOCRYLENE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_30502_olaflur" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 6818-37-7</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">6818-37-7</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">OLAFLUR</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Hair Fixing, Oral Care</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">OLAFLUR</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Hair Fixing, Oral Care</div>
         </a>
         
         <a href="/landing/inci_33972_phenylbenzimidazole_sulfonic_acid" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 27503-81-7</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">27503-81-7</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">PHENYLBENZIMIDAZOLE SULFONIC ACID</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">PHENYLBENZIMIDAZOLE SULFONIC ACID</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_34721_polyglyceryl_10_caprylate_caprate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
@@ -311,89 +349,89 @@
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #475569;">no CAS in CosIng</span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">POLYGLYCERYL-10 CAPRYLATE/CAPRATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Surfactant - Emulsifying, Solvent, Light Stabilizer, Surfactant - Cleansing</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">POLYGLYCERYL-10 CAPRYLATE/CAPRATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Surfactant - Emulsifying, Solvent, Light Stabilizer, Surfactant - Cleansing</div>
         </a>
         
         <a href="/landing/inci_36011_propolis_cera" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 85665-41-4</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">85665-41-4</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">PROPOLIS CERA</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Anti-Sebum, Moisturising, Smoothing</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">PROPOLIS CERA</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Anti-Sebum, Moisturising, Smoothing</div>
         </a>
         
         <a href="/landing/inci_37870_rubus_idaeus_fruit_extract" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 84929-76-0</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">84929-76-0</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">RUBUS IDAEUS FRUIT EXTRACT</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Astringent, Keratolytic, Skin Conditioning, Smoothing, Tonic</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">RUBUS IDAEUS FRUIT EXTRACT</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Astringent, Keratolytic, Skin Conditioning, Smoothing, Tonic</div>
         </a>
         
         <a href="/landing/inci_38300_salvia_officinalis_leaf_extract" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 84082-79-1 / 8022-56-8</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">84082-79-1 / 8022-56-8</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SALVIA OFFICINALIS LEAF EXTRACT</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Anti-Seborrheic, Cleansing, Oral Care, Skin Conditioning, Tonic</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SALVIA OFFICINALIS LEAF EXTRACT</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Anti-Seborrheic, Cleansing, Oral Care, Skin Conditioning, Tonic</div>
         </a>
         
         <a href="/landing/inci_39668_sodium_benzotriazolyl_butylphenol_sulfonate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 92484-48-5</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">92484-48-5</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM BENZOTRIAZOLYL BUTYLPHENOL SULFONATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Uv Absorber</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM BENZOTRIAZOLYL BUTYLPHENOL SULFONATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Uv Absorber</div>
         </a>
         
         <a href="/landing/inci_40071_sodium_fluoride" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 7681-49-4</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">7681-49-4</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM FLUORIDE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Oral Care</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM FLUORIDE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Oral Care</div>
         </a>
         
         <a href="/landing/inci_40352_sodium_lactate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 72-17-3 / 867-56-1</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">72-17-3 / 867-56-1</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM LACTATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Buffering, Humectant, Keratolytic</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM LACTATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Buffering, Humectant, Keratolytic</div>
         </a>
         
         <a href="/landing/inci_40624_sodium_monofluorophosphate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 10163-15-2 / 7631-97-2</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">10163-15-2 / 7631-97-2</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM MONOFLUOROPHOSPHATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Oral Care</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM MONOFLUOROPHOSPHATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Oral Care</div>
         </a>
         
         <a href="/landing/inci_40728_sodium_phosphate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 13472-35-0 (dihydrate)/ 7558-80-7 / 7632-05-5</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">13472-35-0 (dihydrate)/ 7558-80-7 / 7632-05-5</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM PHOSPHATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Anti-Seborrheic, Buffering, Deodorant</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM PHOSPHATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Anti-Seborrheic, Buffering, Deodorant</div>
         </a>
         
         <a href="/landing/inci_40878_sodium_stannate" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 12058-66-1</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">12058-66-1</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM STANNATE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Viscosity Controlling</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SODIUM STANNATE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Viscosity Controlling</div>
         </a>
         
         <a href="/landing/inci_41514_sr_hydrozoan_polypeptide_1" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
@@ -401,71 +439,71 @@
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #475569;">no CAS in CosIng</span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SR-HYDROZOAN POLYPEPTIDE-1</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Film Forming, Hair Conditioning, Humectant, Skin Conditioning, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">SR-HYDROZOAN POLYPEPTIDE-1</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Film Forming, Hair Conditioning, Humectant, Skin Conditioning, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_41559_stannous_fluoride" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 7783-47-3</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">7783-47-3</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">STANNOUS FLUORIDE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Oral Care</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">STANNOUS FLUORIDE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Oral Care</div>
         </a>
         
         <a href="/landing/inci_42659_terephthalylidene_dicamphor_sulfonic_acid" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 92761-26-7 / 90457-82-2</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">92761-26-7 / 90457-82-2</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">TEREPHTHALYLIDENE DICAMPHOR SULFONIC ACID</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">TEREPHTHALYLIDENE DICAMPHOR SULFONIC ACID</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Light Stabilizer, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_43231_titanium_dioxide" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 13463-67-7</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">13463-67-7</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">TITANIUM DIOXIDE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Colorant, Opacifying, Uv Absorber, Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">TITANIUM DIOXIDE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Colorant, Opacifying, Uv Absorber, Uv Filter</div>
         </a>
         
         <a href="/landing/inci_44488_urtica_dioica_extract" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 84012-40-8</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">84012-40-8</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">URTICA DIOICA EXTRACT</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Anti-Seborrheic, Astringent, Hair Conditioning, Skin Conditioning, Soothing, Tonic</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">URTICA DIOICA EXTRACT</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Anti-Seborrheic, Astringent, Hair Conditioning, Skin Conditioning, Soothing, Tonic</div>
         </a>
         
         <a href="/landing/inci_45367_water" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 7732-18-5</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">7732-18-5</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">WATER</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Skin Conditioning, Solvent</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">WATER</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Antiplaque, Skin Conditioning, Solvent</div>
         </a>
         
         <a href="/landing/inci_45872_xylitol" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 87-99-0</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">87-99-0</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">XYLITOL</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Anti-Seborrheic, Deodorant, Humectant, Flavouring, Skin Conditioning - Humectant</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">XYLITOL</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Anti-Seborrheic, Deodorant, Humectant, Flavouring, Skin Conditioning - Humectant</div>
         </a>
         
         <a href="/landing/inci_46193_zinc_oxide" style="display: block; background: #161922; border: 1px solid #232838; border-radius: 10px; padding: 1.25rem; text-decoration: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS 1314-13-2</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #06B6D4;">CAS <span translate="no">1314-13-2</span></span>
                 
             </div>
-            <h3 style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ZINC OXIDE</h3>
-            <div style="font-size: 0.8rem; color: #94A3B8;">Uv Filter</div>
+            <h3 translate="no" style="font-size: 1.05rem; color: #F8FAFC; margin-bottom: 0.35rem;">ZINC OXIDE</h3>
+            <div translate="no" style="font-size: 0.8rem; color: #94A3B8;">Uv Filter</div>
         </a>
         
         </div>
@@ -478,6 +516,6 @@
             <p style="margin-top: 0.5rem; font-size: 0.78rem;">Product data © Open Beauty Facts contributors (ODbL v1.0). Ingredient enrichment contains data from the European Commission CosIng database.</p>
             <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Part of the DataEngineered catalog →</a> · <a href="https://dataengineered.io/about">About</a> · <a href="https://dataengineered.io/terms">Terms</a> · <a href="https://dataengineered.io/privacy">Privacy</a> · <a href="https://dataengineered.io/refund-policy">Refund policy</a></div>
         </div>
-    </footer>
+    <!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Language" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><span aria-current="true" style="font-weight:600">English</span> · <a href="/es/landing/active_treatments" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <a href="/de/landing/active_treatments" hreflang="de" lang="de" data-i18n-lang="de">Deutsch</a> · <a href="/fr/landing/active_treatments" hreflang="fr" lang="fr" data-i18n-lang="fr">Français</a> · <a href="/pt-br/landing/active_treatments" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></nav><!-- /i18n:switcher --></footer>
 </body>
 </html>
