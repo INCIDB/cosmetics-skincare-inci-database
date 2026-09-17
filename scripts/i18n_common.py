@@ -372,7 +372,11 @@ def collect_segments(soup):
     segs, jsonld_docs = [], []
 
     def in_skip(tag):
-        for p in [tag] + list(tag.parents):
+        # a <textarea>'s *content* is user input (skipped), but its placeholder/title/aria
+        # attributes are site copy — so SKIP_TAGS applies to the tag itself except textarea
+        if notranslate(tag) or (tag.name in SKIP_TAGS and tag.name != "textarea"):
+            return True
+        for p in tag.parents:
             if isinstance(p, Tag) and (p.name in SKIP_TAGS or notranslate(p)):
                 return True
         return False
@@ -512,7 +516,7 @@ def localize_numbers_in_text(s, loc):
 # Localized pages only: German/French/Spanish text is longer; let table cells and headings
 # wrap instead of pushing the layout wider than a phone screen. Hyphenation follows <html lang>.
 LOCALIZED_CSS = ("<style>th,td{overflow-wrap:anywhere;hyphens:auto}"
-                 "h1,h2,h3,h4,button,.btn{overflow-wrap:break-word;hyphens:auto}</style>")
+                 "h1,h2,h3,h4,button,.btn{overflow-wrap:break-word}</style>")
 
 
 def render_pattern(soup, pattern, mapping, loc):
