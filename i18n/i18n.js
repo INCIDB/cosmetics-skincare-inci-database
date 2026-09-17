@@ -18,6 +18,84 @@
     'ko': ['이 페이지는 한국어로도 제공됩니다.', '한국어로 보기', '닫기'],
     'zh-tw': ['本頁面也提供繁體中文版本。', '閱讀繁體中文版', '關閉']
   };
+  // header language menu (<details class="i18n-menu">): close on outside click and Escape
+  document.addEventListener('click', function (e) {
+    var open = document.querySelectorAll('details.i18n-menu[open]');
+    for (var n = 0; n < open.length; n++) { if (!open[n].contains(e.target)) open[n].removeAttribute('open'); }
+  });
+  // A header nav that does not wrap can push the menu off-screen or hide it on phones (the nav
+  // overflows, or the site hides it). Then the menu moves to the page's top-right corner; a comment
+  // placeholder remembers its header spot so it can go back when the viewport grows.
+  // A top-right pill must not cover header text (e.g. a long breadcrumb on a phone): if it does,
+  // the page gets just enough top padding for the pill to sit above the content.
+  var body = document.body;
+  var basePad = null;
+  function clearOverlap(m) {
+    var r = m.getBoundingClientRect();
+    var els = document.querySelectorAll('header *, .header-bar *, .site-nav *');
+    for (var k = 0; k < els.length; k++) {
+      var e = els[k];
+      if (m.contains(e) || e.children.length) continue;
+      var q = e.getBoundingClientRect();
+      if (q.width && q.height && q.right > r.left && q.left < r.right && q.bottom > r.top && q.top < r.bottom) {
+        if (basePad === null) basePad = body.style.paddingTop;
+        var pt = parseFloat(getComputedStyle(body).paddingTop) || 0;
+        body.style.paddingTop = (pt + (r.bottom - q.top) + 8) + 'px';
+        return;
+      }
+    }
+  }
+  function fitMenus() {
+    var vw = document.documentElement.clientWidth || window.innerWidth;
+    if (basePad !== null) { body.style.paddingTop = basePad; basePad = null; }
+    var menus = document.querySelectorAll('details.i18n-menu');
+    for (var n = 0; n < menus.length; n++) {
+      var m = menus[n];
+      if (m.__i18nHome) {
+        m.__i18nHome.parentNode.insertBefore(m, m.__i18nHome);
+        m.classList.remove('i18n-menu--float');
+      } else if (m.classList.contains('i18n-menu--float')) {
+        continue;
+      }
+      var r = m.getBoundingClientRect();
+      if (m.offsetParent === null || r.width === 0 || r.left < 0 || r.right > vw + 1) {
+        if (!m.__i18nHome) {
+          m.__i18nHome = document.createComment('i18n-menu');
+          m.parentNode.insertBefore(m.__i18nHome, m);
+        }
+        m.classList.add('i18n-menu--float');
+        document.body.appendChild(m);
+      }
+    }
+    var floats = document.querySelectorAll('details.i18n-menu--float');
+    for (var f = 0; f < floats.length; f++) clearOverlap(floats[f]);
+  }
+  fitMenus();
+  window.addEventListener('load', fitMenus);
+  var fitTimer = null;
+  window.addEventListener('resize', function () { clearTimeout(fitTimer); fitTimer = setTimeout(fitMenus, 150); });
+  // keep the opened list on screen: right-aligned by default, flipped left when the pill sits
+  // near the left edge (e.g. a stacked mobile nav)
+  document.addEventListener('toggle', function (e) {
+    var d = e.target;
+    if (!d || !d.classList || !d.classList.contains('i18n-menu') || !d.open) return;
+    var ul = d.querySelector('ul');
+    if (!ul) return;
+    ul.style.left = ''; ul.style.right = '';
+    var r = ul.getBoundingClientRect();
+    var vw = document.documentElement.clientWidth || window.innerWidth;
+    if (r.left < 8) { ul.style.left = '0'; ul.style.right = 'auto'; }
+    else if (r.right > vw - 8) { ul.style.right = '0'; ul.style.left = 'auto'; }
+  }, true);
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var open = document.querySelectorAll('details.i18n-menu[open]');
+    for (var n = 0; n < open.length; n++) {
+      open[n].removeAttribute('open');
+      var s = open[n].querySelector('summary');
+      if (s) s.focus();
+    }
+  });
   function store(v) { try { window.localStorage.setItem(KEY, v); } catch (e) {} }
   function stored() { try { return window.localStorage.getItem(KEY); } catch (e) { return null; } }
   document.addEventListener('click', function (e) {
