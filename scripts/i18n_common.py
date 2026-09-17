@@ -77,7 +77,7 @@ try:
 except ImportError:  # pragma: no cover
     sys.exit("i18n_common.py needs beautifulsoup4:  pip install beautifulsoup4")
 
-VERSION = "1"
+VERSION = "3"
 CONFIG_NAME = "i18n.config.json"
 MARKER_NAME = "_i18n-generated.txt"
 PAGES_FILE_LIMIT = 20_000  # Cloudflare Pages: max files per deployment
@@ -677,7 +677,47 @@ def coverage(segs, catalog, keep):
 # ---------------------------------------------------------------------------
 
 BLOCK_RE = re.compile(r"[ \t]*<!-- i18n:alternates -->.*?<!-- /i18n:alternates -->[ \t]*(?:\r?\n)?"
-                      r"|<!-- i18n:switcher -->.*?<!-- /i18n:switcher -->", re.S)
+                      r"|<!-- i18n:(switcher|header) -->.*?<!-- /i18n:\1 -->", re.S)
+
+# Header language menu: a <details> dropdown (works without JS; i18n.js only closes it on an
+# outside click / Escape). Placement, first match wins:
+#   1. config "header_switcher": [{"selector": css, "position": append|after|before|row|float}]
+#   2. the header's nav (nav, .nav-links, .navlinks, .bar-nav)  -> appended as its last item
+#   3. the last link container of the header row                -> appended as its last item
+#   4. the header row itself                                    -> appended, pushed right
+#   5. no header at all                                         -> floating, top-right of the page
+HEADER_ROOTS = "header, .header-bar, .site-nav"
+HEADER_NAVS = "nav, .nav-links, .navlinks, .bar-nav"
+HEADER_CSS = (
+    "<style>"
+    ".i18n-menu{position:relative;display:inline-block;align-self:center;font-size:.85rem;line-height:1;"
+    "font-weight:500;text-transform:none;letter-spacing:normal}"
+    ".i18n-menu.i18n-menu>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;"
+    "gap:.35rem;padding:.4rem .65rem;border:1px solid currentColor;"
+    "border-color:color-mix(in srgb,currentColor 40%,transparent);border-radius:999px;white-space:nowrap;"
+    "user-select:none;color:inherit;background:transparent}"
+    ".i18n-menu>summary::-webkit-details-marker{display:none}"
+    ".i18n-menu>summary:focus-visible{outline:2px solid #93c5fd;outline-offset:2px}"
+    ".i18n-menu.i18n-menu>ul{display:block;position:absolute;right:0;top:calc(100% + 6px);z-index:2147482000;"
+    "min-width:10rem;margin:0;padding:.35rem;list-style:none;background:#111827;border:1px solid #374151;"
+    "border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.35);text-align:left}"
+    ".i18n-menu.i18n-menu li{display:block;margin:0;padding:0;list-style:none}"
+    ".i18n-menu.i18n-menu li>a,.i18n-menu.i18n-menu li>span{display:block;padding:.5rem .75rem;"
+    "border-radius:6px;color:#f9fafb;background:transparent;text-decoration:none;white-space:nowrap;"
+    "font-size:.9rem;font-weight:400;line-height:1.2;border:0;box-shadow:none}"
+    ".i18n-menu.i18n-menu li>a:hover,.i18n-menu.i18n-menu li>a:focus-visible{background:#1f2937;color:#fff}"
+    ".i18n-menu.i18n-menu li>span{font-weight:600;color:#93c5fd}"
+    ".i18n-menu--row{margin-left:auto}"
+    ":is(nav,a,button):has(+ .i18n-menu--row){margin-left:auto}"
+    ":is(nav,a,button):has(+ .i18n-menu--row)+.i18n-menu--row{margin-left:.75rem}"
+    ".i18n-menu--float{position:absolute;top:14px;right:16px;z-index:2147481000;color:#e5e7eb}"
+    "</style>"
+)
+GLOBE_SVG = ('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+             'stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">'
+             '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/>'
+             '<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'
+             '</svg>')
 HREFLANG_RE = re.compile(r"[ \t]*<link\b[^>]*\bhreflang\s*=[^>]*>[ \t]*(?:\r?\n)?", re.I)
 CANON_RE = re.compile(r"([ \t]*)<link\b[^>]*\brel\s*=\s*[\"']?canonical[\"']?[^>]*>[ \t]*(\r?\n)?", re.I)
 
@@ -698,6 +738,7 @@ def alternates_block(site, rel, langs, cur, has_og_locale, nl, indent):
     if cur != SOURCE:
         lines.append(LOCALIZED_CSS)
     if len(langs) > 1:
+        lines.append(HEADER_CSS)
         if not has_og_locale:
             lines.append(f'<meta property="og:locale" content="{LOCALES[cur]["og"]}">')
         for lg in ordered_langs(site, langs):
@@ -723,8 +764,99 @@ def switcher_html(site, rel, langs, cur):
             + " · ".join(items) + "</nav><!-- /i18n:switcher -->")
 
 
+def header_menu_html(site, rel, langs, cur, variant):
+    L = LOCALES[cur]
+    items = []
+    for lg in ordered_langs(site, langs):
+        M = LOCALES[lg]
+        if lg == cur:
+            items.append(f'<li><span aria-current="true" lang="{M["html"]}">{html.escape(M["name"])}</span></li>')
+        else:
+            items.append(f'<li><a href="{site.url_path(rel, lg)}" hreflang="{M["hreflang"]}" lang="{M["html"]}" '
+                         f'data-i18n-lang="{lg}">{html.escape(M["name"])}</a></li>')
+    short = "中文" if cur.startswith("zh") else cur.split("-")[0].upper()
+    label = html.escape(f'{L["label"]}: {L["name"]}')
+    return (f'<!-- i18n:header --><details class="i18n-menu i18n-menu--{variant}" translate="no">'
+            f'<summary aria-label="{label}" title="{label}">{GLOBE_SVG}<span>{short}</span></summary>'
+            f'<ul>{"".join(items)}</ul></details><!-- /i18n:header -->')
+
+
+def _element_span(text, start, name):
+    """(start, close_start, close_end) of the element whose start tag begins at `start`."""
+    rx = re.compile(r"<(/?)" + re.escape(name) + r"(?=[\s>/])[^>]*>", re.I)
+    depth = 0
+    for m in rx.finditer(text, start):
+        if m.group(1):
+            depth -= 1
+            if depth == 0:
+                return start, m.start(), m.end()
+        elif not m.group(0).endswith("/>"):
+            depth += 1
+    return None
+
+
+def header_target(soup, site):
+    for rule in site.cfg.get("header_switcher", []):
+        t = soup.select_one(rule["selector"])
+        if t is not None:
+            return t, rule.get("position", "append")
+    root = soup.select_one(HEADER_ROOTS)
+    if root is None:
+        return None, "float"
+    nav = root.select_one(HEADER_NAVS)
+    if nav is not None:
+        return nav, "append"
+    row = root
+    while True:
+        kids = [c for c in row.children if isinstance(c, Tag) and c.name not in ("script", "style")]
+        if len(kids) == 1 and kids[0].name not in ("a", "button", "img", "svg"):
+            row = kids[0]
+            continue
+        break
+    if len(kids) > 1 and kids[-1].name in ("div", "span", "ul", "p") and kids[-1].find("a") is not None:
+        return kids[-1], "append"
+    return row, "row"
+
+
+def insert_header_menu(text, site, rel, langs, cur):
+    """Insert the header language menu into (block-stripped) page text; unchanged if no safe spot."""
+    soup = BeautifulSoup(text, "html.parser")
+    target, position = header_target(soup, site)
+    starts = [0] + [m.end() for m in re.finditer("\n", text)]
+    if position == "float" or target is None:
+        body = soup.body
+        if body is None or body.sourceline is None:
+            return text
+        off = starts[body.sourceline - 1] + body.sourcepos
+        end = text.find(">", off)
+        if end < 0:
+            return text
+        menu = header_menu_html(site, rel, langs, cur, "float")
+        return text[:end + 1] + menu + text[end + 1:]
+    if target.sourceline is None:
+        return text
+    off = starts[target.sourceline - 1] + target.sourcepos
+    if not text[off:off + len(target.name) + 1].lower() == "<" + target.name:
+        return text  # position mismatch: never guess
+    span = _element_span(text, off, target.name)
+    if span is None:
+        return text
+    start, close_start, close_end = span
+    if position == "append":
+        return text[:close_start] + header_menu_html(site, rel, langs, cur, "nav") + text[close_start:]
+    if position == "row":
+        return text[:close_start] + header_menu_html(site, rel, langs, cur, "row") + text[close_start:]
+    if position == "after":
+        return text[:close_end] + header_menu_html(site, rel, langs, cur, "row") + text[close_end:]
+    if position == "before":
+        return text[:start] + header_menu_html(site, rel, langs, cur, "nav") + text[start:]
+    return text
+
+
 def inject(text, site, rel, langs, cur, is_404=False):
     text = strip_blocks(text)
+    if not is_404 and len(langs) > 1:
+        text = insert_header_menu(text, site, rel, langs, cur)
     nl = "\r\n" if "\r\n" in text else "\n"
     lower = text.lower()
     head_end = lower.find("</head>")
@@ -1063,6 +1195,33 @@ I18N_JS = r"""/* i18n.js — DataEngineered language suggestion. Generated by sc
     'ko': ['이 페이지는 한국어로도 제공됩니다.', '한국어로 보기', '닫기'],
     'zh-tw': ['本頁面也提供繁體中文版本。', '閱讀繁體中文版', '關閉']
   };
+  // header language menu (<details class="i18n-menu">): close on outside click and Escape
+  document.addEventListener('click', function (e) {
+    var open = document.querySelectorAll('details.i18n-menu[open]');
+    for (var n = 0; n < open.length; n++) { if (!open[n].contains(e.target)) open[n].removeAttribute('open'); }
+  });
+  // keep the opened list on screen: right-aligned by default, flipped left when the pill sits
+  // near the left edge (e.g. a stacked mobile nav)
+  document.addEventListener('toggle', function (e) {
+    var d = e.target;
+    if (!d || !d.classList || !d.classList.contains('i18n-menu') || !d.open) return;
+    var ul = d.querySelector('ul');
+    if (!ul) return;
+    ul.style.left = ''; ul.style.right = '';
+    var r = ul.getBoundingClientRect();
+    var vw = document.documentElement.clientWidth || window.innerWidth;
+    if (r.left < 8) { ul.style.left = '0'; ul.style.right = 'auto'; }
+    else if (r.right > vw - 8) { ul.style.right = '0'; ul.style.left = 'auto'; }
+  }, true);
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var open = document.querySelectorAll('details.i18n-menu[open]');
+    for (var n = 0; n < open.length; n++) {
+      open[n].removeAttribute('open');
+      var s = open[n].querySelector('summary');
+      if (s) s.focus();
+    }
+  });
   function store(v) { try { window.localStorage.setItem(KEY, v); } catch (e) {} }
   function stored() { try { return window.localStorage.getItem(KEY); } catch (e) { return null; } }
   document.addEventListener('click', function (e) {

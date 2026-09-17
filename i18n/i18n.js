@@ -18,6 +18,33 @@
     'ko': ['이 페이지는 한국어로도 제공됩니다.', '한국어로 보기', '닫기'],
     'zh-tw': ['本頁面也提供繁體中文版本。', '閱讀繁體中文版', '關閉']
   };
+  // header language menu (<details class="i18n-menu">): close on outside click and Escape
+  document.addEventListener('click', function (e) {
+    var open = document.querySelectorAll('details.i18n-menu[open]');
+    for (var n = 0; n < open.length; n++) { if (!open[n].contains(e.target)) open[n].removeAttribute('open'); }
+  });
+  // keep the opened list on screen: right-aligned by default, flipped left when the pill sits
+  // near the left edge (e.g. a stacked mobile nav)
+  document.addEventListener('toggle', function (e) {
+    var d = e.target;
+    if (!d || !d.classList || !d.classList.contains('i18n-menu') || !d.open) return;
+    var ul = d.querySelector('ul');
+    if (!ul) return;
+    ul.style.left = ''; ul.style.right = '';
+    var r = ul.getBoundingClientRect();
+    var vw = document.documentElement.clientWidth || window.innerWidth;
+    if (r.left < 8) { ul.style.left = '0'; ul.style.right = 'auto'; }
+    else if (r.right > vw - 8) { ul.style.right = '0'; ul.style.left = 'auto'; }
+  }, true);
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var open = document.querySelectorAll('details.i18n-menu[open]');
+    for (var n = 0; n < open.length; n++) {
+      open[n].removeAttribute('open');
+      var s = open[n].querySelector('summary');
+      if (s) s.focus();
+    }
+  });
   function store(v) { try { window.localStorage.setItem(KEY, v); } catch (e) {} }
   function stored() { try { return window.localStorage.getItem(KEY); } catch (e) { return null; } }
   document.addEventListener('click', function (e) {
