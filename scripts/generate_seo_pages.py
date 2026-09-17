@@ -34,7 +34,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import seo_common
+import seo_common  # noqa: E402
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SAMPLES_DIR = os.path.join(ROOT_DIR, "samples")

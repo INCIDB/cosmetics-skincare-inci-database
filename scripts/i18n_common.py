@@ -87,20 +87,20 @@ PAGES_FILE_LIMIT = 20_000  # Cloudflare Pages: max files per deployment
 # ---------------------------------------------------------------------------
 
 LOCALES = {
-    "en":    dict(hreflang="en",    html="en",    og="en_US", name="English",   label="Language", group=",", dec="."),
-    "es":    dict(hreflang="es",    html="es",    og="es_ES", name="Español",   label="Idioma",   group=".", dec=","),
-    "de":    dict(hreflang="de",    html="de",    og="de_DE", name="Deutsch",   label="Sprache",  group=".", dec=","),
-    "fr":    dict(hreflang="fr",    html="fr",    og="fr_FR", name="Français",  label="Langue",   group="\u202f", dec=","),
-    "pt-br": dict(hreflang="pt-BR", html="pt-BR", og="pt_BR", name="Português", label="Idioma",   group=".", dec=","),
+    "en": dict(hreflang="en", html="en", og="en_US", name="English", label="Language", group=",", dec="."),
+    "es": dict(hreflang="es", html="es", og="es_ES", name="Español", label="Idioma", group=".", dec=","),
+    "de": dict(hreflang="de", html="de", og="de_DE", name="Deutsch", label="Sprache", group=".", dec=","),
+    "fr": dict(hreflang="fr", html="fr", og="fr_FR", name="Français", label="Langue", group="\u202f", dec=","),
+    "pt-br": dict(hreflang="pt-BR", html="pt-BR", og="pt_BR", name="Português", label="Idioma", group=".", dec=","),
     # wave-2 candidates (I18N_PLAN.md §1) — defined so adding one is a config change only
-    "it":    dict(hreflang="it",    html="it",    og="it_IT", name="Italiano",  label="Lingua",   group=".", dec=","),
-    "nl":    dict(hreflang="nl",    html="nl",    og="nl_NL", name="Nederlands", label="Taal",    group=".", dec=","),
-    "id":    dict(hreflang="id",    html="id",    og="id_ID", name="Bahasa Indonesia", label="Bahasa", group=".", dec=","),
-    "tr":    dict(hreflang="tr",    html="tr",    og="tr_TR", name="Türkçe",    label="Dil",      group=".", dec=","),
-    "pl":    dict(hreflang="pl",    html="pl",    og="pl_PL", name="Polski",    label="Język",    group="\u00a0", dec=","),
-    "ja":    dict(hreflang="ja",    html="ja",    og="ja_JP", name="日本語",     label="言語",      group=",", dec="."),
-    "ko":    dict(hreflang="ko",    html="ko",    og="ko_KR", name="한국어",     label="언어",      group=",", dec="."),
-    "zh-tw": dict(hreflang="zh-TW", html="zh-TW", og="zh_TW", name="繁體中文",   label="語言",      group=",", dec="."),
+    "it": dict(hreflang="it", html="it", og="it_IT", name="Italiano", label="Lingua", group=".", dec=","),
+    "nl": dict(hreflang="nl", html="nl", og="nl_NL", name="Nederlands", label="Taal", group=".", dec=","),
+    "id": dict(hreflang="id", html="id", og="id_ID", name="Bahasa Indonesia", label="Bahasa", group=".", dec=","),
+    "tr": dict(hreflang="tr", html="tr", og="tr_TR", name="Türkçe", label="Dil", group=".", dec=","),
+    "pl": dict(hreflang="pl", html="pl", og="pl_PL", name="Polski", label="Język", group="\u00a0", dec=","),
+    "ja": dict(hreflang="ja", html="ja", og="ja_JP", name="日本語", label="言語", group=",", dec="."),
+    "ko": dict(hreflang="ko", html="ko", og="ko_KR", name="한국어", label="언어", group=",", dec="."),
+    "zh-tw": dict(hreflang="zh-TW", html="zh-TW", og="zh_TW", name="繁體中文", label="語言", group=",", dec="."),
 }
 SOURCE = "en"
 
@@ -576,8 +576,8 @@ class Site:
         self.cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
         self.base = self.cfg["base_url"].rstrip("/")
         self.host = urlsplit(self.base).netloc
-        self.locales = [l for l in self.cfg.get("locales", []) if l != SOURCE]
-        unknown = [l for l in self.locales if l not in LOCALES]
+        self.locales = [lg for lg in self.cfg.get("locales", []) if lg != SOURCE]
+        unknown = [lg for lg in self.locales if lg not in LOCALES]
         if unknown:
             sys.exit(f"unknown locale(s) {unknown}; known: {sorted(LOCALES)}")
         self.min_cov = float(self.cfg.get("min_coverage", 0.9))
@@ -687,7 +687,7 @@ def strip_blocks(text):
 
 
 def ordered_langs(site, langs):
-    return [l for l in [SOURCE] + site.locales if l in langs]
+    return [lg for lg in [SOURCE] + site.locales if lg in langs]
 
 
 def alternates_block(site, rel, langs, cur, has_og_locale, nl, indent):
@@ -705,7 +705,7 @@ def alternates_block(site, rel, langs, cur, has_og_locale, nl, indent):
                 lines.append(f'<meta property="og:locale:alternate" content="{LOCALES[lg]["og"]}">')
         lines.append(f'<script src="/i18n/i18n.js?v={VERSION}" defer></script>')
     lines.append("<!-- /i18n:alternates -->")
-    return "".join(indent + l + nl for l in lines)
+    return "".join(indent + line + nl for line in lines)
 
 
 def switcher_html(site, rel, langs, cur):
@@ -1131,7 +1131,7 @@ def git_file_count(root):
         except (OSError, ValueError):
             continue
         if r.returncode == 0:
-            return len([l for l in r.stdout.splitlines() if l.strip()])
+            return len([line for line in r.stdout.splitlines() if line.strip()])
     return None
 
 
@@ -1304,12 +1304,12 @@ def cmd_check(site, args):
             got = soup.html.get("lang") if soup.html else None
             if got != LOCALES[lg]["html"]:
                 errors.append(f"{lg}/{rel}: <html lang> is {got!r}")
-            canon = [l.get("href") for l in soup.find_all("link") if "canonical" in (l.get("rel") or [])]
+            canon = [link.get("href") for link in soup.find_all("link") if "canonical" in (link.get("rel") or [])]
             want = f"{site.base}/{lg}/" if is_404 else url_here
             if canon != [want]:
                 errors.append(f"{lg}/{rel}: canonical {canon} != {want}")
-        alts = {l.get("hreflang"): l.get("href") for l in soup.find_all("link")
-                if "alternate" in (l.get("rel") or []) and l.has_attr("hreflang")}
+        alts = {link.get("hreflang"): link.get("href") for link in soup.find_all("link")
+                if "alternate" in (link.get("rel") or []) and link.has_attr("hreflang")}
         if not is_404:
             if alts.get(LOCALES[lg]["hreflang"]) != url_here:
                 errors.append(f"{lg}/{rel}: no self hreflang (got {alts.get(LOCALES[lg]['hreflang'])})")
@@ -1335,7 +1335,7 @@ def cmd_check(site, args):
         for hl, href in alts.items():
             if hl == "x-default":
                 continue
-            other = next((l for l in LOCALES if LOCALES[l]["hreflang"] == hl), None)
+            other = next((code for code in LOCALES if LOCALES[code]["hreflang"] == hl), None)
             if other is None:
                 errors.append(f"{lg}/{rel}: unknown hreflang {hl}")
                 continue
