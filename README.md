@@ -115,6 +115,12 @@ instead of taking it on trust.
 
 ---
 
+## Statistics page (`/stats/`)
+
+[incidb.dataengineered.io/stats/](https://incidb.dataengineered.io/stats/) publishes aggregate statistics computed from the **full** corpus — the most common INCI names, the share of products with fragrance, parabens, silicones and sulfates, skincare actives, ingredient counts by product type, EU Annex III ingredients, CosIng functions and the enrichment coverage stated two ways — as a citable page with embeddable SVG charts and a machine-readable `stats/data.json`. The figures and charts are **CC BY 4.0** with the Open Beauty Facts attribution; only aggregates are published, the row-level tables stay in INCIDB Complete.
+
+`scripts/generate_stats.py` regenerates `stats/` from `data/incidb.sqlite` after each edition build (see `RELEASING.md`); follow it with `scripts/generate_seo_pages.py` (sitemap) and the i18n `build` + `check`.
+
 ## Free sample
 
 [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) — the

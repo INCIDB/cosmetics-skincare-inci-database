@@ -972,6 +972,8 @@ def main():
         (BASE_URL + "/schema", os.path.join(ROOT_DIR, "schema.html"), "monthly", "0.8"),
         (BASE_URL + "/documentation", os.path.join(ROOT_DIR, "documentation.html"), "monthly", "0.8"),
     ]
+    if os.path.exists(os.path.join(ROOT_DIR, "stats", "index.html")):  # scripts/generate_stats.py -- citable, embeddable asset
+        sitemap_entries.append((BASE_URL + "/stats/", os.path.join(ROOT_DIR, "stats", "index.html"), "monthly", "0.9"))
 
     # Pass 2: render every monograph, now that each hub's full sorted
     # membership is known.
