@@ -281,6 +281,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "2086b21f8f492741": {
+  "src": "Statistics",
+  "t": "Estatísticas",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
  "22035e9b24327d36": {
   "src": "COMPANY OR APP NAME",
   "t": "NOME DA EMPRESA OU DO APP",
@@ -1612,6 +1618,12 @@
   "t": "Conservantes, antimicrobianos e antioxidantes",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "c077b9857c59e35b": {
+  "src": "Ingredient Statistics",
+  "t": "Estatísticas de ingredientes",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
  },
  "c13e7f2bd38e80bd": {
   "src": "The unparsed declaration, kept verbatim so the parse can be re-derived",

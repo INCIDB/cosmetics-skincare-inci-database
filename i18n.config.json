@@ -11,7 +11,8 @@
     "schema.html",
     "documentation.html",
     "404.html",
-    "landing/*.html"
+    "landing/*.html",
+    "stats/index.html"
   ],
   "exclude": [],
   "not_found": "404.html",
