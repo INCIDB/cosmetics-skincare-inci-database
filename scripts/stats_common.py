@@ -200,7 +200,8 @@ def figure(site, slug, svg, title, note):
 def table(headers, rows, num_cols, data_fn=data):
     """headers: list of str; rows: list of tuples; num_cols: set of column indexes that hold
     numbers (right-aligned, escaped); other cells are data values (translate="no")."""
-    th = "".join(f'<th{" class=\"num\"" if i in num_cols else ""}>{esc(h)}</th>' for i, h in enumerate(headers))
+    num_attr = ' class="num"'
+    th = "".join(f'<th{num_attr if i in num_cols else ""}>{esc(h)}</th>' for i, h in enumerate(headers))
     body = []
     for r in rows:
         tds = []
@@ -224,8 +225,9 @@ def toc(items):
 
 def tiles(items, date_labels=("Snapshot",)):
     """items: [(label, value)] -> stat tiles; labels in `date_labels` get the compact .date style."""
+    date_attr = ' class="date"'
     return "".join(
-        f'<li{" class=\"date\"" if lbl in date_labels else ""}><span>{lbl}</span><strong>{val}</strong></li>'
+        f'<li{date_attr if lbl in date_labels else ""}><span>{lbl}</span><strong>{val}</strong></li>'
         for lbl, val in items)
 
 
