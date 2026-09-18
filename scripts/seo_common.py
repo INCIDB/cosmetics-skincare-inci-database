@@ -81,7 +81,10 @@ def git_lastmod(path, repo_dir):
 
     if git("ls-files", "--error-unmatch").returncode != 0:
         return today
-    if git("diff", "--quiet").returncode != 0 or git("diff", "--cached", "--quiet").returncode != 0:
+    # --ignore-cr-at-eol: a checkout with core.autocrlf=true reports every
+    # regenerated LF page as modified; only a content change should move lastmod.
+    if (git("diff", "--quiet", "--ignore-cr-at-eol").returncode != 0
+            or git("diff", "--cached", "--quiet", "--ignore-cr-at-eol").returncode != 0):
         return today
     out = git("log", "-1", "--format=%cs").stdout.strip()
     return out or today
