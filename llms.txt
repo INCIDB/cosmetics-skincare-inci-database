@@ -7,6 +7,7 @@
 - [GitHub Repository](https://github.com/INCIDB/cosmetics-skincare-inci-database)
 - [Data Dictionary & Field Definitions](https://incidb.dataengineered.io/DATA_DICTIONARY.md)
 - [Interactive Schema Reference](https://incidb.dataengineered.io/schema)
+- [Cosmetics Ingredient Statistics](https://incidb.dataengineered.io/stats/): most common INCI names, share of products with fragrance, parabens, silicones and sulfates, skincare actives, ingredient counts by product type, Annex III ingredients, CosIng functions, enrichment coverage, computed from the full corpus; CC BY 4.0 with [data.json](https://incidb.dataengineered.io/stats/data.json) and embeddable SVG charts.
 - [Pricing (single tier, data is ODbL)](https://incidb.dataengineered.io/docs/pricing_plan.md)
 - [Generated claims file — every published number](https://incidb.dataengineered.io/claims.json)
 - [Free sample (zip)](https://incidb.dataengineered.io/samples/incidb_free_samples.zip)
