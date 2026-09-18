@@ -23,7 +23,7 @@ gridlines, a legend only for >= 2 series (so none here), and a table twin for ev
 import datetime as dt
 import html
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 

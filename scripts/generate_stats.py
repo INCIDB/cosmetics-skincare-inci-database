@@ -27,11 +27,11 @@ import os
 import sqlite3
 import statistics
 import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from stats_common import (Site, esc, n, pct, data, svg_hbar, figure, table, section, toc, tiles,
+from stats_common import (Site, esc, n, pct, data, svg_hbar, figure, table, section, toc, tiles,  # noqa: E402
                           article_ld, COPY_JS, STATS_CSS, write_outputs)
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -82,7 +82,10 @@ COUNT_BUCKETS = [("1 to 5", 1, 5), ("6 to 10", 6, 10), ("11 to 15", 11, 15), ("1
 
 def compute(db_path):
     con = sqlite3.connect(str(db_path))
-    q = lambda sql, *a: con.execute(sql, a).fetchall()
+
+    def q(sql, *a):
+        return con.execute(sql, a).fetchall()
+
     s = {}
     try:
         s["snapshot_date"] = json.loads(BUILD_REPORT.read_text(encoding="utf-8"))["generated_at"][:10]
