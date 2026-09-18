@@ -2098,5 +2098,365 @@
   "t": "INCIDB — INCI-Datenbank für Hautpflege &amp; Kosmetik für Entwickler",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "027a1227b8d57829": {
+  "src": "{0} — CAS {1}. INCI name for {2} (chemical name). CosIng functions: {3}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (chemische Bezeichnung). CosIng-Funktionen: {3}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "02856f8de2bd8635": {
+  "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). Comedogenic {3} (Fulton). CosIng functions: {4}, {5}, {6}, {7}, {8}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (Ph. Eur.). Komedogen {3} (Fulton). CosIng-Funktionen: {4}, {5}, {6}, {7}, {8}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "04ed2eb8e068f17d": {
+  "src": "(Ph. Eur.)",
+  "t": "(Ph. Eur.)",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "0d26a68c125c8ca8": {
+  "src": "(INN)",
+  "t": "(INN)",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "0f0883883a905f09": {
+  "src": "{0} — CAS {1}. INCI name for {2} (chemical name).",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "0f692c209a9dacbd": {
+  "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). CosIng functions: {3}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (Ph. Eur.). CosIng-Funktionen: {3}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "0fcd8d598e53d287": {
+  "src": "{0} — CAS {1}. INCI name for {2} (INN). Comedogenic {3} (Fulton). CosIng functions: {4}, {5}, {6}, {7}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (INN). Komedogen {3} (Fulton). CosIng-Funktionen: {4}, {5}, {6}, {7}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "10a6acc69a637e5b": {
+  "src": "{0} — INCI name in the EU CosIng inventory. INCI name for {1} (chemical name). CosIng functions: {2}.",
+  "t": "{0} — INCI-Name im CosIng-Inventar der EU. INCI-Name für {1} (chemische Bezeichnung). CosIng-Funktionen: {2}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "1e108b474535f877": {
+  "src": "CosIng also records it as {0} (chemical name), {1} (chemical name) and {2} (chemical name).",
+  "t": "CosIng erfasst ihn außerdem als {0} (chemische Bezeichnung), {1} (chemische Bezeichnung) und {2} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "1e5b370e52139567": {
+  "src": "CosIng also records it as {0} (chemical name).",
+  "t": "CosIng erfasst ihn außerdem als {0} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "2137ff1d5cd09a54": {
+  "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). Comedogenic {3} (Fulton).",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (Ph. Eur.). Komedogen {3} (Fulton).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "21df02c13e288de8": {
+  "src": "Skin- and hair-conditioning agents in the sub-functions CosIng records — emollients, humectants, skin-protecting occlusives, soothing and refreshing agents — together with the hair-fixing, antistatic, deodorant, tonic, astringent and oral-care functions. Where an authored comedogenic grade (Fulton {0}) exists, the monograph shows it.",
+  "t": "Haut- und haarpflegende Stoffe in den von CosIng erfassten Unterfunktionen — Emollientien, Feuchthaltemittel, hautschützende Okklusiva, beruhigende und erfrischende Stoffe — zusammen mit den Funktionen haarfestigend, antistatisch, desodorierend, tonisierend, adstringierend und Mundpflege. Wo eine dokumentierte Komedogenitätsstufe (Fulton {0}) vorliegt, zeigt die Monographie sie an.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "23eed39b607eddbf": {
+  "src": "CosIng also records it as {0} (chemical name) and {1} (chemical name).",
+  "t": "CosIng erfasst ihn außerdem als {0} (chemische Bezeichnung) und {1} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "25bf39aaa12e364d": {
+  "src": "Fragrance and perfuming ingredients, colorants identified by their Colour Index number (the colorants permitted in EU cosmetics are listed in Annex IV), hair dyes, flavourings and denaturants. Fragrance allergens that must be named on the label are flagged from Annex III on each monograph.",
+  "t": "Duft- und Parfümstoffe, Farbstoffe, die über ihre Colour-Index-Nummer identifiziert werden (die in EU-Kosmetika zugelassenen Farbstoffe sind in Anhang IV aufgeführt), Haarfärbemittel, Aromastoffe und Vergällungsmittel. Duftstoffallergene, die auf dem Etikett genannt werden müssen, sind auf jeder Monographie nach Anhang III gekennzeichnet.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "28d19b9206618b83": {
+  "src": "Solvents, viscosity-controlling and emulsion-stabilising agents, film formers, gel formers, binders, bulking and opacifying agents, absorbents, abrasives, propellants and buffering or pH-adjusting agents — the ingredients that give a product its texture, body and shelf stability rather than a treatment effect.",
+  "t": "Lösungsmittel, viskositätsregelnde und emulsionsstabilisierende Stoffe, Filmbildner, Gelbildner, Bindemittel, Füll- und Trübungsmittel, Absorptionsmittel, Schleifmittel, Treibmittel sowie Puffer- oder pH-regulierende Stoffe — die Inhaltsstoffe, die einem Produkt Textur, Körper und Lagerstabilität geben, nicht eine Behandlungswirkung.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "350ac0abf1911d82": {
+  "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). Comedogenic {3} (Fulton). CosIng functions: {4}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (Ph. Eur.). Komedogen {3} (Fulton). CosIng-Funktionen: {4}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "389ba0edf7458431": {
+  "src": "{0} is the INCI name of the substance known as {1} (INN), also recorded as {2} (Ph. Eur.), {3} (chemical name) and {4} (chemical name).",
+  "t": "{0} ist der INCI-Name des Stoffs, der als {1} (INN) bekannt ist, außerdem erfasst als {2} (Ph. Eur.), {3} (chemische Bezeichnung) und {4} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "3d041af24e4357fb": {
+  "src": "Membership is read from the data, not assigned by hand — an ingredient with no CosIng function has no monograph, because there would be nothing to say about it.",
+  "t": "Die Zuordnung wird aus den Daten gelesen, nicht von Hand vergeben — ein Inhaltsstoff ohne CosIng-Funktion hat keine Monographie, weil es nichts über ihn zu sagen gäbe.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "41aac7148507b61d": {
+  "src": "{0} — CAS {1}. INCI name for {2} (INN). CosIng functions: {3}, {4}, {5}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (INN). CosIng-Funktionen: {3}, {4}, {5}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "4f3c158634396967": {
+  "src": "Ingredients CosIng records with a treatment or protective function: UV filters and UV absorbers (the filters permitted in EU cosmetics are listed in Annex VI), exfoliating and keratolytic agents, and the anti-seborrheic, antiplaque, antiperspirant and bleaching functions.",
+  "t": "Inhaltsstoffe, denen CosIng eine Behandlungs- oder Schutzfunktion zuweist: UV-Filter und UV-Absorber (die in EU-Kosmetika zugelassenen Filter sind in Anhang VI aufgeführt), exfolierende und keratolytische Wirkstoffe sowie die Funktionen antiseborrhoisch, Antiplaque, Antitranspirant und bleichend.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "57c18be547692e31": {
+  "src": "{0} — CAS {1}. INCI name for {2} (INN). Comedogenic {3} (Fulton). CosIng functions: {4}, {5}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (INN). Komedogen {3} (Fulton). CosIng-Funktionen: {4}, {5}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "583bb12123237331": {
+  "src": "{0} is the INCI name of the substance known as {1} (INN), also recorded as {2} (chemical name).",
+  "t": "{0} ist der INCI-Name des Stoffs, der als {1} (INN) bekannt ist, außerdem erfasst als {2} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "5897b15d0a5dad6c": {
+  "src": "{0} — CAS {1}. INCI name for {2} (chemical name). CosIng functions: {3}, {4}, {5}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (chemische Bezeichnung). CosIng-Funktionen: {3}, {4}, {5}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "59b86f2a633a9958": {
+  "src": "{0} is the INCI name of the substance known as {1} (INN), also recorded as {2} (Ph. Eur.).",
+  "t": "{0} ist der INCI-Name des Stoffs, der als {1} (INN) bekannt ist, außerdem erfasst als {2} (Ph. Eur.).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "6415faaa67692a62": {
+  "src": "(chemical name)",
+  "t": "(chemische Bezeichnung)",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "68c4f6a27147e134": {
+  "src": "{0} — INCI name in the EU CosIng inventory. Comedogenic {1} (Fulton). CosIng lists no CAS number for this name.",
+  "t": "{0} — INCI-Name im CosIng-Inventar der EU. Komedogen {1} (Fulton). CosIng führt für diesen Namen keine CAS-Nummer.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "69d0c9dd1ac39101": {
+  "src": "{0} — CAS {1}. Comedogenic {2} (Fulton). CosIng functions: {3}, {4}. INCI name as listed in the EU CosIng inventory.",
+  "t": "{0} — CAS {1}. Komedogen {2} (Fulton). CosIng-Funktionen: {3}, {4}. INCI-Name gemäß dem CosIng-Inventar der EU.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "72c71080d1639389": {
+  "src": "{0} is the INCI name of the substance known as {1} (INN), also recorded as {2} (Ph. Eur.) and {3} (Ph. Eur.).",
+  "t": "{0} ist der INCI-Name des Stoffs, der als {1} (INN) bekannt ist, außerdem erfasst als {2} (Ph. Eur.) und {3} (Ph. Eur.).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "7d10170fdbfbdb3e": {
+  "src": "Surfactants in the sub-functions CosIng records for them — cleansing, foaming, emulsifying, solubilising: the ingredients that let an oil phase and a water phase mix, and that carry soil away in a rinse-off product.",
+  "t": "Tenside in den Unterfunktionen, die CosIng für sie erfasst — reinigend, schäumend, emulgierend, lösungsvermittelnd: die Inhaltsstoffe, die eine Öl- und eine Wasserphase mischbar machen und in einem abzuspülenden Produkt den Schmutz abtransportieren.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "82a17231e0925f49": {
+  "src": "{0} — CAS {1}. INCI name for {2} (INN). CosIng functions: {3}, {4}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (INN). CosIng-Funktionen: {3}, {4}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "8726cf5d09e3a83a": {
+  "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). Comedogenic {3} (Fulton). CosIng functions: {4}, {5}, {6}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (Ph. Eur.). Komedogen {3} (Fulton). CosIng-Funktionen: {4}, {5}, {6}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "89a44cf4ce80cc18": {
+  "src": "{0} — CAS {1}. INCI name for {2} (chemical name). Comedogenic {3} (Fulton). CosIng functions: {4}, {5}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (chemische Bezeichnung). Komedogen {3} (Fulton). CosIng-Funktionen: {4}, {5}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "8d8dbc9e79d8a4a7": {
+  "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). Comedogenic {3} (Fulton). CosIng functions: {4}, {5}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (Ph. Eur.). Komedogen {3} (Fulton). CosIng-Funktionen: {4}, {5}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "8e2fdfe2dff31f72": {
+  "src": "{0} ingredients from the free INCIDB sample whose recorded CosIng {1} place them here, {2} of them with a CAS number in CosIng. {3} carry a CosIng restriction; {4} are Annex III fragrance allergens; {5} have an authored comedogenic grade.",
+  "t": "{0} Inhaltsstoffe aus den kostenlosen INCIDB-Beispieldaten, deren in CosIng erfasste {1} sie hier einordnen, {2} davon mit CAS-Nummer in CosIng. {3} tragen eine CosIng-Beschränkung; {4} sind Duftstoffallergene nach Anhang III; {5} haben eine dokumentierte Komedogenitätsstufe.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "976040aee09ff46f": {
+  "src": "SCCS OPINION ON FILE",
+  "t": "SCCS-GUTACHTEN VORHANDEN",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "a107a9de2481669b": {
+  "src": "{0} — INCI name in the EU CosIng inventory. INCI name for {1} (chemical name).",
+  "t": "{0} — INCI-Name im CosIng-Inventar der EU. INCI-Name für {1} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "a2ba49ff10b64d43": {
+  "src": "{0} — CAS {1}. INCI name for {2} (INN). CosIng functions: {3}, {4}, {5}, {6}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (INN). CosIng-Funktionen: {3}, {4}, {5}, {6}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "a798b57112108c0c": {
+  "src": "{0} — CAS {1}. INCI name for {2} (chemical name). CosIng functions: {3}, {4}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (chemische Bezeichnung). CosIng-Funktionen: {3}, {4}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "aacead005341e4d5": {
+  "src": "{0} — CAS {1}. INCI name for {2} (chemical name). Comedogenic {3} (Fulton).",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (chemische Bezeichnung). Komedogen {3} (Fulton).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "b6df1e9408607677": {
+  "src": "{0} is the INCI name of the substance known as {1} (INN).",
+  "t": "{0} ist der INCI-Name des Stoffs, der als {1} (INN) bekannt ist.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "bfe7ae800394a339": {
+  "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). CosIng functions: {3}, {4}, {5}, {6}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (Ph. Eur.). CosIng-Funktionen: {3}, {4}, {5}, {6}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "c19c550597fc5e2f": {
+  "src": "CosIng also records it as {0} (Ph. Eur.), {1} (Ph. Eur.) and {2} (chemical name).",
+  "t": "CosIng erfasst ihn außerdem als {0} (Ph. Eur.), {1} (Ph. Eur.) und {2} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "c1d86a4e4c4c9a30": {
+  "src": "CosIng also records it as {0} (Ph. Eur.).",
+  "t": "CosIng erfasst ihn außerdem als {0} (Ph. Eur.).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "c20729bad2325be5": {
+  "src": "{0} — CAS {1}. INCI name for {2} (INN). Comedogenic {3} (Fulton). CosIng functions: {4}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (INN). Komedogen {3} (Fulton). CosIng-Funktionen: {4}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "c43e26fa60229940": {
+  "src": "{0} — CAS {1}. INCI name for {2} (INN). Comedogenic {3} (Fulton). CosIng functions: {4}, {5}, {6}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (INN). Komedogen {3} (Fulton). CosIng-Funktionen: {4}, {5}, {6}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "c4cd66784f3273f2": {
+  "src": "{0} ingredients from the free INCIDB sample whose recorded CosIng {1} place them here, {2} of them with a CAS number in CosIng. {3} carry a CosIng restriction; {4} have an authored comedogenic grade.",
+  "t": "{0} Inhaltsstoffe aus den kostenlosen INCIDB-Beispieldaten, deren in CosIng erfasste {1} sie hier einordnen, {2} davon mit CAS-Nummer in CosIng. {3} tragen eine CosIng-Beschränkung; {4} haben eine dokumentierte Komedogenitätsstufe.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "cadf66e629867625": {
+  "src": "{0} ingredients from the free INCIDB sample whose recorded CosIng {1} place them here, {2} of them with a CAS number in CosIng. {3} carry a CosIng restriction; {4} is an Annex III fragrance allergen; {5} have an authored comedogenic grade.",
+  "t": "{0} Inhaltsstoffe aus den kostenlosen INCIDB-Beispieldaten, deren in CosIng erfasste {1} sie hier einordnen, {2} davon mit CAS-Nummer in CosIng. {3} tragen eine CosIng-Beschränkung; {4} ist ein Duftstoffallergen nach Anhang III; {5} haben eine dokumentierte Komedogenitätsstufe.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "cb25095a036cca7d": {
+  "src": "CosIng also records it as {0} (Ph. Eur.), {1} (chemical name) and {2} (chemical name).",
+  "t": "CosIng erfasst ihn außerdem als {0} (Ph. Eur.), {1} (chemische Bezeichnung) und {2} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "ccea2ded62909702": {
+  "src": "Ingredients whose recorded CosIng function is to keep a formulation stable: preservatives and antimicrobials that inhibit the growth of micro-organisms, antioxidants that slow oxidation, anticorrosives, and chelating agents that bind metal ions. The preservatives permitted in EU cosmetics are listed in Annex V of the Cosmetics Regulation; where CosIng records a restriction, the monograph shows it.",
+  "t": "Inhaltsstoffe, deren in CosIng erfasste Funktion es ist, eine Formulierung stabil zu halten: Konservierungsstoffe und antimikrobielle Stoffe, die das Wachstum von Mikroorganismen hemmen, Antioxidantien, die die Oxidation verlangsamen, Korrosionsschutzmittel und Chelatbildner, die Metallionen binden. Die in EU-Kosmetika zugelassenen Konservierungsstoffe sind in Anhang V der Kosmetikverordnung aufgeführt; wo CosIng eine Beschränkung erfasst, zeigt die Monographie sie an.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "d0f30274b5118b8f": {
+  "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). CosIng functions: {3}, {4}, {5}, {6}, {7}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (Ph. Eur.). CosIng-Funktionen: {3}, {4}, {5}, {6}, {7}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "d332bce08282f1c6": {
+  "src": "CosIng also records it as {0} (Ph. Eur.) and {1} (chemical name).",
+  "t": "CosIng erfasst ihn außerdem als {0} (Ph. Eur.) und {1} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "d79182202bbb80b6": {
+  "src": "{0} — CAS {1}. INCI name for {2} (INN). CosIng functions: {3}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (INN). CosIng-Funktionen: {3}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "d90ba475e2cbca53": {
+  "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). CosIng functions: {3}, {4}, {5}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (Ph. Eur.). CosIng-Funktionen: {3}, {4}, {5}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "dac1d6a1bf910667": {
+  "src": "{0} — CAS {1}. Comedogenic {2} (Fulton). INCI name as listed in the EU CosIng inventory.",
+  "t": "{0} — CAS {1}. Komedogen {2} (Fulton). INCI-Name gemäß dem CosIng-Inventar der EU.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "e391f9262cecfef8": {
+  "src": "{0} — CAS {1}. INCI name for {2} (chemical name). Comedogenic {3} (Fulton). CosIng functions: {4}.",
+  "t": "{0} — CAS {1}. INCI-Name für {2} (chemische Bezeichnung). Komedogen {3} (Fulton). CosIng-Funktionen: {4}.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "e49508d67ebe9802": {
+  "src": "CosIng also records it as {0} (chemical name), {1} (chemical name), {2} (chemical name) and {3} (chemical name).",
+  "t": "CosIng erfasst ihn außerdem als {0} (chemische Bezeichnung), {1} (chemische Bezeichnung), {2} (chemische Bezeichnung) und {3} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "ee2073a056959ba4": {
+  "src": "{0} — INCI name in the EU CosIng inventory.",
+  "t": "{0} — INCI-Name im CosIng-Inventar der EU.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "f1e16eb644c69a30": {
+  "src": "OTHER NAMES (COSING)",
+  "t": "WEITERE NAMEN (COSING)",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "f3e751cb5e85ee5f": {
+  "src": "{0} — CAS {1}. Comedogenic {2} (Fulton). CosIng functions: {3}. INCI name as listed in the EU CosIng inventory.",
+  "t": "{0} — CAS {1}. Komedogen {2} (Fulton). CosIng-Funktionen: {3}. INCI-Name gemäß dem CosIng-Inventar der EU.",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
+ },
+ "fecb12583ba9e392": {
+  "src": "{0} is the INCI name of the substance known as {1} (INN), also recorded as {2} (Ph. Eur.) and {3} (chemical name).",
+  "t": "{0} ist der INCI-Name des Stoffs, der als {1} (INN) bekannt ist, außerdem erfasst als {2} (Ph. Eur.) und {3} (chemische Bezeichnung).",
+  "by": "claude-fable-5-1",
+  "at": "2026-09-18"
  }
 }
