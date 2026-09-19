@@ -1,3 +1,9 @@
+<div align="center">
+
+![INCIDB — Skincare & Cosmetics INCI Database: products, ingredients and INCI name normalisation](assets/kaggle-cover.png)
+
+</div>
+
 # INCIDB — The Skincare & Cosmetics INCI Database
 
 [![Live Portal](https://img.shields.io/badge/Live_Portal-incidb.dataengineered.io-0080d0?style=flat-square)](https://incidb.dataengineered.io/)
