@@ -71,7 +71,7 @@ BASE_URL = "https://incidb.dataengineered.io"
 # swaps it in (Task 13). Until then every buy button carries this literal,
 # and `tests/test_public_claims.py::test_no_stripe_placeholder_when_releasing`
 # fails the release while it is still present.
-STRIPE_COMPLETE_LINK_PLACEHOLDER = "https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g"
+STRIPE_COMPLETE_LINK_PLACEHOLDER = "https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_en_landing"
 
 # Layout rules shared by monographs and hubs. They live in classes, not inline
 # styles, so the phone breakpoint can override them.

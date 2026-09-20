@@ -894,6 +894,17 @@ def inject(text, site, rel, langs, cur, is_404=False):
 # Localizing one page
 # ---------------------------------------------------------------------------
 
+STRIPE_HOST = "buy.stripe.com"
+STRIPE_REF_RE = re.compile(r"(client_reference_id=[A-Za-z0-9_-]*?)_en_")
+
+
+def localize_stripe_link(value, lang):
+    """English pages tag every Payment Link with ``?client_reference_id=<brand>_en_<surface>``
+    (see the delivery worker's order email). Stripe stores that id on the Checkout Session, so
+    swapping the language token here is what makes a sale attributable to the page language."""
+    return STRIPE_REF_RE.sub(lambda m: m.group(1) + "_" + lang + "_", value, count=1)
+
+
 def rewrite_url(value, page_url, site, lang):
     v = value.strip()
     if (not v or v.startswith("#") or v.startswith("//")
@@ -901,6 +912,8 @@ def rewrite_url(value, page_url, site, lang):
         return value
     absu = urljoin(page_url, v)
     parts = urlsplit(absu)
+    if parts.netloc == STRIPE_HOST:
+        return localize_stripe_link(value, lang)
     if parts.netloc != site.host:
         return value
     target = site.url_to_page(parts.path)
