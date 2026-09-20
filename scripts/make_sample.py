@@ -91,8 +91,49 @@ def _sanitize(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905) -> list:
-    """Returns a deterministic, uniformly random sample of eligible product_ids.
+DEFAULT_PINS_PATH = Path("samples/sample_barcodes.json")
+
+
+def load_pins(pins_path: Path) -> list:
+    """Barcodes pinned in `pins_path` (in order, de-duplicated); [] when absent."""
+    if pins_path is None or not Path(pins_path).exists():
+        return []
+    data = json.loads(Path(pins_path).read_text(encoding="utf-8"))
+    seen, out = set(), []
+    for bc in data.get("barcodes", []):
+        bc = str(bc).strip()
+        if bc and bc not in seen:
+            seen.add(bc)
+            out.append(bc)
+    return out
+
+
+def save_pins(pins_path: Path, barcodes: list) -> None:
+    Path(pins_path).parent.mkdir(parents=True, exist_ok=True)
+    Path(pins_path).write_text(json.dumps({
+        "_comment": ("Barcodes of the products in the free sample, pinned so the sample -- and the "
+                     "landing pages derived from it -- stay put across rebuilds (product_id is a "
+                     "database autoincrement and changes every full rebuild). scripts/make_sample.py "
+                     "keeps every pinned barcode that is still eligible, tops up dropouts "
+                     "deterministically (sorted by barcode, seeded) and rewrites this file."),
+        "barcodes": list(barcodes),
+    }, indent=2) + "\n", encoding="utf-8")
+
+
+def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905,
+                           pins_path: Path = None) -> list:
+    """Returns a deterministic sample of eligible product_ids.
+
+    With `pins_path` (a JSON file of pinned barcodes): every pinned product
+    that is still eligible is kept, in pin order; if fewer than `n` remain,
+    the shortfall is drawn uniformly at random (seeded) from the other
+    eligible products sorted by barcode -- a stable source key, unlike
+    product_id -- and the pin file is rewritten with the resulting barcodes.
+    When the pin file does not exist yet it is created from the plain draw
+    below, so introducing pins changes nothing on the first run.
+
+    Without `pins_path`: a deterministic, uniformly random sample of eligible
+    product_ids (the pre-2026-09-20 behaviour).
 
     See the module docstring for the eligibility rule and for why the draw is
     unstratified. Returns every eligible product when the pool is smaller than
@@ -102,7 +143,7 @@ def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905) ->
     try:
         rows = conn.execute(
             """
-            SELECT p.product_id,
+            SELECT p.product_id, p.barcode_ean,
                    COUNT(pi.ingredient_id) AS total_ing,
                    SUM(CASE WHEN i.cosing_matched = 1 THEN 1 ELSE 0 END) AS matched_ing
             FROM products p
@@ -115,21 +156,44 @@ def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905) ->
     finally:
         conn.close()
 
-    eligible = []
-    for product_id, total_ing, matched_ing in rows:
+    eligible = []          # product_ids, ascending
+    barcode_of = {}        # product_id -> barcode
+    for product_id, barcode, total_ing, matched_ing in rows:
         total_ing = total_ing or 0
         matched_ing = matched_ing or 0
         if total_ing == 0:
             continue
         if (matched_ing / total_ing) >= ELIGIBILITY_THRESHOLD:
             eligible.append(product_id)
+            barcode_of[product_id] = str(barcode or "").strip()
 
     if not eligible:
         return []
 
     eligible.sort()
     rng = random.Random(seed)
-    return sorted(rng.sample(eligible, min(n, len(eligible))))
+    drawn = sorted(rng.sample(eligible, min(n, len(eligible))))
+
+    if pins_path is None:
+        return drawn
+    if not Path(pins_path).exists():
+        save_pins(pins_path, [barcode_of[p] for p in drawn])
+        return drawn
+
+    id_of = {bc: pid for pid, bc in barcode_of.items() if bc}
+    pins = load_pins(pins_path)
+    kept = [bc for bc in pins if bc in id_of]
+    need = min(n, len(id_of)) - len(kept)
+    topup = []
+    if need > 0:
+        remaining = sorted(bc for bc in id_of if bc not in kept)
+        topup = sorted(rng.sample(remaining, min(need, len(remaining))))
+    new_pins = kept + topup
+    if new_pins != pins:
+        save_pins(pins_path, new_pins)
+        print(f"[Pins] kept {len(kept)} pinned products, dropped {len(pins) - len(kept)}, "
+              f"topped up {len(topup)} -> {pins_path}")
+    return sorted(id_of[bc] for bc in new_pins)
 
 
 def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
@@ -256,12 +320,14 @@ if __name__ == "__main__":
     parser.add_argument("--out", type=Path, default=Path("samples"))
     parser.add_argument("--n", type=int, default=200)
     parser.add_argument("--seed", type=int, default=20260905)
+    parser.add_argument("--pins", type=Path, default=DEFAULT_PINS_PATH,
+                        help="pinned sample barcodes (kept while eligible, topped up, rewritten)")
     parser.add_argument("--kaggle-dir", type=Path, default=Path("kaggle_dataset"),
                         help="mirror the five sample CSVs here (the Kaggle upload directory); "
                              "skipped when the directory does not exist")
     args = parser.parse_args()
 
-    product_ids = select_sample_products(args.db, n=args.n, seed=args.seed)
+    product_ids = select_sample_products(args.db, n=args.n, seed=args.seed, pins_path=args.pins)
     result = write_sample(args.db, product_ids, args.out)
     mirrored = mirror_to_kaggle(args.out, args.kaggle_dir)
     if mirrored:
