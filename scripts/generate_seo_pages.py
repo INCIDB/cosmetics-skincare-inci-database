@@ -178,10 +178,29 @@ def clean_slug(name):
 
 
 def monograph_filename(ing):
-    iid = field(ing, 'ingredient_id') or '0'
+    """`<slug>.html` from the INCI name alone.
+
+    Until 2026-09-20 this was `inci_<ingredient_id>_<slug>.html`; ingredient_id
+    is a database autoincrement, so every full rebuild renumbered every URL.
+    functions/_middleware.js 301s the old form to this one.
+    """
     inci_name = field(ing, 'inci_name') or 'UNKNOWN INCI'
-    slug = clean_slug(inci_name)
-    return f"inci_{iid}_{slug}.html"
+    return f"{clean_slug(inci_name)}.html"
+
+
+def assert_unique_filenames(ingredients):
+    """Fail loudly if two INCI names normalise to the same slug, or a slug
+    collides with a hub page: with the id gone from the filename a collision
+    would silently overwrite a monograph."""
+    owners = {}
+    for ing in ingredients:
+        owners.setdefault(monograph_filename(ing), []).append(field(ing, 'inci_name'))
+    hub_files = {hub_file for _, _, hub_file, _ in HUBS}
+    problems = [f"{fn}: {names}" for fn, names in owners.items() if len(names) > 1]
+    problems += [f"{fn}: collides with hub page" for fn in owners if fn in hub_files]
+    if problems:
+        raise SystemExit("landing filename collision(s) -- extend clean_slug() or rename:\n  "
+                         + "\n  ".join(problems))
 
 
 def related_neighbors(hub_members, idx, hub_key, hub_order, buckets):
@@ -961,6 +980,7 @@ def main():
         })
 
     print(f"Skipped {skipped} ingredients with no publishable CosIng function.")
+    assert_unique_filenames([m['ingredient'] for members in buckets.values() for m in members])
 
     # Sorted by INCI name -- the same order the hub page lists its cards in --
     # so "the two before and two after" means what a reader would expect.
