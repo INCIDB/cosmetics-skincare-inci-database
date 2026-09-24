@@ -12,8 +12,9 @@ away from the corpus.
 Inputs (all produced by the build, none hand-typed):
 
 * `data/exports/build_report.json` — row counts, per-column fill rates and
-  distinct-value counts, the CosIng match rates, the allergen counts and the
-  authored-rating counts. Written by `src/enrichment/report.py`.
+  distinct-value counts, the CosIng match rates, the allergen counts, the
+  authored-rating counts, and the `regulatory` block (EU allergen overlay).
+  Written by `src/enrichment/report.py`.
 * `data/exports/csv/ingredients.csv` + `data/exports/csv/product_ingredients.csv`
   — used only to compute LINK-WEIGHTED coverage: the share of ingredient
   OCCURRENCES across product labels (not the share of distinct ingredient
@@ -142,6 +143,14 @@ def build_claims(report_path=REPORT_PATH, csv_dir=CSV_DIR,
         "cas_link_weighted_pct": pct(lw["cas_number"]),
         # Flag counts.
         "allergen_flagged": report["allergens"]["flagged"],
+        # EU fragrance-allergen overlay (build_report.json "regulatory" block).
+        "allergen_entries_total": report["regulatory"]["allergens"]["entries_total"],
+        "allergen_entries_matched": report["regulatory"]["allergens"]["entries_matched"],
+        "allergen_products_pct": pct(report["regulatory"]["allergens"]["products_share"]),
+        "allergen_list_version": report["regulatory"]["allergens"]["list_version"],
+        "unsplit_allergen_products_pct": pct(report["regulatory"]["allergens"]["unsplit_products_share"]),
+        "fragrance_allergens_rows": counts["fragrance_allergens"],
+        "regulatory_status_rows": counts["regulatory_status"],
         "rated_comedogenic": report["authored"]["rated"],
         "fungal_flagged": report["authored"]["fungal_flagged"],
         # Free sample.
