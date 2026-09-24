@@ -111,7 +111,7 @@
             <div class="section-eyebrow">Data Dictionary · snapshot 2026.09</div>
             <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Relational Schema Specification</h1>
             <p style="color: var(--text-secondary); max-width: 760px; margin-top: 1rem;">
-                Five tables, exported as pipe-delimited UTF-8 CSV and Apache Parquet with identical columns. Every enrichment column is either populated from a named public source with a documented join, or <code>NULL</code>. There are no default values and no placeholder rows.
+                Seven tables, exported as pipe-delimited UTF-8 CSV and Apache Parquet with identical columns. Every enrichment column is either populated from a named public source with a documented join, or <code>NULL</code>. There are no default values and no placeholder rows.
             </p>
             <div class="table-container" style="max-width: 520px;">
                 <table>
@@ -186,7 +186,7 @@
                         <tr><td><code>chemical_description</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>CosIng chemical / IUPAC description text</td></tr>
                         <tr><td><code>cosing_restriction</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Restriction reference, e.g. an Annex V entry</td></tr>
                         <tr><td><code>cosing_update_date</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Always <code>NULL</code> in this snapshot — the export carries no update date</td></tr>
-                        <tr><td><code>annex_ii</code> … <code>annex_vi</code></td><td><code class="type-tag">FLOAT</code></td><td>CosIng</td><td>Membership of Annexes II (prohibited), III (restricted), IV (colorants), V (preservatives), VI (UV filters)</td></tr>
+                        <tr><td><code>annex_ii</code> … <code>annex_vi</code></td><td><code class="type-tag">FLOAT</code></td><td>CosIng</td><td>Membership of Annexes II (prohibited), III (restricted), IV (colorants), V (preservatives), VI (UV filters). Legacy exact-name method; <code>regulatory_status</code> is the precise source and may differ</td></tr>
                         <tr><td><code>is_common_allergen</code></td><td><code class="type-tag">INTEGER</code></td><td>EU Annex III</td><td>EU fragrance-allergen flag — see the method note below</td></tr>
                         <tr><td><code>allergen_source</code></td><td><code class="type-tag">STRING</code></td><td>EU Annex III</td><td>The list a flag came from</td></tr>
                         <tr><td><code>comedogenic_rating</code></td><td><code class="type-tag">FLOAT</code></td><td>authored</td><td>0–5 rating for the ingredients the cited paper covers; <code>NULL</code> otherwise</td></tr>
@@ -215,7 +215,7 @@
             </div>
 
             <div class="note">
-                <strong>Method — allergen flags.</strong> One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched on exact canonical name. 99 names are flagged. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.
+                <strong>Method — allergen flags.</strong> One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. 121 names are flagged; the per-entry evidence is in <code>fragrance_allergens</code> (table 6). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.
             </div>
 
             <div class="note">
@@ -283,6 +283,63 @@
             </div>
             <div class="note">
                 <code>unresolved</code> is the largest bucket by distinct token and a small one by label occurrence — the same long-tail effect that produces the two coverage columns above.
+            </div>
+        </div>
+        <!-- Fragrance allergens -->
+        <div class="doc-section">
+            <h2>6. fragrance_allergens</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">The EU fragrance-allergen labelling entries of Annex III (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545): one row per legal name and INCIDB match, with unmatched legal names and botanical CAS review rows included.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>annex_iii_ref</code></td><td><code class="type-tag">STRING</code></td><td>Annex III entry reference as printed</td></tr>
+                        <tr><td><code>legal_name</code></td><td><code class="type-tag">STRING</code></td><td>The name as printed in the Regulation, parenthetical alias kept; on <code>LABEL_NAME</code> rows, the collective label name</td></tr>
+                        <tr><td><code>label_as</code></td><td><code class="type-tag">STRING</code></td><td>The collective label name the Regulation prescribes (e.g. Rose Ketones); <code>NULL</code> when it prescribes none</td></tr>
+                        <tr><td><code>cas_listed</code>, <code>ec_listed</code></td><td><code class="type-tag">STRING</code></td><td>CAS and EC numbers as printed for the entry</td></tr>
+                        <tr><td><code>leave_on_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Labelling threshold in leave-on products, in percent, parsed per entry</td></tr>
+                        <tr><td><code>rinse_off_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Labelling threshold in rinse-off products, in percent, parsed per entry</td></tr>
+                        <tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>End of the placing-on-market transition for entries the 2023 amendment added or replaced; <code>NULL</code> on the others</td></tr>
+                        <tr><td><code>making_available_until</code></td><td><code class="type-tag">DATE</code></td><td>End of the making-available transition, likewise</td></tr>
+                        <tr><td><code>transition_condition</code></td><td><code class="type-tag">STRING</code></td><td>The Regulation's proviso for replaced entries, verbatim; <code>NULL</code> elsewhere</td></tr>
+                        <tr><td><code>instrument</code></td><td><code class="type-tag">STRING</code></td><td>The legal instrument for the entry</td></tr>
+                        <tr><td><code>ingredient_id</code>, <code>inci_name</code></td><td><code class="type-tag">INTEGER / STRING</code></td><td>The matched INCIDB ingredient; <code>NULL</code> when the legal name matched nothing</td></tr>
+                        <tr><td><code>match_method</code></td><td><code class="type-tag">STRING</code></td><td><code>NAME</code>, <code>LABEL_NAME</code>, <code>CAS</code> (chemically defined substances only) or <code>BOTANICAL_CAS_REVIEW</code>; <code>NULL</code> when unmatched</td></tr>
+                        <tr><td><code>flagged</code></td><td><code class="type-tag">BOOLEAN</code></td><td><code>1</code> for a flag that sets <code>is_common_allergen</code>; <code>0</code> on botanical CAS review rows and unmatched rows</td></tr>
+                        <tr><td><code>source</code></td><td><code class="type-tag">STRING</code></td><td><code>EURLEX</code> (the consolidated legal text) or <code>COSING_ANNEX_III</code> (a name CosIng lists that the legal text does not print)</td></tr>
+                        <tr><td><code>source_url</code>, <code>retrieved_at</code></td><td><code class="type-tag">STRING / DATE</code></td><td>Where the row came from and the date it was fetched</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Regulatory status -->
+        <div class="doc-section">
+            <h2>7. regulatory_status</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">EU Annex II–VI status from the European Commission CosIng exports: one row per ingredient, jurisdiction and list entry. Rows exist only where a list says something; absence of a row is not a status. Not legal advice.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>ingredient_id</code>, <code>inci_name</code></td><td><code class="type-tag">INTEGER / STRING</code></td><td>The INCIDB ingredient</td></tr>
+                        <tr><td><code>cas</code></td><td><code class="type-tag">STRING</code></td><td>INCIDB's own CAS value (not used for matching)</td></tr>
+                        <tr><td><code>jurisdiction</code></td><td><code class="type-tag">STRING</code></td><td><code>EU</code>; <code>CA</code>, <code>ASEAN</code> and <code>CN</code> reserved</td></tr>
+                        <tr><td><code>list_ref</code></td><td><code class="type-tag">STRING</code></td><td>The list entry, e.g. an Annex III entry</td></tr>
+                        <tr><td><code>status</code></td><td><code class="type-tag">STRING</code></td><td><code>PROHIBITED</code> (Annex II), <code>RESTRICTED</code> (Annex III), <code>ALLOWED_WITH_CONDITIONS</code> (Annexes IV–VI); <code>LISTED_EXISTING</code> reserved</td></tr>
+                        <tr><td><code>instrument</code></td><td><code class="type-tag">STRING</code></td><td>CosIng's Regulation column as printed</td></tr>
+                        <tr><td><code>product_type</code></td><td><code class="type-tag">STRING</code></td><td>Product type / body parts, verbatim</td></tr>
+                        <tr><td><code>max_concentration</code></td><td><code class="type-tag">STRING</code></td><td>Maximum concentration in the ready-for-use preparation, verbatim; never collapsed to one number</td></tr>
+                        <tr><td><code>condition_text</code></td><td><code class="type-tag">STRING</code></td><td>Annex II: the Chemical name / INN text verbatim (where conditional bans live). Annexes III–VI: the Other and Wording of conditions columns, joined</td></tr>
+                        <tr><td><code>effective_date</code></td><td><code class="type-tag">DATE</code></td><td>Only where the source states one; <code>NULL</code> on EU rows</td></tr>
+                        <tr><td><code>match_method</code></td><td><code class="type-tag">STRING</code></td><td><code>NAME</code> (CosIng glossary name) or <code>IDENTIFIED_INGREDIENT</code> (CosIng Identified INGREDIENTS column). No CAS route for EU rows</td></tr>
+                        <tr><td><code>source_url</code>, <code>retrieved_at</code></td><td><code class="type-tag">STRING / DATE</code></td><td>The CosIng export the row came from and the date it was fetched</td></tr>
+                        <tr><td><code>source_update_date</code></td><td><code class="type-tag">STRING</code></td><td>CosIng's Update Date for the entry, as printed</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

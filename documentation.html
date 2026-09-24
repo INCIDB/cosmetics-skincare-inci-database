@@ -91,29 +91,31 @@
             <div class="section-eyebrow">Developer Portal</div>
             <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">INCIDB Technical Documentation</h1>
             <p style="color: var(--text-secondary); max-width: 700px; margin-top: 1rem;">
-                The five tables, the two sources they come from, the coverage each enrichment column actually has, and how to query the result.
+                The seven tables, the sources they come from, the coverage each enrichment column actually has, and how to query the result.
             </p>
         </div>
 
         <div class="doc-section">
             <h2>1. What is in the snapshot</h2>
-            <p>Five tables, exported as pipe-delimited UTF-8 CSV and Apache Parquet with identical columns:</p>
+            <p>Seven tables, exported as pipe-delimited UTF-8 CSV and Apache Parquet with identical columns:</p>
             <ul>
                 <li><strong>18,583 products</strong> — one row per Open Beauty Facts product carrying a usable on-pack ingredient declaration, with the raw declaration kept verbatim so the parse can be re-derived.</li>
                 <li><strong>5,925 brands</strong> — brand identities as recorded upstream.</li>
                 <li><strong>46,973 distinct canonical INCI names</strong> — the result of canonicalising every raw label token, enriched from CosIng where CosIng lists them.</li>
                 <li><strong>318,758 ordered composition links</strong> — preserving label order in <code>position_index</code>.</li>
                 <li><strong>55,426 name-map rows</strong> — how each raw label token was resolved, and by which method.</li>
+                <li><strong>268 <code>fragrance_allergens</code> rows</strong> — the EU Annex III fragrance-allergen entries, one row per legal name and INCIDB match, review rows and unmatched names included.</li>
+                <li><strong>614 <code>regulatory_status</code> rows</strong> — EU Annex II–VI status per ingredient and list entry, conditions verbatim. A row exists only where a list says something.</li>
             </ul>
         </div>
 
         <div class="doc-section">
             <h2>2. Sources and the join</h2>
-            <p>Two sources, one documented join. Every source file's URL, download timestamp and SHA-256 is recorded in the <code>build_report.json</code> shipped with the data.</p>
+            <p>Three sources, each with a documented join. Every source file's URL, download timestamp and SHA-256 is recorded in the <code>build_report.json</code> shipped with the data.</p>
             <ul>
                 <li><strong>Open Beauty Facts</strong> — the product corpus (barcodes, brands, the source's own <code>categories_tags</code>, raw ingredient declarations) under the Open Database License (ODbL).</li>
-                <li><strong>European Commission CosIng</strong> — the ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names are <code>NULL</code> in every CosIng-derived column, never a placeholder.</li>
-                <li><strong>EU Annex III fragrance allergens</strong> — Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545, the single list behind <code>is_common_allergen</code>. The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists in this dataset.</li>
+                <li><strong>European Commission CosIng</strong> — the ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names are <code>NULL</code> in every CosIng-derived column, never a placeholder. The Annex II–VI exports also feed <code>regulatory_status</code>, matched by the CosIng glossary name or the CosIng "Identified INGREDIENTS" name only (no CAS route). Absence of a row is not a status, and nothing in it is legal advice.</li>
+                <li><strong>EU fragrance allergens.</strong> The 81 labelling entries of Annex III to Regulation (EC) 1223/2009, as amended by Regulation (EU) 2023/1545 (consolidated text of 18.05.2026), are matched to INCIDB by exact INCI name, then by the collective label name the Regulation prescribes (e.g. "Rose Ketones"), then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. 121 names are flagged; 43.9% of products contain at least one. About 6.4% of products list ingredients as unsplit text that the allergen flags do not reach. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.</li>
                 <li><strong>Authored layer</strong> — 145 comedogenic ratings transcribed from one published table, and 270 rule-derived fungal-acne flags. Both carry their citation per row in <code>rating_source</code>, and are <code>NULL</code> everywhere else.</li>
             </ul>
         </div>

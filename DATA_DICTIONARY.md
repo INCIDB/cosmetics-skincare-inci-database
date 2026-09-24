@@ -1,6 +1,6 @@
 # INCIDB Data Dictionary — snapshot 2026.09
 
-Five tables, exported as pipe-delimited UTF-8 CSV (`|`) and Apache Parquet
+Seven tables, exported as pipe-delimited UTF-8 CSV (`|`) and Apache Parquet
 with identical columns. Every enrichment column is either populated from a
 named public source with a documented join, or `NULL`. There are no default
 values, no placeholder rows and no inferred chemistry.
@@ -18,6 +18,8 @@ disagree.
 | `ingredients` | 46,973 |
 | `product_ingredients` | 318,758 |
 | `ingredient_name_map` | 55,426 |
+| `fragrance_allergens` | 268 |
+| `regulatory_status` | 614 |
 
 ---
 
@@ -65,7 +67,7 @@ Commission CosIng inventory on an exact name match; they are `NULL` otherwise.
 | `chemical_description` | `STRING` | CosIng | CosIng chemical / IUPAC description text |
 | `cosing_restriction` | `STRING` | CosIng | CosIng restriction reference (`V/21` = Annex V entry 21) |
 | `cosing_update_date` | `STRING` | CosIng | **Always `NULL` in this snapshot** — the inventory export used carries no update date |
-| `annex_ii` … `annex_vi` | `FLOAT` | CosIng | `1.0` / `0.0` membership of Annexes II (prohibited), III (restricted), IV (colorants), V (preservatives), VI (UV filters). `NULL` when not CosIng-matched |
+| `annex_ii` … `annex_vi` | `FLOAT` | CosIng | `1.0` / `0.0` membership of Annexes II (prohibited), III (restricted), IV (colorants), V (preservatives), VI (UV filters). `NULL` when not CosIng-matched. Legacy exact-name method; `regulatory_status` (table 7) is the precise source and may differ |
 | `is_common_allergen` | `INTEGER` | EU Annex III | `1` for the EU fragrance allergens, else `0`. See the method note below |
 | `allergen_source` | `STRING` | EU Annex III | `EU_ANNEX_III` on flagged rows, `NULL` otherwise |
 | `comedogenic_rating` | `FLOAT` | authored | 0–5 rating for the ingredients covered by the cited paper; `NULL` otherwise |
@@ -91,6 +93,9 @@ describes the data; use whichever matches your query.
 
 `ec_number`, `cosing_restriction` and the Annex flags are populated on the
 CosIng-matched subset only, at their own rates — see `build_report.json`.
+The `annex_ii` … `annex_vi` booleans keep their legacy exact-name method.
+`regulatory_status` (table 7) is the precise, per-entry source, and the two
+may differ for the same ingredient; when they do, use `regulatory_status`.
 
 ### Method note — canonicalisation and `ingredient_name_map`
 
@@ -106,12 +111,22 @@ per row, so the whole mapping is auditable and reversible — see table 5.
 
 ### Method note — `is_common_allergen` / `allergen_source`
 
-Flags come from **one** list: the fragrance allergens of Annex III to the EU
-Cosmetics Regulation (Regulation (EC) 1223/2009, as amended by Regulation
-(EU) 2023/1545), matched on exact canonical name. **99** names are flagged.
-The US FDA has not yet published its MoCRA fragrance-allergen list; when it
-does, flags derived from it will carry a distinct `allergen_source` value.
-Until then no row in this dataset carries a US flag.
+**EU fragrance allergens.** The 81 labelling entries of Annex III to
+Regulation (EC) 1223/2009, as amended by Regulation (EU) 2023/1545
+(consolidated text of 18.05.2026), are matched to INCIDB by exact INCI name,
+then by the collective label name the Regulation prescribes (e.g. "Rose
+Ketones"), then by CAS number for chemically defined substances only.
+Botanical CAS hits are shipped as review rows, never flags. 121 names are
+flagged; 43.9% of products contain at least one. About 6.4% of products list
+ingredients as unsplit text that the allergen flags do not reach. The US FDA
+has not yet published its MoCRA fragrance-allergen list, so this dataset
+carries no US flag.
+
+`is_common_allergen = 1` and `allergen_source = EU_ANNEX_III` mark exactly
+the flagged names. The per-entry evidence (Annex reference, thresholds,
+transition dates, match method, source) is in `fragrance_allergens`
+(table 6). When the FDA list is published, flags derived from it will carry
+a distinct `allergen_source` value.
 
 ### Method note — `comedogenic_rating`
 
@@ -181,6 +196,120 @@ above.
 
 ---
 
+## 6. `fragrance_allergens`
+
+The EU fragrance-allergen labelling entries of Annex III to Regulation (EC)
+1223/2009, as amended by Regulation (EU) 2023/1545. One row per legal name ×
+INCIDB match. A legal name with no INCIDB match still gets one row, with
+`ingredient_id` `NULL`, so the unmatched part of the list ships too. 77 of
+the 81 entries match at least one INCIDB name.
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `annex_iii_ref` | `STRING` | Annex III entry reference as printed |
+| `legal_name` | `STRING` | The name as printed in the Regulation's glossary column, parenthetical alias kept (`Rose ketone 4 (Damascenone)`). On `LABEL_NAME` rows, the collective label name |
+| `label_as` | `STRING` | The collective label name the Regulation prescribes for the entry (`Rose Ketones`, `Lemongrass Oil`); `NULL` when it prescribes none |
+| `cas_listed`, `ec_listed` | `STRING` | CAS and EC numbers as printed for the entry |
+| `leave_on_threshold_pct` | `DECIMAL` | Labelling threshold in leave-on products, in percent, parsed per entry (0.001 on every entry today) |
+| `rinse_off_threshold_pct` | `DECIMAL` | Labelling threshold in rinse-off products, in percent, parsed per entry (0.01 on every entry today) |
+| `placing_on_market_until` | `DATE` | End of the transition for placing non-compliant products on the market (31 Jul 2026) on the entries the 2023 amendment added or replaced; `NULL` on the others |
+| `making_available_until` | `DATE` | End of the transition for making them available (31 Jul 2028), likewise |
+| `transition_condition` | `STRING` | The Regulation's proviso for replaced entries, verbatim; `NULL` elsewhere |
+| `instrument` | `STRING` | The legal instrument for the entry: the 2023 amending regulation (with its corrigendum) for the entries it touched, the consolidated Annex III for the others |
+| `ingredient_id`, `inci_name` | `INTEGER`, `STRING` | The matched INCIDB ingredient; `NULL` when the legal name matched nothing |
+| `match_method` | `STRING` | `NAME`, `LABEL_NAME`, `CAS` or `BOTANICAL_CAS_REVIEW` (see below); `NULL` when unmatched |
+| `flagged` | `BOOLEAN` | `1` for a flag that sets `ingredients.is_common_allergen`; `0` on review rows and unmatched rows |
+| `source` | `STRING` | `EURLEX` (the consolidated legal text) or `COSING_ANNEX_III` (a name CosIng lists for the entry that the legal text does not print) |
+| `source_url`, `retrieved_at` | `STRING`, `DATE` | Where the row came from and the date it was fetched |
+
+| `match_method` | Meaning |
+| :--- | :--- |
+| `NAME` | Exact match of the legal name (upper-cased, whitespace collapsed, printed alias included) to an INCIDB canonical name |
+| `LABEL_NAME` | Exact match of the collective label name the Regulation prescribes |
+| `CAS` | A printed CAS number matched INCIDB's CAS. Used only for chemically defined substances, and only when no name matched |
+| `BOTANICAL_CAS_REVIEW` | A CAS hit on a botanical entry. Shipped for review, `flagged = 0` |
+
+**Review rows: `flagged = 0`, and why.** A CAS number printed for a botanical
+entry (an essential oil or extract) is shared by many preparations of the
+same plant (other plant parts, powders, waters, other extracts) that the
+Regulation does not name. A CAS hit on a botanical entry therefore does not
+establish that the INCIDB ingredient is the listed substance. These rows
+ship so you can review them, but they never set `is_common_allergen`.
+
+**CosIng-only names.** Names that CosIng's Annex III export lists for an
+entry, in its glossary column or its "Identified INGREDIENTS or substances"
+column, but that the legal text does not print are kept, matched by exact
+name, and tagged `source = COSING_ANNEX_III` so you can filter them out.
+
+**The unsplit caveat.** Some products carry part of their ingredient list as
+one unsplit text string that never resolved into individual names; an
+allergen inside such a string is not flagged. `unsplit`, as used in the
+6.4% figure above, is defined as:
+
+> share of products linked to an ingredient row with cosing_matched = 0 whose name is longer than 60 characters or has >= 2 commas or >= 2 ' - ' separators, and contains a flagged allergen name or label name at word boundaries; an estimate used only for the coverage caveat, never a flag
+
+**Absence of a row is not a status.** An ingredient with no row here is
+simply one this list did not match; it is not a statement about the
+ingredient's labelling obligations. This table is not legal advice.
+
+**Source versions.** EUR-Lex consolidated text of Regulation (EC) 1223/2009
+as of 18.05.2026 (`source = EURLEX`) and the CosIng Annex III export
+(`source = COSING_ANNEX_III`). Each row's `source_url` and `retrieved_at`
+record the file and the fetch date; `build_report.json` records each source
+file's hash.
+
+---
+
+## 7. `regulatory_status`
+
+One row per ingredient × jurisdiction × list entry. Rows exist only where a
+list says something about the ingredient; there is never a "not listed" row.
+This snapshot carries the EU Annexes II–VI, from the European Commission
+CosIng exports.
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `ingredient_id`, `inci_name` | `INTEGER`, `STRING` | The INCIDB ingredient |
+| `cas` | `STRING` | INCIDB's own CAS value for the ingredient (not used for matching) |
+| `jurisdiction` | `STRING` | `EU`. `CA`, `ASEAN` and `CN` are reserved for later sources |
+| `list_ref` | `STRING` | The list entry, e.g. `Annex III/98` |
+| `status` | `STRING` | `PROHIBITED` (Annex II), `RESTRICTED` (Annex III), `ALLOWED_WITH_CONDITIONS` (Annex IV colorants, V preservatives, VI UV filters). `LISTED_EXISTING` is reserved for positive-only lists |
+| `instrument` | `STRING` | CosIng's "Regulation" column as printed |
+| `product_type` | `STRING` | Product type / body parts, verbatim; `NULL` when the entry states none |
+| `max_concentration` | `STRING` | Maximum concentration in the ready-for-use preparation, verbatim. Multi-part values are never collapsed to one number |
+| `condition_text` | `STRING` | Annex II: the entry's "Chemical name / INN" text verbatim, which is where conditional bans live (e.g. "unless the full refining history is known"). Annexes III–VI: the "Other" and "Wording of conditions of use and warnings" columns joined with ` \| ` |
+| `effective_date` | `DATE` | Only where the source states one. CosIng does not, so it is `NULL` on every EU row |
+| `match_method` | `STRING` | `NAME` or `IDENTIFIED_INGREDIENT` (see below). `CAS` is reserved for later sources |
+| `source_url`, `retrieved_at` | `STRING`, `DATE` | The CosIng export the row came from and the date it was fetched |
+| `source_update_date` | `STRING` | CosIng's "Update Date" for the entry, as printed |
+
+| `match_method` | Meaning |
+| :--- | :--- |
+| `NAME` | Exact match of an INCIDB canonical name to the CosIng glossary name ("Name of Common Ingredients Glossary") |
+| `IDENTIFIED_INGREDIENT` | Exact match to CosIng's "Identified INGREDIENTS or substances" column |
+
+**No CAS route for the EU rows.** EU `regulatory_status` rows are matched by
+glossary name and "Identified INGREDIENTS" name only. A CAS join adds
+conditional or wrong rows here (a permitted Annex IV colorant can share a
+CAS number with an Annex II entry), so CAS candidates are counted in
+`build_report.json` and not emitted. Annex II prints chemical names rather
+than INCI names, so its rows come through the "Identified INGREDIENTS"
+column.
+
+**Absence of a row is not a status.** An ingredient with no row is one these
+lists did not match by name; it is not a statement that the ingredient is
+permitted, unrestricted or unregulated anywhere. The `annex_ii` …
+`annex_vi` booleans on `ingredients` use an older exact-name method and may
+differ from this table; this table is the precise source. Nothing here is
+legal advice.
+
+**Source versions.** CosIng Annex II–VI CSV exports. Each row's
+`retrieved_at` is the export's fetch date and `source_update_date` CosIng's
+own update date for the entry; `build_report.json` records each export's
+hash and row count.
+
+---
+
 ## Columns present but empty in this snapshot
 
 Named here so nothing in the archive is a surprise. They carry no data and
@@ -200,5 +329,8 @@ licensed under the Open Database License (ODbL) v1.0 — attribution and
 share-alike apply to any redistributed derivative. Ingredient enrichment
 contains data from the European Commission CosIng database, reused with
 attribution under the Commission's public-sector information reuse policy.
+EU regulatory overlay: Annex III to Regulation (EC) No 1223/2009 as amended
+by Regulation (EU) 2023/1545 (EUR-Lex, © European Union) and the CosIng
+Annex II–VI exports, reused with attribution. Not legal advice.
 Provided as-is, without warranty; the flags and ratings above are
 informational and are not medical, safety or regulatory-compliance advice.

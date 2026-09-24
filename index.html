@@ -72,7 +72,7 @@
         "distribution": [
           {
             "@type": "DataDownload",
-            "name": "Free sample (5 tables, CSV + Parquet)",
+            "name": "Free sample (7 tables, CSV + Parquet)",
             "encodingFormat": "application/zip",
             "contentUrl": "https://incidb.dataengineered.io/samples/incidb_free_samples.zip"
           }
@@ -86,6 +86,7 @@
           "CosIng chemical description",
           "EU Annex II-VI membership",
           "EU Annex III fragrance allergen flag",
+          "EU Annex II-VI regulatory status (CosIng)",
           "Comedogenic rating (authored subset)",
           "Fungal-acne trigger flag (rule-derived)",
           "Label position index"
@@ -95,7 +96,7 @@
         "@context": "https://schema.org",
         "@type": "Product",
         "name": "INCIDB Complete",
-        "description": "The complete INCIDB 2026.09 snapshot: all five tables (products, brands, ingredients, product_ingredients, ingredient_name_map) as pipe-delimited CSV and Apache Parquet, plus the build_report.json quality report, data dictionary and licence. One-time purchase, instant download.",
+        "description": "The complete INCIDB 2026.09 snapshot: all seven tables (products, brands, ingredients, product_ingredients, ingredient_name_map, fragrance_allergens, regulatory_status) as pipe-delimited CSV and Apache Parquet, plus the build_report.json quality report, data dictionary and licence. One-time purchase, instant download.",
         "image": "https://incidb.dataengineered.io/og-image.png",
         "sku": "INCIDB-COMPLETE-2026-09",
         "brand": {
@@ -141,7 +142,7 @@
           "name": "Which allergen list are the flags taken from?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched on exact canonical name. 99 names are flagged and allergen_source records the list. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag."
+            "text": "One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. 121 names are flagged and allergen_source records the list; 43.9% of products carry at least one (about 6.4% more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag."
           }
         },
         {
@@ -275,8 +276,8 @@
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem;">
                 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
-                    <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">99 allergen-flagged names</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">From the EU Annex III fragrance-allergen list (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched on exact canonical name. The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists here.</p>
+                    <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">121 allergen-flagged names</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">EU fragrance-allergen overlay (Reg. (EU) 2023/1545): 121 names flagged by exact INCI name, label name or CAS for defined substances; 43.9% of products carry at least one (about 6.4% more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists here.</p>
                 </div>
                 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
                     <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">145 comedogenic ratings</h3>
@@ -358,12 +359,12 @@
                 <div class="registry-card">
                     <span class="registry-badge">EU Regulation</span>
                     <h3 class="registry-title">European Commission CosIng</h3>
-                    <p class="registry-desc">The ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names get <code>NULL</code>, not a guess.</p>
+                    <p class="registry-desc">The ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names get <code>NULL</code>, not a guess. The Annex II–VI exports also feed <code>regulatory_status</code>: one row per ingredient and list entry, conditions verbatim; absence of a row is not a status.</p>
                 </div>
                 <div class="registry-card">
                     <span class="registry-badge">EU Regulation</span>
                     <h3 class="registry-title">Annex III fragrance allergens</h3>
-                    <p class="registry-desc">Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545 — the single list behind <code>is_common_allergen</code>, recorded per row in <code>allergen_source</code>.</p>
+                    <p class="registry-desc">Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545 — the single list behind <code>is_common_allergen</code>, recorded per row in <code>allergen_source</code>, with thresholds, transition dates and the match method in <code>fragrance_allergens</code>.</p>
                 </div>
                 <div class="registry-card">
                     <span class="registry-badge">Engineering</span>
@@ -402,7 +403,7 @@
                     <ul class="tier-features">
                         <li class="included"><span class="check-icon">✓</span> 200 products, drawn at random from a seeded pool</li>
                         <li class="included"><span class="check-icon">✓</span> Their brands, links and 1,109 ingredients</li>
-                        <li class="included"><span class="check-icon">✓</span> All 5 tables, CSV <em>and</em> Parquet</li>
+                        <li class="included"><span class="check-icon">✓</span> All 7 tables, CSV <em>and</em> Parquet</li>
                         <li class="included"><span class="check-icon">✓</span> Same enrichment columns, same NULLs</li>
                         <li><span class="cross-icon">✕</span> Drawn from products that are ≥80% CosIng-matched, so it reads better than the corpus average</li>
                     </ul>
@@ -422,6 +423,7 @@
                         <li class="included"><span class="check-icon">✓</span> The 55,426-row <code>ingredient_name_map</code></li>
                         <li class="included"><span class="check-icon">✓</span> Pipe-delimited CSV <em>and</em> Apache Parquet</li>
                         <li class="included"><span class="check-icon">✓</span> CosIng enrichment at the coverage published above</li>
+                        <li class="included"><span class="check-icon">✓</span> EU overlay: <code>fragrance_allergens</code> and <code>regulatory_status</code></li>
                         <li class="included"><span class="check-icon">✓</span> <code>build_report.json</code>, data dictionary, licence</li>
                     </ul>
                     <a href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_en_home" class="btn btn-primary" style="width: 100%; justify-content: center;">Buy now · Instant download</a>
@@ -449,7 +451,7 @@
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
                     <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Which allergen list are the flags taken from?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">One list only: EU Annex III fragrance allergens (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched on exact canonical name — 99 names flagged, with <code>allergen_source</code> recording the list. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">One list only: EU Annex III fragrance allergens (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only — 121 names flagged, with <code>allergen_source</code> recording the list; 43.9% of products carry at least one (about 6.4% more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.</p>
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
                     <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Where do the comedogenic ratings and fungal-acne flags come from?</h3>

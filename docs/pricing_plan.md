@@ -10,10 +10,11 @@ One product. One price. Snapshot 2026.09.
 | **Distinct canonical INCI names** | 1,109 | 46,973 |
 | **Composition links** | the 200 products' links | 318,758 |
 | **`ingredient_name_map` rows** | for the sampled ingredients | 55,426 |
-| **Tables** | all 5 | all 5 |
+| **Tables** | all 7 | all 7 |
 | **Formats** | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet |
 | **CosIng enrichment columns** | included | included |
 | **Allergen flags, authored ratings** | included | included |
+| **EU overlay: `fragrance_allergens`, `regulatory_status`** | rows for the sampled ingredients | included |
 | **`build_report.json` quality report** | — | included |
 | **Delivery** | direct download | Stripe checkout, instant download |
 | **Updates** | static | one-time snapshot |
@@ -78,10 +79,15 @@ high. Pick the column that matches your use case.
 
 Flags and ratings are deliberately small:
 
-* `is_common_allergen` — **99** names, from the EU Annex III fragrance-allergen
-  list (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545).
-  The US FDA has not yet published its MoCRA fragrance-allergen list, so
-  there is no US flag in this dataset.
+* `is_common_allergen` — EU fragrance-allergen overlay (Reg. (EU) 2023/1545):
+  **121** names flagged by exact INCI name, label name or CAS for defined
+  substances; 43.9% of products carry at least one (about 6.4% more list
+  ingredients as unsplit text the flags do not reach). The per-entry evidence
+  ships in `fragrance_allergens`. The US FDA has not yet published its MoCRA
+  fragrance-allergen list, so there is no US flag in this dataset.
+* `regulatory_status` — EU Annex II–VI status rows from the CosIng exports,
+  conditions verbatim, matched by CosIng glossary or "Identified INGREDIENTS"
+  name only. Absence of a row is not a status; not legal advice.
 * `comedogenic_rating` — **145** ingredients rated 0–5, transcribed from
   Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Table I). `NULL`
   everywhere the paper does not reach.
@@ -101,6 +107,10 @@ Flags and ratings are deliberately small:
 * **Ingredient enrichment:** contains data from the European Commission
   CosIng database, reused under the Commission's public-sector information
   reuse policy, with attribution.
+* **EU regulatory overlay:** Annex III to Regulation (EC) No 1223/2009 as
+  amended by Regulation (EU) 2023/1545 (EUR-Lex, © European Union) and the
+  CosIng Annex II–VI exports, reused on the same terms, with attribution.
+  Not legal advice.
 * **Schema & documentation:** CC BY 4.0.
 * Provided as-is, without warranty. Flags and ratings are informational, not
   medical, safety or regulatory-compliance advice.
