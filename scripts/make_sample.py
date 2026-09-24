@@ -39,14 +39,17 @@ misrepresent the enrichment quality the sample exists to showcase). This
 eligibility rule is disclosed on every surface that quotes a sample number:
 the sample reads better than the corpus average BY CONSTRUCTION.
 
-`write_sample()` then writes the 5 relational tables (`brands`, `products`,
-`ingredients`, `product_ingredients`, `ingredient_name_map`) restricted to
-the selected products — their own rows, their brands, the ingredients they
-link to, the ingredient_name_map rows for those ingredients, and the
-product-ingredient links themselves — as pipe-delimited CSV and Parquet,
-using the same column set as the full dataset export (`src/exporter.py`'s
-`SELECT * FROM <table>`), and zips all 10 files flat (no directory prefix)
-into `<out_dir>/incidb_free_samples.zip`. It also writes
+`write_sample()` then writes the 7 sample tables (`brands`, `products`,
+`ingredients`, `product_ingredients`, `ingredient_name_map`,
+`fragrance_allergens`, `regulatory_status`) restricted to the selected
+products — their own rows, their brands, the ingredients they link to, the
+ingredient_name_map rows for those ingredients, the product-ingredient links
+themselves, and the regulatory overlay rows for those ingredients
+(`fragrance_allergens` limited to `flagged = 1` — review rows stay in the
+paid table) — as pipe-delimited CSV and Parquet, using the same column set as
+the full dataset export (`src/exporter.py`'s `SELECT * FROM <table>`), and
+zips all 14 files flat (no directory prefix) into
+`<out_dir>/incidb_free_samples.zip`. It also writes
 `<out_dir>/sample_stats.json` — the same counts it returns — so that
 `scripts/render_claims.py` can build `claims.json` from measured numbers
 instead of hand-typed ones.
@@ -78,7 +81,8 @@ def coerce_integer_columns(df, columns):
             df[col] = df[col].astype("Int64")
     return df
 
-TABLES = ["brands", "products", "ingredients", "product_ingredients", "ingredient_name_map"]
+TABLES = ["brands", "products", "ingredients", "product_ingredients", "ingredient_name_map",
+          "fragrance_allergens", "regulatory_status"]
 ELIGIBILITY_THRESHOLD = 0.80
 
 
@@ -197,7 +201,7 @@ def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905,
 
 
 def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
-    """Writes the 5 sample tables (CSV + Parquet) restricted to `product_ids` and zips them.
+    """Writes the 7 sample tables (CSV + Parquet) restricted to `product_ids` and zips them.
 
     Returns a dict of summary counts (see module docstring / DATA_DICTIONARY.md
     sample table for how these are used).
@@ -248,9 +252,19 @@ def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
                 "ORDER BY ingredient_id, raw_name",
                 conn, params=ingredient_ids,
             )
+            # Regulatory overlay: rows of the sampled ingredients only; review rows
+            # (flagged = 0) stay in the paid table -- the sample shows what is flagged.
+            allergens_df = pd.read_sql_query(
+                f"SELECT * FROM fragrance_allergens WHERE flagged = 1 AND ingredient_id IN ({ip}) "
+                "ORDER BY ingredient_id, annex_iii_ref", conn, params=ingredient_ids)
+            status_df = pd.read_sql_query(
+                f"SELECT * FROM regulatory_status WHERE ingredient_id IN ({ip}) "
+                "ORDER BY ingredient_id, list_ref", conn, params=ingredient_ids)
         else:
             ingredients_df = pd.read_sql_query("SELECT * FROM ingredients WHERE 0", conn)
             name_map_df = pd.read_sql_query("SELECT * FROM ingredient_name_map WHERE 0", conn)
+            allergens_df = pd.read_sql_query("SELECT * FROM fragrance_allergens WHERE 0", conn)
+            status_df = pd.read_sql_query("SELECT * FROM regulatory_status WHERE 0", conn)
         int_cols = {t: integer_columns(conn, t) for t in TABLES}
     finally:
         conn.close()
@@ -261,6 +275,8 @@ def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
         "ingredients": ingredients_df,
         "product_ingredients": links_df,
         "ingredient_name_map": name_map_df,
+        "fragrance_allergens": allergens_df,
+        "regulatory_status": status_df,
     }
 
     for name, df in tables.items():
