@@ -293,7 +293,7 @@
 <tr><td><code>cas_listed</code>, <code>ec_listed</code></td><td><code class="type-tag">STRING</code></td><td>CAS- und EG-Nummern, wie für den Eintrag abgedruckt</td></tr>
 <tr><td><code>leave_on_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Kennzeichnungsschwelle in auf der Haut verbleibenden Produkten, in Prozent, je Eintrag ausgelesen</td></tr>
 <tr><td><code>rinse_off_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Kennzeichnungsschwelle in abzuspülenden Produkten, in Prozent, je Eintrag ausgelesen</td></tr>
-<tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>Ende der Übergangsfrist für das Inverkehrbringen bei Einträgen, die die Änderung 2023 hinzugefügt oder ersetzt hat; <code>NULL</code> bei den übrigen</td></tr>
+<tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>Ende der Übergangsfrist für das Inverkehrbringen bei Einträgen, deren konsolidierter Text die Übergangsfußnote trägt ((37), (38) oder (40)); <code>NULL</code> bei den übrigen</td></tr>
 <tr><td><code>making_available_until</code></td><td><code class="type-tag">DATE</code></td><td>Ende der Übergangsfrist für die Bereitstellung, ebenso</td></tr>
 <tr><td><code>transition_condition</code></td><td><code class="type-tag">STRING</code></td><td>Der Vorbehalt der Verordnung für ersetzte Einträge, wörtlich; <code>NULL</code> sonst</td></tr>
 <tr><td><code>instrument</code></td><td><code class="type-tag">STRING</code></td><td>Das Rechtsinstrument für den Eintrag</td></tr>
@@ -332,6 +332,7 @@
 </tbody>
 </table>
 </div>
+<p style="color: var(--text-secondary); margin-top: 0.75rem;"><code>status</code> ist die Anhangskategorie des Eintrags, kein Urteil über den Inhaltsstoff. Eine Zeile, insbesondere eine mit <code>match_method = IDENTIFIED_INGREDIENT</code>, bedeutet, dass CosIng den INCI-Namen mit diesem Listeneintrag verknüpft. Ein Verbot nach Anhang II gilt nur für den Stoff, die Form oder die Verwendung, die der Eintrag in <code>condition_text</code> beschreibt (zum Beispiel nur die Verwendung in Haarfärbemitteln, nur die Nanoform oder ein Bestandteil wie Furocumarine), daher kann derselbe Inhaltsstoff zusätzlich eine Zeile aus den Anhängen III–VI tragen. Lesen Sie <code>condition_text</code>, bevor Sie Schlüsse ziehen.</p>
 </div>
 </div>
 <!-- Footer -->

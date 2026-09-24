@@ -293,7 +293,7 @@
 <tr><td><code>cas_listed</code>, <code>ec_listed</code></td><td><code class="type-tag">STRING</code></td><td>Numéros CAS et CE tels qu'imprimés pour l'entrée</td></tr>
 <tr><td><code>leave_on_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Seuil d'étiquetage dans les produits non rincés, en pourcentage, extrait par entrée</td></tr>
 <tr><td><code>rinse_off_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Seuil d'étiquetage dans les produits rincés, en pourcentage, extrait par entrée</td></tr>
-<tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>Fin de la transition pour la mise sur le marché des entrées ajoutées ou remplacées par la modification 2023 ; <code>NULL</code> pour les autres</td></tr>
+<tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>Fin de la transition pour la mise sur le marché des entrées dont le texte consolidé porte la note de transition ((37), (38) ou (40)) ; <code>NULL</code> pour les autres</td></tr>
 <tr><td><code>making_available_until</code></td><td><code class="type-tag">DATE</code></td><td>Fin de la transition pour la mise à disposition, de même</td></tr>
 <tr><td><code>transition_condition</code></td><td><code class="type-tag">STRING</code></td><td>La réserve du règlement pour les entrées remplacées, reproduite mot pour mot ; <code>NULL</code> ailleurs</td></tr>
 <tr><td><code>instrument</code></td><td><code class="type-tag">STRING</code></td><td>L'instrument juridique de l'entrée</td></tr>
@@ -332,6 +332,7 @@
 </tbody>
 </table>
 </div>
+<p style="color: var(--text-secondary); margin-top: 0.75rem;"><code>status</code> est la catégorie d'annexe de l'entrée, pas un verdict sur l'ingrédient. Une ligne, en particulier une ligne avec <code>match_method = IDENTIFIED_INGREDIENT</code>, signifie que CosIng relie le nom INCI à cette entrée de liste. Une interdiction de l'annexe II ne couvre que la substance, la forme ou l'usage que l'entrée décrit dans <code>condition_text</code> (par exemple le seul usage en coloration capillaire, la seule forme nano, ou un composant comme les furocoumarines), si bien que le même ingrédient peut aussi porter une ligne des annexes III–VI. Lisez <code>condition_text</code> avant de conclure quoi que ce soit.</p>
 </div>
 </div>
 <!-- Footer -->

@@ -1067,6 +1067,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "52daa3ba77fde7be": {
+  "src": "Transition: non-compliant products could be placed on the market until {0} and may be made available until {1} ({2}).",
+  "t": "Transición: los productos no conformes podían comercializarse hasta {0} y pueden ponerse a disposición en el mercado hasta {1} ({2}).",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "52eac6739e548d78": {
   "src": "<0>Method — allergen flags.</0> One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) {1} as amended by Regulation (EU) {2}), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. {3} names are flagged; the per-entry evidence is in {4} (table {5}). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.",
   "t": "<0>Método: indicadores de alérgenos.</0> Una sola lista: los alérgenos de fragancia del anexo III del Reglamento de Cosméticos de la UE (Reglamento (CE) {1}, modificado por el Reglamento (UE) {2}), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas. Las coincidencias CAS de origen botánico se entregan como filas de revisión, nunca como indicadores. Hay {3} nombres marcados; la evidencia por entrada está en {4} (tabla {5}). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.",
@@ -1366,6 +1372,12 @@
   "t": "Código de barras GTIN / EAN",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "6aefa9c64e135656": {
+  "src": "End of the placing-on-market transition for entries whose consolidated text carries the transition footnote (({0}), ({1}) or ({2})); {3} on the others",
+  "t": "Fin de la transición para la comercialización en las entradas cuyo texto consolidado lleva la nota de transición (({0}), ({1}) o ({2})); {3} en las demás",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "6b21fb791ac05170": {
   "src": "About",
@@ -1906,6 +1918,12 @@
   "t": "<0>{1}:</0> {2} de los nombres distintos, {3} valores distintos.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "972c6572cb1d39c1": {
+  "src": "Transition: non-compliant products could be placed on the market until {0} and may be made available until {1}.",
+  "t": "Transición: los productos no conformes podían comercializarse hasta {0} y pueden ponerse a disposición en el mercado hasta {1}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "976040aee09ff46f": {
   "src": "SCCS OPINION ON FILE",
@@ -2741,6 +2759,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
  },
+ "cdac3efb21f15673": {
+  "src": "Entry text:",
+  "t": "Texto de la entrada:",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "cdb6217a0174b4a2": {
   "src": "Conditions:",
   "t": "Condiciones:",
@@ -2933,6 +2957,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "dec709af19921ea9": {
+  "src": "{0} is the entry's annex category, not a verdict on the ingredient. A row, especially one with {1}, means CosIng links the INCI name to that list entry. An Annex II ban covers only the substance, form or use the entry describes in {2} (for example hair-dye use only, the nano form only, or a component such as furocoumarins), so the same ingredient can also carry an Annex III–VI row. Read {3} before concluding anything.",
+  "t": "{0} es la categoría de anexo de la entrada, no un veredicto sobre el ingrediente. Una fila, sobre todo una con {1}, significa que CosIng vincula el nombre INCI con esa entrada de la lista. Una prohibición del Anexo II cubre solo la sustancia, la forma o el uso que la entrada describe en {2} (por ejemplo, solo el uso en tintes capilares, solo la forma nano o un componente como las furocumarinas), por lo que el mismo ingrediente también puede tener una fila de los Anexos III–VI. Lee {3} antes de sacar cualquier conclusión.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "df994928dfe739f4": {
   "src": "The name as printed in the Regulation, parenthetical alias kept; on {0} rows, the collective label name",
   "t": "El nombre tal como se imprime en el Reglamento, con el alias entre paréntesis conservado; en las filas {0}, el nombre colectivo de etiqueta",
@@ -3052,6 +3082,12 @@
   "t": "La lista de etiquetas propia de Open Beauty Facts, unida con {0}, literal; presente en {1} de {2} productos ({3}), NULL cuando la fuente no tiene ninguna",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "e8b77f203cfefad2": {
+  "src": "Annex II entry (prohibited substance) — scope in the entry text",
+  "t": "Entrada del Anexo II (sustancia prohibida) — alcance en el texto de la entrada",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "e8eff2ac68949d41": {
   "src": "CosIng match (any)",

@@ -293,7 +293,7 @@
 <tr><td><code>cas_listed</code>, <code>ec_listed</code></td><td><code class="type-tag">STRING</code></td><td>Números CAS e CE conforme impressos para a entrada</td></tr>
 <tr><td><code>leave_on_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Limite de rotulagem em produtos sem enxágue, em porcentagem, extraído por entrada</td></tr>
 <tr><td><code>rinse_off_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Limite de rotulagem em produtos de enxágue, em porcentagem, extraído por entrada</td></tr>
-<tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>Fim da transição de colocação no mercado para entradas que a alteração 2023 incluiu ou substituiu; <code>NULL</code> nas demais</td></tr>
+<tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>Fim da transição para a colocação no mercado das entradas cujo texto consolidado traz a nota de transição ((37), (38) ou (40)); <code>NULL</code> nas demais</td></tr>
 <tr><td><code>making_available_until</code></td><td><code class="type-tag">DATE</code></td><td>Fim da transição de disponibilização, da mesma forma</td></tr>
 <tr><td><code>transition_condition</code></td><td><code class="type-tag">STRING</code></td><td>A ressalva do Regulamento para entradas substituídas, literal; <code>NULL</code> nos demais casos</td></tr>
 <tr><td><code>instrument</code></td><td><code class="type-tag">STRING</code></td><td>O instrumento legal da entrada</td></tr>
@@ -332,6 +332,7 @@
 </tbody>
 </table>
 </div>
+<p style="color: var(--text-secondary); margin-top: 0.75rem;"><code>status</code> é a categoria de anexo da entrada, não um veredito sobre o ingrediente. Uma linha, sobretudo uma com <code>match_method = IDENTIFIED_INGREDIENT</code>, significa que o CosIng vincula o nome INCI a essa entrada da lista. Uma proibição do Anexo II abrange apenas a substância, a forma ou o uso que a entrada descreve em <code>condition_text</code> (por exemplo, apenas o uso em tinturas capilares, apenas a forma nano ou um componente como as furocumarinas), de modo que o mesmo ingrediente também pode ter uma linha dos Anexos III–VI. Leia <code>condition_text</code> antes de tirar qualquer conclusão.</p>
 </div>
 </div>
 <!-- Footer -->

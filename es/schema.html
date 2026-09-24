@@ -293,7 +293,7 @@
 <tr><td><code>cas_listed</code>, <code>ec_listed</code></td><td><code class="type-tag">STRING</code></td><td>Números CAS y CE tal como se imprimen para la entrada</td></tr>
 <tr><td><code>leave_on_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Umbral de etiquetado en productos sin aclarado, en porcentaje, extraído por entrada</td></tr>
 <tr><td><code>rinse_off_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Umbral de etiquetado en productos de aclarado, en porcentaje, extraído por entrada</td></tr>
-<tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>Fin de la transición de comercialización para las entradas que la modificación 2023 añadió o sustituyó; <code>NULL</code> en las demás</td></tr>
+<tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>Fin de la transición para la comercialización en las entradas cuyo texto consolidado lleva la nota de transición ((37), (38) o (40)); <code>NULL</code> en las demás</td></tr>
 <tr><td><code>making_available_until</code></td><td><code class="type-tag">DATE</code></td><td>Fin de la transición de puesta a disposición, de igual modo</td></tr>
 <tr><td><code>transition_condition</code></td><td><code class="type-tag">STRING</code></td><td>La salvedad del Reglamento para las entradas sustituidas, tal cual; <code>NULL</code> en el resto</td></tr>
 <tr><td><code>instrument</code></td><td><code class="type-tag">STRING</code></td><td>El instrumento legal de la entrada</td></tr>
@@ -332,6 +332,7 @@
 </tbody>
 </table>
 </div>
+<p style="color: var(--text-secondary); margin-top: 0.75rem;"><code>status</code> es la categoría de anexo de la entrada, no un veredicto sobre el ingrediente. Una fila, sobre todo una con <code>match_method = IDENTIFIED_INGREDIENT</code>, significa que CosIng vincula el nombre INCI con esa entrada de la lista. Una prohibición del Anexo II cubre solo la sustancia, la forma o el uso que la entrada describe en <code>condition_text</code> (por ejemplo, solo el uso en tintes capilares, solo la forma nano o un componente como las furocumarinas), por lo que el mismo ingrediente también puede tener una fila de los Anexos III–VI. Lee <code>condition_text</code> antes de sacar cualquier conclusión.</p>
 </div>
 </div>
 <!-- Footer -->
