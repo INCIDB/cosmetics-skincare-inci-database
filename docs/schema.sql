@@ -63,6 +63,50 @@ CREATE TABLE IF NOT EXISTS product_ingredients (
     FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id)
 );
 
+-- EU fragrance allergens: Annex III labelling entries of Reg. (EC) 1223/2009 as amended by
+-- Reg. (EU) 2023/1545 (corr. OJ L 2025/90876). One row per legal name x INCIDB match; legal
+-- names with no match keep ingredient_id NULL. Review rows (botanical CAS hits) have flagged = 0.
+CREATE TABLE IF NOT EXISTS fragrance_allergens (
+    annex_iii_ref VARCHAR(10) NOT NULL,
+    legal_name VARCHAR(255) NOT NULL,            -- column b as printed; LABEL_NAME rows carry column h
+    label_as VARCHAR(100),                       -- collective label name from column h, else NULL
+    cas_listed VARCHAR(255),
+    ec_listed VARCHAR(255),
+    leave_on_threshold_pct DECIMAL(6, 4),        -- 0.001 (percent) as printed
+    rinse_off_threshold_pct DECIMAL(6, 4),       -- 0.01 (percent) as printed
+    placing_on_market_until DATE,
+    making_available_until DATE,
+    transition_condition TEXT,
+    instrument TEXT NOT NULL,
+    ingredient_id INTEGER REFERENCES ingredients(ingredient_id),
+    inci_name VARCHAR(255),
+    match_method VARCHAR(30),                    -- NAME | LABEL_NAME | CAS | BOTANICAL_CAS_REVIEW
+    flagged BOOLEAN NOT NULL,
+    source VARCHAR(30) NOT NULL,                 -- EURLEX | COSING_ANNEX_III
+    source_url TEXT NOT NULL,
+    retrieved_at DATE NOT NULL
+);
+
+-- Regulatory status: one row per ingredient x jurisdiction x list entry. A row exists only
+-- where a list says something; absence of a row is not a status.
+CREATE TABLE IF NOT EXISTS regulatory_status (
+    ingredient_id INTEGER NOT NULL REFERENCES ingredients(ingredient_id),
+    inci_name VARCHAR(255) NOT NULL,
+    cas VARCHAR(255),
+    jurisdiction VARCHAR(10) NOT NULL,           -- EU (CA, ASEAN, CN reserved)
+    list_ref VARCHAR(40) NOT NULL,               -- e.g. Annex III/98
+    status VARCHAR(30) NOT NULL,                 -- PROHIBITED | RESTRICTED | ALLOWED_WITH_CONDITIONS | LISTED_EXISTING
+    instrument TEXT,
+    product_type TEXT,
+    max_concentration TEXT,
+    condition_text TEXT,
+    effective_date DATE,                         -- only where the source states one
+    match_method VARCHAR(30) NOT NULL,           -- NAME | IDENTIFIED_INGREDIENT | CAS
+    source_url TEXT NOT NULL,
+    retrieved_at DATE NOT NULL,
+    source_update_date VARCHAR(10)
+);
+
 CREATE INDEX IF NOT EXISTS idx_products_brand ON products(brand_id);
 CREATE INDEX IF NOT EXISTS idx_ingredients_inci ON ingredients(inci_name);
 CREATE INDEX IF NOT EXISTS idx_prod_ing_position ON product_ingredients(product_id, position_index);
