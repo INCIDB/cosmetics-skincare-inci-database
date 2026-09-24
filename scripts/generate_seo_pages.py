@@ -286,6 +286,84 @@ def is_flag(row, name):
     return value not in ('', '0', '0.0')
 
 
+REG_STATUS_LABEL = {
+    "PROHIBITED": "Prohibited", "RESTRICTED": "Restricted",
+    "ALLOWED_WITH_CONDITIONS": "Allowed with conditions",
+    "LISTED_EXISTING": "Listed (existing ingredient)",
+}
+REG_JURISDICTION_LABEL = {"EU": "European Union"}
+
+
+def load_regulatory(samples_dir=SAMPLES_DIR):
+    """ingredient_id -> {"allergens": [...], "status": [...]} from the sample tables.
+    No file, no rows, no block: absence of a row is never rendered as a status."""
+    out = {}
+    for fname, key in (("fragrance_allergens.csv", "allergens"), ("regulatory_status.csv", "status")):
+        path = os.path.join(samples_dir, fname)
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8", errors="replace", newline="") as f:
+            for row in csv.DictReader(f, delimiter="|"):
+                iid = (row.get("ingredient_id") or "").strip()
+                if iid and (key == "status" or is_flag(row, "flagged")):
+                    out.setdefault(iid, {"allergens": [], "status": []})[key].append(row)
+    return out
+
+
+def _date(iso):
+    import datetime as _dt
+    try:
+        return _dt.date.fromisoformat(iso).strftime("%-d %b %Y") if os.name != "nt" else \
+            _dt.date.fromisoformat(iso).strftime("%d %b %Y").lstrip("0")
+    except ValueError:
+        return ""
+
+
+def regulatory_block(allergens, status):
+    """'Regulatory status by region': rendered only from rows. Legal text is data
+    (translate="no", captioned 'Official text (EN)'); labels are copy."""
+    if not allergens and not status:
+        return ""
+    e = html.escape
+
+    def data(v):
+        return f'<span translate="no" lang="en">{e(v)}</span>'
+
+    items = []
+    for a in allergens[:1]:  # one allergen line per ingredient; rows share thresholds and dates
+        s = (f"<span>Fragrance allergen: must be named in the ingredient list above "
+             f"{data(field(a, 'leave_on_threshold_pct') + ' %')} in leave-on and "
+             f"{data(field(a, 'rinse_off_threshold_pct') + ' %')} in rinse-off products.</span>")
+        if field(a, "label_as"):
+            s += f" <span>Labelled as {data(field(a, 'label_as'))}.</span>"
+        s += f" <span>Annex III/{data(field(a, 'annex_iii_ref'))}, {data(field(a, 'instrument'))}.</span>"
+        placing, making = _date(field(a, "placing_on_market_until")), _date(field(a, "making_available_until"))
+        if placing and making:
+            s += (f" <span>Non-compliant products: placing on the market until {data(placing)}, "
+                  f"making available until {data(making)}")
+            s += (f" ({data(field(a, 'transition_condition'))}).</span>" if field(a, "transition_condition") else ".</span>")
+        s += (f' <a href="{e(field(a, "source_url"))}" rel="nofollow noopener">Source</a>'
+              f' <span>retrieved {data(field(a, "retrieved_at"))}</span>')
+        items.append(f"<li>{s}</li>")
+    for r in status:
+        parts = [f"<strong>{e(REG_STATUS_LABEL.get(field(r, 'status'), field(r, 'status')))}</strong>",
+                 data(field(r, "list_ref"))]
+        for label, col in (
+            ("Product type", "product_type"), ("Maximum concentration", "max_concentration"),
+            ("Conditions", "condition_text"), ("Instrument", "instrument"),
+        ):
+            if field(r, col):
+                parts.append(f"<span>{label}:</span> {data(field(r, col))}")
+        parts.append(f'<a href="{e(field(r, "source_url"))}" rel="nofollow noopener">Source</a> '
+                     f'<span>retrieved {data(field(r, "retrieved_at"))}</span>')
+        items.append("<li>" + " · ".join(parts) + "</li>")
+    jur = REG_JURISDICTION_LABEL["EU"]
+    return (f'<section class="regulatory" style="margin: 2rem 0;"><h2 style="font-size: 1.3rem; color: #F8FAFC;">'
+            f'Regulatory status by region</h2><h3 style="font-size: 1rem; color: #CBD5E1;">{jur}</h3>'
+            f'<p style="font-size: 0.8rem; color: #64748B;">Official text (EN), quoted verbatim from the source list.</p>'
+            f'<ul style="color: #CBD5E1; line-height: 1.6;">{"".join(items)}</ul></section>')
+
+
 def load_cosing_names(path=COSING_INVENTORY_PATH):
     """INCI name -> the CosIng inventory row's name/opinion columns, or {} if
     the export is not on this machine. First row wins on a duplicate name,
@@ -472,8 +550,9 @@ def ingredient_profile(ing, prod_list, names=()):
     )
 
 
-def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_row=None):
+def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_row=None, regulatory=None):
     e = html.escape
+    reg = regulatory or {"allergens": [], "status": []}
     inci_name = field(ing, 'inci_name') or 'UNKNOWN INCI'
     cas = field(ing, 'cas_number')
     functions = function_list(ing)
@@ -518,7 +597,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_ro
         # matches term by term (i18n_common.py placeholders them in <meta> too)
         fn_spans = ", ".join(f'<span translate="no">{e(f.title())}</span>' for f in functions)
         facts.append(("COSING FUNCTIONS", f'<div translate="no" style="font-size: 1.05rem; color: #F8FAFC; font-weight: 500;">{fn_spans}</div>'))
-    if field(ing, 'cosing_restriction'):
+    if field(ing, 'cosing_restriction') and not reg["status"]:
         facts.append(("COSING RESTRICTION", f'<div translate="no" style="font-family: \'JetBrains Mono\', monospace; font-size: 1.05rem; color: #F59E0B;">{e(field(ing, "cosing_restriction"))}</div>'))
     if comedo:
         colour = '#F43F5E' if float(comedo) >= 3 else '#10B981'
@@ -737,6 +816,8 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_ro
             <div class="fact-grid">
 {facts_html}
             </div>
+
+            {regulatory_block(reg["allergens"], reg["status"])}
         </div>
 
         <div style="margin-bottom: 2.5rem;">
@@ -948,6 +1029,7 @@ def main():
 
     claims = load_claims()
     ingredients, products, prod_ing = load_data()
+    regulatory = load_regulatory()
     print(f"Loaded {len(ingredients)} sample ingredients and {len(products)} sample products.")
     cosing_names = load_cosing_names()
     if cosing_names:
@@ -1002,7 +1084,8 @@ def main():
             p_list = prod_ing.get(field(ing, 'ingredient_id'), [])
             related_members = related_neighbors(members, idx, hub_key, hub_order, buckets)
             filename = generate_monograph(ing, p_list, (hub_key, hub_name, hub_file), claims, related_members,
-                                          cosing_names.get(field(ing, 'inci_name')))
+                                          cosing_names.get(field(ing, 'inci_name')),
+                                          regulatory.get(field(ing, 'ingredient_id')))
             sitemap_entries.append(
                 (f"{BASE_URL}/landing/{filename[:-5]}", os.path.join(LANDING_DIR, filename), "monthly", "0.8"))
 
