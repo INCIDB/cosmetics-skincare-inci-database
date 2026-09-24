@@ -16,7 +16,7 @@
 const CACHE_NAME = 'incidb-public-cache-v2026.09.1';
 const CORE_ASSETS = [
   '/',
-  '/index.css',
+  '/index.css?v=8957872104',
   '/site.webmanifest',
   '/favicon.svg'
 ];

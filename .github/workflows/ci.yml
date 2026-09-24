@@ -36,6 +36,9 @@ jobs:
         run: |
           if [ -d "src" ]; then flake8 src tests run_pipeline.py hf_space_app.py; else flake8 scripts/; fi
 
+      - name: Check index.css cache-busting stamp
+        run: python scripts/css_version.py --check
+
       - name: Run Pytest Test Suite
         run: |
           if [ -d "tests" ]; then pytest; else echo "No tests directory in public release bundle."; fi
