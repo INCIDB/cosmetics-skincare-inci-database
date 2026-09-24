@@ -2,7 +2,7 @@
 """
 generate_seo_pages.py — INCIDB INCI monograph & category-hub generator.
 
-Reads the free sample under `samples/` (the same five tables the public can
+Reads the free sample under `samples/` (the same seven tables the public can
 download) plus `claims.json`, and writes one monograph per ingredient to
 `landing/`, one hub per CosIng functional category, and `sitemap.xml`.
 
@@ -287,7 +287,8 @@ def is_flag(row, name):
 
 
 REG_STATUS_LABEL = {
-    "PROHIBITED": "Prohibited", "RESTRICTED": "Restricted",
+    "PROHIBITED": "Annex II entry (prohibited substance) — scope in the entry text",
+    "RESTRICTED": "Restricted",
     "ALLOWED_WITH_CONDITIONS": "Allowed with conditions",
     "LISTED_EXISTING": "Listed (existing ingredient)",
 }
@@ -336,11 +337,13 @@ def regulatory_block(allergens, status):
              f"{data(field(a, 'rinse_off_threshold_pct') + ' %')} in rinse-off products.</span>")
         if field(a, "label_as"):
             s += f" <span>Labelled as {data(field(a, 'label_as'))}.</span>"
+        if field(a, "source") == "COSING_ANNEX_III":
+            s += " <span>(name listed by CosIng for this entry; not printed in the Official Journal text)</span>"
         s += f" <span>Annex III/{data(field(a, 'annex_iii_ref'))}, {data(field(a, 'instrument'))}.</span>"
         placing, making = _date(field(a, "placing_on_market_until")), _date(field(a, "making_available_until"))
         if placing and making:
-            s += (f" <span>Non-compliant products: placing on the market until {data(placing)}, "
-                  f"making available until {data(making)}")
+            s += (f" <span>Transition: non-compliant products could be placed on the market until {data(placing)} "
+                  f"and may be made available until {data(making)}")
             s += (f" ({data(field(a, 'transition_condition'))}).</span>" if field(a, "transition_condition") else ".</span>")
         s += (f' <a href="{e(field(a, "source_url"))}" rel="nofollow noopener">Source</a>'
               f' <span>retrieved {data(field(a, "retrieved_at"))}</span>')
@@ -348,9 +351,11 @@ def regulatory_block(allergens, status):
     for r in status:
         parts = [f"<strong>{e(REG_STATUS_LABEL.get(field(r, 'status'), field(r, 'status')))}</strong>",
                  data(field(r, "list_ref"))]
+        # An Annex II row's text is the entry's scope (substance, form or use), not a condition.
+        text_caption = "Entry text" if field(r, "status") == "PROHIBITED" else "Conditions"
         for label, col in (
             ("Product type", "product_type"), ("Maximum concentration", "max_concentration"),
-            ("Conditions", "condition_text"), ("Instrument", "instrument"),
+            (text_caption, "condition_text"), ("Instrument", "instrument"),
         ):
             if field(r, col):
                 parts.append(f"<span>{label}:</span> {data(field(r, col))}")

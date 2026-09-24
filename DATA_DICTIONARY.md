@@ -212,7 +212,7 @@ the 81 entries match at least one INCIDB name.
 | `cas_listed`, `ec_listed` | `STRING` | CAS and EC numbers as printed for the entry |
 | `leave_on_threshold_pct` | `DECIMAL` | Labelling threshold in leave-on products, in percent, parsed per entry (0.001 on every entry today) |
 | `rinse_off_threshold_pct` | `DECIMAL` | Labelling threshold in rinse-off products, in percent, parsed per entry (0.01 on every entry today) |
-| `placing_on_market_until` | `DATE` | End of the transition for placing non-compliant products on the market (31 Jul 2026) on the entries the 2023 amendment added or replaced; `NULL` on the others |
+| `placing_on_market_until` | `DATE` | End of the transition for placing non-compliant products on the market (31 Jul 2026) on the entries whose consolidated text carries the transition footnote ((37), (38) or (40)); `NULL` on the others |
 | `making_available_until` | `DATE` | End of the transition for making them available (31 Jul 2028), likewise |
 | `transition_condition` | `STRING` | The Regulation's proviso for replaced entries, verbatim; `NULL` elsewhere |
 | `instrument` | `STRING` | The legal instrument for the entry: the 2023 amending regulation (with its corrigendum) for the entries it touched, the consolidated Annex III for the others |
@@ -282,6 +282,14 @@ CosIng exports.
 | `match_method` | `STRING` | `NAME` or `IDENTIFIED_INGREDIENT` (see below). `CAS` is reserved for later sources |
 | `source_url`, `retrieved_at` | `STRING`, `DATE` | The CosIng export the row came from and the date it was fetched |
 | `source_update_date` | `STRING` | CosIng's "Update Date" for the entry, as printed |
+
+**`status` is the entry's annex category, not a verdict on the ingredient.**
+A row, especially one with `match_method = IDENTIFIED_INGREDIENT`, means
+CosIng links the INCI name to that list entry. An Annex II ban covers only
+the substance, form or use the entry describes in `condition_text` (for
+example hair-dye use only, the nano form only, or a component such as
+furocoumarins), so the same ingredient can also carry an Annex III–VI row.
+Read `condition_text` before concluding anything.
 
 | `match_method` | Meaning |
 | :--- | :--- |

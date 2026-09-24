@@ -303,7 +303,7 @@
                         <tr><td><code>cas_listed</code>, <code>ec_listed</code></td><td><code class="type-tag">STRING</code></td><td>CAS and EC numbers as printed for the entry</td></tr>
                         <tr><td><code>leave_on_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Labelling threshold in leave-on products, in percent, parsed per entry</td></tr>
                         <tr><td><code>rinse_off_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Labelling threshold in rinse-off products, in percent, parsed per entry</td></tr>
-                        <tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>End of the placing-on-market transition for entries the 2023 amendment added or replaced; <code>NULL</code> on the others</td></tr>
+                        <tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>End of the placing-on-market transition for entries whose consolidated text carries the transition footnote ((37), (38) or (40)); <code>NULL</code> on the others</td></tr>
                         <tr><td><code>making_available_until</code></td><td><code class="type-tag">DATE</code></td><td>End of the making-available transition, likewise</td></tr>
                         <tr><td><code>transition_condition</code></td><td><code class="type-tag">STRING</code></td><td>The Regulation's proviso for replaced entries, verbatim; <code>NULL</code> elsewhere</td></tr>
                         <tr><td><code>instrument</code></td><td><code class="type-tag">STRING</code></td><td>The legal instrument for the entry</td></tr>
@@ -343,6 +343,7 @@
                     </tbody>
                 </table>
             </div>
+            <p style="color: var(--text-secondary); margin-top: 0.75rem;"><code>status</code> is the entry's annex category, not a verdict on the ingredient. A row, especially one with <code>match_method = IDENTIFIED_INGREDIENT</code>, means CosIng links the INCI name to that list entry. An Annex II ban covers only the substance, form or use the entry describes in <code>condition_text</code> (for example hair-dye use only, the nano form only, or a component such as furocoumarins), so the same ingredient can also carry an Annex III–VI row. Read <code>condition_text</code> before concluding anything.</p>
         </div>
     </div>
 
