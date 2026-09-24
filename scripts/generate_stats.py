@@ -33,12 +33,14 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from stats_common import (Site, esc, n, pct, data, svg_hbar, figure, table, section, toc, tiles,  # noqa: E402
                           article_ld, COPY_JS, STATS_CSS, write_outputs)
+from css_version import css_href  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "stats"
 FIRST_PUBLISHED = "2026-09-18"
 DEFAULT_DB = ROOT / "data" / "incidb.sqlite"
 BUILD_REPORT = ROOT / "data" / "exports" / "build_report.json"
+CSS_HREF = css_href("../")
 
 SITE = Site(base_url="https://incidb.dataengineered.io", brand="INCIDB",
             snippet_label="INCIDB cosmetics ingredient statistics",
@@ -353,7 +355,7 @@ def build_page(s, charts):
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="{CSS_HREF}">
 {ld}
     <style>{CSS}{STATS_CSS}    </style>
 </head>

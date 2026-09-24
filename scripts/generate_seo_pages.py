@@ -46,8 +46,10 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import seo_common  # noqa: E402
+from css_version import css_href  # noqa: E402
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CSS_HREF = css_href("../")
 SAMPLES_DIR = os.path.join(ROOT_DIR, "samples")
 LANDING_DIR = os.path.join(ROOT_DIR, "landing")
 SITEMAP_PATH = os.path.join(ROOT_DIR, "sitemap.xml")
@@ -740,7 +742,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_ro
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="{CSS_HREF}">
     <style>
         .related {{ margin-top: 2.5rem; }}
         .related h2 {{ font-size: 1.3rem; margin-bottom: 1rem; color: #F8FAFC; }}
@@ -963,7 +965,7 @@ def generate_hub(hub_key, hub_name, hub_file, ing_list, claims):
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="{CSS_HREF}">
     <style>{LAYOUT_CSS}
     </style>
 
