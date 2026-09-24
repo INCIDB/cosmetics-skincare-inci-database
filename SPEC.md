@@ -79,3 +79,17 @@ ORDER BY 2 DESC;
 the canonical name did not match the CosIng inventory. See
 [DATA_DICTIONARY.md](DATA_DICTIONARY.md) for the measured coverage of each
 column and the method notes behind the flags.
+
+## Regulatory overlay
+
+Two further tables ship in the same formats: `fragrance_allergens`, the EU
+fragrance-allergen labelling entries of Annex III to Regulation (EC)
+1223/2009 as amended by Regulation (EU) 2023/1545, one row per legal name and
+INCIDB match (matched by exact INCI name, then collective label name, then
+CAS for chemically defined substances only; botanical CAS hits ship as review
+rows with `flagged = 0`); and `regulatory_status`, the EU Annex II–VI status
+rows from the CosIng exports, matched by CosIng glossary name or "Identified
+INGREDIENTS" name only, with conditions verbatim. A `regulatory_status` row
+exists only where a list says something; absence of a row is not a status,
+and neither table is legal advice. Columns, match methods and source versions
+are in [DATA_DICTIONARY.md](DATA_DICTIONARY.md) (tables 6 and 7).

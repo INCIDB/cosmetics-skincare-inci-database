@@ -51,6 +51,8 @@ Shipped as pipe-delimited UTF-8 CSV (`|`) and Apache Parquet.
 | `ingredients` | 46,973 | Distinct canonical INCI names, plus their CosIng enrichment where CosIng lists them |
 | `product_ingredients` | 318,758 | Ordered composition links (`position_index` = label order) |
 | `ingredient_name_map` | 55,426 | Raw label token → canonical name, with the resolution `method` and a confidence |
+| `fragrance_allergens` | 268 | EU Annex III fragrance-allergen labelling entries, one row per legal name × INCIDB match (review rows and unmatched names included) |
+| `regulatory_status` | 614 | EU Annex II–VI status per ingredient × list entry; a row exists only where a list says something |
 
 ### Enrichment coverage — stated two ways, honestly
 
@@ -75,11 +77,26 @@ you can decide before you pay.
 
 ### Flags and ratings — small, cited, and `NULL` everywhere else
 
-* **`is_common_allergen` — 99 flagged names.** The EU Annex III fragrance
-  allergen list (Regulation (EC) 1223/2009 as amended by Regulation (EU)
-  2023/1545), matched on exact canonical name. `allergen_source` records the
-  list. The US FDA has not yet published its MoCRA fragrance-allergen list,
-  so no US flag exists in this dataset.
+* **EU fragrance allergens (`is_common_allergen`, `fragrance_allergens`).**
+  The 81 labelling entries of Annex III to Regulation (EC) 1223/2009, as
+  amended by Regulation (EU) 2023/1545 (consolidated text of 18.05.2026), are
+  matched to INCIDB by exact INCI name, then by the collective label name the
+  Regulation prescribes (e.g. "Rose Ketones"), then by CAS number for
+  chemically defined substances only. Botanical CAS hits are shipped as review
+  rows, never flags. 121 names are flagged; 43.9% of products contain at least
+  one. About 6.4% of products list ingredients as unsplit text that the
+  allergen flags do not reach. The US FDA has not yet published its MoCRA
+  fragrance-allergen list, so this dataset carries no US flag.
+  `allergen_source` records the list on each flagged ingredient; the
+  `fragrance_allergens` table carries the Annex reference, thresholds,
+  transition dates, match method and source for every row.
+* **EU regulatory status (`regulatory_status`).** Annex II–VI entries from
+  the European Commission CosIng exports — `PROHIBITED` (Annex II),
+  `RESTRICTED` (Annex III), `ALLOWED_WITH_CONDITIONS` (Annexes IV–VI) — with
+  product type, maximum concentration and conditions verbatim. Matched by the
+  CosIng glossary name or the CosIng "Identified INGREDIENTS" name only; there
+  is no CAS route. Absence of a row is not a status, and nothing here is legal
+  advice.
 * **`comedogenic_rating` — 145 ingredients rated 0–5.** Transcribed from
   Fulton JE Jr., *Comedogenicity and irritancy of commonly used ingredients
   in skin care products*, J Soc Cosmet Chem 1989;40:321–333 (Table I).
@@ -130,7 +147,7 @@ instead of taking it on trust.
 ## Free sample
 
 [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) — the
-same five tables, the same columns, as CSV and Parquet:
+same seven tables, the same columns, as CSV and Parquet:
 
 * **200 products**, with their brands, their **1,109** referenced
   ingredients, all their composition links, and the name-map rows for those
@@ -152,7 +169,7 @@ One product. Everything measured above, both formats, instant download.
 | | INCIDB Complete |
 | :--- | :--- |
 | Price | **$79** one-time |
-| Tables | All 5 (`products`, `brands`, `ingredients`, `product_ingredients`, `ingredient_name_map`) |
+| Tables | All 7 (`products`, `brands`, `ingredients`, `product_ingredients`, `ingredient_name_map`, `fragrance_allergens`, `regulatory_status`) |
 | Formats | Pipe-delimited CSV (`\|`) **and** Apache Parquet |
 | Enrichment | Every CosIng column, allergen flags, authored ratings — at the coverage stated above |
 | Extras | `build_report.json` (per-column fill rates and source hashes), data dictionary, licence |
@@ -214,8 +231,9 @@ duckdb.query("""
   position-weighted composition vectors across 18,583 products.
 * **Retail and marketplace enrichment** — attach functions and restrictions to
   product pages, with `NULL` where nothing is known rather than a guess.
-* **Regulatory and research work** — Annex II–VI membership per ingredient,
-  plus the raw→canonical audit trail the join was built on.
+* **Regulatory and research work** — Annex II–VI status rows per ingredient
+  with their conditions, plus the raw→canonical audit trail the join was built
+  on.
 
 ---
 
@@ -241,6 +259,10 @@ duckdb.query("""
 * **Ingredient enrichment:** contains data from the European Commission
   CosIng database, reused under the Commission's public-sector information
   reuse policy, with attribution.
+* **EU regulatory overlay:** Annex III to Regulation (EC) No 1223/2009 as
+  amended by Regulation (EU) 2023/1545 (EUR-Lex, © European Union) and the
+  CosIng Annex II–VI exports, reused on the same terms, with attribution.
+  Not legal advice.
 * **Schema & documentation:** CC BY 4.0.
 * Provided **as-is, without warranty**. The flags and ratings are
   informational; they are not medical, safety or regulatory-compliance advice.

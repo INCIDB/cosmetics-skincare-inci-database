@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Documentation INCIDB et démarrage rapide</title>
-<meta content="Documentation technique d’INCIDB : schéma à cinq tables, couverture de la jointure CosIng, méthode de canonicalisation et extraits de démarrage rapide PyArrow/DuckDB." name="description"/>
+<meta content="Documentation technique d'INCIDB : schéma à sept tables, couverture de la jointure CosIng, méthode de canonicalisation et extraits de démarrage rapide PyArrow/DuckDB." name="description"/>
 <link href="https://incidb.dataengineered.io/fr/documentation" rel="canonical"/>
 <!-- i18n:alternates -->
 <link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/documentation">
@@ -24,7 +24,7 @@
 <script src="/i18n/i18n.js?v=5" defer></script>
 <!-- /i18n:alternates -->
 <meta content="Documentation INCIDB et démarrage rapide" property="og:title"/>
-<meta content="Le schéma INCIDB à cinq tables, la jointure CosIng et sa couverture mesurée, et des extraits de démarrage rapide PyArrow/DuckDB." property="og:description"/>
+<meta content="Le schéma INCIDB à sept tables, la jointure CosIng et sa couverture mesurée, et des extraits de démarrage rapide PyArrow/DuckDB." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/fr/documentation" property="og:url"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -91,27 +91,29 @@
 <div class="section-eyebrow">Portail développeurs</div>
 <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Documentation technique INCIDB</h1>
 <p style="color: var(--text-secondary); max-width: 700px; margin-top: 1rem;">
-                Les cinq tables, les deux sources dont elles proviennent, la couverture réelle de chaque colonne d’enrichissement et la manière d’interroger le résultat.
+                Les sept tables, les sources dont elles proviennent, la couverture réelle de chaque colonne d'enrichissement et la manière d'interroger le résultat.
             </p>
 </div>
 <div class="doc-section">
 <h2>1. Contenu du snapshot</h2>
-<p>Cinq tables, exportées en CSV UTF-8 délimité par des barres verticales et en Apache Parquet, avec des colonnes identiques :</p>
+<p>Sept tables, exportées en CSV UTF-8 délimité par des barres verticales et en Apache Parquet, avec des colonnes identiques :</p>
 <ul>
 <li><strong>18 583 produits</strong> — une ligne par produit Open Beauty Facts comportant une liste des ingrédients exploitable sur l’emballage, la déclaration brute étant conservée telle quelle pour que l’analyse puisse être refaite.</li>
 <li><strong>5 925 marques</strong> — identités de marque telles qu’enregistrées à la source.</li>
 <li><strong>46 973 noms INCI canoniques distincts</strong> — résultat de la canonicalisation de chaque token brut d’étiquette, enrichis depuis CosIng lorsque CosIng les répertorie.</li>
 <li><strong>318 758 liens de composition ordonnés</strong> — l’ordre de l’étiquette est conservé dans <code>position_index</code>.</li>
 <li><strong>55 426 lignes de correspondance de noms</strong> — comment chaque token brut d’étiquette a été résolu, et par quelle méthode.</li>
+<li><strong>268 lignes de <code>fragrance_allergens</code></strong> — les entrées d'allergènes parfumants de l'annexe III de l'UE, une ligne par nom légal et correspondance INCIDB, lignes à vérifier et noms sans correspondance inclus.</li>
+<li><strong>614 lignes de <code>regulatory_status</code></strong> — le statut au titre des annexes II–VI de l'UE par ingrédient et entrée de liste, conditions reproduites mot pour mot. Une ligne n'existe que lorsqu'une liste indique quelque chose.</li>
 </ul>
 </div>
 <div class="doc-section">
 <h2>2. Les sources et la jointure</h2>
-<p>Deux sources, une jointure documentée. L’URL, l’horodatage de téléchargement et le SHA-256 de chaque fichier source sont consignés dans le <code>build_report.json</code> livré avec les données.</p>
+<p>Trois sources, chacune avec une jointure documentée. L'URL, l'horodatage de téléchargement et SHA-256 de chaque fichier source sont consignés dans <code>build_report.json</code>, fourni avec les données.</p>
 <ul>
 <li><strong>Open Beauty Facts</strong> — le corpus de produits (codes-barres, marques, <code>categories_tags</code> propres à la source, listes d’ingrédients brutes) sous Open Database License (ODbL).</li>
-<li><strong>CosIng (Commission européenne)</strong> — l’inventaire des ingrédients : catégories fonctionnelles, numéros CAS et CE, descriptions chimiques, restrictions et appartenance aux annexes II–VI. Jointure sur le nom canonique exact ; les noms sans correspondance valent <code>NULL</code> dans toutes les colonnes issues de CosIng, jamais une valeur de remplacement.</li>
-<li><strong>Allergènes parfumants de l’annexe III (UE)</strong> — règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545, la seule liste à l’origine de <code>is_common_allergen</code>. La FDA américaine n’a pas encore publié sa liste d’allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain.</li>
+<li><strong>CosIng (Commission européenne)</strong> — l'inventaire des ingrédients : catégories fonctionnelles, numéros CAS et CE, descriptions chimiques, restrictions et appartenance aux annexes II–VI. Jointure sur le nom canonique exact ; les noms sans correspondance valent <code>NULL</code> dans toutes les colonnes issues de CosIng, jamais une valeur de remplacement. Les exports des annexes II–VI alimentent aussi <code>regulatory_status</code>, rapprochés uniquement par le nom du glossaire CosIng ou par le nom CosIng « Identified INGREDIENTS » (pas de recours au CAS). L'absence de ligne n'est pas un statut, et rien de tout cela ne constitue un avis juridique.</li>
+<li><strong>Allergènes parfumants de l'UE.</strong> Les 81 entrées d'étiquetage de l'annexe III du règlement (CE) 1223/2009, modifié par le règlement (UE) 2023/1545 (texte consolidé du 18.05.2026), sont rapprochées d'INCIDB par le nom INCI exact, puis par le nom collectif d'étiquetage prescrit par le règlement (par exemple « Rose Ketones »), puis par numéro CAS uniquement pour les substances chimiquement définies. Les correspondances CAS d'origine botanique sont livrées comme lignes à vérifier, jamais comme indicateurs. 121 noms sont signalés ; 43,9% des produits en contiennent au moins un. Environ 6,4% des produits listent les ingrédients sous forme de texte non scindé, que les indicateurs d'allergènes n'atteignent pas. La FDA américaine n'a pas encore publié sa liste d'allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain.</li>
 <li><strong>Couche éditoriale</strong> — 145 indices de comédogénicité retranscrits d’un seul tableau publié, et 270 indicateurs d’acné fongique dérivés d’une règle. Les deux portent leur citation ligne par ligne dans <code>rating_source</code>, et valent <code>NULL</code> partout ailleurs.</li>
 </ul>
 </div>
@@ -169,6 +171,7 @@ GROUP BY 1 ORDER BY 2 DESC;
 <footer>
 <div class="container">
 <p>INCIDB · snapshot 2026.09 · chiffres générés à partir du rapport de build</p>
+<p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Données produits © contributeurs d'Open Beauty Facts, sous Open Database License (ODbL) v1.0. L'enrichissement des ingrédients contient des données issues de la base CosIng de la Commission européenne, réutilisées avec attribution. Liste des allergènes parfumants de l'UE : annexe III du règlement (CE) n° 1223/2009 modifié par le règlement (UE) 2023/1545, EUR-Lex (© Union européenne), réutilisée avec attribution.</p>
 <p style="margin-top: 0.5rem;"><a href="/fr/schema" style="color: var(--accent-blue); text-decoration: none;">Spécification du schéma</a> · <a href="/LICENSE" style="color: var(--accent-blue); text-decoration: none;">Conditions de licence</a> · <a href="/fr/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
 <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Fait partie du catalogue DataEngineered →</a> · <a href="https://dataengineered.io/about">À propos</a> · <a href="https://dataengineered.io/terms">Conditions</a> · <a href="https://dataengineered.io/privacy">Confidentialité</a> · <a href="https://dataengineered.io/refund-policy">Politique de remboursement</a></div>
 </div>

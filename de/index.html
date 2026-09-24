@@ -79,7 +79,7 @@
     "distribution": [
       {
         "@type": "DataDownload",
-        "name": "Kostenlose Beispieldaten (5 Tabellen, CSV + Parquet)",
+        "name": "Kostenlose Beispieldaten (7 Tabellen, CSV + Parquet)",
         "encodingFormat": "application/zip",
         "contentUrl": "https://incidb.dataengineered.io/samples/incidb_free_samples.zip"
       }
@@ -93,6 +93,7 @@
       "CosIng chemical description",
       "EU Annex II-VI membership",
       "EU Annex III fragrance allergen flag",
+      "EU Annex II-VI regulatory status (CosIng)",
       "Comedogenic rating (authored subset)",
       "Fungal-acne trigger flag (rule-derived)",
       "Label position index"
@@ -103,7 +104,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "INCIDB Complete",
-    "description": "Der vollständige INCIDB-Snapshot 2026.09: alle fünf Tabellen (products, brands, ingredients, product_ingredients, ingredient_name_map) als pipe-getrenntes CSV und Apache Parquet, dazu der Qualitätsbericht build_report.json, das Datenwörterbuch und die Lizenz. Einmaliger Kauf, sofortiger Download.",
+    "description": "Der vollständige INCIDB-Snapshot 2026.09: alle sieben Tabellen (products, brands, ingredients, product_ingredients, ingredient_name_map, fragrance_allergens, regulatory_status) als pipe-getrenntes CSV und Apache Parquet, dazu der Qualitätsbericht build_report.json, das Datenwörterbuch und die Lizenz. Einmaliger Kauf, sofortiger Download.",
     "image": "https://incidb.dataengineered.io/og-image.png",
     "sku": "INCIDB-COMPLETE-2026-09",
     "brand": {
@@ -198,7 +199,7 @@
       "name": "Aus welcher Allergenliste stammen die Markierungen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nur eine Liste: die Duftstoffallergene aus Anhang III der EU-Kosmetikverordnung (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen über den exakten kanonischen Namen. 99 Namen sind markiert, und allergen_source hält die Liste fest. Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher enthält dieser Datensatz keine US-Markierung."
+        "text": "Nur eine Liste: die Duftstoffallergene aus Anhang III der EU-Kosmetikverordnung (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen zunächst über den exakten INCI-Namen, dann über den kollektiven Kennzeichnungsnamen, den die Verordnung vorschreibt, und schließlich über die CAS-Nummer nur bei chemisch definierten Stoffen. 121 Namen sind markiert, und allergen_source hält die Liste fest; 43,9% der Produkte tragen mindestens einen (bei weiteren 6,4% sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die Markierungen nicht erreichen). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher enthält dieser Datensatz keine US-Markierung."
       }
     },
     {
@@ -372,8 +373,8 @@
             </p>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem;">
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
-<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">99 als Allergen markierte Namen</h3>
-<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Aus der Liste der Duftstoffallergene nach EU-Anhang III (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen über den exakten kanonischen Namen. Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher gibt es hier keine US-Markierung.</p>
+<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">121 als Allergen markierte Namen</h3>
+<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">EU-Duftstoffallergen-Overlay (Verordnung (EU) 2023/1545): 121 Namen markiert über exakten INCI-Namen, Kennzeichnungsnamen oder CAS bei definierten Stoffen; 43,9% der Produkte tragen mindestens einen (bei weiteren 6,4% sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die Markierungen nicht erreichen). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher gibt es hier keine US-Markierung.</p>
 </div>
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
 <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">145 Komedogenitätsbewertungen</h3>
@@ -451,12 +452,12 @@
 <div class="registry-card">
 <span class="registry-badge">EU-Verordnung</span>
 <h3 class="registry-title">CosIng der Europäischen Kommission</h3>
-<p class="registry-desc">Das Inhaltsstoffverzeichnis: Funktionskategorien, CAS- und EG-Nummern, chemische Beschreibungen, Beschränkungen und Zugehörigkeit zu den Anhängen II–VI. Verknüpft über den exakten kanonischen Namen; nicht zugeordnete Namen erhalten <code>NULL</code>, keine Vermutung.</p>
+<p class="registry-desc">Das Inhaltsstoffverzeichnis: Funktionskategorien, CAS- und EG-Nummern, chemische Beschreibungen, Beschränkungen und Zugehörigkeit zu den Anhängen II–VI. Verknüpft über den exakten kanonischen Namen; nicht zugeordnete Namen erhalten <code>NULL</code>, keine Vermutung. Die Exporte der Anhänge II–VI speisen außerdem <code>regulatory_status</code>: eine Zeile pro Inhaltsstoff und Listeneintrag, Bedingungen wörtlich; das Fehlen einer Zeile ist kein Status, und nichts davon ist Rechtsberatung.</p>
 </div>
 <div class="registry-card">
 <span class="registry-badge">EU-Verordnung</span>
 <h3 class="registry-title">Duftstoffallergene nach Anhang III</h3>
-<p class="registry-desc">Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545 — die einzige Liste hinter <code>is_common_allergen</code>, pro Zeile in <code>allergen_source</code> festgehalten.</p>
+<p class="registry-desc">Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545 — die einzige Liste hinter <code>is_common_allergen</code>, pro Zeile in <code>allergen_source</code> festgehalten, mit Schwellenwerten, Übergangsfristen und der Abgleichmethode in <code>fragrance_allergens</code>.</p>
 </div>
 <div class="registry-card">
 <span class="registry-badge">Aufbereitung</span>
@@ -493,7 +494,7 @@
 <ul class="tier-features">
 <li class="included"><span class="check-icon">✓</span> 200 Produkte, zufällig aus einem Pool mit festem Seed gezogen</li>
 <li class="included"><span class="check-icon">✓</span> Ihre Marken, Verknüpfungen und 1.109 Inhaltsstoffe</li>
-<li class="included"><span class="check-icon">✓</span> Alle 5 Tabellen, CSV <em>und</em> Parquet</li>
+<li class="included"><span class="check-icon">✓</span> Alle 7 Tabellen, CSV <em>und</em> Parquet</li>
 <li class="included"><span class="check-icon">✓</span> Gleiche Anreicherungsspalten, gleiche NULLs</li>
 <li><span class="cross-icon">✕</span> Gezogen aus Produkten, die zu ≥80% in CosIng gefunden werden, daher besser als der Korpusdurchschnitt</li>
 </ul>
@@ -512,6 +513,7 @@
 <li class="included"><span class="check-icon">✓</span> Die Tabelle <code>ingredient_name_map</code> mit 55.426 Zeilen</li>
 <li class="included"><span class="check-icon">✓</span> Pipe-getrenntes CSV <em>und</em> Apache Parquet</li>
 <li class="included"><span class="check-icon">✓</span> CosIng-Anreicherung mit der oben veröffentlichten Abdeckung</li>
+<li class="included"><span class="check-icon">✓</span> EU-Overlay: <code>fragrance_allergens</code> und <code>regulatory_status</code></li>
 <li class="included"><span class="check-icon">✓</span> <code>build_report.json</code>, Datenwörterbuch, Lizenz</li>
 </ul>
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_de_home" style="width: 100%; justify-content: center;">Jetzt kaufen · Sofortiger Download</a>
@@ -538,7 +540,7 @@
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Aus welcher Allergenliste stammen die Markierungen?</h3>
-<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Nur eine Liste: Duftstoffallergene nach EU-Anhang III (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen über den exakten kanonischen Namen — 99 Namen markiert, wobei <code>allergen_source</code> die Liste festhält. Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher enthält dieser Datensatz keine US-Markierung.</p>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Nur eine Liste: Duftstoffallergene nach EU-Anhang III (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen zunächst über den exakten INCI-Namen, dann über den kollektiven Kennzeichnungsnamen, den die Verordnung vorschreibt, und schließlich über die CAS-Nummer nur bei chemisch definierten Stoffen — 121 Namen markiert, wobei <code>allergen_source</code> die Liste festhält; 43,9% der Produkte tragen mindestens einen (bei weiteren 6,4% sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die Markierungen nicht erreichen). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher enthält dieser Datensatz keine US-Markierung.</p>
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Woher stammen die Komedogenitätsbewertungen und die Pilzakne-Markierungen?</h3>
@@ -628,7 +630,7 @@
 <div class="container">
 <p>INCIDB · Snapshot 2026.09 · Zahlen aus dem Build-Bericht generiert</p>
 <p style="margin-top: 0.5rem;"><a href="/de/schema" style="color: var(--accent-blue); text-decoration: none;">Schema-Spezifikation</a> · <a href="/de/stats/" style="color: var(--accent-blue); text-decoration: none;">Inhaltsstoff-Statistiken</a> · <a href="/LICENSE" style="color: var(--accent-blue); text-decoration: none;">Lizenzbedingungen</a> · <a href="/de/documentation" style="color: var(--accent-blue); text-decoration: none;">Dokumentation</a></p>
-<p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Produktdaten © Mitwirkende von <a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a>, unter der <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL) v1.0</a> — für abgeleitete Werke gelten Namensnennung und Weitergabe unter gleichen Bedingungen. Die Inhaltsstoff-Anreicherung enthält Daten aus der CosIng-Datenbank der Europäischen Kommission, weiterverwendet mit Quellenangabe.</p>
+<p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Produktdaten © Mitwirkende von <a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a>, unter der <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL) v1.0</a> — für abgeleitete Werke gelten Namensnennung und Weitergabe unter gleichen Bedingungen. Die Inhaltsstoff-Anreicherung enthält Daten aus der CosIng-Datenbank der Europäischen Kommission, weiterverwendet mit Quellenangabe. EU-Duftstoffallergenliste: Anhang III der Verordnung (EG) Nr. 1223/2009, geändert durch Verordnung (EU) 2023/1545, EUR-Lex (© Europäische Union), weiterverwendet mit Quellenangabe.</p>
 </div>
 <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Teil des DataEngineered-Katalogs →</a> · <a href="https://dataengineered.io/about">Über uns</a> · <a href="https://dataengineered.io/terms">Nutzungsbedingungen</a> · <a href="https://dataengineered.io/privacy">Datenschutz</a> · <a href="https://dataengineered.io/refund-policy">Rückerstattungsrichtlinie</a></div>
 <!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Sprache" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><a href="/" hreflang="en" lang="en" data-i18n-lang="en">English</a> · <a href="/es/" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <span aria-current="true" style="font-weight:600">Deutsch</span> · <a href="/fr/" hreflang="fr" lang="fr" data-i18n-lang="fr">Français</a> · <a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></nav><!-- /i18n:switcher --></footer>

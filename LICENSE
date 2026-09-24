@@ -29,7 +29,14 @@ categories, CAS and EC numbers, chemical descriptions, restrictions, Annex
 II-VI membership, and the EU Annex III fragrance-allergen flags) are factual
 data compiled from the European Commission CosIng database and the EU
 Cosmetics Regulation, reused with attribution under the Commission's
-public-sector information reuse policy. The US FDA has not yet published its
+public-sector information reuse policy.
+
+EU regulatory overlay: Annex III to Regulation (EC) No 1223/2009 as amended
+by Regulation (EU) 2023/1545 (EUR-Lex, © European Union) and the CosIng
+Annex II–VI exports, reused under Commission Decision 2011/833/EU with
+attribution. Not legal advice.
+
+The US FDA has not yet published its
 MoCRA fragrance-allergen list, so no field in this database is derived from
 one. `comedogenic_rating` is transcribed from published literature (Fulton,
 1989) and `is_fungal_acne_trigger` is a cited rule-derived flag; both are

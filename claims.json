@@ -1,5 +1,9 @@
 {
-  "allergen_flagged": 99,
+  "allergen_entries_matched": 77,
+  "allergen_entries_total": 81,
+  "allergen_flagged": 121,
+  "allergen_list_version": "18.05.2026",
+  "allergen_products_pct": 43.9,
   "brands": 5925,
   "cas_link_weighted_pct": 76.4,
   "cas_pct": 8.3,
@@ -7,6 +11,7 @@
   "chemical_description_pct": 8.5,
   "cosing_link_weighted_pct": 82.5,
   "cosing_matched_pct": 11.0,
+  "fragrance_allergens_rows": 268,
   "functions_link_weighted_pct": 81.5,
   "functions_pct": 10.9,
   "fungal_flagged": 270,
@@ -19,7 +24,9 @@
   "products": 18583,
   "products_without_brand": 1151,
   "rated_comedogenic": 145,
+  "regulatory_status_rows": 614,
   "sample_ingredients": 1109,
   "sample_products": 200,
-  "snapshot": "2026.09"
+  "snapshot": "2026.09",
+  "unsplit_allergen_products_pct": 6.4
 }

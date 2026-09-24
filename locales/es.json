@@ -53,6 +53,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "030b0ae19645cebc": {
+  "src": "Prohibited",
+  "t": "Prohibido",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "03128bed906297aa": {
   "src": "Verification",
   "t": "Verificación",
@@ -113,6 +119,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "085e835f19f852ba": {
+  "src": "Non-compliant products: placing on the market until {0}, making available until {1} ({2}).",
+  "t": "Productos no conformes: comercialización hasta {0}, puesta a disposición en el mercado hasta {1} ({2}).",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "08c9dabe9ccbb1ed": {
   "src": "Live Explorer",
   "t": "Explorador en vivo",
@@ -149,6 +161,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "0c845d40bcbe59ba": {
+  "src": "Seven tables, exported as pipe-delimited {0} CSV and Apache Parquet with identical columns:",
+  "t": "Siete tablas, exportadas como CSV {0} delimitado por barras verticales y Apache Parquet, con columnas idénticas:",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "0d09e913d10d21f4": {
   "src": "Fragrance, Perfuming &amp; Colorants →",
   "t": "Fragancias, perfumantes y colorantes →",
@@ -160,6 +178,12 @@
   "t": "(DCI)",
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
+ },
+ "0d3d21145ab5046a": {
+  "src": "Maximum concentration in the ready-for-use preparation, verbatim; never collapsed to one number",
+  "t": "Concentración máxima en el preparado listo para su uso, tal cual; nunca reducida a un solo número",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "0dd5c7746d5aac81": {
   "src": "How long ingredient lists are",
@@ -281,6 +305,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-17"
  },
+ "15d780f26953f3db": {
+  "src": "{0}. regulatory_status",
+  "t": "{0}. regulatory_status",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "167596bfa27f2a3f": {
   "src": "<0>✓</0> {1} products, drawn at random from a seeded pool",
   "t": "<0>✓</0> {1} productos, extraídos al azar de un conjunto con semilla fija",
@@ -292,6 +322,12 @@
   "t": "Cada token bruto de la etiqueta se asigna a un nombre canónico con el método registrado fila a fila y entregado con los datos. Citar solo la cifra ponderada por enlaces halagaría la cobertura; citar solo la cifra por nombres la subestimaría, así que se publican ambas.",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "17028c0a172b9623": {
+  "src": "Only where the source states one; {0} on EU rows",
+  "t": "Solo cuando la fuente indica uno; {0} en las filas de la UE",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "171375add41b61e3": {
   "src": "Product name as recorded upstream",
@@ -335,6 +371,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "1ab86b31462dcd1d": {
+  "src": "Maximum concentration:",
+  "t": "Concentración máxima:",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "1c5cce01f922afd7": {
   "src": "INCI ingredient monographs by CosIng functional category",
   "t": "Monografías de ingredientes INCI por categoría funcional de CosIng",
@@ -371,6 +413,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "1e9cb061f252587d": {
+  "src": "European Union",
+  "t": "Unión Europea",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "1ed87ef4855ee515": {
   "src": "The <0>{1}-row {2}</0> records how every raw label token was resolved to a canonical INCI name — resolution {3} and {4} on each row — as one offline, auditable artifact for ML/NLP teams and compliance analysts. No free source or live API ships it. Underneath: <5>{6} products</5>, <7>{8} canonical INCI names</7>, <9>{10} ordered composition links</9>, enriched from EU CosIng; where a source has no value, the column is NULL.",
   "t": "La tabla <0>{2} de {1} filas</0> registra cómo se resolvió cada token original de etiqueta en un nombre INCI canónico (con {3} y {4} de resolución en cada fila), como un artefacto único, sin conexión y auditable para equipos de ML/NLP y analistas de cumplimiento normativo. Ninguna fuente gratuita ni API en vivo lo ofrece. Debajo: <5>{6} productos</5>, <7>{8} nombres INCI canónicos</7>, <9>{10} enlaces de composición ordenados</9>, enriquecidos con CosIng de la UE; cuando una fuente no tiene valor, la columna es NULL.",
@@ -388,6 +436,12 @@
   "t": "Se eliminó un texto entre paréntesis",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "1fa81da9b72092a9": {
+  "src": "Technical documentation for INCIDB: the seven-table schema, CosIng join coverage, canonicalisation method, and quick-start PyArrow/DuckDB snippets.",
+  "t": "Documentación técnica de INCIDB: esquema de siete tablas, cobertura de la unión con CosIng, método de canonicalización y fragmentos de inicio rápido con PyArrow/DuckDB.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "1fba2f84b0a16c36": {
   "src": "Always {0} in this snapshot — the export carries no update date",
@@ -412,6 +466,18 @@
   "t": "Estadísticas",
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
+ },
+ "2092ff50586b535e": {
+  "src": "One list only: EU Annex III fragrance allergens (Regulation (EC) {0} as amended by Regulation (EU) {1}), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only — {2} names flagged, with {3} recording the list; {4} of products carry at least one (about {5} more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.",
+  "t": "Una sola lista: los alérgenos de fragancia del anexo III de la UE (Reglamento (CE) {0}, modificado por el Reglamento (UE) {1}), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas; {2} nombres marcados, con {3} registrando la lista; {4} de los productos llevan al menos uno (alrededor de {5} más listan los ingredientes como texto sin dividir, que los indicadores no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "20ccec3ee99fed66": {
+  "src": "Annex II: the Chemical name / INN text verbatim (where conditional bans live). Annexes III–VI: the Other and Wording of conditions columns, joined",
+  "t": "Anexo II: el texto de Chemical name / INN tal cual (donde figuran las prohibiciones condicionales). Anexos III–VI: las columnas Other y Wording of conditions, combinadas",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "2137ff1d5cd09a54": {
   "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). Comedogenic {3} (Fulton).",
@@ -497,6 +563,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "26dc52caf645fb6b": {
+  "src": "Membership of Annexes II (prohibited), III (restricted), IV (colorants), V (preservatives), VI (UV filters). Legacy exact-name method; {0} is the precise source and may differ",
+  "t": "Pertenencia a los Anexos II (prohibido), III (restringido), IV (colorantes), V (conservantes), VI (filtros UV). Método heredado de coincidencia exacta de nombre; {0} es la fuente precisa y puede diferir",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "27052b9e94c241b0": {
   "src": "{0} (tocopherol or tocopheryl acetate) is in <1>{2}</1> of products. The actives that drive skincare marketing are rare across the whole catalogue: hyaluronic acid appears in {3}, niacinamide in {4} and retinoids in {5}.",
   "t": "{0} (tocoferol o acetato de tocoferilo) está en <1>{2}</1> de los productos. Los activos que impulsan el marketing del cuidado de la piel son raros en el conjunto del catálogo: el ácido hialurónico aparece en {3}, la niacinamida en {4} y los retinoides en {5}.",
@@ -526,6 +598,12 @@
   "t": "INCIDB, base de datos INCI de cuidado de la piel y cosmética",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "28f3b0a5277aa6da": {
+  "src": "EU fragrance-allergen overlay (Reg. (EU) {0}): {1} names flagged by exact INCI name, label name or CAS for defined substances; {2} of products carry at least one (about {3} more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists here.",
+  "t": "Capa de alérgenos de fragancia de la UE (Rgto. (UE) {0}): {1} nombres marcados por nombre INCI exacto, nombre de etiqueta o CAS para sustancias definidas; {2} de los productos llevan al menos uno (alrededor de {3} más listan los ingredientes como texto sin dividir, que los indicadores no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que aquí no existe ningún indicador estadounidense.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "29409887210ed701": {
   "src": "{0}. products",
@@ -587,6 +665,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "2d8f186101ef047b": {
+  "src": "Regulation (EC) {0} as amended by Regulation (EU) {1} — the single list behind {2}, recorded per row in {3}, with thresholds, transition dates and the match method in {4}.",
+  "t": "Reglamento (CE) {0}, modificado por el Reglamento (UE) {1}: la única lista en la que se basa {2}, registrada por fila en {3}, con umbrales, fechas de transición y el método de coincidencia en {4}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "2dc3098c9a3ef4ac": {
   "src": "{0} cosmetic products, {1} canonical INCI names and {2} ordered composition links, with EU CosIng enrichment on {3} of label occurrences. CSV + Parquet, {4}.",
   "t": "{0} productos cosméticos, {1} nombres INCI canónicos y {2} enlaces de composición ordenados, con enriquecimiento CosIng de la UE en el {3} de las apariciones. CSV + Parquet, {4}.",
@@ -617,6 +701,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "2fb5c98d70557f94": {
+  "src": "Product type / body parts, verbatim",
+  "t": "Tipo de producto / partes del cuerpo, tal cual",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "30f01bb3f5f82fb3": {
   "src": "Interactive Preview",
   "t": "Vista previa interactiva",
@@ -646,6 +736,12 @@
   "t": "Monografías INCI cuyas funciones CosIng registradas las sitúan en Tensioactivos, limpiadores y emulsionantes.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "333404532e6bd70a": {
+  "src": "Seven tables, exported as pipe-delimited {0} CSV and Apache Parquet with identical columns. Every enrichment column is either populated from a named public source with a documented join, or {1}. There are no default values and no placeholder rows.",
+  "t": "Siete tablas, exportadas como CSV {0} delimitado por barras verticales y Apache Parquet, con columnas idénticas. Cada columna de enriquecimiento se completa a partir de una fuente pública identificada con una unión documentada, o es {1}. No hay valores predeterminados ni filas de relleno.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "3341f0be1a9dd765": {
   "src": "{0} Annex III names in the catalogue",
@@ -706,6 +802,18 @@
   "t": "Monografía INCI canónica",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "3a6edd85cca1088c": {
+  "src": "One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) {0} as amended by Regulation (EU) {1}), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. {2} names are flagged and allergen_source records the list; {3} of products carry at least one (about {4} more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.",
+  "t": "Una sola lista: los alérgenos de fragancia del anexo III del Reglamento de Cosméticos de la UE (Reglamento (CE) {0}, modificado por el Reglamento (UE) {1}), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas. Hay {2} nombres marcados y allergen_source registra la lista; {3} de los productos llevan al menos uno (alrededor de {4} más listan los ingredientes como texto sin dividir, que los indicadores no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "3b48ff76b72670f2": {
+  "src": "The ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names get {0}, not a guess. The Annex II–VI exports also feed {1}: one row per ingredient and list entry, conditions verbatim; absence of a row is not a status, and none of it is legal advice.",
+  "t": "El inventario de ingredientes: categorías funcionales, números CAS y CE, descripciones químicas, restricciones y pertenencia a los anexos II–VI. Unido por coincidencia exacta del nombre canónico; los nombres sin coincidencia reciben {0}, no una suposición. Las exportaciones de los anexos II–VI también alimentan {1}: una fila por ingrediente y entrada de lista, con las condiciones tal cual; la ausencia de una fila no es un estado, y nada de ello es asesoramiento legal.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "3cf028f198787ce3": {
   "src": "Rule-derived flag — a heuristic, not a measured property",
@@ -779,6 +887,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "42d220769ee8f936": {
+  "src": "The list entry, e.g. an Annex III entry",
+  "t": "La entrada de la lista, p. ej. una entrada del Anexo III",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "42d703a8dbfcaa08": {
   "src": "CosIng records a restriction against it ({0}), so check the corresponding Annex entry before formulating.",
   "t": "CosIng registra una restricción para este ingrediente ({0}), así que consulta la entrada correspondiente del anexo antes de formular.",
@@ -803,11 +917,23 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "44aeb5c005877693": {
+  "src": "The seven tables, the sources they come from, the coverage each enrichment column actually has, and how to query the result.",
+  "t": "Las siete tablas, las fuentes de las que proceden, la cobertura real de cada columna de enriquecimiento y cómo consultar el resultado.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "45ff27d3a9914ee4": {
   "src": "We could not send this automatically. Please write to",
   "t": "No hemos podido enviarlo automáticamente. Escribe a",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "461f995f9aa5cd8a": {
+  "src": "{0} (CosIng glossary name) or {1} (CosIng Identified INGREDIENTS column). No CAS route for EU rows",
+  "t": "{0} (nombre del glosario CosIng) o {1} (columna Identified INGREDIENTS de CosIng). Sin ruta por CAS en las filas de la UE",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "46312cddbb598028": {
   "src": "{0} INCI monographs whose recorded CosIng functions place them under Solvents, Viscosity &amp; Structure Agents. CAS numbers, functional categories and label…",
@@ -820,6 +946,12 @@
   "t": "{0} · Nombre INCI y funciones CosIng",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "4908c71c18763b2d": {
+  "src": "{0} (Annex II), {1} (Annex III), {2} (Annexes IV–VI); {3} reserved",
+  "t": "{0} (Anexo II), {1} (Anexo III), {2} (Anexos IV–VI); {3} reservado",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "4a66d14807791801": {
   "src": "Everything",
@@ -917,6 +1049,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "5135aeb47e2f18ee": {
+  "src": "{0}, {1}, {2} (chemically defined substances only) or {3}; {4} when unmatched",
+  "t": "{0}, {1}, {2} (solo sustancias químicamente definidas) o {3}; {4} cuando no hay coincidencia",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "520ab1cd3615e421": {
   "src": "{0} — CAS {1}. CosIng functions: {2}. INCI name as listed in the EU CosIng inventory.",
   "t": "{0} — CAS {1}. Funciones CosIng: {2}. Nombre INCI tal como figura en el inventario CosIng de la UE.",
@@ -929,11 +1067,29 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "52daa3ba77fde7be": {
+  "src": "Transition: non-compliant products could be placed on the market until {0} and may be made available until {1} ({2}).",
+  "t": "Transición: los productos no conformes podían comercializarse hasta {0} y pueden ponerse a disposición en el mercado hasta {1} ({2}).",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "52eac6739e548d78": {
+  "src": "<0>Method — allergen flags.</0> One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) {1} as amended by Regulation (EU) {2}), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. {3} names are flagged; the per-entry evidence is in {4} (table {5}). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.",
+  "t": "<0>Método: indicadores de alérgenos.</0> Una sola lista: los alérgenos de fragancia del anexo III del Reglamento de Cosméticos de la UE (Reglamento (CE) {1}, modificado por el Reglamento (UE) {2}), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas. Las coincidencias CAS de origen botánico se entregan como filas de revisión, nunca como indicadores. Hay {3} nombres marcados; la evidencia por entrada está en {4} (tabla {5}). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "5309e220f9a3b927": {
   "src": "Sending your inquiry...",
   "t": "Enviando tu consulta...",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "54bbdbce195cc08b": {
+  "src": "{0} for a flag that sets {1}; {2} on botanical CAS review rows and unmatched rows",
+  "t": "{0} para un indicador que establece {1}; {2} en las filas de revisión CAS botánico y en las filas sin coincidencia",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "54fe9929694d1213": {
   "src": "<0>{1} name-map rows</0> — how each raw label token was resolved, and by which method.",
@@ -958,6 +1114,12 @@
   "t": "El número de ingredientes es el número de posiciones analizadas en la etiqueta. Los tipos de producto usan literalmente las etiquetas de categoría de Open Beauty Facts ({0} de {1} productos llevan una); un producto puede llevar varias, así que los tipos se solapan. Solo se muestran las etiquetas con al menos {2} productos.",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "56ff73259e8bc202": {
+  "src": "{0} (the consolidated legal text) or {1} (a name CosIng lists that the legal text does not print)",
+  "t": "{0} (el texto legal consolidado) o {1} (un nombre que CosIng incluye y que el texto legal no imprime)",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "572e9c8d0c6c7c3a": {
   "src": "INCI monographs whose recorded CosIng functions place them under Skin-Conditioning &amp; Emollient Agents.",
@@ -1042,6 +1204,12 @@
   "t": "<0>Método: índices comedogénicos.</0> {1} ingredientes tienen una calificación en la escala {2}, transcrita de la Tabla I (págs. {3}) de Fulton JE Jr., <4>Comedogenicity and irritancy of commonly used ingredients in skin care products</4>, J Soc Cosmet Chem {5}. Cuando el artículo indica un rango en lugar de una calificación única, el índice se deja {6}. La ausencia de calificación significa \"no cubierto por la fuente citada\", nunca \"seguro\".",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "5fd0067e9f5c053d": {
+  "src": "Three sources, each with a documented join. Every source file's URL, download timestamp and {0} is recorded in the {1} shipped with the data.",
+  "t": "Tres fuentes, cada una con una unión documentada. La URL, la marca de tiempo de descarga y {0} de cada archivo de origen se registran en {1}, incluido con los datos.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "5ff0ac83be884dd1": {
   "src": "Inquiry:",
@@ -1205,6 +1373,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "6aefa9c64e135656": {
+  "src": "End of the placing-on-market transition for entries whose consolidated text carries the transition footnote (({0}), ({1}) or ({2})); {3} on the others",
+  "t": "Fin de la transición para la comercialización en las entradas cuyo texto consolidado lleva la nota de transición (({0}), ({1}) o ({2})); {3} en las demás",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "6b21fb791ac05170": {
   "src": "About",
   "t": "Acerca de",
@@ -1277,6 +1451,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "6ff068427f7c89d3": {
+  "src": "{0}. fragrance_allergens",
+  "t": "{0}. fragrance_allergens",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "700131065dc966f5": {
   "src": "One row per distinct canonical INCI name — {0} of them. Every CosIng-derived column is populated only where the canonical name matched the European Commission CosIng inventory on an exact name match, and is {1} otherwise.",
   "t": "Una fila por nombre INCI canónico distinto, {0} en total. Cada columna derivada de CosIng se completa solo cuando el nombre canónico coincide exactamente con un nombre del inventario CosIng de la Comisión Europea, y es {1} en caso contrario.",
@@ -1307,6 +1487,18 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "7111212e3ea776c5": {
+  "src": "The complete INCIDB {0} snapshot: all seven tables (products, brands, ingredients, product_ingredients, ingredient_name_map, fragrance_allergens, regulatory_status) as pipe-delimited CSV and Apache Parquet, plus the build_report.json quality report, data dictionary and licence. One-time purchase, instant download.",
+  "t": "El snapshot completo {0} de INCIDB: las siete tablas (products, brands, ingredients, product_ingredients, ingredient_name_map, fragrance_allergens, regulatory_status) en CSV delimitado por barras verticales y Apache Parquet, además del informe de calidad build_report.json, el diccionario de datos y la licencia. Pago único, descarga inmediata.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "7140b75e2769e92b": {
+  "src": "The EU fragrance-allergen labelling entries of Annex III (Regulation (EC) {0} as amended by Regulation (EU) {1}): one row per legal name and INCIDB match, with unmatched legal names and botanical CAS review rows included.",
+  "t": "Las entradas de etiquetado de alérgenos de fragancia del Anexo III de la UE (Reglamento (CE) {0}, modificado por el Reglamento (UE) {1}): una fila por nombre legal y coincidencia en INCIDB, incluidos los nombres legales sin coincidencia y las filas de revisión CAS botánico.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "725cb80fbc693ce7": {
   "src": "Two numbers, both published above. CosIng matches {0} of the {1} distinct canonical names but {2} of the {3} ingredient occurrences on labels; functions {4}; CAS {5}. The long tail of distinct names is botanical variants, multilingual spellings and marketing tokens no inventory lists.",
   "t": "Dos cifras, ambas publicadas arriba. CosIng coincide con {0} de los {1} nombres canónicos distintos, pero con {2} de las {3} apariciones de ingredientes en etiquetas; funciones {4}; CAS {5}. La cola larga de nombres distintos está formada por variantes botánicas, grafías en varios idiomas y términos de marketing que ningún inventario incluye.",
@@ -1336,6 +1528,12 @@
   "t": "Sin réplicas de terceros, sin enriquecimiento extraído por scraping, sin química tecleada a mano. La URL, la marca de tiempo de descarga y el {0} de cada archivo fuente quedan registrados en el {1} que se entrega con los datos.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "75736a82c235981e": {
+  "src": "CosIng's Regulation column as printed",
+  "t": "La columna Regulation de CosIng, tal como se imprime",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "75ce57fb357f7feb": {
   "src": "How are raw label tokens turned into canonical INCI names?",
@@ -1379,6 +1577,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "7bf5878cb130bdbd": {
+  "src": "retrieved {0}",
+  "t": "consultado el {0}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "7c1ca75a0de68200": {
   "src": "The complete INCIDB {0} snapshot: all five tables (products, brands, ingredients, product_ingredients, ingredient_name_map) as pipe-delimited CSV and Apache Parquet, plus the build_report.json quality report, data dictionary and licence. One-time purchase, instant download.",
   "t": "El snapshot completo {0} de INCIDB: las cinco tablas (products, brands, ingredients, product_ingredients, ingredient_name_map) en CSV delimitado por barras verticales y Apache Parquet, además del informe de calidad build_report.json, el diccionario de datos y la licencia. Pago único, descarga inmediata.",
@@ -1402,6 +1606,12 @@
   "t": "Disolventes, viscosidad y estructurantes | INCIDB",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "7cb64cc8dbc6f022": {
+  "src": "The collective label name the Regulation prescribes (e.g. Rose Ketones); {0} when it prescribes none",
+  "t": "El nombre colectivo de etiqueta que prescribe el Reglamento (p. ej., Rose Ketones); {0} cuando no prescribe ninguno",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "7d10170fdbfbdb3e": {
   "src": "Surfactants in the sub-functions CosIng records for them — cleansing, foaming, emulsifying, solubilising: the ingredients that let an oil phase and a water phase mix, and that carry soil away in a rinse-off product.",
@@ -1499,6 +1709,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "85021d3592165ff8": {
+  "src": "Labelling threshold in rinse-off products, in percent, parsed per entry",
+  "t": "Umbral de etiquetado en productos de aclarado, en porcentaje, extraído por entrada",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "852827ca33beff17": {
   "src": "{0} ordered composition links, preserving the order in which ingredients are declared on the label.",
   "t": "{0} enlaces de composición ordenados, que conservan el orden en que se declaran los ingredientes en la etiqueta.",
@@ -1541,6 +1757,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
  },
+ "880b40e8be757ea5": {
+  "src": "The INCIDB ingredient",
+  "t": "El ingrediente de INCIDB",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "885d2bd64f2d62d4": {
   "src": "ACTIVE TREATMENTS, EXFOLIANTS &amp; UV FILTERS",
   "t": "ACTIVOS DE TRATAMIENTO, EXFOLIANTES Y FILTROS UV",
@@ -1552,6 +1774,12 @@
   "t": "Documentación e inicio rápido de INCIDB",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "889837f2eddc81f4": {
+  "src": "<0>✓</0> EU overlay: {1} and {2}",
+  "t": "<0>✓</0> Capa de la UE: {1} y {2}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "88dfbfc29bf4b22e": {
   "src": "Get the dataset",
@@ -1643,6 +1871,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "90e472638444aae3": {
+  "src": "Product data © Open Beauty Facts contributors, under the Open Database License (ODbL) {0}. Ingredient enrichment contains data from the European Commission CosIng database, reused with attribution. EU fragrance-allergen list: Annex III to Regulation (EC) No {1} as amended by Regulation (EU) {2}, EUR-Lex (© European Union), reused with attribution.",
+  "t": "Datos de productos © colaboradores de Open Beauty Facts, bajo la Open Database License (ODbL) {0}. El enriquecimiento de ingredientes contiene datos de la base de datos CosIng de la Comisión Europea, reutilizados con atribución. Lista de alérgenos de fragancia de la UE: Anexo III del Reglamento (CE) n.º {1}, modificado por el Reglamento (UE) {2}, EUR-Lex (© Unión Europea), reutilizada con atribución.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "9297913eea881537": {
   "src": "Copy snippet",
   "t": "Copiar fragmento",
@@ -1685,6 +1919,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "972c6572cb1d39c1": {
+  "src": "Transition: non-compliant products could be placed on the market until {0} and may be made available until {1}.",
+  "t": "Transición: los productos no conformes podían comercializarse hasta {0} y pueden ponerse a disposición en el mercado hasta {1}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "976040aee09ff46f": {
   "src": "SCCS OPINION ON FILE",
   "t": "DICTAMEN DEL SCCS REGISTRADO",
@@ -1702,6 +1942,12 @@
   "t": "INCIDB — Base de datos INCI de cuidado de la piel y cosmética para desarrolladores",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "985a7da3b0878fa9": {
+  "src": "CosIng's Update Date for the entry, as printed",
+  "t": "La fecha Update Date de CosIng para la entrada, tal como se imprime",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "9888c4c4790e8d3c": {
   "src": "CAS registry number — from CosIng only, never inferred",
@@ -1726,6 +1972,12 @@
   "t": "{0} — CAS {1}. Funciones CosIng: {2}, {3}. Nombre INCI tal como figura en el inventario CosIng de la UE.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "9ae688f0ed60ead7": {
+  "src": "The seven-table INCIDB schema, the CosIng join and its measured coverage, and quick-start PyArrow/DuckDB snippets.",
+  "t": "El esquema de siete tablas de INCIDB, la unión con CosIng y su cobertura medida, y fragmentos de inicio rápido con PyArrow/DuckDB.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "9af810b278268a4d": {
   "src": "{0} is listed in the European Commission CosIng inventory under the functional categories {1}, with CAS number {2} and EC number {3}.",
@@ -1786,6 +2038,12 @@
   "t": "Cada grupo es una regla simple sobre nombres INCI canónicos (por ejemplo, cualquier nombre terminado en PARABEN; cualquier nombre que contenga METHICONE o SILOXANE; la lista de alérgenos de fragancia del Anexo III de la UE para los alérgenos). Las reglas describen la presencia en la etiqueta, no la concentración ni la seguridad.",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "a09df2d7bc8f356e": {
+  "src": "INCIDB's own CAS value (not used for matching)",
+  "t": "El propio valor CAS de INCIDB (no se usa para la coincidencia)",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "a0b8cbf9584eb30e": {
   "src": "{0} — INCI name in the EU CosIng inventory. CosIng functions: {1}. CosIng lists no CAS number for this name.",
@@ -1853,6 +2111,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "a3c2513784035070": {
+  "src": "Product type:",
+  "t": "Tipo de producto:",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "a3d1dc1562c1da0b": {
   "src": "Two numbers, both published. CosIng matches {0} of the {1} distinct canonical INCI names, but {2} of the {3} ingredient occurrences across product labels. CosIng functions are present on {4} of names and {5} of label occurrences; CAS numbers on {6} of names and {7} of occurrences. The long tail of distinct names is botanical variants, multilingual spellings and marketing tokens that no regulatory inventory lists; the slots on a real label are filled overwhelmingly by ingredients CosIng does cover.",
   "t": "Dos cifras, ambas publicadas. CosIng coincide con {0} de los {1} nombres INCI canónicos distintos, pero con {2} de las {3} apariciones de ingredientes en las etiquetas de productos. Las funciones CosIng están presentes en el {4} de los nombres y el {5} de las apariciones en etiquetas; los números CAS, en el {6} de los nombres y el {7} de las apariciones. La cola larga de nombres distintos está formada por variantes botánicas, grafías en varios idiomas y términos de marketing que ningún inventario regulatorio incluye; los huecos de una etiqueta real los ocupan de forma abrumadora ingredientes que CosIng sí cubre.",
@@ -1864,6 +2128,12 @@
   "t": "<0>{1}</0> de los productos contienen fragancia y {2} contienen al menos un alérgeno de fragancia listado por la UE. Los parabenos aparecen en <3>{4}</3> de los productos y el fenoxietanol, el conservante que los ha sustituido en gran medida, en {5}.",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "a43b096f69573d4b": {
+  "src": "The matched INCIDB ingredient; {0} when the legal name matched nothing",
+  "t": "El ingrediente de INCIDB coincidente; {0} cuando el nombre legal no coincide con nada",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "a4921f3ee38c23b3": {
   "src": "Related ingredients",
@@ -1907,6 +2177,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
  },
+ "a7e07b091a83e4be": {
+  "src": "<0>EU fragrance allergens.</0> The {1} labelling entries of Annex III to Regulation (EC) {2}, as amended by Regulation (EU) {3} (consolidated text of {4}), are matched to INCIDB by exact INCI name, then by the collective label name the Regulation prescribes (e.g. \"Rose Ketones\"), then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. {5} names are flagged; {6} of products contain at least one. About {7} of products list ingredients as unsplit text that the allergen flags do not reach. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.",
+  "t": "<0>Alérgenos de fragancia de la UE.</0> Las {1} entradas de etiquetado del Anexo III del Reglamento (CE) {2}, modificado por el Reglamento (UE) {3} (texto consolidado de {4}), se cotejan con INCIDB por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento (p. ej., «Rose Ketones»), y por último por número CAS solo en sustancias químicamente definidas. Las coincidencias CAS de origen botánico se entregan como filas de revisión, nunca como indicadores. Hay {5} nombres marcados; {6} de los productos contienen al menos uno. Alrededor de {7} de los productos listan los ingredientes como texto sin dividir, que los indicadores no alcanzan. La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "a9e1c1a0b61a260a": {
   "src": "{0}. What is in the snapshot",
   "t": "{0}. Qué contiene el snapshot",
@@ -1918,6 +2194,12 @@
   "t": "Consulta los CSV y Apache Parquet entregados",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "aa2a08d2afa23e5f": {
+  "src": "Restricted",
+  "t": "Restringido",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "aa859ea9e5bae712": {
   "src": "INCI monographs whose recorded CosIng functions place them under Preservatives, Antimicrobials &amp; Antioxidants.",
@@ -1973,6 +2255,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "ac87dff788d1db55": {
+  "src": "The Regulation's proviso for replaced entries, verbatim; {0} elsewhere",
+  "t": "La salvedad del Reglamento para las entradas sustituidas, tal cual; {0} en el resto",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "ad3e84ca50fa63c9": {
   "src": "CosIng reference number",
   "t": "Número de referencia de CosIng",
@@ -2009,6 +2297,18 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "af043e0bcca5e7db": {
+  "src": "The legal instrument for the entry",
+  "t": "El instrumento legal de la entrada",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "afb133ea7260e52d": {
+  "src": "Official text (EN), quoted verbatim from the source list.",
+  "t": "Texto oficial (EN), citado literalmente de la lista de origen.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "b08ae37ed0218a85": {
   "src": "Snapshot",
   "t": "Snapshot",
@@ -2020,6 +2320,12 @@
   "t": "{0} — CAS {1}. Funciones CosIng: {2}, {3}, {4}, {5}, {6}. Nombre INCI tal como figura en el inventario CosIng de la UE.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "b1c2525f43a55a48": {
+  "src": "EU Annex II–VI status from the European Commission CosIng exports: one row per ingredient, jurisdiction and list entry. Rows exist only where a list says something; absence of a row is not a status. Not legal advice.",
+  "t": "Estado de los Anexos II–VI de la UE a partir de las exportaciones CosIng de la Comisión Europea: una fila por ingrediente, jurisdicción y entrada de lista. Las filas existen solo donde una lista dice algo; la ausencia de una fila no es un estado. No constituye asesoramiento legal.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "b234e41a70719af0": {
   "src": "{0} is listed in the European Commission CosIng inventory under the functional categories {1}. CosIng records no CAS number for it, so the column is NULL rather than guessed.",
@@ -2038,6 +2344,12 @@
   "t": "{0} categorías",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "b312e2b057ff9dc2": {
+  "src": "Annex III entry reference as printed",
+  "t": "Referencia de la entrada del Anexo III tal como se imprime",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "b36b2b9fc1c602e6": {
   "src": "<0>✓</0> Their brands, links and {1} ingredients",
@@ -2074,6 +2386,12 @@
   "t": "Esquema",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "b5b534a491e6bb37": {
+  "src": "Relational schema for INCIDB's {0} tables, from products and ingredients to fragrance_allergens and regulatory_status, with source and coverage per column.",
+  "t": "Esquema relacional de las {0} tablas de INCIDB, desde products e ingredients hasta fragrance_allergens y regulatory_status, con fuente y cobertura por columna.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "b644e166e5b9c951": {
   "src": "Need the row-level tables behind these numbers?",
@@ -2141,11 +2459,35 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "ba836ec4b3965f0b": {
+  "src": "{0}; {1}, {2} and {3} reserved",
+  "t": "{0}; {1}, {2} y {3} reservados",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "ba93d9ff5e5eff39": {
+  "src": "Fragrance allergen: must be named in the ingredient list above {0} in leave-on and {1} in rinse-off products.",
+  "t": "Alérgeno de fragancia: debe figurar en la lista de ingredientes a partir de {0} en productos sin aclarado y de {1} en productos de aclarado.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "ba95d93c069bf38d": {
+  "src": "End of the placing-on-market transition for entries the {0} amendment added or replaced; {1} on the others",
+  "t": "Fin de la transición de comercialización para las entradas que la modificación {0} añadió o sustituyó; {1} en las demás",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "bad74fe0e17cacd2": {
   "src": "{0} INCI monographs whose recorded CosIng functions place them under Skin-Conditioning &amp; Emollient Agents. CAS numbers, functional categories and label…",
   "t": "{0} monografías INCI cuyas funciones CosIng registradas las sitúan en Acondicionadores cutáneos y emolientes. Números CAS, categorías funcionales y posiciones…",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "bb8d1dbc673cc533": {
+  "src": "Product data © <0>Open Beauty Facts</0> contributors, under the <1>Open Database License (ODbL) {2}</1> — attribution and share-alike apply to derivatives. Ingredient enrichment contains data from the European Commission CosIng database, reused with attribution. EU fragrance-allergen list: Annex III to Regulation (EC) No {3} as amended by Regulation (EU) {4}, EUR-Lex (© European Union), reused with attribution.",
+  "t": "Datos de productos © colaboradores de <0>Open Beauty Facts</0>, bajo la <1>Open Database License (ODbL) {2}</1>: las obras derivadas deben mantener la atribución y compartirse igual. El enriquecimiento de ingredientes contiene datos de la base de datos CosIng de la Comisión Europea, reutilizados con atribución. Lista de alérgenos de fragancia de la UE: Anexo III del Reglamento (CE) n.º {3}, modificado por el Reglamento (UE) {4}, EUR-Lex (© Unión Europea), reutilizada con atribución.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "bc3023b36063a768": {
   "src": "Page not found",
@@ -2194,6 +2536,12 @@
   "t": "{0} — CAS {1}. Nombre INCI de {2} (Ph. Eur.). Funciones CosIng: {3}, {4}, {5}, {6}.",
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
+ },
+ "bfe8202466a7706f": {
+  "src": "Where the row came from and the date it was fetched",
+  "t": "De dónde procede la fila y la fecha en que se obtuvo",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "c05639221c230f5f": {
   "src": "Preservatives, Antimicrobials &amp; Antioxidants",
@@ -2393,6 +2741,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
  },
+ "cb376f9301c68b61": {
+  "src": "End of the making-available transition, likewise",
+  "t": "Fin de la transición de puesta a disposición, de igual modo",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "cc0e0121cd504c28": {
   "src": "Resolved through an explicit synonym table",
   "t": "Resuelto mediante una tabla explícita de sinónimos",
@@ -2404,6 +2758,18 @@
   "t": "Ingredientes cuya función registrada en CosIng es mantener estable una formulación: conservantes y antimicrobianos que inhiben el crecimiento de microorganismos, antioxidantes que frenan la oxidación, anticorrosivos y agentes quelantes que fijan iones metálicos. Los conservantes permitidos en los cosméticos de la UE figuran en el Anexo V del Reglamento sobre productos cosméticos; cuando CosIng registra una restricción, la monografía la muestra.",
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
+ },
+ "cdac3efb21f15673": {
+  "src": "Entry text:",
+  "t": "Texto de la entrada:",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "cdb6217a0174b4a2": {
+  "src": "Conditions:",
+  "t": "Condiciones:",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "ceb8218dd9ac5ebc": {
   "src": "build_report.json",
@@ -2428,6 +2794,18 @@
   "t": "Privacidad",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "cf872a902e729709": {
+  "src": "<0>European Commission CosIng</0> — the ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names are {1} in every CosIng-derived column, never a placeholder. The Annex II–VI exports also feed {2}, matched by the CosIng glossary name or the CosIng \"Identified INGREDIENTS\" name only (no CAS route). Absence of a row is not a status, and nothing in it is legal advice.",
+  "t": "<0>CosIng de la Comisión Europea</0>: el inventario de ingredientes (categorías funcionales, números CAS y CE, descripciones químicas, restricciones y pertenencia a los anexos II–VI). Unido por coincidencia exacta del nombre canónico; los nombres sin coincidencia son {1} en todas las columnas derivadas de CosIng, nunca un valor de relleno. Las exportaciones de los anexos II–VI también alimentan {2}, cotejadas únicamente por el nombre del glosario CosIng o por el nombre «Identified INGREDIENTS» de CosIng (sin ruta por CAS). La ausencia de una fila no es un estado, y nada de ello constituye asesoramiento legal.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "d054b356be36272e": {
+  "src": "CAS and EC numbers as printed for the entry",
+  "t": "Números CAS y CE tal como se imprimen para la entrada",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "d069e0a99a39f71a": {
   "src": "INCIDB · snapshot {0} · counts generated from the build report",
@@ -2471,6 +2849,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "d3c3ad493faf3c06": {
+  "src": "Non-compliant products: placing on the market until {0}, making available until {1}.",
+  "t": "Productos no conformes: comercialización hasta {0}, puesta a disposición en el mercado hasta {1}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "d4630c4aaffd2072": {
   "src": "Always {0} in this snapshot — labels almost never declare percentages",
   "t": "Siempre {0} en este snapshot: las etiquetas casi nunca declaran porcentajes",
@@ -2494,6 +2878,12 @@
   "t": "¡Gracias! Tu consulta se ha enviado. Te responderemos en breve.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "d7f520080ed5cccb": {
+  "src": "The CosIng export the row came from and the date it was fetched",
+  "t": "La exportación de CosIng de la que procede la fila y la fecha en que se obtuvo",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "d90ba475e2cbca53": {
   "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). CosIng functions: {3}, {4}, {5}.",
@@ -2567,11 +2957,29 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "dec709af19921ea9": {
+  "src": "{0} is the entry's annex category, not a verdict on the ingredient. A row, especially one with {1}, means CosIng links the INCI name to that list entry. An Annex II ban covers only the substance, form or use the entry describes in {2} (for example hair-dye use only, the nano form only, or a component such as furocoumarins), so the same ingredient can also carry an Annex III–VI row. Read {3} before concluding anything.",
+  "t": "{0} es la categoría de anexo de la entrada, no un veredicto sobre el ingrediente. Una fila, sobre todo una con {1}, significa que CosIng vincula el nombre INCI con esa entrada de la lista. Una prohibición del Anexo II cubre solo la sustancia, la forma o el uso que la entrada describe en {2} (por ejemplo, solo el uso en tintes capilares, solo la forma nano o un componente como las furocumarinas), por lo que el mismo ingrediente también puede tener una fila de los Anexos III–VI. Lee {3} antes de sacar cualquier conclusión.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
+ "df994928dfe739f4": {
+  "src": "The name as printed in the Regulation, parenthetical alias kept; on {0} rows, the collective label name",
+  "t": "El nombre tal como se imprime en el Reglamento, con el alias entre paréntesis conservado; en las filas {0}, el nombre colectivo de etiqueta",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "dff190f25330be88": {
   "src": "Send inquiry →",
   "t": "Enviar consulta →",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "e0e8a36baf113ec9": {
+  "src": "Regulatory status by region",
+  "t": "Estado regulatorio por región",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "e1450713fca3f7a6": {
   "src": "<0>✓</0> Pipe-delimited CSV <1>and</1> Apache Parquet",
@@ -2609,6 +3017,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
  },
+ "e55e8ebdb97d1552": {
+  "src": "Labelling threshold in leave-on products, in percent, parsed per entry",
+  "t": "Umbral de etiquetado en productos sin aclarado, en porcentaje, extraído por entrada",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "e59117f6750c2d1f": {
   "src": "Fragrance, preservatives, surfactants and silicones",
   "t": "Fragancia, conservantes, tensioactivos y siliconas",
@@ -2645,6 +3059,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "e81ac38755e12bbf": {
+  "src": "Annex III/{0}, {1}.",
+  "t": "Anexo III/{0}, {1}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "e821d8113ae11f83": {
   "src": "{0} — CAS {1} · INCI Name &amp; Functions",
   "t": "{0} — CAS {1} · Nombre INCI y funciones",
@@ -2662,6 +3082,12 @@
   "t": "La lista de etiquetas propia de Open Beauty Facts, unida con {0}, literal; presente en {1} de {2} productos ({3}), NULL cuando la fuente no tiene ninguna",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "e8b77f203cfefad2": {
+  "src": "Annex II entry (prohibited substance) — scope in the entry text",
+  "t": "Entrada del Anexo II (sustancia prohibida) — alcance en el texto de la entrada",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "e8eff2ac68949d41": {
   "src": "CosIng match (any)",
@@ -2789,6 +3215,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "f3cd1cfce056ae96": {
+  "src": "Labelled as {0}.",
+  "t": "Etiquetado como {0}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "f3e751cb5e85ee5f": {
   "src": "{0} — CAS {1}. Comedogenic {2} (Fulton). CosIng functions: {3}. INCI name as listed in the EU CosIng inventory.",
   "t": "{0} — CAS {1}. Comedogenicidad {2} (Fulton). Funciones CosIng: {3}. Nombre INCI tal como figura en el inventario CosIng de la UE.",
@@ -2849,6 +3281,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "f6eca28e8b86d9c2": {
+  "src": "<0>{1} {2} rows</0> — the EU Annex III fragrance-allergen entries, one row per legal name and INCIDB match, review rows and unmatched names included.",
+  "t": "<0>{1} filas de {2}</0>: las entradas de alérgenos de fragancia del Anexo III de la UE, una fila por nombre legal y coincidencia en INCIDB, incluidas las filas de revisión y los nombres sin coincidencia.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "f9e3729dc6404f21": {
   "src": "{0} is the largest bucket by distinct token and a small one by label occurrence — the same long-tail effect that produces the two coverage columns above.",
   "t": "{0} es el grupo más grande por token distinto y uno pequeño por aparición en etiquetas: el mismo efecto de cola larga que produce las dos columnas de cobertura anteriores.",
@@ -2885,6 +3323,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "fc1f247eaf4b9132": {
+  "src": "<0>{1} {2} rows</0> — EU Annex II–VI status per ingredient and list entry, conditions verbatim. A row exists only where a list says something.",
+  "t": "<0>{1} filas de {2}</0>: el estado de los Anexos II–VI de la UE por ingrediente y entrada de lista, con las condiciones tal cual. Una fila existe solo donde una lista dice algo.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "fc5fdf7163006ed7": {
   "src": "{0}. Quick start — PyArrow &amp; Pandas",
   "t": "{0}. Inicio rápido — PyArrow y Pandas",
@@ -2903,6 +3347,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "fd623f65b0a9a82d": {
+  "src": "Allowed with conditions",
+  "t": "Permitido con condiciones",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
+ },
  "fddb24644a237a01": {
   "src": "{0} rating for the ingredients the cited paper covers; {1} otherwise",
   "t": "Calificación {0} para los ingredientes que abarca el artículo citado; {1} en los demás casos",
@@ -2914,6 +3364,12 @@
   "t": "Productos",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "fe630827f9a583fb": {
+  "src": "Instrument:",
+  "t": "Instrumento:",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-24"
  },
  "fecb12583ba9e392": {
   "src": "{0} is the INCI name of the substance known as {1} (INN), also recorded as {2} (Ph. Eur.) and {3} (chemical name).",

@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Schéma de données INCIDB et dictionnaire relationnel</title>
-<meta content="Schéma relationnel des 5 tables d’INCIDB — brands, products, ingredients, product_ingredients, ingredient_name_map — avec source et couverture par colonne." name="description"/>
+<meta content="Schéma relationnel des 7 tables d'INCIDB, de products et ingredients à fragrance_allergens et regulatory_status, avec source et couverture par colonne." name="description"/>
 <link href="https://incidb.dataengineered.io/fr/schema" rel="canonical"/>
 <!-- i18n:alternates -->
 <link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/schema">
@@ -24,7 +24,7 @@
 <script src="/i18n/i18n.js?v=5" defer></script>
 <!-- /i18n:alternates -->
 <meta content="Schéma de données INCIDB et dictionnaire relationnel" property="og:title"/>
-<meta content="Le schéma INCIDB à 5 tables, colonne par colonne, avec la source et la couverture mesurée de chaque champ d’enrichissement." property="og:description"/>
+<meta content="Le schéma INCIDB à 7 tables, colonne par colonne, avec la source et la couverture mesurée de chaque champ d’enrichissement." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/fr/schema" property="og:url"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -111,7 +111,7 @@
 <div class="section-eyebrow">Dictionnaire de données · snapshot 2026.09</div>
 <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Spécification du schéma relationnel</h1>
 <p style="color: var(--text-secondary); max-width: 760px; margin-top: 1rem;">
-                Cinq tables, exportées en CSV UTF-8 délimité par des barres verticales et en Apache Parquet, avec des colonnes identiques. Chaque colonne d’enrichissement est soit renseignée à partir d’une source publique nommée via une jointure documentée, soit <code>NULL</code>. Il n’y a ni valeurs par défaut ni lignes fictives.
+                Sept tables, exportées en CSV UTF-8 délimité par des barres verticales et en Apache Parquet, avec des colonnes identiques. Chaque colonne d'enrichissement est soit renseignée à partir d'une source publique nommée via une jointure documentée, soit <code>NULL</code>. Il n'y a ni valeurs par défaut ni lignes fictives.
             </p>
 <div class="table-container" style="max-width: 520px;">
 <table>
@@ -122,6 +122,8 @@
 <tr><td><code>ingredients</code></td><td>46 973</td></tr>
 <tr><td><code>product_ingredients</code></td><td>318 758</td></tr>
 <tr><td><code>ingredient_name_map</code></td><td>55 426</td></tr>
+<tr><td><code>fragrance_allergens</code></td><td>268</td></tr>
+<tr><td><code>regulatory_status</code></td><td>614</td></tr>
 </tbody>
 </table>
 </div>
@@ -183,7 +185,7 @@
 <tr><td><code>chemical_description</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Texte de description chimique / IUPAC issu de CosIng</td></tr>
 <tr><td><code>cosing_restriction</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Référence de la restriction, par ex. une entrée de l’annexe V</td></tr>
 <tr><td><code>cosing_update_date</code></td><td><code class="type-tag">STRING</code></td><td>CosIng</td><td>Toujours <code>NULL</code> dans ce snapshot — l’export ne comporte aucune date de mise à jour</td></tr>
-<tr><td><code>annex_ii</code> … <code>annex_vi</code></td><td><code class="type-tag">FLOAT</code></td><td>CosIng</td><td>Appartenance aux annexes II (substances interdites), III (soumises à restrictions), IV (colorants), V (conservateurs), VI (filtres UV)</td></tr>
+<tr><td><code>annex_ii</code> … <code>annex_vi</code></td><td><code class="type-tag">FLOAT</code></td><td>CosIng</td><td>Appartenance aux annexes II (interdit), III (restreint), IV (colorants), V (conservateurs), VI (filtres UV). Méthode héritée par nom exact ; <code>regulatory_status</code> est la source précise et peut différer</td></tr>
 <tr><td><code>is_common_allergen</code></td><td><code class="type-tag">INTEGER</code></td><td>Annexe III (UE)</td><td>Indicateur d’allergène parfumant (UE) — voir la note de méthode ci-dessous</td></tr>
 <tr><td><code>allergen_source</code></td><td><code class="type-tag">STRING</code></td><td>Annexe III (UE)</td><td>La liste dont provient un indicateur</td></tr>
 <tr><td><code>comedogenic_rating</code></td><td><code class="type-tag">FLOAT</code></td><td>authored</td><td>Note 0–5 pour les ingrédients couverts par l’article cité ; <code>NULL</code> sinon</td></tr>
@@ -210,7 +212,7 @@
                 La colonne de gauche compte les noms distincts ; celle de droite, les occurrences d’ingrédients sur les étiquettes de produits. Elles diffèrent d’un ordre de grandeur, car un corpus d’étiquettes contient bien plus de chaînes distinctes — variantes botaniques, graphies multilingues, tokens marketing — qu’aucun inventaire réglementaire n’en répertorie, tandis que les emplacements d’une étiquette réelle sont très majoritairement occupés par des ingrédients que CosIng couvre effectivement. <strong>Aucun des deux chiffres ne décrit à lui seul les données.</strong> <code>ec_number</code>, <code>cosing_restriction</code> et les indicateurs d’annexe ne sont renseignés que sur le sous-ensemble apparié à CosIng, chacun à son propre taux — voir le <code>build_report.json</code> livré avec l’archive.
             </div>
 <div class="note">
-<strong>Méthode — indicateurs d’allergènes.</strong> Une seule liste : les allergènes parfumants de l’annexe III du règlement cosmétique de l’UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545), appariés sur le nom canonique exact. 99 noms sont signalés. La FDA américaine n’a pas encore publié sa liste d’allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain.
+<strong>Méthode — indicateurs d'allergènes.</strong> Une seule liste : les allergènes parfumants de l'annexe III du règlement cosmétique de l'UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545), rapprochés par le nom INCI exact, puis par le nom collectif d'étiquetage prescrit par le règlement, puis par numéro CAS uniquement pour les substances chimiquement définies. Les correspondances CAS d'origine botanique sont livrées comme lignes à vérifier, jamais comme indicateurs. 121 noms sont signalés ; les preuves par entrée figurent dans <code>fragrance_allergens</code> (table 6). La FDA américaine n'a pas encore publié sa liste d'allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain.
             </div>
 <div class="note">
 <strong>Méthode — indices de comédogénicité.</strong> 145 ingrédients ont une note sur l’échelle 0–5, retranscrite du tableau I (p. 324–326) de Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Lorsque l’article indique une plage plutôt qu’une note unique, la note est laissée à <code>NULL</code>. L’absence de note signifie « non couvert par la source citée », jamais « sans risque ».
@@ -275,13 +277,70 @@
 <code>unresolved</code> est la catégorie la plus importante en tokens distincts et une petite catégorie en occurrences sur les étiquettes — le même effet de longue traîne qui produit les deux colonnes de couverture ci-dessus.
             </div>
 </div>
+<!-- Fragrance allergens -->
+<div class="doc-section">
+<h2>6. fragrance_allergens</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Les entrées d'étiquetage des allergènes parfumants de l'annexe III de l'UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545) : une ligne par nom légal et correspondance INCIDB, noms légaux sans correspondance et lignes à vérifier CAS botanique inclus.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>annex_iii_ref</code></td><td><code class="type-tag">STRING</code></td><td>Référence de l'entrée de l'annexe III telle qu'imprimée</td></tr>
+<tr><td><code>legal_name</code></td><td><code class="type-tag">STRING</code></td><td>Le nom tel qu'imprimé dans le règlement, alias entre parenthèses conservé ; sur les lignes <code>LABEL_NAME</code>, le nom collectif d'étiquetage</td></tr>
+<tr><td><code>label_as</code></td><td><code class="type-tag">STRING</code></td><td>Le nom collectif d'étiquetage prescrit par le règlement (par exemple Rose Ketones) ; <code>NULL</code> lorsqu'il n'en prescrit aucun</td></tr>
+<tr><td><code>cas_listed</code>, <code>ec_listed</code></td><td><code class="type-tag">STRING</code></td><td>Numéros CAS et CE tels qu'imprimés pour l'entrée</td></tr>
+<tr><td><code>leave_on_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Seuil d'étiquetage dans les produits non rincés, en pourcentage, extrait par entrée</td></tr>
+<tr><td><code>rinse_off_threshold_pct</code></td><td><code class="type-tag">DECIMAL</code></td><td>Seuil d'étiquetage dans les produits rincés, en pourcentage, extrait par entrée</td></tr>
+<tr><td><code>placing_on_market_until</code></td><td><code class="type-tag">DATE</code></td><td>Fin de la transition pour la mise sur le marché des entrées dont le texte consolidé porte la note de transition ((37), (38) ou (40)) ; <code>NULL</code> pour les autres</td></tr>
+<tr><td><code>making_available_until</code></td><td><code class="type-tag">DATE</code></td><td>Fin de la transition pour la mise à disposition, de même</td></tr>
+<tr><td><code>transition_condition</code></td><td><code class="type-tag">STRING</code></td><td>La réserve du règlement pour les entrées remplacées, reproduite mot pour mot ; <code>NULL</code> ailleurs</td></tr>
+<tr><td><code>instrument</code></td><td><code class="type-tag">STRING</code></td><td>L'instrument juridique de l'entrée</td></tr>
+<tr><td><code>ingredient_id</code>, <code>inci_name</code></td><td><code class="type-tag">INTEGER / STRING</code></td><td>L'ingrédient INCIDB correspondant ; <code>NULL</code> lorsque le nom légal ne correspond à rien</td></tr>
+<tr><td><code>match_method</code></td><td><code class="type-tag">STRING</code></td><td><code>NAME</code>, <code>LABEL_NAME</code>, <code>CAS</code> (substances chimiquement définies uniquement) ou <code>BOTANICAL_CAS_REVIEW</code> ; <code>NULL</code> en l'absence de correspondance</td></tr>
+<tr><td><code>flagged</code></td><td><code class="type-tag">BOOLEAN</code></td><td><code>1</code> pour un indicateur qui définit <code>is_common_allergen</code> ; <code>0</code> sur les lignes à vérifier CAS botanique et les lignes sans correspondance</td></tr>
+<tr><td><code>source</code></td><td><code class="type-tag">STRING</code></td><td><code>EURLEX</code> (le texte juridique consolidé) ou <code>COSING_ANNEX_III</code> (un nom que CosIng recense et que le texte juridique n'imprime pas)</td></tr>
+<tr><td><code>source_url</code>, <code>retrieved_at</code></td><td><code class="type-tag">STRING / DATE</code></td><td>D'où provient la ligne et la date à laquelle elle a été récupérée</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Regulatory status -->
+<div class="doc-section">
+<h2>7. regulatory_status</h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Statut au titre des annexes II–VI de l'UE d'après les exports CosIng de la Commission européenne : une ligne par ingrédient, juridiction et entrée de liste. Les lignes n'existent que lorsqu'une liste indique quelque chose ; l'absence de ligne n'est pas un statut. Ne constitue pas un avis juridique.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ingredient_id</code>, <code>inci_name</code></td><td><code class="type-tag">INTEGER / STRING</code></td><td>L'ingrédient INCIDB</td></tr>
+<tr><td><code>cas</code></td><td><code class="type-tag">STRING</code></td><td>La valeur CAS propre à INCIDB (non utilisée pour le rapprochement)</td></tr>
+<tr><td><code>jurisdiction</code></td><td><code class="type-tag">STRING</code></td><td><code>EU</code> ; <code>CA</code>, <code>ASEAN</code> et <code>CN</code> réservés</td></tr>
+<tr><td><code>list_ref</code></td><td><code class="type-tag">STRING</code></td><td>L'entrée de liste, par exemple une entrée de l'annexe III</td></tr>
+<tr><td><code>status</code></td><td><code class="type-tag">STRING</code></td><td><code>PROHIBITED</code> (annexe II), <code>RESTRICTED</code> (annexe III), <code>ALLOWED_WITH_CONDITIONS</code> (annexes IV–VI) ; <code>LISTED_EXISTING</code> réservé</td></tr>
+<tr><td><code>instrument</code></td><td><code class="type-tag">STRING</code></td><td>La colonne Regulation de CosIng, telle qu'imprimée</td></tr>
+<tr><td><code>product_type</code></td><td><code class="type-tag">STRING</code></td><td>Type de produit / parties du corps, reproduit mot pour mot</td></tr>
+<tr><td><code>max_concentration</code></td><td><code class="type-tag">STRING</code></td><td>Concentration maximale dans la préparation prête à l'emploi, reproduite mot pour mot ; jamais réduite à un seul chiffre</td></tr>
+<tr><td><code>condition_text</code></td><td><code class="type-tag">STRING</code></td><td>Annexe II : le texte de Chemical name / INN reproduit mot pour mot (où figurent les interdictions conditionnelles). Annexes III–VI : les colonnes Other et Wording of conditions, combinées</td></tr>
+<tr><td><code>effective_date</code></td><td><code class="type-tag">DATE</code></td><td>Uniquement lorsque la source en indique un ; <code>NULL</code> sur les lignes UE</td></tr>
+<tr><td><code>match_method</code></td><td><code class="type-tag">STRING</code></td><td><code>NAME</code> (nom du glossaire CosIng) ou <code>IDENTIFIED_INGREDIENT</code> (colonne Identified INGREDIENTS de CosIng). Pas de recours au CAS pour les lignes UE</td></tr>
+<tr><td><code>source_url</code>, <code>retrieved_at</code></td><td><code class="type-tag">STRING / DATE</code></td><td>L'export CosIng dont provient la ligne et la date à laquelle il a été récupéré</td></tr>
+<tr><td><code>source_update_date</code></td><td><code class="type-tag">STRING</code></td><td>La date Update Date de CosIng pour l'entrée, telle qu'imprimée</td></tr>
+</tbody>
+</table>
+</div>
+<p style="color: var(--text-secondary); margin-top: 0.75rem;"><code>status</code> est la catégorie d'annexe de l'entrée, pas un verdict sur l'ingrédient. Une ligne, en particulier une ligne avec <code>match_method = IDENTIFIED_INGREDIENT</code>, signifie que CosIng relie le nom INCI à cette entrée de liste. Une interdiction de l'annexe II ne couvre que la substance, la forme ou l'usage que l'entrée décrit dans <code>condition_text</code> (par exemple le seul usage en coloration capillaire, la seule forme nano, ou un composant comme les furocoumarines), si bien que le même ingrédient peut aussi porter une ligne des annexes III–VI. Lisez <code>condition_text</code> avant de conclure quoi que ce soit.</p>
+</div>
 </div>
 <!-- Footer -->
 <footer>
 <div class="container">
 <p>INCIDB · snapshot 2026.09 · chiffres générés à partir du rapport de build</p>
 <p style="margin-top: 0.5rem;"><a href="/fr/schema" style="color: var(--accent-blue); text-decoration: none;">Spécification du schéma</a> · <a href="/LICENSE" style="color: var(--accent-blue); text-decoration: none;">Conditions de licence</a> · <a href="/fr/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
-<p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Données produits © contributeurs d’Open Beauty Facts, sous Open Database License (ODbL) v1.0. L’enrichissement des ingrédients contient des données issues de la base CosIng de la Commission européenne, réutilisées avec attribution.</p>
+<p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Données produits © contributeurs d'Open Beauty Facts, sous Open Database License (ODbL) v1.0. L'enrichissement des ingrédients contient des données issues de la base CosIng de la Commission européenne, réutilisées avec attribution. Liste des allergènes parfumants de l'UE : annexe III du règlement (CE) n° 1223/2009 modifié par le règlement (UE) 2023/1545, EUR-Lex (© Union européenne), réutilisée avec attribution.</p>
 <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Fait partie du catalogue DataEngineered →</a> · <a href="https://dataengineered.io/about">À propos</a> · <a href="https://dataengineered.io/terms">Conditions</a> · <a href="https://dataengineered.io/privacy">Confidentialité</a> · <a href="https://dataengineered.io/refund-policy">Politique de remboursement</a></div>
 </div>
 <!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Langue" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><a href="/schema" hreflang="en" lang="en" data-i18n-lang="en">English</a> · <a href="/es/schema" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <a href="/de/schema" hreflang="de" lang="de" data-i18n-lang="de">Deutsch</a> · <span aria-current="true" style="font-weight:600">Français</span> · <a href="/pt-br/schema" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></nav><!-- /i18n:switcher --></footer>

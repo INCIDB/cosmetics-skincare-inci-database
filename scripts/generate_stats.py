@@ -185,13 +185,23 @@ CSS = """
 """
 
 
+# The header is copied from one fixed page, never "the first landing page in
+# sort order": a monograph's nav links to its category hub, so the stats nav
+# used to change whenever the sample changed. A hub page carries the generic
+# site nav (Coverage / Schema / buy button) in the same `.page-header` markup
+# the stats CSS styles; the portal pages (index/schema) use different classes.
+HEADER_SOURCE = ROOT / "landing" / "preservatives.html"
+
+
 def chrome():
-    """Header copied from a generated landing page so the nav stays identical."""
-    sample = next(p for p in sorted((ROOT / "landing").glob("*.html")))
-    src = sample.read_text(encoding="utf-8")
+    """Header copied from a fixed hub page so the nav stays identical and stable."""
+    src = HEADER_SOURCE.read_text(encoding="utf-8")
     start = src.index("<header")
     end = src.index("</header>", start) + len("</header>")
-    return src[start:end]
+    header = src[start:end]
+    if 'href="/schema"' not in header:
+        raise SystemExit(f"{HEADER_SOURCE.name}: header has no /schema link; pick another fixed page")
+    return header
 
 
 def build_page(s, charts):
