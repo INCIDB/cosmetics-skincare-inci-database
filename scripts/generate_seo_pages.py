@@ -482,7 +482,6 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_ro
     comedo = field(ing, 'comedogenic_rating')
     allergen = is_flag(ing, 'is_common_allergen')
     fungal = is_flag(ing, 'is_fungal_acne_trigger')
-    cosing_matched = field(ing, 'cosing_matched') == '1'
     all_names = other_names(inci_name, ref_row)
     names = display_names(all_names)
     sccs_opinion = (ref_row or {}).get('sccs_opinion', '')
@@ -497,8 +496,6 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_ro
     badges = []
     if allergen:
         badges.append('<span style="background: rgba(244, 63, 94, 0.15); color: #F43F5E; border: 1px solid #F43F5E; padding: 0.3rem 0.75rem; border-radius: 99px; font-family: \'JetBrains Mono\', monospace; font-size: 0.8rem; font-weight: 600;">EU Annex III fragrance allergen</span>')
-    elif cosing_matched:
-        badges.append('<span style="background: rgba(148, 163, 184, 0.12); color: #94A3B8; border: 1px solid #334155; padding: 0.3rem 0.75rem; border-radius: 99px; font-family: \'JetBrains Mono\', monospace; font-size: 0.8rem;">Not on the EU Annex III list</span>')
     if fungal:
         badges.append('<span style="background: rgba(245, 158, 11, 0.15); color: #F59E0B; border: 1px solid #F59E0B; padding: 0.3rem 0.75rem; border-radius: 99px; font-family: \'JetBrains Mono\', monospace; font-size: 0.8rem;">Rule-flagged fungal-acne trigger</span>')
     badges_html = "\n                    ".join(badges)
