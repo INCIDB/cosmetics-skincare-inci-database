@@ -79,7 +79,7 @@
     "distribution": [
       {
         "@type": "DataDownload",
-        "name": "Échantillon gratuit (5 tables, CSV + Parquet)",
+        "name": "Échantillon gratuit (7 tables, CSV + Parquet)",
         "encodingFormat": "application/zip",
         "contentUrl": "https://incidb.dataengineered.io/samples/incidb_free_samples.zip"
       }
@@ -93,6 +93,7 @@
       "CosIng chemical description",
       "EU Annex II-VI membership",
       "EU Annex III fragrance allergen flag",
+      "EU Annex II-VI regulatory status (CosIng)",
       "Comedogenic rating (authored subset)",
       "Fungal-acne trigger flag (rule-derived)",
       "Label position index"
@@ -103,7 +104,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "INCIDB Complete",
-    "description": "Le snapshot INCIDB 2026.09 complet : les cinq tables (products, brands, ingredients, product_ingredients, ingredient_name_map) en CSV délimité par des barres verticales et en Apache Parquet, plus le rapport qualité build_report.json, le dictionnaire de données et la licence. Paiement unique, téléchargement immédiat.",
+    "description": "Le snapshot INCIDB 2026.09 complet : les sept tables (products, brands, ingredients, product_ingredients, ingredient_name_map, fragrance_allergens, regulatory_status) en CSV délimité par des barres verticales et en Apache Parquet, plus le rapport qualité build_report.json, le dictionnaire de données et la licence. Paiement unique, téléchargement immédiat.",
     "image": "https://incidb.dataengineered.io/og-image.png",
     "sku": "INCIDB-COMPLETE-2026-09",
     "brand": {
@@ -198,7 +199,7 @@
       "name": "De quelle liste d’allergènes les indicateurs sont-ils tirés ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Une seule liste : les allergènes parfumants de l’annexe III du règlement cosmétique de l’UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545), appariés sur le nom canonique exact. 99 noms sont signalés et allergen_source indique la liste. La FDA américaine n’a pas encore publié sa liste d’allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain."
+        "text": "Une seule liste : les allergènes parfumants de l'annexe III du règlement cosmétique de l'UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545), rapprochés par le nom INCI exact, puis par le nom collectif d'étiquetage prescrit par le règlement, puis par numéro CAS uniquement pour les substances chimiquement définies. 121 noms sont signalés et allergen_source indique la liste ; 43,9% des produits en portent au moins un (environ 6,4% de plus listent les ingrédients sous forme de texte non scindé, que les indicateurs n'atteignent pas). La FDA américaine n'a pas encore publié sa liste d'allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain."
       }
     },
     {
@@ -372,8 +373,8 @@
             </p>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem;">
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
-<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">99 noms signalés comme allergènes</h3>
-<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Issus de la liste des allergènes parfumants de l’annexe III de l’UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545), appariés sur le nom canonique exact. La FDA américaine n’a pas encore publié sa liste d’allergènes parfumants au titre du MoCRA ; il n’existe donc ici aucun indicateur américain.</p>
+<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">121 noms signalés comme allergènes</h3>
+<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Surcouche des allergènes parfumants de l'UE (règl. (UE) 2023/1545) : 121 noms signalés par nom INCI exact, nom d'étiquetage ou CAS pour les substances définies ; 43,9% des produits en portent au moins un (environ 6,4% de plus listent les ingrédients sous forme de texte non scindé, que les indicateurs n'atteignent pas). La FDA américaine n'a pas encore publié sa liste d'allergènes parfumants au titre du MoCRA ; il n'existe donc ici aucun indicateur américain.</p>
 </div>
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
 <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">145 indices de comédogénicité</h3>
@@ -451,12 +452,12 @@
 <div class="registry-card">
 <span class="registry-badge">Réglementation UE</span>
 <h3 class="registry-title">CosIng (Commission européenne)</h3>
-<p class="registry-desc">L’inventaire des ingrédients : catégories fonctionnelles, numéros CAS et CE, descriptions chimiques, restrictions et appartenance aux annexes II–VI. Jointure sur le nom canonique exact ; les noms sans correspondance reçoivent <code>NULL</code>, pas une supposition.</p>
+<p class="registry-desc">L'inventaire des ingrédients : catégories fonctionnelles, numéros CAS et CE, descriptions chimiques, restrictions et appartenance aux annexes II–VI. Jointure sur le nom canonique exact ; les noms sans correspondance reçoivent <code>NULL</code>, pas une supposition. Les exports des annexes II–VI alimentent aussi <code>regulatory_status</code> : une ligne par ingrédient et entrée de liste, conditions reproduites mot pour mot ; l'absence de ligne n'est pas un statut, et rien de tout cela ne constitue un avis juridique.</p>
 </div>
 <div class="registry-card">
 <span class="registry-badge">Réglementation UE</span>
 <h3 class="registry-title">Allergènes parfumants de l’annexe III</h3>
-<p class="registry-desc">Règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545 — la seule liste à l’origine de <code>is_common_allergen</code>, consignée ligne par ligne dans <code>allergen_source</code>.</p>
+<p class="registry-desc">Règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545 — la seule liste à l'origine de <code>is_common_allergen</code>, consignée ligne par ligne dans <code>allergen_source</code>, avec les seuils, les dates de transition et la méthode de rapprochement dans <code>fragrance_allergens</code>.</p>
 </div>
 <div class="registry-card">
 <span class="registry-badge">Ingénierie</span>
@@ -493,7 +494,7 @@
 <ul class="tier-features">
 <li class="included"><span class="check-icon">✓</span> 200 produits, tirés au hasard dans un pool à graine fixe</li>
 <li class="included"><span class="check-icon">✓</span> Leurs marques, liens et 1 109 ingrédients</li>
-<li class="included"><span class="check-icon">✓</span> Les 5 tables, CSV <em>et</em> Parquet</li>
+<li class="included"><span class="check-icon">✓</span> Les 7 tables, CSV <em>et</em> Parquet</li>
 <li class="included"><span class="check-icon">✓</span> Mêmes colonnes d’enrichissement, mêmes NULL</li>
 <li><span class="cross-icon">✕</span> Issu de produits appariés à CosIng à ≥80% : il paraît donc meilleur que la moyenne du corpus</li>
 </ul>
@@ -512,6 +513,7 @@
 <li class="included"><span class="check-icon">✓</span> La table <code>ingredient_name_map</code> de 55 426 lignes</li>
 <li class="included"><span class="check-icon">✓</span> CSV délimité par des barres verticales <em>et</em> Apache Parquet</li>
 <li class="included"><span class="check-icon">✓</span> Enrichissement CosIng à la couverture publiée ci-dessus</li>
+<li class="included"><span class="check-icon">✓</span> Surcouche UE : <code>fragrance_allergens</code> et <code>regulatory_status</code></li>
 <li class="included"><span class="check-icon">✓</span> <code>build_report.json</code>, dictionnaire de données, licence</li>
 </ul>
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_fr_home" style="width: 100%; justify-content: center;">Acheter maintenant · Téléchargement immédiat</a>
@@ -538,7 +540,7 @@
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">De quelle liste d’allergènes les indicateurs sont-ils tirés ?</h3>
-<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Une seule liste : les allergènes parfumants de l’annexe III de l’UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545), appariés sur le nom canonique exact — 99 noms signalés, <code>allergen_source</code> indiquant la liste. La FDA américaine n’a pas encore publié sa liste d’allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain.</p>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Une seule liste : les allergènes parfumants de l'annexe III de l'UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545), rapprochés par le nom INCI exact, puis par le nom collectif d'étiquetage prescrit par le règlement, puis par numéro CAS uniquement pour les substances chimiquement définies — 121 noms signalés, <code>allergen_source</code> indiquant la liste ; 43,9% des produits en portent au moins un (environ 6,4% de plus listent les ingrédients sous forme de texte non scindé, que les indicateurs n'atteignent pas). La FDA américaine n'a pas encore publié sa liste d'allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain.</p>
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">D’où viennent les indices de comédogénicité et les indicateurs d’acné fongique ?</h3>
@@ -628,7 +630,7 @@
 <div class="container">
 <p>INCIDB · snapshot 2026.09 · chiffres générés à partir du rapport de build</p>
 <p style="margin-top: 0.5rem;"><a href="/fr/schema" style="color: var(--accent-blue); text-decoration: none;">Spécification du schéma</a> · <a href="/fr/stats/" style="color: var(--accent-blue); text-decoration: none;">Statistiques des ingrédients</a> · <a href="/LICENSE" style="color: var(--accent-blue); text-decoration: none;">Conditions de licence</a> · <a href="/fr/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
-<p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Données produits © contributeurs d’<a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a>, sous <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL) v1.0</a> — l’attribution et le partage à l’identique s’appliquent aux bases dérivées. L’enrichissement des ingrédients contient des données issues de la base CosIng de la Commission européenne, réutilisées avec attribution.</p>
+<p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Données produits © contributeurs d'<a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a>, sous <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL) v1.0</a> — l'attribution et le partage à l'identique s'appliquent aux bases dérivées. L'enrichissement des ingrédients contient des données issues de la base CosIng de la Commission européenne, réutilisées avec attribution. Liste des allergènes parfumants de l'UE : annexe III du règlement (CE) n° 1223/2009 modifié par le règlement (UE) 2023/1545, EUR-Lex (© Union européenne), réutilisée avec attribution.</p>
 </div>
 <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Fait partie du catalogue DataEngineered →</a> · <a href="https://dataengineered.io/about">À propos</a> · <a href="https://dataengineered.io/terms">Conditions</a> · <a href="https://dataengineered.io/privacy">Confidentialité</a> · <a href="https://dataengineered.io/refund-policy">Politique de remboursement</a></div>
 <!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Langue" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><a href="/" hreflang="en" lang="en" data-i18n-lang="en">English</a> · <a href="/es/" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <a href="/de/" hreflang="de" lang="de" data-i18n-lang="de">Deutsch</a> · <span aria-current="true" style="font-weight:600">Français</span> · <a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></nav><!-- /i18n:switcher --></footer>
