@@ -49,6 +49,8 @@ CREATE TABLE IF NOT EXISTS ingredient_name_map (
     method VARCHAR(20) NOT NULL,
     confidence REAL NOT NULL,
     ingredient_id INTEGER NOT NULL REFERENCES ingredients(ingredient_id),
+    part_index INTEGER NOT NULL,        -- 1-based order of this part within raw_name (1 when not cut)
+    split_rule VARCHAR(120),            -- '+'-joined re-split rules; NULL when the token was not re-split
     PRIMARY KEY (raw_name, canonical_name)
 );
 
