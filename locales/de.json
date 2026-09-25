@@ -377,6 +377,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "1970a76e57798497": {
+  "src": "Normalised label composition data: {0} products, {1} canonical INCI names, EU fragrance-allergen and Annex II–VI tables, measured CosIng coverage up front.",
+  "t": "Normalisierte Zusammensetzungsdaten von Etiketten: {0} Produkte, {1} kanonische INCI-Namen, Tabellen zu EU-Duftstoffallergenen und Anhang II–VI, gemessene CosIng-Abdeckung offen ausgewiesen.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "19cd7d185cfd95a7": {
   "src": "Meaning",
   "t": "Bedeutung",
@@ -677,6 +683,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "2ce606c644606998": {
+  "src": "Normalised relational snapshot of cosmetic ingredient labels: {0} products, {1} brands, {2} distinct canonical INCI names, {3} ordered product-ingredient composition links and a {4}-row raw-to-canonical name map. Product data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS and EC numbers, chemical descriptions, Annex II-VI membership) joined on exact canonical name from the European Commission CosIng inventory. EU regulatory overlay: fragrance_allergens (the Annex III labelling list of Regulation (EU) {5}, with thresholds and transition dates) and regulatory_status (Annex II-VI entries with their conditions verbatim). Columns are NULL where the source has no value.",
+  "t": "Normalisierter relationaler Snapshot von Zutatenangaben auf Kosmetiketiketten: {0} Produkte, {1} Marken, {2} verschiedene kanonische INCI-Namen, {3} geordnete Produkt-Zutat-Verknüpfungen und eine Namenszuordnung mit {4} Zeilen (Rohtext zu kanonischem Namen). Produktdaten von Open Beauty Facts (ODbL); Zutatenanreicherung (Funktionen, CAS- und EG-Nummern, chemische Beschreibungen, Zugehörigkeit zu Anhang II-VI) über den exakten kanonischen Namen aus dem CosIng-Verzeichnis der Europäischen Kommission verknüpft. EU-Regulierungsebene: fragrance_allergens (die Kennzeichnungsliste aus Anhang III der Verordnung (EU) {5}, mit Schwellenwerten und Übergangsfristen) und regulatory_status (Einträge aus Anhang II-VI mit ihren Bedingungen im Wortlaut). Spalten sind NULL, wo die Quelle keinen Wert enthält.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "2ce858a187e3a149": {
   "src": "<0>Questions or corrections:</0> <1>contact form</1> or incidb@dataengineered.io.",
   "t": "<0>Fragen oder Korrekturen:</0> <1>Kontaktformular</1> oder incidb@dataengineered.io.",
@@ -838,6 +850,12 @@
   "t": "Das Inhaltsstoffverzeichnis: Funktionskategorien, CAS- und EG-Nummern, chemische Beschreibungen, Beschränkungen und Zugehörigkeit zu den Anhängen II–VI. Verknüpft über den exakten kanonischen Namen; nicht zugeordnete Namen erhalten {0}, keine Vermutung. Die Exporte der Anhänge II–VI speisen außerdem {1}: eine Zeile pro Inhaltsstoff und Listeneintrag, Bedingungen wörtlich; das Fehlen einer Zeile ist kein Status, und nichts davon ist Rechtsberatung.",
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
+ },
+ "3bd4d6af403f84a7": {
+  "src": "{0} products, {1} canonical INCI names, {2} composition links; CosIng on {3} of occurrences; EU fragrance-allergen and Annex II–VI tables. {4}.",
+  "t": "{0} Produkte, {1} kanonische INCI-Namen, {2} Zusammensetzungs-Verknüpfungen; CosIng für {3} der Vorkommen; Tabellen zu EU-Duftstoffallergenen und Anhang II–VI. {4}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "3cf028f198787ce3": {
   "src": "Rule-derived flag — a heuristic, not a measured property",
@@ -1204,6 +1222,12 @@
   "t": "Teil des DataEngineered-Katalogs →",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "5b990214917af760": {
+  "src": "{0} products, {1} canonical INCI names, {2} ordered composition links, the {3}-row name map, and EU fragrance-allergen (Reg. (EU) {4}) and Annex II–VI status tables. CSV + Parquet.",
+  "t": "{0} Produkte, {1} kanonische INCI-Namen, {2} geordnete Zusammensetzungs-Verknüpfungen, die Namenszuordnung mit {3} Zeilen sowie Tabellen zu EU-Duftstoffallergenen (VO (EU) {4}) und zum Status nach Anhang II–VI. CSV + Parquet.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "5cdb6387f2905115": {
   "src": "The ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names get {0}, not a guess.",
@@ -2932,6 +2956,12 @@
   "t": "In diesem Snapshot immer {0} — Etiketten geben so gut wie nie Prozentangaben an",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "d4f6325f9d1fb0f3": {
+  "src": "CosIng also records it as {0} (Ph. Eur.) and {1} (Ph. Eur.).",
+  "t": "CosIng führt es außerdem als {0} (Ph. Eur.) und {1} (Ph. Eur.).",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "d6849056642d3989": {
   "src": "The cleaned token is already a CosIng inventory name",

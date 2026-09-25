@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4" name="google-site-verification"/>
 <title>INCIDB — Banco de dados INCI de skincare e cosméticos para devs</title>
-<meta content="18.583 produtos cosméticos, 46.008 nomes INCI canônicos e 342.208 vínculos de composição ordenados, com enriquecimento CosIng da UE em 83,9% das ocorrências em rótulos. CSV + Parquet, $79." name="description"/>
+<meta content="18.583 produtos, 46.008 nomes INCI canônicos, 342.208 vínculos de composição; CosIng em 83,9% das ocorrências; tabelas de alérgenos de fragrância da UE e dos anexos II–VI. $79." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://incidb.dataengineered.io/pt-br/" rel="canonical"/>
 <!-- i18n:alternates -->
@@ -28,7 +28,7 @@
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- OpenGraph Meta Tags -->
 <meta content="INCIDB — O banco de dados INCI de skincare e cosméticos para desenvolvedores" property="og:title"/>
-<meta content="18.583 produtos, 46.008 nomes INCI canônicos, 342.208 vínculos de composição ordenados e o mapa de nomes de 77.257 linhas, que mostra como cada token dos rótulos foi resolvido. CSV + Parquet." property="og:description"/>
+<meta content="18.583 produtos, 46.008 nomes INCI canônicos, 342.208 vínculos de composição ordenados, o mapa de nomes com 77.257 linhas e tabelas de alérgenos de fragrância da UE (Reg. (UE) 2023/1545) e de status pelos anexos II–VI. CSV + Parquet." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/pt-br/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="INCIDB — Banco de dados INCI de skincare e cosméticos" property="og:site_name"/>
@@ -36,7 +36,7 @@
 <!-- Twitter Card Meta Tags -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="INCIDB — Banco de dados INCI de skincare e cosméticos" name="twitter:title"/>
-<meta content="Dados normalizados de composição de rótulos: 18.583 produtos, 46.008 nomes INCI canônicos e cobertura CosIng medida, publicada logo de início." name="twitter:description"/>
+<meta content="Dados normalizados de composição de rótulos: 18.583 produtos, 46.008 nomes INCI canônicos, tabelas de alérgenos de fragrância da UE e dos anexos II–VI e cobertura do CosIng medida e divulgada de antemão." name="twitter:description"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -50,7 +50,7 @@
     "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "INCIDB Banco de dados INCI de skincare e cosméticos",
-    "description": "Snapshot relacional normalizado de rótulos de ingredientes cosméticos: 18.583 produtos, 5.925 marcas, 46.008 nomes INCI canônicos distintos, 342.208 vínculos ordenados de composição produto-ingrediente e um mapa de 77.257 linhas de nomes brutos para canônicos. Dados de produtos do Open Beauty Facts (ODbL); enriquecimento de ingredientes (funções, números CAS e CE, descrições químicas, inclusão nos Anexos II-VI) unido pelo nome canônico exato a partir do inventário CosIng da Comissão Europeia. As colunas ficam NULL quando a fonte não tem valor.",
+    "description": "Snapshot relacional normalizado dos rótulos de ingredientes cosméticos: 18.583 produtos, 5.925 marcas, 46.008 nomes INCI canônicos distintos, 342.208 vínculos ordenados de composição produto-ingrediente e um mapa de nomes com 77.257 linhas, do texto bruto ao nome canônico. Dados de produto do Open Beauty Facts (ODbL); enriquecimento de ingredientes (funções, números CAS e CE, descrições químicas, inclusão nos anexos II-VI) unido pelo nome canônico exato ao inventário CosIng da Comissão Europeia. Camada regulatória da UE: fragrance_allergens (a lista de rotulagem do anexo III do Regulamento (UE) 2023/1545, com limites e prazos de transição) e regulatory_status (entradas dos anexos II-VI com suas condições textuais). As colunas são NULL quando a fonte não tem valor.",
     "url": "https://incidb.dataengineered.io/pt-br/",
     "version": "2026.09",
     "license": "https://opendatacommons.org/licenses/odbl/1-0/",

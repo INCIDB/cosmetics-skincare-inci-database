@@ -135,7 +135,8 @@ TEMPLATE = """<!DOCTYPE html>
         margin-top: 18px;
         display: flex;
         align-items: baseline;
-        gap: 14px;
+        flex-wrap: wrap;
+        gap: 8px 8px;
         font-size: 16px;
         color: var(--text-secondary);
     }}
@@ -149,12 +150,12 @@ TEMPLATE = """<!DOCTYPE html>
     }}
     .tables code {{
         font-family: 'JetBrains Mono', monospace;
-        font-size: 15px;
+        font-size: 13.5px;
         color: var(--text-primary);
         background: var(--bg-card);
         border: 1px solid var(--border-subtle);
         border-radius: 6px;
-        padding: 5px 10px;
+        padding: 4px 8px;
     }}
     .footline {{
         margin-top: auto;
@@ -175,7 +176,7 @@ TEMPLATE = """<!DOCTYPE html>
             <div class="host">{host}</div>
         </div>
         <div class="title">The Skincare &amp; Cosmetics <span class="accent">INCI Database</span></div>
-        <div class="subtitle">Normalised label composition data &middot; CSV + Apache Parquet &middot; snapshot {snapshot}</div>
+        <div class="subtitle">Label composition data &middot; EU fragrance-allergen &amp; Annex II&ndash;VI overlay &middot; CSV + Parquet &middot; {snapshot}</div>
         <div class="stats">
             <div class="stat">
                 <div class="value">{products}</div>
@@ -208,16 +209,18 @@ TEMPLATE = """<!DOCTYPE html>
             </div>
         </div>
         <div class="tables">
-            <span class="lead">Five relational tables</span>
+            <span class="lead">Seven relational tables</span>
             <code>products</code>
             <code>brands</code>
             <code>ingredients</code>
             <code>product_ingredients</code>
             <code>ingredient_name_map</code>
+            <code>fragrance_allergens</code>
+            <code>regulatory_status</code>
         </div>
         <div class="footline">
             <span>{name_map_rows} name-map rows — every canonicalisation is auditable</span>
-            <span>ODbL + CosIng open data</span>
+            <span>ODbL + CosIng + EUR-Lex open data</span>
         </div>
     </div>
 </body>

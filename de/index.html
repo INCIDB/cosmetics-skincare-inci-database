@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4" name="google-site-verification"/>
 <title>INCIDB — INCI-Datenbank für Hautpflege &amp; Kosmetik für Entwickler</title>
-<meta content="18.583 Kosmetikprodukte, 46.008 kanonische INCI-Namen und 342.208 geordnete Zusammensetzungsverknüpfungen, mit EU-CosIng-Anreicherung für 83,9% der Vorkommen auf Etiketten. CSV + Parquet, $79." name="description"/>
+<meta content="18.583 Produkte, 46.008 kanonische INCI-Namen, 342.208 Zusammensetzungs-Verknüpfungen; CosIng für 83,9% der Vorkommen; Tabellen zu EU-Duftstoffallergenen und Anhang II–VI. $79." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://incidb.dataengineered.io/de/" rel="canonical"/>
 <!-- i18n:alternates -->
@@ -28,7 +28,7 @@
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- OpenGraph Meta Tags -->
 <meta content="INCIDB — Die INCI-Datenbank für Hautpflege &amp; Kosmetik für Entwickler" property="og:title"/>
-<meta content="18.583 Produkte, 46.008 kanonische INCI-Namen, 342.208 geordnete Zusammensetzungsverknüpfungen und die Namenszuordnung mit 77.257 Zeilen, die zeigt, wie jedes Etikett-Token aufgelöst wurde. CSV + Parquet." property="og:description"/>
+<meta content="18.583 Produkte, 46.008 kanonische INCI-Namen, 342.208 geordnete Zusammensetzungs-Verknüpfungen, die Namenszuordnung mit 77.257 Zeilen sowie Tabellen zu EU-Duftstoffallergenen (VO (EU) 2023/1545) und zum Status nach Anhang II–VI. CSV + Parquet." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/de/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="INCIDB — INCI-Datenbank für Hautpflege &amp; Kosmetik" property="og:site_name"/>
@@ -36,7 +36,7 @@
 <!-- Twitter Card Meta Tags -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="INCIDB — INCI-Datenbank für Hautpflege &amp; Kosmetik" name="twitter:title"/>
-<meta content="Normalisierte Daten zur Etikettzusammensetzung: 18.583 Produkte, 46.008 kanonische INCI-Namen, gemessene CosIng-Abdeckung vorab veröffentlicht." name="twitter:description"/>
+<meta content="Normalisierte Zusammensetzungsdaten von Etiketten: 18.583 Produkte, 46.008 kanonische INCI-Namen, Tabellen zu EU-Duftstoffallergenen und Anhang II–VI, gemessene CosIng-Abdeckung offen ausgewiesen." name="twitter:description"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -50,7 +50,7 @@
     "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "INCIDB INCI-Datenbank für Hautpflege & Kosmetik",
-    "description": "Normalisierter relationaler Snapshot von Kosmetik-Inhaltsstoffetiketten: 18.583 Produkte, 5.925 Marken, 46.008 eindeutige kanonische INCI-Namen, 342.208 geordnete Produkt-Inhaltsstoff-Verknüpfungen und eine Zuordnungstabelle von Roh- zu kanonischen Namen mit 77.257 Zeilen. Produktdaten von Open Beauty Facts (ODbL); Inhaltsstoff-Anreicherung (Funktionen, CAS- und EG-Nummern, chemische Beschreibungen, Zugehörigkeit zu den Anhängen II–VI) über den exakten kanonischen Namen aus dem CosIng-Verzeichnis der Europäischen Kommission verknüpft. Spalten sind NULL, wo die Quelle keinen Wert hat.",
+    "description": "Normalisierter relationaler Snapshot von Zutatenangaben auf Kosmetiketiketten: 18.583 Produkte, 5.925 Marken, 46.008 verschiedene kanonische INCI-Namen, 342.208 geordnete Produkt-Zutat-Verknüpfungen und eine Namenszuordnung mit 77.257 Zeilen (Rohtext zu kanonischem Namen). Produktdaten von Open Beauty Facts (ODbL); Zutatenanreicherung (Funktionen, CAS- und EG-Nummern, chemische Beschreibungen, Zugehörigkeit zu Anhang II-VI) über den exakten kanonischen Namen aus dem CosIng-Verzeichnis der Europäischen Kommission verknüpft. EU-Regulierungsebene: fragrance_allergens (die Kennzeichnungsliste aus Anhang III der Verordnung (EU) 2023/1545, mit Schwellenwerten und Übergangsfristen) und regulatory_status (Einträge aus Anhang II-VI mit ihren Bedingungen im Wortlaut). Spalten sind NULL, wo die Quelle keinen Wert enthält.",
     "url": "https://incidb.dataengineered.io/de/",
     "version": "2026.09",
     "license": "https://opendatacommons.org/licenses/odbl/1-0/",

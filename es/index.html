@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4" name="google-site-verification"/>
 <title>INCIDB — Base de datos INCI de cosmética para desarrolladores</title>
-<meta content="18.583 productos cosméticos, 46.008 nombres INCI canónicos y 342.208 enlaces de composición ordenados, con enriquecimiento CosIng de la UE en el 83,9% de las apariciones. CSV + Parquet, $79." name="description"/>
+<meta content="18.583 productos, 46.008 nombres INCI canónicos, 342.208 vínculos de composición; CosIng en el 83,9% de las apariciones; tablas de alérgenos de fragancia de la UE y de los anexos II–VI. $79." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://incidb.dataengineered.io/es/" rel="canonical"/>
 <!-- i18n:alternates -->
@@ -28,7 +28,7 @@
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- OpenGraph Meta Tags -->
 <meta content="INCIDB — Base de datos INCI de cuidado de la piel y cosmética para desarrolladores" property="og:title"/>
-<meta content="18.583 productos, 46.008 nombres INCI canónicos, 342.208 enlaces de composición ordenados y el mapa de nombres de 77.257 filas que muestra cómo se resolvió cada token de etiqueta. CSV + Parquet." property="og:description"/>
+<meta content="18.583 productos, 46.008 nombres INCI canónicos, 342.208 vínculos de composición ordenados, el mapa de nombres de 77.257 filas y tablas de alérgenos de fragancia de la UE (Regl. (UE) 2023/1545) y de estado según los anexos II–VI. CSV + Parquet." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/es/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="INCIDB — Base de datos INCI de cuidado de la piel y cosmética" property="og:site_name"/>
@@ -36,7 +36,7 @@
 <!-- Twitter Card Meta Tags -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="INCIDB — Base de datos INCI de cuidado de la piel y cosmética" name="twitter:title"/>
-<meta content="Datos normalizados de composición de etiquetas: 18.583 productos, 46.008 nombres INCI canónicos y cobertura CosIng medida, publicada de antemano." name="twitter:description"/>
+<meta content="Datos normalizados de composición de etiquetas: 18.583 productos, 46.008 nombres INCI canónicos, tablas de alérgenos de fragancia de la UE y de los anexos II–VI, y cobertura de CosIng medida y publicada desde el principio." name="twitter:description"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -50,7 +50,7 @@
     "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "INCIDB, base de datos INCI de cuidado de la piel y cosmética",
-    "description": "Snapshot relacional normalizado de etiquetas de ingredientes cosméticos: 18.583 productos, 5.925 marcas, 46.008 nombres INCI canónicos distintos, 342.208 enlaces ordenados de composición producto-ingrediente y un mapa de 77.257 filas de nombres originales a canónicos. Datos de productos de Open Beauty Facts (ODbL); enriquecimiento de ingredientes (funciones, números CAS y CE, descripciones químicas, pertenencia a los anexos II-VI) unido por coincidencia exacta del nombre canónico desde el inventario CosIng de la Comisión Europea. Las columnas son NULL cuando la fuente no tiene valor.",
+    "description": "Instantánea relacional normalizada de las etiquetas de ingredientes cosméticos: 18.583 productos, 5.925 marcas, 46.008 nombres INCI canónicos distintos, 342.208 vínculos ordenados de composición producto-ingrediente y un mapa de nombres de 77.257 filas de texto bruto a nombre canónico. Datos de producto de Open Beauty Facts (ODbL); enriquecimiento de ingredientes (funciones, números CAS y CE, descripciones químicas, pertenencia a los anexos II-VI) unido por nombre canónico exacto al inventario CosIng de la Comisión Europea. Capa regulatoria de la UE: fragrance_allergens (la lista de etiquetado del anexo III del Reglamento (UE) 2023/1545, con umbrales y fechas de transición) y regulatory_status (entradas de los anexos II-VI con sus condiciones textuales). Las columnas son NULL cuando la fuente no aporta valor.",
     "url": "https://incidb.dataengineered.io/es/",
     "version": "2026.09",
     "license": "https://opendatacommons.org/licenses/odbl/1-0/",

@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4" name="google-site-verification"/>
 <title>INCIDB — Base de données INCI cosmétiques pour développeurs</title>
-<meta content="18 583 produits cosmétiques, 46 008 noms INCI canoniques et 342 208 liens de composition ordonnés, avec enrichissement CosIng (UE) sur 83,9% des occurrences sur les étiquettes. CSV + Parquet, $79." name="description"/>
+<meta content="18 583 produits, 46 008 noms INCI canoniques, 342 208 liens de composition ; CosIng sur 83,9% des occurrences ; tables des allergènes de parfum de l’UE et des annexes II–VI. $79." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://incidb.dataengineered.io/fr/" rel="canonical"/>
 <!-- i18n:alternates -->
@@ -28,7 +28,7 @@
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- OpenGraph Meta Tags -->
 <meta content="INCIDB — La base de données INCI cosmétiques et soins de la peau pour les développeurs" property="og:title"/>
-<meta content="18 583 produits, 46 008 noms INCI canoniques, 342 208 liens de composition ordonnés et la table de correspondance des noms de 77 257 lignes qui montre comment chaque token d’étiquette a été résolu. CSV + Parquet." property="og:description"/>
+<meta content="18 583 produits, 46 008 noms INCI canoniques, 342 208 liens de composition ordonnés, la table de correspondance de 77 257 lignes, et des tables des allergènes de parfum de l’UE (règl. (UE) 2023/1545) et du statut au titre des annexes II–VI. CSV + Parquet." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/fr/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="INCIDB — Base de données INCI cosmétiques et soins de la peau" property="og:site_name"/>
@@ -36,7 +36,7 @@
 <!-- Twitter Card Meta Tags -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="INCIDB — Base de données INCI cosmétiques et soins de la peau" name="twitter:title"/>
-<meta content="Données normalisées de composition des étiquettes : 18 583 produits, 46 008 noms INCI canoniques, couverture CosIng mesurée publiée d’emblée." name="twitter:description"/>
+<meta content="Données normalisées de composition des étiquettes : 18 583 produits, 46 008 noms INCI canoniques, tables des allergènes de parfum de l’UE et des annexes II–VI, couverture CosIng mesurée et affichée d’emblée." name="twitter:description"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -50,7 +50,7 @@
     "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "INCIDB, base de données INCI cosmétiques et soins de la peau",
-    "description": "Snapshot relationnel normalisé des étiquettes d’ingrédients cosmétiques : 18 583 produits, 5 925 marques, 46 008 noms INCI canoniques distincts, 342 208 liens de composition produit-ingrédient ordonnés et une table de correspondance de 77 257 lignes des noms bruts vers les noms canoniques. Données produits issues d’Open Beauty Facts (ODbL) ; enrichissement des ingrédients (fonctions, numéros CAS et CE, descriptions chimiques, appartenance aux annexes II-VI) joint sur le nom canonique exact depuis l’inventaire CosIng de la Commission européenne. Les colonnes sont NULL lorsque la source n’a pas de valeur.",
+    "description": "Instantané relationnel normalisé des étiquettes d’ingrédients cosmétiques : 18 583 produits, 5 925 marques, 46 008 noms INCI canoniques distincts, 342 208 liens de composition produit-ingrédient ordonnés et une table de correspondance de 77 257 lignes du texte brut vers le nom canonique. Données produits issues d’Open Beauty Facts (ODbL) ; enrichissement des ingrédients (fonctions, numéros CAS et CE, descriptions chimiques, appartenance aux annexes II-VI) joint sur le nom canonique exact à l’inventaire CosIng de la Commission européenne. Couche réglementaire UE : fragrance_allergens (la liste d’étiquetage de l’annexe III du règlement (UE) 2023/1545, avec seuils et dates de transition) et regulatory_status (entrées des annexes II-VI avec leurs conditions mot pour mot). Les colonnes sont NULL lorsque la source ne fournit aucune valeur.",
     "url": "https://incidb.dataengineered.io/fr/",
     "version": "2026.09",
     "license": "https://opendatacommons.org/licenses/odbl/1-0/",
