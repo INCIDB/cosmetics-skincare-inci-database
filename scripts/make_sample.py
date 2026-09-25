@@ -43,8 +43,14 @@ the sample reads better than the corpus average BY CONSTRUCTION.
 `ingredients`, `product_ingredients`, `ingredient_name_map`,
 `fragrance_allergens`, `regulatory_status`) restricted to the selected
 products — their own rows, their brands, the ingredients they link to, the
-ingredient_name_map rows for those ingredients, the product-ingredient links
-themselves, and the regulatory overlay rows for those ingredients
+ingredient_name_map rows for the sample's own label tokens (kept only when a
+row's ingredient_id is a sample ingredient AND its raw_name occurs as a
+substring of at least one sampled product's own normalised
+raw_ingredient_text — otherwise a common ingredient such as AQUA, reached
+from thousands of long raw label texts belonging to products that are NOT in
+the sample, would drag those non-sample products' whole ingredient
+declarations into the free sample), the product-ingredient links themselves,
+and the regulatory overlay rows for those ingredients
 (`fragrance_allergens` limited to `flagged = 1` — review rows stay in the
 paid table) — as pipe-delimited CSV and Parquet, using the same column set as
 the full dataset export (`src/exporter.py`'s `SELECT * FROM <table>`), and
@@ -59,6 +65,7 @@ import argparse
 import shutil
 import json
 import random
+import re
 import sqlite3
 import zipfile
 from pathlib import Path
@@ -93,6 +100,31 @@ def _sanitize(df: pd.DataFrame) -> pd.DataFrame:
         if df[col].dtype == "object":
             df[col] = df[col].map(lambda v: " ".join(str(v).split()) if pd.notna(v) else v)
     return df
+
+
+def _sample_label_texts(products_df: pd.DataFrame) -> list:
+    """Sampled products' own `raw_ingredient_text`, normalised the same way the pipeline
+    normalises raw label text before it becomes `ingredient_name_map.raw_name`
+    (whitespace-collapsed, upper-cased; see src/enrichment/tokenise.py). raw_name itself is
+    already stored in that normalised form, so no further transform is applied to it --
+    only the product side needs normalising here."""
+    texts = []
+    for raw in products_df["raw_ingredient_text"]:
+        raw = raw if pd.notna(raw) else ""
+        texts.append(re.sub(r"\s+", " ", str(raw).strip()).upper())
+    return texts
+
+
+def _limit_name_map_to_sample_labels(name_map_df: pd.DataFrame, label_texts: list) -> pd.DataFrame:
+    """Keeps a name-map row only if its raw_name occurs as a substring of at least one
+    sampled product's own normalised label text (see module docstring). Without this, a
+    common ingredient (AQUA, GLYCERIN, ...) reached from thousands of long raw label texts
+    of products that are NOT in the sample would drag those products' whole ingredient
+    declarations into the free sample -- the old filter kept a name-map row whenever its
+    ingredient_id was a sample ingredient, regardless of which product's raw text it came
+    from. Row order (ORDER BY ingredient_id, raw_name from the caller's query) is preserved."""
+    keep = name_map_df["raw_name"].apply(lambda rn: any(rn in text for text in label_texts))
+    return name_map_df[keep].reset_index(drop=True)
 
 
 DEFAULT_PINS_PATH = Path("samples/sample_barcodes.json")
@@ -263,6 +295,9 @@ def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
                 "ORDER BY ingredient_id, raw_name",
                 conn, params=ingredient_ids,
             )
+            # Limit further to the sample's own label tokens -- see
+            # _limit_name_map_to_sample_labels and the module docstring.
+            name_map_df = _limit_name_map_to_sample_labels(name_map_df, _sample_label_texts(products_df))
             # Regulatory overlay: rows of the sampled ingredients only; review rows
             # (flagged = 0) stay in the paid table -- the sample shows what is flagged.
             allergens_df = pd.read_sql_query(
