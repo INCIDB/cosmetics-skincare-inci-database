@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4" name="google-site-verification"/>
 <title>INCIDB — INCI-Datenbank für Hautpflege &amp; Kosmetik für Entwickler</title>
-<meta content="18.583 Kosmetikprodukte, 46.973 kanonische INCI-Namen und 318.758 geordnete Zusammensetzungsverknüpfungen, mit EU-CosIng-Anreicherung für 82,5% der Vorkommen auf Etiketten. CSV + Parquet, $79." name="description"/>
+<meta content="18.583 Kosmetikprodukte, 46.009 kanonische INCI-Namen und 341.904 geordnete Zusammensetzungsverknüpfungen, mit EU-CosIng-Anreicherung für 83,9% der Vorkommen auf Etiketten. CSV + Parquet, $79." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://incidb.dataengineered.io/de/" rel="canonical"/>
 <!-- i18n:alternates -->
@@ -28,7 +28,7 @@
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- OpenGraph Meta Tags -->
 <meta content="INCIDB — Die INCI-Datenbank für Hautpflege &amp; Kosmetik für Entwickler" property="og:title"/>
-<meta content="18.583 Produkte, 46.973 kanonische INCI-Namen, 318.758 geordnete Zusammensetzungsverknüpfungen und die Namenszuordnung mit 55.426 Zeilen, die zeigt, wie jedes Etikett-Token aufgelöst wurde. CSV + Parquet." property="og:description"/>
+<meta content="18.583 Produkte, 46.009 kanonische INCI-Namen, 341.904 geordnete Zusammensetzungsverknüpfungen und die Namenszuordnung mit 77.059 Zeilen, die zeigt, wie jedes Etikett-Token aufgelöst wurde. CSV + Parquet." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/de/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="INCIDB — INCI-Datenbank für Hautpflege &amp; Kosmetik" property="og:site_name"/>
@@ -36,7 +36,7 @@
 <!-- Twitter Card Meta Tags -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="INCIDB — INCI-Datenbank für Hautpflege &amp; Kosmetik" name="twitter:title"/>
-<meta content="Normalisierte Daten zur Etikettzusammensetzung: 18.583 Produkte, 46.973 kanonische INCI-Namen, gemessene CosIng-Abdeckung vorab veröffentlicht." name="twitter:description"/>
+<meta content="Normalisierte Daten zur Etikettzusammensetzung: 18.583 Produkte, 46.009 kanonische INCI-Namen, gemessene CosIng-Abdeckung vorab veröffentlicht." name="twitter:description"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -50,7 +50,7 @@
     "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "INCIDB INCI-Datenbank für Hautpflege & Kosmetik",
-    "description": "Normalisierter relationaler Snapshot von Kosmetik-Inhaltsstoffetiketten: 18.583 Produkte, 5.925 Marken, 46.973 eindeutige kanonische INCI-Namen, 318.758 geordnete Produkt-Inhaltsstoff-Verknüpfungen und eine Zuordnungstabelle von Roh- zu kanonischen Namen mit 55.426 Zeilen. Produktdaten von Open Beauty Facts (ODbL); Inhaltsstoff-Anreicherung (Funktionen, CAS- und EG-Nummern, chemische Beschreibungen, Zugehörigkeit zu den Anhängen II–VI) über den exakten kanonischen Namen aus dem CosIng-Verzeichnis der Europäischen Kommission verknüpft. Spalten sind NULL, wo die Quelle keinen Wert hat.",
+    "description": "Normalisierter relationaler Snapshot von Kosmetik-Inhaltsstoffetiketten: 18.583 Produkte, 5.925 Marken, 46.009 eindeutige kanonische INCI-Namen, 341.904 geordnete Produkt-Inhaltsstoff-Verknüpfungen und eine Zuordnungstabelle von Roh- zu kanonischen Namen mit 77.059 Zeilen. Produktdaten von Open Beauty Facts (ODbL); Inhaltsstoff-Anreicherung (Funktionen, CAS- und EG-Nummern, chemische Beschreibungen, Zugehörigkeit zu den Anhängen II–VI) über den exakten kanonischen Namen aus dem CosIng-Verzeichnis der Europäischen Kommission verknüpft. Spalten sind NULL, wo die Quelle keinen Wert hat.",
     "url": "https://incidb.dataengineered.io/de/",
     "version": "2026.09",
     "license": "https://opendatacommons.org/licenses/odbl/1-0/",
@@ -183,7 +183,7 @@
       "name": "Wie viel der Inhaltsstoffdaten ist tatsächlich angereichert?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Zwei Zahlen, beide veröffentlicht. CosIng trifft 11,0% der 46.973 eindeutigen kanonischen INCI-Namen, aber 82,5% der 318.758 Inhaltsstoffvorkommen auf Produktetiketten. CosIng-Funktionen liegen für 10,9% der Namen und 81,5% der Vorkommen auf Etiketten vor; CAS-Nummern für 8,3% der Namen und 76,4% der Vorkommen. Der Long Tail der eindeutigen Namen besteht aus botanischen Varianten, mehrsprachigen Schreibweisen und Marketing-Begriffen, die kein regulatorisches Verzeichnis führt; die Positionen auf einem realen Etikett werden ganz überwiegend von Inhaltsstoffen belegt, die CosIng abdeckt."
+        "text": "Zwei Zahlen, beide veröffentlicht. CosIng trifft 11,6% der 46.009 eindeutigen kanonischen INCI-Namen, aber 83,9% der 341.904 Inhaltsstoffvorkommen auf Produktetiketten. CosIng-Funktionen liegen für 11,5% der Namen und 82,9% der Vorkommen auf Etiketten vor; CAS-Nummern für 8,7% der Namen und 77,6% der Vorkommen. Der Long Tail der eindeutigen Namen besteht aus botanischen Varianten, mehrsprachigen Schreibweisen und Marketing-Begriffen, die kein regulatorisches Verzeichnis führt; die Positionen auf einem realen Etikett werden ganz überwiegend von Inhaltsstoffen belegt, die CosIng abdeckt."
       }
     },
     {
@@ -191,7 +191,7 @@
       "name": "Wie werden rohe Etikett-Tokens in kanonische INCI-Namen überführt?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Durch ein explizites, geordnetes Verfahren: Dekodierung von HTML-Entities, Entfernen von Zeichen, Zusammenfassen von Leerraum und Großschreibung, dann exakter Verzeichnistreffer, bereinigter Treffer, eine kleine belegte Tippfehlertabelle, Entfernen von Prozentangaben, Entfernen von Klammern, eine Synonymtabelle, Aufteilen von Schrägstrich-Varianten und Aufteilen zusammengeschriebener Tokens nur dann, wenn beide Teile im Verzeichnis gefunden werden. Was an allen diesen Schritten scheitert, bleibt wörtlich erhalten und wird als unresolved erfasst, statt geraten zu werden. Die für jedes Token verwendete Methode wird als Tabelle ingredient_name_map mit 55.426 Zeilen mitgeliefert, sodass jede Entscheidung prüfbar ist."
+        "text": "Durch ein explizites, geordnetes Verfahren: Dekodierung von HTML-Entities, Entfernen von Zeichen, Zusammenfassen von Leerraum und Großschreibung, dann exakter Verzeichnistreffer, bereinigter Treffer, eine kleine belegte Tippfehlertabelle, Entfernen von Prozentangaben, Entfernen von Klammern, eine Synonymtabelle, Aufteilen von Schrägstrich-Varianten und Aufteilen zusammengeschriebener Tokens nur dann, wenn beide Teile im Verzeichnis gefunden werden. Was an allen diesen Schritten scheitert, bleibt wörtlich erhalten und wird als unresolved erfasst, statt geraten zu werden. Die für jedes Token verwendete Methode wird als Tabelle ingredient_name_map mit 77.059 Zeilen mitgeliefert, sodass jede Entscheidung prüfbar ist."
       }
     },
     {
@@ -199,7 +199,7 @@
       "name": "Aus welcher Allergenliste stammen die Markierungen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nur eine Liste: die Duftstoffallergene aus Anhang III der EU-Kosmetikverordnung (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen zunächst über den exakten INCI-Namen, dann über den kollektiven Kennzeichnungsnamen, den die Verordnung vorschreibt, und schließlich über die CAS-Nummer nur bei chemisch definierten Stoffen. 121 Namen sind markiert, und allergen_source hält die Liste fest; 43,9% der Produkte tragen mindestens einen (bei weiteren 6,4% sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die Markierungen nicht erreichen). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher enthält dieser Datensatz keine US-Markierung."
+        "text": "Nur eine Liste: die Duftstoffallergene aus Anhang III der EU-Kosmetikverordnung (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen zunächst über den exakten INCI-Namen, dann über den kollektiven Kennzeichnungsnamen, den die Verordnung vorschreibt, und schließlich über die CAS-Nummer nur bei chemisch definierten Stoffen. 121 Namen sind markiert, und allergen_source hält die Liste fest; 46,9% der Produkte tragen mindestens einen (bei etwa 2,7% der Produkte sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die Allergen-Markierungen nicht erreichen). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher enthält dieser Datensatz keine US-Markierung."
       }
     },
     {
@@ -207,7 +207,7 @@
       "name": "Woher stammen die Komedogenitätsbewertungen und die Pilzakne-Markierungen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "145 Inhaltsstoffe tragen eine Komedogenitätsbewertung auf der Skala 0-5, übernommen aus Table I von Fulton JE Jr., J Soc Cosmet Chem 1989;40:321-333; alle anderen Inhaltsstoffe sind NULL. Die Pilzakne-Markierung ist keine gemessene Eigenschaft: Sie ist eine regelbasierte Heuristik, die C11-C24-Fettsäuren und deren Ester sowie Polysorbate 20/40/60/80 erfasst, nur auf in CosIng gefundene Inhaltsstoffe angewendet wird und 270 Markierungen ergibt. Grundlage ist die Lipidabhängigkeit von Malassezia (DOI 10.3389/fcimb.2020.00112, Kettenlängenfenster gemäß DOI 10.1093/femsyr/foaf043)."
+        "text": "144 Inhaltsstoffe tragen eine Komedogenitätsbewertung auf der Skala 0-5, übernommen aus Table I von Fulton JE Jr., J Soc Cosmet Chem 1989;40:321-333; alle anderen Inhaltsstoffe sind NULL. Die Pilzakne-Markierung ist keine gemessene Eigenschaft: Sie ist eine regelbasierte Heuristik, die C11-C24-Fettsäuren und deren Ester sowie Polysorbate 20/40/60/80 erfasst, nur auf in CosIng gefundene Inhaltsstoffe angewendet wird und 272 Markierungen ergibt. Grundlage ist die Lipidabhängigkeit von Malassezia (DOI 10.3389/fcimb.2020.00112, Kettenlängenfenster gemäß DOI 10.1093/femsyr/foaf043)."
       }
     }
   ],
@@ -316,7 +316,7 @@
                 Die INCI-Datenbank für Hautpflege &amp; Kosmetik <span>für ML-, NLP- und Compliance-Teams</span>
 </h1>
 <p class="hero-subtitle">
-                Die Tabelle <strong><code>ingredient_name_map</code> mit 55.426 Zeilen</strong> dokumentiert, wie jedes rohe Etikett-Token einem kanonischen INCI-Namen zugeordnet wurde — mit Auflösungs-<code>method</code> und <code>confidence</code> in jeder Zeile — als ein einziges offline nutzbares, prüfbares Artefakt für ML/NLP-Teams und Compliance-Analysten. Keine kostenlose Quelle und keine Live-API liefert das. Darunter: <strong>18.583 Produkte</strong>, <strong>46.973 kanonische INCI-Namen</strong>, <strong>318.758 geordnete Zusammensetzungsverknüpfungen</strong>, angereichert aus EU-CosIng; wo eine Quelle keinen Wert hat, ist die Spalte NULL.
+                Die Tabelle <strong><code>ingredient_name_map</code> mit 77.059 Zeilen</strong> dokumentiert, wie jedes rohe Etikett-Token einem kanonischen INCI-Namen zugeordnet wurde — mit Auflösungs-<code>method</code> und <code>confidence</code> in jeder Zeile — als ein einziges offline nutzbares, prüfbares Artefakt für ML/NLP-Teams und Compliance-Analysten. Keine kostenlose Quelle und keine Live-API liefert das. Darunter: <strong>18.583 Produkte</strong>, <strong>46.009 kanonische INCI-Namen</strong>, <strong>341.904 geordnete Zusammensetzungsverknüpfungen</strong>, angereichert aus EU-CosIng; wo eine Quelle keinen Wert hat, ist die Spalte NULL.
             </p>
 <div class="hero-actions">
 <a class="btn btn-primary" href="#pricing">INCIDB Complete erwerben — $79 →</a>
@@ -329,11 +329,11 @@
 <div class="metric-label">Produkte</div>
 </div>
 <div class="metric-card">
-<div class="metric-number">46.973</div>
+<div class="metric-number">46.009</div>
 <div class="metric-label">Eindeutige kanonische INCI-Namen</div>
 </div>
 <div class="metric-card">
-<div class="metric-number">318.758</div>
+<div class="metric-number">341.904</div>
 <div class="metric-label">Geordnete Zusammensetzungsverknüpfungen</div>
 </div>
 <div class="metric-card">
@@ -356,15 +356,15 @@
 <thead>
 <tr style="border-bottom: 1px solid var(--border-subtle);">
 <th style="padding: 0.9rem 1.1rem; text-align: left; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Spalte</th>
-<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Anteil der 46.973 eindeutigen Namen</th>
-<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Anteil der 318.758 Vorkommen auf Etiketten</th>
+<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Anteil der 46.009 eindeutigen Namen</th>
+<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Anteil der 341.904 Vorkommen auf Etiketten</th>
 </tr>
 </thead>
 <tbody>
-<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;">CosIng-Treffer (beliebig)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11,0%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">82,5%</td></tr>
-<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>functions</code> (CosIng-Vokabular)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">10,9%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">81,5%</td></tr>
-<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>cas_number</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8,3%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">76,4%</td></tr>
-<tr><td style="padding: 0.85rem 1.1rem;"><code>chemical_description</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8,5% · 3.965 eindeutige Werte</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--text-secondary);">—</td></tr>
+<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;">CosIng-Treffer (beliebig)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11,6%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">83,9%</td></tr>
+<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>functions</code> (CosIng-Vokabular)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11,5%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">82,9%</td></tr>
+<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>cas_number</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8,7%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">77,6%</td></tr>
+<tr><td style="padding: 0.85rem 1.1rem;"><code>chemical_description</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">9,0% · 4.099 eindeutige Werte</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--text-secondary);">—</td></tr>
 </tbody>
 </table>
 </div>
@@ -374,14 +374,14 @@
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem;">
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
 <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">121 als Allergen markierte Namen</h3>
-<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">EU-Duftstoffallergen-Overlay (Verordnung (EU) 2023/1545): 121 Namen markiert über exakten INCI-Namen, Kennzeichnungsnamen oder CAS bei definierten Stoffen; 43,9% der Produkte tragen mindestens einen (bei weiteren 6,4% sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die Markierungen nicht erreichen). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher gibt es hier keine US-Markierung.</p>
+<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">EU-Duftstoffallergen-Overlay (Verordnung (EU) 2023/1545): 121 Namen markiert über exakten INCI-Namen, Kennzeichnungsnamen oder CAS bei definierten Stoffen; 46,9% der Produkte tragen mindestens einen (bei etwa 2,7% der Produkte sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die Allergen-Markierungen nicht erreichen). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher gibt es hier keine US-Markierung.</p>
 </div>
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
-<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">145 Komedogenitätsbewertungen</h3>
+<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">144 Komedogenitätsbewertungen</h3>
 <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Inhaltsstoffe mit Bewertung 0–5, übernommen aus Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Table I). <code>NULL</code> überall dort, wo die Arbeit nicht hinreicht — Fehlen bedeutet „nicht abgedeckt“, niemals „unbedenklich“.</p>
 </div>
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
-<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">270 Pilzakne-Markierungen</h3>
+<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">272 Pilzakne-Markierungen</h3>
 <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Eine regelbasierte Heuristik, keine gemessene Eigenschaft: C11–C24-Fettsäuren und deren Ester sowie Polysorbate 20/40/60/80, nur auf in CosIng gefundene Inhaltsstoffe angewendet. Grundlage: DOI 10.3389/fcimb.2020.00112 und DOI 10.1093/femsyr/foaf043.</p>
 </div>
 </div>
@@ -493,7 +493,7 @@
 <div class="tier-price">$0</div>
 <ul class="tier-features">
 <li class="included"><span class="check-icon">✓</span> 200 Produkte, zufällig aus einem Pool mit festem Seed gezogen</li>
-<li class="included"><span class="check-icon">✓</span> Ihre Marken, Verknüpfungen und 1.109 Inhaltsstoffe</li>
+<li class="included"><span class="check-icon">✓</span> Ihre Marken, Verknüpfungen und 1.104 Inhaltsstoffe</li>
 <li class="included"><span class="check-icon">✓</span> Alle 7 Tabellen, CSV <em>und</em> Parquet</li>
 <li class="included"><span class="check-icon">✓</span> Gleiche Anreicherungsspalten, gleiche NULLs</li>
 <li><span class="cross-icon">✕</span> Gezogen aus Produkten, die zu ≥80% in CosIng gefunden werden, daher besser als der Korpusdurchschnitt</li>
@@ -508,9 +508,9 @@
 <div class="tier-price">$79 <span>USD einmalig</span></div>
 <ul class="tier-features">
 <li class="included"><span class="check-icon">✓</span> 18.583 Produkte · 5.925 Marken</li>
-<li class="included"><span class="check-icon">✓</span> 46.973 kanonische INCI-Namen</li>
-<li class="included"><span class="check-icon">✓</span> 318.758 geordnete Zusammensetzungsverknüpfungen</li>
-<li class="included"><span class="check-icon">✓</span> Die Tabelle <code>ingredient_name_map</code> mit 55.426 Zeilen</li>
+<li class="included"><span class="check-icon">✓</span> 46.009 kanonische INCI-Namen</li>
+<li class="included"><span class="check-icon">✓</span> 341.904 geordnete Zusammensetzungsverknüpfungen</li>
+<li class="included"><span class="check-icon">✓</span> Die Tabelle <code>ingredient_name_map</code> mit 77.059 Zeilen</li>
 <li class="included"><span class="check-icon">✓</span> Pipe-getrenntes CSV <em>und</em> Apache Parquet</li>
 <li class="included"><span class="check-icon">✓</span> CosIng-Anreicherung mit der oben veröffentlichten Abdeckung</li>
 <li class="included"><span class="check-icon">✓</span> EU-Overlay: <code>fragrance_allergens</code> und <code>regulatory_status</code></li>
@@ -532,7 +532,7 @@
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Wie viel der Inhaltsstoffdaten ist tatsächlich angereichert?</h3>
-<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Zwei Zahlen, beide oben veröffentlicht. CosIng trifft 11,0% der 46.973 eindeutigen kanonischen Namen, aber 82,5% der 318.758 Inhaltsstoffvorkommen auf Etiketten; Funktionen 10,9% / 81,5%; CAS 8,3% / 76,4%. Der Long Tail der eindeutigen Namen besteht aus botanischen Varianten, mehrsprachigen Schreibweisen und Marketing-Begriffen, die kein Verzeichnis führt.</p>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Zwei Zahlen, beide oben veröffentlicht. CosIng trifft 11,6% der 46.009 eindeutigen kanonischen Namen, aber 83,9% der 341.904 Inhaltsstoffvorkommen auf Etiketten; Funktionen 11,5% / 82,9%; CAS 8,7% / 77,6%. Der Long Tail der eindeutigen Namen besteht aus botanischen Varianten, mehrsprachigen Schreibweisen und Marketing-Begriffen, die kein Verzeichnis führt.</p>
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Wie werden rohe Etikett-Tokens in kanonische Namen überführt?</h3>
@@ -540,11 +540,11 @@
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Aus welcher Allergenliste stammen die Markierungen?</h3>
-<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Nur eine Liste: Duftstoffallergene nach EU-Anhang III (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen zunächst über den exakten INCI-Namen, dann über den kollektiven Kennzeichnungsnamen, den die Verordnung vorschreibt, und schließlich über die CAS-Nummer nur bei chemisch definierten Stoffen — 121 Namen markiert, wobei <code>allergen_source</code> die Liste festhält; 43,9% der Produkte tragen mindestens einen (bei weiteren 6,4% sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die Markierungen nicht erreichen). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher enthält dieser Datensatz keine US-Markierung.</p>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Nur eine Liste: Duftstoffallergene nach EU-Anhang III (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen zunächst über den exakten INCI-Namen, dann über den kollektiven Kennzeichnungsnamen, den die Verordnung vorschreibt, und schließlich über die CAS-Nummer nur bei chemisch definierten Stoffen — 121 Namen markiert, wobei <code>allergen_source</code> die Liste festhält; 46,9% der Produkte tragen mindestens einen (bei etwa 2,7% der Produkte sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die Allergen-Markierungen nicht erreichen). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher enthält dieser Datensatz keine US-Markierung.</p>
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Woher stammen die Komedogenitätsbewertungen und die Pilzakne-Markierungen?</h3>
-<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">145 Inhaltsstoffe mit Bewertung 0–5, übernommen aus Table I von Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333; sonst <code>NULL</code>. Die Pilzakne-Markierung ist eine regelbasierte Heuristik, keine gemessene Eigenschaft: C11–C24-Fettsäuren und deren Ester sowie Polysorbate 20/40/60/80, nur auf in CosIng gefundene Inhaltsstoffe angewendet, ergibt 270 Markierungen. Verwenden Sie sie als Filter, nicht als Befund.</p>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">144 Inhaltsstoffe mit Bewertung 0–5, übernommen aus Table I von Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333; sonst <code>NULL</code>. Die Pilzakne-Markierung ist eine regelbasierte Heuristik, keine gemessene Eigenschaft: C11–C24-Fettsäuren und deren Ester sowie Polysorbate 20/40/60/80, nur auf in CosIng gefundene Inhaltsstoffe angewendet, ergibt 272 Markierungen. Verwenden Sie sie als Filter, nicht als Befund.</p>
 </div>
 </div>
 </div>

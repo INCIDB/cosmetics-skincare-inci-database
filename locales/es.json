@@ -119,6 +119,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "07d539aab697174d": {
+  "src": "EU fragrance-allergen overlay (Reg. (EU) {0}): {1} names flagged by exact INCI name, label name or CAS for defined substances; {2} of products carry at least one (about {3} of products list ingredients as unsplit text that the allergen flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists here.",
+  "t": "Capa de alérgenos de fragancia de la UE (Rgto. (UE) {0}): {1} nombres marcados por nombre INCI exacto, nombre de etiqueta o CAS para sustancias definidas; {2} de los productos llevan al menos uno (alrededor de {3} de los productos listan los ingredientes como texto sin dividir, que los indicadores de alérgenos no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que aquí no existe ningún indicador estadounidense.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "085e835f19f852ba": {
   "src": "Non-compliant products: placing on the market until {0}, making available until {1} ({2}).",
   "t": "Productos no conformes: comercialización hasta {0}, puesta a disposición en el mercado hasta {1} ({2}).",
@@ -256,6 +262,12 @@
   "t": "Ingredientes cosméticos en cifras: estadísticas del corpus de etiquetas de INCIDB",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "11ff24df3a4989c7": {
+  "src": "<0>Method — re-split.</0> Tokens that no method resolves are re-split by explicit rules (unclosed brackets, {1}/{2}, bullets, colons, {3} separators with an abbreviation guard, the last ingredient/\"contains\" marker, spacing around {4}, newlines and spaced dashes only where re-joining does not resolve, and a strict full-coverage split in which every word must belong to a matched name). Rules run only on unresolved tokens; nothing is fuzzy, and every recovered name must match the CosIng inventory or the cited typo and synonym maps exactly. A part cut out of a token carries its method's usual confidence minus {5}; {6} rows carry {7} and {8} rows {9}. {10} in {11} means the original text was re-tokenised with its newlines intact. The full rule list is in {12}.",
+  "t": "<0>Método: nueva división.</0> Los tokens que ningún método resuelve se vuelven a dividir mediante reglas explícitas (paréntesis sin cerrar, {1}/{2}, viñetas, dos puntos, separadores {3} con protección para abreviaturas, el último marcador de ingredientes o de «contiene», los espacios alrededor de {4}, los saltos de línea y los guiones rodeados de espacios solo cuando volver a unir las partes no resuelve el nombre, y una división estricta de cobertura total en la que cada palabra debe pertenecer a un nombre reconocido). Las reglas solo se aplican a tokens no resueltos; nada es aproximado, y cada nombre recuperado debe coincidir exactamente con el inventario de CosIng o con los mapas citados de erratas y sinónimos. Una parte extraída de un token lleva la confianza habitual de su método menos {5}; las filas {6} llevan {7} y las filas {8}, {9}. {10} en {11} significa que el texto original se volvió a tokenizar con sus saltos de línea intactos. La lista completa de reglas está en {12}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "12d7a128cdfe40fa": {
   "src": "<0>Method — allergen flags.</0> One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) {1} as amended by Regulation (EU) {2}), matched on exact canonical name. {3} names are flagged. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.",
@@ -508,6 +520,12 @@
   "t": "¿Qué parte de los datos de ingredientes está realmente enriquecida?",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "22d0dff102e3d0ca": {
+  "src": "Order of this part within {0}; {1} when the token was not cut",
+  "t": "Orden de esta parte dentro de {0}; {1} cuando el token no se cortó",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "230b7757ef81efcd": {
   "src": "Paste the snippet into your post. It links the chart back to this page, which is the only attribution we ask for.",
@@ -977,6 +995,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "4bf939c2f8a9fec4": {
+  "src": "{0}-indexed label position, contiguous {1} per product (a repeated ingredient keeps its first position); lower means declared earlier, i.e. present in a higher proportion",
+  "t": "Posición en la etiqueta (contando desde {0}), consecutiva {1} en cada producto (un ingrediente repetido conserva su primera posición); cuanto más baja, antes se declara, es decir, mayor proporción",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "4cfd519c22b7bb52": {
   "src": "Relational schema for INCIDB's {0} tables — brands, products, ingredients, product_ingredients, ingredient_name_map — with source and coverage per column.",
   "t": "Esquema relacional de las {0} tablas de INCIDB (brands, products, ingredients, product_ingredients, ingredient_name_map), con fuente y cobertura por columna.",
@@ -1288,6 +1312,12 @@
   "t": "Un corpus de etiquetas cosméticas contiene muchas más cadenas distintas (variantes botánicas, grafías en varios idiomas, términos de marketing, mezclas únicas) de las que incluye cualquier inventario regulatorio. Esa cola larga es la razón por la que la columna izquierda es baja. Los huecos de una etiqueta real los ocupan de forma abrumadora los ingredientes que CosIng sí cubre; por eso la columna derecha es alta. Si desarrollas un escáner o un modelo de formulación, la columna derecha determina lo que ven tus usuarios; si necesitas una referencia química, la columna izquierda es el techo honesto.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "652e43fd6135d010": {
+  "src": "Raw label tokens are resolved to canonical INCI names by an explicit ordered procedure — entity decode, character strip, whitespace collapse, upper-case, then exact match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Tokens that none of them resolves are re-split by explicit rules (brackets, {0}, bullets, colons, {1} separators, line breaks), never fuzzily: every recovered name must match the inventory or the cited maps exactly, and unmatched text between recovered names is kept as {2}. A token that nothing resolves is kept verbatim and recorded as {3}, never guessed. The method used is stored per row in {4}, with {5} and {6} recording each cut, so every decision is auditable and reversible.",
+  "t": "Los tokens originales de etiqueta se resuelven en nombres INCI canónicos mediante un procedimiento explícito y ordenado: decodificación de entidades, eliminación de caracteres, compactación de espacios, conversión a mayúsculas y, después, coincidencia exacta, coincidencia tras limpieza, un pequeño mapa de erratas con fuentes citadas, eliminación de porcentajes, eliminación de paréntesis, un mapa de sinónimos, separación de variantes con barra y división de palabras concatenadas solo cuando ambas mitades coinciden con el inventario. Los tokens que ninguno de estos pasos resuelve se vuelven a dividir mediante reglas explícitas (paréntesis, {0}, viñetas, dos puntos, separadores {1}, saltos de línea), nunca de forma aproximada: cada nombre recuperado debe coincidir exactamente con el inventario o con los mapas citados, y el texto sin coincidencia entre los nombres recuperados se conserva como {2}. Un token que nada resuelve se conserva literalmente y se registra como {3}, nunca se adivina. El método utilizado se guarda por fila en {4}, con {5} y {6} registrando cada corte, de modo que cada decisión es auditable y reversible.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "653c12b9f902856f": {
   "src": "How much of the catalogue is enriched, stated two ways",
@@ -2111,6 +2141,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "a3bfad649547a44b": {
+  "src": "Unmatched text left between names recovered by the re-split, kept in label order, never guessed",
+  "t": "Texto sin coincidencia que queda entre los nombres recuperados por la nueva división, conservado en el orden de la etiqueta, nunca adivinado",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "a3c2513784035070": {
   "src": "Product type:",
   "t": "Tipo de producto:",
@@ -2182,6 +2218,12 @@
   "t": "<0>Alérgenos de fragancia de la UE.</0> Las {1} entradas de etiquetado del Anexo III del Reglamento (CE) {2}, modificado por el Reglamento (UE) {3} (texto consolidado de {4}), se cotejan con INCIDB por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento (p. ej., «Rose Ketones»), y por último por número CAS solo en sustancias químicamente definidas. Las coincidencias CAS de origen botánico se entregan como filas de revisión, nunca como indicadores. Hay {5} nombres marcados; {6} de los productos contienen al menos uno. Alrededor de {7} de los productos listan los ingredientes como texto sin dividir, que los indicadores no alcanzan. La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.",
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
+ },
+ "a93431bc512fc151": {
+  "src": "Two slash-joined CosIng names that share a CAS number ({0}): one ingredient, mapped to the first-listed name",
+  "t": "Dos nombres de CosIng unidos por barra que comparten número CAS ({0}): un solo ingrediente, asignado al nombre que aparece primero",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "a9e1c1a0b61a260a": {
   "src": "{0}. What is in the snapshot",
@@ -2260,6 +2302,12 @@
   "t": "La salvedad del Reglamento para las entradas sustituidas, tal cual; {0} en el resto",
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
+ },
+ "acc278398bbdc07b": {
+  "src": "One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) {0} as amended by Regulation (EU) {1}), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. {2} names are flagged and allergen_source records the list; {3} of products carry at least one (about {4} of products list ingredients as unsplit text that the allergen flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.",
+  "t": "Una sola lista: los alérgenos de fragancia del anexo III del Reglamento de Cosméticos de la UE (Reglamento (CE) {0}, modificado por el Reglamento (UE) {1}), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas. Hay {2} nombres marcados y allergen_source registra la lista; {3} de los productos llevan al menos uno (alrededor de {4} de los productos listan los ingredientes como texto sin dividir, que los indicadores de alérgenos no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "ad3e84ca50fa63c9": {
   "src": "CosIng reference number",
@@ -2488,6 +2536,12 @@
   "t": "Datos de productos © colaboradores de <0>Open Beauty Facts</0>, bajo la <1>Open Database License (ODbL) {2}</1>: las obras derivadas deben mantener la atribución y compartirse igual. El enriquecimiento de ingredientes contiene datos de la base de datos CosIng de la Comisión Europea, reutilizados con atribución. Lista de alérgenos de fragancia de la UE: Anexo III del Reglamento (CE) n.º {3}, modificado por el Reglamento (UE) {4}, EUR-Lex (© Unión Europea), reutilizada con atribución.",
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
+ },
+ "bbcead3544c516d9": {
+  "src": "The re-split rules applied to {0}, {1}-joined; {2} when not re-split",
+  "t": "Las reglas de nueva división aplicadas a {0}, unidas con {1}; {2} cuando no hubo nueva división",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "bc3023b36063a768": {
   "src": "Page not found",
@@ -2998,6 +3052,12 @@
   "t": "Obtener INCIDB Complete ({0})",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "e2c96554eaa2031d": {
+  "src": "One list only: EU Annex III fragrance allergens (Regulation (EC) {0} as amended by Regulation (EU) {1}), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only — {2} names flagged, with {3} recording the list; {4} of products carry at least one (about {5} of products list ingredients as unsplit text that the allergen flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.",
+  "t": "Una sola lista: los alérgenos de fragancia del anexo III de la UE (Reglamento (CE) {0}, modificado por el Reglamento (UE) {1}), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas; {2} nombres marcados, con {3} registrando la lista; {4} de los productos llevan al menos uno (alrededor de {5} de los productos listan los ingredientes como texto sin dividir, que los indicadores de alérgenos no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "e2f42e9b802704ae": {
   "src": "The dataset itself is open (ODbL {0}).",

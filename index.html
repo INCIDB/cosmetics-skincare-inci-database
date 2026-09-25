@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4">
     <title>INCIDB — Skincare & Cosmetics INCI Database for Developers</title>
-    <meta name="description" content="18,583 cosmetic products, 46,973 canonical INCI names and 318,758 ordered composition links, with EU CosIng enrichment on 82.5% of label occurrences. CSV + Parquet, $79.">
+    <meta name="description" content="18,583 cosmetic products, 46,009 canonical INCI names and 341,904 ordered composition links, with EU CosIng enrichment on 83.9% of label occurrences. CSV + Parquet, $79.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://incidb.dataengineered.io/">
     <!-- i18n:alternates -->
@@ -27,7 +27,7 @@
 
     <!-- OpenGraph Meta Tags -->
     <meta property="og:title" content="INCIDB — The Skincare & Cosmetics INCI Database for Developers">
-    <meta property="og:description" content="18,583 products, 46,973 canonical INCI names, 318,758 ordered composition links and the 55,426-row name map that shows how every label token was resolved. CSV + Parquet.">
+    <meta property="og:description" content="18,583 products, 46,009 canonical INCI names, 341,904 ordered composition links and the 77,059-row name map that shows how every label token was resolved. CSV + Parquet.">
     <meta property="og:url" content="https://incidb.dataengineered.io/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="INCIDB — Skincare & Cosmetics INCI Database">
@@ -36,7 +36,7 @@
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="INCIDB — Skincare & Cosmetics INCI Database">
-    <meta name="twitter:description" content="Normalised label composition data: 18,583 products, 46,973 canonical INCI names, measured CosIng coverage published up front.">
+    <meta name="twitter:description" content="Normalised label composition data: 18,583 products, 46,009 canonical INCI names, measured CosIng coverage published up front.">
     <meta name="twitter:image" content="https://incidb.dataengineered.io/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +52,7 @@
         "@context": "https://schema.org",
         "@type": "Dataset",
         "name": "INCIDB Skincare & Cosmetics INCI Database",
-        "description": "Normalised relational snapshot of cosmetic ingredient labels: 18,583 products, 5,925 brands, 46,973 distinct canonical INCI names, 318,758 ordered product-ingredient composition links and a 55,426-row raw-to-canonical name map. Product data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS and EC numbers, chemical descriptions, Annex II-VI membership) joined on exact canonical name from the European Commission CosIng inventory. Columns are NULL where the source has no value.",
+        "description": "Normalised relational snapshot of cosmetic ingredient labels: 18,583 products, 5,925 brands, 46,009 distinct canonical INCI names, 341,904 ordered product-ingredient composition links and a 77,059-row raw-to-canonical name map. Product data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS and EC numbers, chemical descriptions, Annex II-VI membership) joined on exact canonical name from the European Commission CosIng inventory. Columns are NULL where the source has no value.",
         "url": "https://incidb.dataengineered.io/",
         "version": "2026.09",
         "license": "https://opendatacommons.org/licenses/odbl/1-0/",
@@ -126,7 +126,7 @@
           "name": "How much of the ingredient data is actually enriched?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Two numbers, both published. CosIng matches 11.0% of the 46,973 distinct canonical INCI names, but 82.5% of the 318,758 ingredient occurrences across product labels. CosIng functions are present on 10.9% of names and 81.5% of label occurrences; CAS numbers on 8.3% of names and 76.4% of occurrences. The long tail of distinct names is botanical variants, multilingual spellings and marketing tokens that no regulatory inventory lists; the slots on a real label are filled overwhelmingly by ingredients CosIng does cover."
+            "text": "Two numbers, both published. CosIng matches 11.6% of the 46,009 distinct canonical INCI names, but 83.9% of the 341,904 ingredient occurrences across product labels. CosIng functions are present on 11.5% of names and 82.9% of label occurrences; CAS numbers on 8.7% of names and 77.6% of occurrences. The long tail of distinct names is botanical variants, multilingual spellings and marketing tokens that no regulatory inventory lists; the slots on a real label are filled overwhelmingly by ingredients CosIng does cover."
           }
         },
         {
@@ -134,7 +134,7 @@
           "name": "How are raw label tokens turned into canonical INCI names?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "By an explicit ordered procedure: HTML-entity decode, character stripping, whitespace collapse and upper-casing, then exact inventory match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Anything that fails all of these is kept verbatim and recorded as unresolved rather than guessed. The method used for each token is shipped as the 55,426-row ingredient_name_map table, so every decision is auditable."
+            "text": "By an explicit ordered procedure: HTML-entity decode, character stripping, whitespace collapse and upper-casing, then exact inventory match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Anything that fails all of these is kept verbatim and recorded as unresolved rather than guessed. The method used for each token is shipped as the 77,059-row ingredient_name_map table, so every decision is auditable."
           }
         },
         {
@@ -142,7 +142,7 @@
           "name": "Which allergen list are the flags taken from?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. 121 names are flagged and allergen_source records the list; 43.9% of products carry at least one (about 6.4% more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag."
+            "text": "One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. 121 names are flagged and allergen_source records the list; 46.9% of products carry at least one (about 2.7% of products list ingredients as unsplit text that the allergen flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag."
           }
         },
         {
@@ -150,7 +150,7 @@
           "name": "Where do the comedogenic ratings and fungal-acne flags come from?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "145 ingredients carry a comedogenic rating on the 0-5 scale, transcribed from Table I of Fulton JE Jr., J Soc Cosmet Chem 1989;40:321-333; every other ingredient is NULL. The fungal-acne flag is not a measured property: it is a rule-derived heuristic covering C11-C24 fatty acids and their esters and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, producing 270 flags. Its basis is the lipid dependence of Malassezia (DOI 10.3389/fcimb.2020.00112, chain-length window per DOI 10.1093/femsyr/foaf043)."
+            "text": "144 ingredients carry a comedogenic rating on the 0-5 scale, transcribed from Table I of Fulton JE Jr., J Soc Cosmet Chem 1989;40:321-333; every other ingredient is NULL. The fungal-acne flag is not a measured property: it is a rule-derived heuristic covering C11-C24 fatty acids and their esters and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, producing 272 flags. Its basis is the lipid dependence of Malassezia (DOI 10.3389/fcimb.2020.00112, chain-length window per DOI 10.1093/femsyr/foaf043)."
           }
         }
       ]
@@ -214,7 +214,7 @@
                 The Skincare & Cosmetics INCI Database <span>for ML, NLP and compliance teams</span>
             </h1>
             <p class="hero-subtitle">
-                The <strong>55,426-row <code>ingredient_name_map</code></strong> records how every raw label token was resolved to a canonical INCI name — resolution <code>method</code> and <code>confidence</code> on each row — as one offline, auditable artifact for ML/NLP teams and compliance analysts. No free source or live API ships it. Underneath: <strong>18,583 products</strong>, <strong>46,973 canonical INCI names</strong>, <strong>318,758 ordered composition links</strong>, enriched from EU CosIng; where a source has no value, the column is NULL.
+                The <strong>77,059-row <code>ingredient_name_map</code></strong> records how every raw label token was resolved to a canonical INCI name — resolution <code>method</code> and <code>confidence</code> on each row — as one offline, auditable artifact for ML/NLP teams and compliance analysts. No free source or live API ships it. Underneath: <strong>18,583 products</strong>, <strong>46,009 canonical INCI names</strong>, <strong>341,904 ordered composition links</strong>, enriched from EU CosIng; where a source has no value, the column is NULL.
             </p>
             <div class="hero-actions">
                 <a href="#pricing" class="btn btn-primary">Get INCIDB Complete — $79 →</a>
@@ -228,11 +228,11 @@
                     <div class="metric-label">Products</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-number">46,973</div>
+                    <div class="metric-number">46,009</div>
                     <div class="metric-label">Distinct canonical INCI names</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-number">318,758</div>
+                    <div class="metric-number">341,904</div>
                     <div class="metric-label">Ordered composition links</div>
                 </div>
                 <div class="metric-card">
@@ -257,15 +257,15 @@
                     <thead>
                         <tr style="border-bottom: 1px solid var(--border-subtle);">
                             <th style="padding: 0.9rem 1.1rem; text-align: left; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Column</th>
-                            <th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Share of the 46,973 distinct names</th>
-                            <th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Share of the 318,758 label occurrences</th>
+                            <th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Share of the 46,009 distinct names</th>
+                            <th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Share of the 341,904 label occurrences</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;">CosIng match (any)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11.0%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">82.5%</td></tr>
-                        <tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>functions</code> (CosIng vocabulary)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">10.9%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">81.5%</td></tr>
-                        <tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>cas_number</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8.3%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">76.4%</td></tr>
-                        <tr><td style="padding: 0.85rem 1.1rem;"><code>chemical_description</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8.5% · 3,965 distinct values</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--text-secondary);">—</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;">CosIng match (any)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11.6%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">83.9%</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>functions</code> (CosIng vocabulary)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11.5%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">82.9%</td></tr>
+                        <tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>cas_number</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8.7%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">77.6%</td></tr>
+                        <tr><td style="padding: 0.85rem 1.1rem;"><code>chemical_description</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">9.0% · 4,099 distinct values</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--text-secondary);">—</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -277,14 +277,14 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem;">
                 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
                     <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">121 allergen-flagged names</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">EU fragrance-allergen overlay (Reg. (EU) 2023/1545): 121 names flagged by exact INCI name, label name or CAS for defined substances; 43.9% of products carry at least one (about 6.4% more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists here.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">EU fragrance-allergen overlay (Reg. (EU) 2023/1545): 121 names flagged by exact INCI name, label name or CAS for defined substances; 46.9% of products carry at least one (about 2.7% of products list ingredients as unsplit text that the allergen flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so no US flag exists here.</p>
                 </div>
                 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
-                    <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">145 comedogenic ratings</h3>
+                    <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">144 comedogenic ratings</h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Ingredients rated 0–5, transcribed from Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Table I). <code>NULL</code> everywhere the paper does not reach — absence means "not covered", never "safe".</p>
                 </div>
                 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
-                    <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">270 fungal-acne flags</h3>
+                    <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">272 fungal-acne flags</h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">A rule-derived heuristic, not a measured property: C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients. Basis: DOI 10.3389/fcimb.2020.00112 and DOI 10.1093/femsyr/foaf043.</p>
                 </div>
             </div>
@@ -402,7 +402,7 @@
                     <div class="tier-price">$0</div>
                     <ul class="tier-features">
                         <li class="included"><span class="check-icon">✓</span> 200 products, drawn at random from a seeded pool</li>
-                        <li class="included"><span class="check-icon">✓</span> Their brands, links and 1,109 ingredients</li>
+                        <li class="included"><span class="check-icon">✓</span> Their brands, links and 1,104 ingredients</li>
                         <li class="included"><span class="check-icon">✓</span> All 7 tables, CSV <em>and</em> Parquet</li>
                         <li class="included"><span class="check-icon">✓</span> Same enrichment columns, same NULLs</li>
                         <li><span class="cross-icon">✕</span> Drawn from products that are ≥80% CosIng-matched, so it reads better than the corpus average</li>
@@ -418,9 +418,9 @@
                     <div class="tier-price">$79 <span>USD one-time</span></div>
                     <ul class="tier-features">
                         <li class="included"><span class="check-icon">✓</span> 18,583 products · 5,925 brands</li>
-                        <li class="included"><span class="check-icon">✓</span> 46,973 canonical INCI names</li>
-                        <li class="included"><span class="check-icon">✓</span> 318,758 ordered composition links</li>
-                        <li class="included"><span class="check-icon">✓</span> The 55,426-row <code>ingredient_name_map</code></li>
+                        <li class="included"><span class="check-icon">✓</span> 46,009 canonical INCI names</li>
+                        <li class="included"><span class="check-icon">✓</span> 341,904 ordered composition links</li>
+                        <li class="included"><span class="check-icon">✓</span> The 77,059-row <code>ingredient_name_map</code></li>
                         <li class="included"><span class="check-icon">✓</span> Pipe-delimited CSV <em>and</em> Apache Parquet</li>
                         <li class="included"><span class="check-icon">✓</span> CosIng enrichment at the coverage published above</li>
                         <li class="included"><span class="check-icon">✓</span> EU overlay: <code>fragrance_allergens</code> and <code>regulatory_status</code></li>
@@ -443,7 +443,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
                     <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">How much of the ingredient data is actually enriched?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Two numbers, both published above. CosIng matches 11.0% of the 46,973 distinct canonical names but 82.5% of the 318,758 ingredient occurrences on labels; functions 10.9% / 81.5%; CAS 8.3% / 76.4%. The long tail of distinct names is botanical variants, multilingual spellings and marketing tokens no inventory lists.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Two numbers, both published above. CosIng matches 11.6% of the 46,009 distinct canonical names but 83.9% of the 341,904 ingredient occurrences on labels; functions 11.5% / 82.9%; CAS 8.7% / 77.6%. The long tail of distinct names is botanical variants, multilingual spellings and marketing tokens no inventory lists.</p>
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
                     <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">How are raw label tokens turned into canonical names?</h3>
@@ -451,11 +451,11 @@
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
                     <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Which allergen list are the flags taken from?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">One list only: EU Annex III fragrance allergens (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only — 121 names flagged, with <code>allergen_source</code> recording the list; 43.9% of products carry at least one (about 6.4% more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">One list only: EU Annex III fragrance allergens (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only — 121 names flagged, with <code>allergen_source</code> recording the list; 46.9% of products carry at least one (about 2.7% of products list ingredients as unsplit text that the allergen flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.</p>
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
                     <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Where do the comedogenic ratings and fungal-acne flags come from?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">145 ingredients rated 0–5, transcribed from Table I of Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333; <code>NULL</code> elsewhere. The fungal-acne flag is a rule-derived heuristic, not a measured property: C11–C24 fatty acids and their esters plus polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, giving 270 flags. Use it as a filter, not as a finding.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">144 ingredients rated 0–5, transcribed from Table I of Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333; <code>NULL</code> elsewhere. The fungal-acne flag is a rule-derived heuristic, not a measured property: C11–C24 fatty acids and their esters plus polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, giving 272 flags. Use it as a filter, not as a finding.</p>
                 </div>
             </div>
         </div>

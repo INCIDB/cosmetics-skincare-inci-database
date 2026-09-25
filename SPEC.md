@@ -10,12 +10,14 @@ prototype against the CSV and ship against the Parquet.
 | Table | Parquet size | CSV size | Rows | Columns |
 | :--- | ---: | ---: | ---: | ---: |
 | `brands` | 0.11 MiB | 0.12 MiB | 5,925 | 2 |
-| `products` | 4.77 MiB | 9.55 MiB | 18,583 | 8 |
-| `ingredients` | 2.33 MiB | 4.96 MiB | 46,973 | 21 |
-| `product_ingredients` | 1.18 MiB | 4.97 MiB | 318,758 | 4 |
-| `ingredient_name_map` | 4.06 MiB | 7.72 MiB | 55,426 | 5 |
+| `products` | 4.86 MiB | 9.83 MiB | 18,583 | 7 |
+| `ingredients` | 2.17 MiB | 4.49 MiB | 46,009 | 20 |
+| `product_ingredients` | 1.03 MiB | 5.34 MiB | 341,904 | 4 |
+| `ingredient_name_map` | 4.40 MiB | 19.56 MiB | 77,059 | 7 |
+| `fragrance_allergens` | 0.02 MiB | 0.09 MiB | 269 | 18 |
+| `regulatory_status` | 0.05 MiB | 0.26 MiB | 631 | 15 |
 
-Parquet is roughly **54%** smaller than the equivalent CSV across the whole
+Parquet is roughly **68%** smaller than the equivalent CSV across the whole
 snapshot — less than the headline figures compression benchmarks usually
 quote, because most of the payload is high-cardinality free text (raw label
 declarations, chemical descriptions, per-row citations) rather than the

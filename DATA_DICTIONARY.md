@@ -15,11 +15,11 @@ disagree.
 | :--- | ---: |
 | `products` | 18,583 |
 | `brands` | 5,925 |
-| `ingredients` | 46,973 |
-| `product_ingredients` | 318,758 |
-| `ingredient_name_map` | 55,426 |
-| `fragrance_allergens` | 268 |
-| `regulatory_status` | 614 |
+| `ingredients` | 46,009 |
+| `product_ingredients` | 341,904 |
+| `ingredient_name_map` | 77,059 |
+| `fragrance_allergens` | 269 |
+| `regulatory_status` | 631 |
 
 ---
 
@@ -76,12 +76,12 @@ Commission CosIng inventory on an exact name match; they are `NULL` otherwise.
 
 ### Coverage of the CosIng columns — both views
 
-| Column | Share of the 46,973 distinct names | Share of the 318,758 label occurrences |
+| Column | Share of the 46,009 distinct names | Share of the 341,904 label occurrences |
 | :--- | ---: | ---: |
-| CosIng match (any) | 11.0% | 82.5% |
-| `functions` | 10.9% | 81.5% |
-| `cas_number` | 8.3% | 76.4% |
-| `chemical_description` | 8.5% (3,965 distinct values) | — |
+| CosIng match (any) | 11.6% | 83.9% |
+| `functions` | 11.5% | 82.9% |
+| `cas_number` | 8.7% | 77.6% |
+| `chemical_description` | 9.0% (4,099 distinct values) | — |
 
 The left column counts distinct names; the right counts ingredient
 occurrences across product labels. They differ by an order of magnitude
@@ -105,9 +105,36 @@ set, collapse whitespace, upper-case, then attempt (in order) an exact
 inventory match, a cleaned match, a small cited typo map, percentage
 stripping, parenthesis stripping, a synonym map, slash-variant splitting, and
 longest-match concatenation splitting where **both** halves match the
-inventory. Nothing that fails all of these is guessed at: it is kept verbatim
-and recorded as `unresolved`. The method that resolved each token is stored
-per row, so the whole mapping is auditable and reversible — see table 5.
+inventory.
+
+Tokens that no method resolves are re-split by explicit rules (unclosed
+brackets, `(and)`/`&`, bullets, colons, `. ` separators with an abbreviation
+guard, the last ingredient/"contains" marker, spacing around `/`, newlines and
+spaced dashes only where re-joining does not resolve, and a strict
+full-coverage split in which every word must belong to a matched name). Rules
+run only on unresolved tokens; nothing is fuzzy. Unmatched text between
+recovered names is kept as `unresolved_residual` rows, in label order. A pair
+such as `CI 77891 / TITANIUM DIOXIDE` whose two CosIng names share a CAS
+number is one ingredient (`slash_same_cas`, first-listed name).
+
+The re-split is precision-first. Square brackets act as separators (the
+`[+/- MAY CONTAIN …]` colour lists), except a bracketed qualifier such as
+`[NANO]`, which stays attached to its name (Regulation (EC) 1223/2009,
+Art. 19(1)(g)). `(and)` always separates a blend; ` & ` separates only when
+every side resolves on its own. A name wrapped across a line break, hyphenated
+wraps included (`COCO - BETAINE` → `COCO-BETAINE`), is re-joined before any
+split. A translation synonym printed next to its canonical name (`AQUA` …
+`WATER`) is one ingredient. A name cut off at a line end is not linked, and a
+short misspelt fragment at a line end leaves the next line's first name
+unlinked. Every recovered name must match the CosIng inventory, or the cited
+typo and synonym maps, exactly. `slash_same_cas` never merges two
+colour-index codes.
+
+Nothing is guessed at: a token that neither the methods nor the re-split
+resolve is kept verbatim and recorded as `unresolved`. The method that
+resolved each token is stored per row, with the part's order within the token
+and the re-split rules applied, so the whole mapping is auditable and
+reversible — see table 5.
 
 ### Method note — `is_common_allergen` / `allergen_source`
 
@@ -117,7 +144,7 @@ Regulation (EC) 1223/2009, as amended by Regulation (EU) 2023/1545
 then by the collective label name the Regulation prescribes (e.g. "Rose
 Ketones"), then by CAS number for chemically defined substances only.
 Botanical CAS hits are shipped as review rows, never flags. 121 names are
-flagged; 43.9% of products contain at least one. About 6.4% of products list
+flagged; 46.9% of products contain at least one. About 2.7% of products list
 ingredients as unsplit text that the allergen flags do not reach. The US FDA
 has not yet published its MoCRA fragrance-allergen list, so this dataset
 carries no US flag.
@@ -130,7 +157,7 @@ a distinct `allergen_source` value.
 
 ### Method note — `comedogenic_rating`
 
-**145** ingredients carry a rating on the 0–5 scale, transcribed from
+**144** ingredients carry a rating on the 0–5 scale, transcribed from
 Table I (pp. 324–326) of Fulton JE Jr., *Comedogenicity and irritancy of
 commonly used ingredients in skin care products*, J Soc Cosmet Chem
 1989;40:321–333 (ISSN 0037-9832; the paper predates DOI and PMID
@@ -144,7 +171,7 @@ This is a **rule-derived heuristic, not a measured property.** No
 per-ingredient *Malassezia* assay exists to transcribe. The rule flags
 C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, and it is
 applied only to CosIng-matched ingredients (so the chemical identity behind
-the flag is a known one). **270** ingredients are flagged. The basis is the
+the flag is a known one). **272** ingredients are flagged. The basis is the
 lipid dependence of *Malassezia* — Saunte et al., *Front Cell Infect
 Microbiol* 2020;10:112 (DOI 10.3389/fcimb.2020.00112) — with the chain-length
 window taken from Liebregts et al., *FEMS Yeast Res* 2025;25:foaf043 (DOI
@@ -160,7 +187,7 @@ column as a filter, never as a finding.
 | :--- | :--- | :--- | :--- |
 | `product_id` | `INTEGER` | FK → `products.product_id` | `68597` |
 | `ingredient_id` | `INTEGER` | FK → `ingredients.ingredient_id` | `1214` |
-| `position_index` | `INTEGER` | 1-indexed position on the label; lower means declared earlier, i.e. present in a higher proportion | `1` |
+| `position_index` | `INTEGER` | 1-indexed position on the label, contiguous 1..n per product (a repeated ingredient keeps its first position); lower means declared earlier, i.e. present in a higher proportion | `1` |
 | `concentration_percentage` | `STRING` | **Always `NULL` in this snapshot** — labels almost never declare percentages, and none survived parsing | |
 
 ---
@@ -177,6 +204,8 @@ seen anywhere in the corpus appears here exactly once per canonical target.
 | `method` | `STRING` | How it resolved — see the table below | `paren_stripped` |
 | `confidence` | `FLOAT` | Confidence attached to the method | `0.9` |
 | `ingredient_id` | `INTEGER` | FK → `ingredients.ingredient_id` | `162` |
+| `part_index` | `INTEGER` | Order of this part within `raw_name`; 1 when the token was not cut | `2` |
+| `split_rule` | `STRING` | The re-split rules applied to `raw_name`, `+`-joined; `NULL` when not re-split | `bracket+period` |
 
 | `method` | Meaning |
 | :--- | :--- |
@@ -188,7 +217,17 @@ seen anywhere in the corpus appears here exactly once per canonical target.
 | `synonym_map` | Resolved through an explicit synonym table |
 | `slash_variant` | A slash-joined multilingual variant (`WATER/EAU/AQUA`) |
 | `split` | A run-together token split into two names, both of which matched the inventory |
+| `slash_same_cas` | Two slash-joined CosIng names that share a CAS number (`CI 77891 / TITANIUM DIOXIDE`): one ingredient, mapped to the first-listed name |
+| `unresolved_residual` | Unmatched text left between names recovered by the re-split, kept in label order (contiguous pieces joined with `, `), never guessed |
 | `unresolved` | No canonical match — the token is kept verbatim and flagged, never guessed |
+
+A part cut out of a token by the re-split carries its method's usual
+confidence minus 0.1; `slash_same_cas` rows carry 0.75 and
+`unresolved_residual` rows 0.0. `split_rule` lists the rules in this order:
+`retokenise`, `slash_same_cas`, `bracket`, `square_bracket`, `blend`,
+`bullet`, `colon`, `period`, `marker`, `slash_space`, `newline`, `dash`,
+`cover`. `retokenise` on its own means the original text was re-tokenised
+with its newlines intact and no other rule fired.
 
 `unresolved` is the largest bucket by distinct token and a small one by label
 occurrence: the same long-tail effect that produces the two coverage columns
@@ -244,7 +283,7 @@ name, and tagged `source = COSING_ANNEX_III` so you can filter them out.
 **The unsplit caveat.** Some products carry part of their ingredient list as
 one unsplit text string that never resolved into individual names; an
 allergen inside such a string is not flagged. `unsplit`, as used in the
-6.4% figure above, is defined as:
+2.7% figure above, is defined as:
 
 > share of products linked to an ingredient row with cosing_matched = 0 whose name is longer than 60 characters or has >= 2 commas or >= 2 ' - ' separators, and contains a flagged allergen name or label name at word boundaries; an estimate used only for the coverage caveat, never a flag
 

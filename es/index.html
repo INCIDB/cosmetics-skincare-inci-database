@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4" name="google-site-verification"/>
 <title>INCIDB — Base de datos INCI de cosmética para desarrolladores</title>
-<meta content="18.583 productos cosméticos, 46.973 nombres INCI canónicos y 318.758 enlaces de composición ordenados, con enriquecimiento CosIng de la UE en el 82,5% de las apariciones. CSV + Parquet, $79." name="description"/>
+<meta content="18.583 productos cosméticos, 46.009 nombres INCI canónicos y 341.904 enlaces de composición ordenados, con enriquecimiento CosIng de la UE en el 83,9% de las apariciones. CSV + Parquet, $79." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://incidb.dataengineered.io/es/" rel="canonical"/>
 <!-- i18n:alternates -->
@@ -28,7 +28,7 @@
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- OpenGraph Meta Tags -->
 <meta content="INCIDB — Base de datos INCI de cuidado de la piel y cosmética para desarrolladores" property="og:title"/>
-<meta content="18.583 productos, 46.973 nombres INCI canónicos, 318.758 enlaces de composición ordenados y el mapa de nombres de 55.426 filas que muestra cómo se resolvió cada token de etiqueta. CSV + Parquet." property="og:description"/>
+<meta content="18.583 productos, 46.009 nombres INCI canónicos, 341.904 enlaces de composición ordenados y el mapa de nombres de 77.059 filas que muestra cómo se resolvió cada token de etiqueta. CSV + Parquet." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/es/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="INCIDB — Base de datos INCI de cuidado de la piel y cosmética" property="og:site_name"/>
@@ -36,7 +36,7 @@
 <!-- Twitter Card Meta Tags -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="INCIDB — Base de datos INCI de cuidado de la piel y cosmética" name="twitter:title"/>
-<meta content="Datos normalizados de composición de etiquetas: 18.583 productos, 46.973 nombres INCI canónicos y cobertura CosIng medida, publicada de antemano." name="twitter:description"/>
+<meta content="Datos normalizados de composición de etiquetas: 18.583 productos, 46.009 nombres INCI canónicos y cobertura CosIng medida, publicada de antemano." name="twitter:description"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -50,7 +50,7 @@
     "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "INCIDB, base de datos INCI de cuidado de la piel y cosmética",
-    "description": "Snapshot relacional normalizado de etiquetas de ingredientes cosméticos: 18.583 productos, 5.925 marcas, 46.973 nombres INCI canónicos distintos, 318.758 enlaces ordenados de composición producto-ingrediente y un mapa de 55.426 filas de nombres originales a canónicos. Datos de productos de Open Beauty Facts (ODbL); enriquecimiento de ingredientes (funciones, números CAS y CE, descripciones químicas, pertenencia a los anexos II-VI) unido por coincidencia exacta del nombre canónico desde el inventario CosIng de la Comisión Europea. Las columnas son NULL cuando la fuente no tiene valor.",
+    "description": "Snapshot relacional normalizado de etiquetas de ingredientes cosméticos: 18.583 productos, 5.925 marcas, 46.009 nombres INCI canónicos distintos, 341.904 enlaces ordenados de composición producto-ingrediente y un mapa de 77.059 filas de nombres originales a canónicos. Datos de productos de Open Beauty Facts (ODbL); enriquecimiento de ingredientes (funciones, números CAS y CE, descripciones químicas, pertenencia a los anexos II-VI) unido por coincidencia exacta del nombre canónico desde el inventario CosIng de la Comisión Europea. Las columnas son NULL cuando la fuente no tiene valor.",
     "url": "https://incidb.dataengineered.io/es/",
     "version": "2026.09",
     "license": "https://opendatacommons.org/licenses/odbl/1-0/",
@@ -183,7 +183,7 @@
       "name": "¿Qué parte de los datos de ingredientes está realmente enriquecida?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Dos cifras, ambas publicadas. CosIng coincide con 11,0% de los 46.973 nombres INCI canónicos distintos, pero con 82,5% de las 318.758 apariciones de ingredientes en las etiquetas de productos. Las funciones CosIng están presentes en el 10,9% de los nombres y el 81,5% de las apariciones en etiquetas; los números CAS, en el 8,3% de los nombres y el 76,4% de las apariciones. La cola larga de nombres distintos está formada por variantes botánicas, grafías en varios idiomas y términos de marketing que ningún inventario regulatorio incluye; los huecos de una etiqueta real los ocupan de forma abrumadora ingredientes que CosIng sí cubre."
+        "text": "Dos cifras, ambas publicadas. CosIng coincide con 11,6% de los 46.009 nombres INCI canónicos distintos, pero con 83,9% de las 341.904 apariciones de ingredientes en las etiquetas de productos. Las funciones CosIng están presentes en el 11,5% de los nombres y el 82,9% de las apariciones en etiquetas; los números CAS, en el 8,7% de los nombres y el 77,6% de las apariciones. La cola larga de nombres distintos está formada por variantes botánicas, grafías en varios idiomas y términos de marketing que ningún inventario regulatorio incluye; los huecos de una etiqueta real los ocupan de forma abrumadora ingredientes que CosIng sí cubre."
       }
     },
     {
@@ -191,7 +191,7 @@
       "name": "¿Cómo se convierten los tokens originales de etiqueta en nombres INCI canónicos?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Mediante un procedimiento explícito y ordenado: decodificación de entidades HTML, eliminación de caracteres, compactación de espacios y conversión a mayúsculas; después, coincidencia exacta con el inventario, coincidencia tras limpieza, un pequeño mapa de erratas con fuentes citadas, eliminación de porcentajes, eliminación de paréntesis, un mapa de sinónimos, separación de variantes con barra y división de palabras concatenadas solo cuando ambas mitades coinciden con el inventario. Todo lo que no supera ninguno de estos pasos se conserva literalmente y se registra como sin resolver en lugar de adivinarse. El método utilizado para cada token se entrega como la tabla ingredient_name_map de 55.426 filas, de modo que cada decisión es auditable."
+        "text": "Mediante un procedimiento explícito y ordenado: decodificación de entidades HTML, eliminación de caracteres, compactación de espacios y conversión a mayúsculas; después, coincidencia exacta con el inventario, coincidencia tras limpieza, un pequeño mapa de erratas con fuentes citadas, eliminación de porcentajes, eliminación de paréntesis, un mapa de sinónimos, separación de variantes con barra y división de palabras concatenadas solo cuando ambas mitades coinciden con el inventario. Todo lo que no supera ninguno de estos pasos se conserva literalmente y se registra como sin resolver en lugar de adivinarse. El método utilizado para cada token se entrega como la tabla ingredient_name_map de 77.059 filas, de modo que cada decisión es auditable."
       }
     },
     {
@@ -199,7 +199,7 @@
       "name": "¿De qué lista de alérgenos proceden los indicadores?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Una sola lista: los alérgenos de fragancia del anexo III del Reglamento de Cosméticos de la UE (Reglamento (CE) 1223/2009, modificado por el Reglamento (UE) 2023/1545), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas. Hay 121 nombres marcados y allergen_source registra la lista; 43,9% de los productos llevan al menos uno (alrededor de 6,4% más listan los ingredientes como texto sin dividir, que los indicadores no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense."
+        "text": "Una sola lista: los alérgenos de fragancia del anexo III del Reglamento de Cosméticos de la UE (Reglamento (CE) 1223/2009, modificado por el Reglamento (UE) 2023/1545), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas. Hay 121 nombres marcados y allergen_source registra la lista; 46,9% de los productos llevan al menos uno (alrededor de 2,7% de los productos listan los ingredientes como texto sin dividir, que los indicadores de alérgenos no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense."
       }
     },
     {
@@ -207,7 +207,7 @@
       "name": "¿De dónde proceden los índices comedogénicos y los indicadores de acné fúngico?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "145 ingredientes tienen un índice comedogénico en la escala 0-5, transcrito de la Tabla I de Fulton JE Jr., J Soc Cosmet Chem 1989;40:321-333; todos los demás ingredientes son NULL. El indicador de acné fúngico no es una propiedad medida: es una heurística derivada de reglas que abarca los ácidos grasos C11-C24 y sus ésteres y los polisorbatos 20/40/60/80, aplicada solo a ingredientes con coincidencia en CosIng, y que produce 270 indicadores. Se basa en la dependencia lipídica de Malassezia (DOI 10.3389/fcimb.2020.00112; ventana de longitud de cadena según DOI 10.1093/femsyr/foaf043)."
+        "text": "144 ingredientes tienen un índice comedogénico en la escala 0-5, transcrito de la Tabla I de Fulton JE Jr., J Soc Cosmet Chem 1989;40:321-333; todos los demás ingredientes son NULL. El indicador de acné fúngico no es una propiedad medida: es una heurística derivada de reglas que abarca los ácidos grasos C11-C24 y sus ésteres y los polisorbatos 20/40/60/80, aplicada solo a ingredientes con coincidencia en CosIng, y que produce 272 indicadores. Se basa en la dependencia lipídica de Malassezia (DOI 10.3389/fcimb.2020.00112; ventana de longitud de cadena según DOI 10.1093/femsyr/foaf043)."
       }
     }
   ],
@@ -316,7 +316,7 @@
                 La base de datos INCI de cuidado de la piel y cosmética <span>para equipos de ML, NLP y cumplimiento normativo</span>
 </h1>
 <p class="hero-subtitle">
-                La tabla <strong><code>ingredient_name_map</code> de 55.426 filas</strong> registra cómo se resolvió cada token original de etiqueta en un nombre INCI canónico (con <code>method</code> y <code>confidence</code> de resolución en cada fila), como un artefacto único, sin conexión y auditable para equipos de ML/NLP y analistas de cumplimiento normativo. Ninguna fuente gratuita ni API en vivo lo ofrece. Debajo: <strong>18.583 productos</strong>, <strong>46.973 nombres INCI canónicos</strong>, <strong>318.758 enlaces de composición ordenados</strong>, enriquecidos con CosIng de la UE; cuando una fuente no tiene valor, la columna es NULL.
+                La tabla <strong><code>ingredient_name_map</code> de 77.059 filas</strong> registra cómo se resolvió cada token original de etiqueta en un nombre INCI canónico (con <code>method</code> y <code>confidence</code> de resolución en cada fila), como un artefacto único, sin conexión y auditable para equipos de ML/NLP y analistas de cumplimiento normativo. Ninguna fuente gratuita ni API en vivo lo ofrece. Debajo: <strong>18.583 productos</strong>, <strong>46.009 nombres INCI canónicos</strong>, <strong>341.904 enlaces de composición ordenados</strong>, enriquecidos con CosIng de la UE; cuando una fuente no tiene valor, la columna es NULL.
             </p>
 <div class="hero-actions">
 <a class="btn btn-primary" href="#pricing">Obtén INCIDB Complete — $79 →</a>
@@ -329,11 +329,11 @@
 <div class="metric-label">Productos</div>
 </div>
 <div class="metric-card">
-<div class="metric-number">46.973</div>
+<div class="metric-number">46.009</div>
 <div class="metric-label">Nombres INCI canónicos distintos</div>
 </div>
 <div class="metric-card">
-<div class="metric-number">318.758</div>
+<div class="metric-number">341.904</div>
 <div class="metric-label">Enlaces de composición ordenados</div>
 </div>
 <div class="metric-card">
@@ -356,15 +356,15 @@
 <thead>
 <tr style="border-bottom: 1px solid var(--border-subtle);">
 <th style="padding: 0.9rem 1.1rem; text-align: left; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Columna</th>
-<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Proporción de los 46.973 nombres distintos</th>
-<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Proporción de las 318.758 apariciones en etiquetas</th>
+<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Proporción de los 46.009 nombres distintos</th>
+<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Proporción de las 341.904 apariciones en etiquetas</th>
 </tr>
 </thead>
 <tbody>
-<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;">Coincidencia CosIng (cualquiera)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11,0%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">82,5%</td></tr>
-<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>functions</code> (vocabulario CosIng)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">10,9%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">81,5%</td></tr>
-<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>cas_number</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8,3%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">76,4%</td></tr>
-<tr><td style="padding: 0.85rem 1.1rem;"><code>chemical_description</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8,5% · 3.965 valores distintos</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--text-secondary);">—</td></tr>
+<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;">Coincidencia CosIng (cualquiera)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11,6%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">83,9%</td></tr>
+<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>functions</code> (vocabulario CosIng)</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">11,5%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">82,9%</td></tr>
+<tr style="border-bottom: 1px solid var(--border-subtle);"><td style="padding: 0.85rem 1.1rem;"><code>cas_number</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">8,7%</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--accent-emerald);">77,6%</td></tr>
+<tr><td style="padding: 0.85rem 1.1rem;"><code>chemical_description</code></td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono);">9,0% · 4.099 valores distintos</td><td style="padding: 0.85rem 1.1rem; text-align: right; font-family: var(--font-mono); color: var(--text-secondary);">—</td></tr>
 </tbody>
 </table>
 </div>
@@ -374,14 +374,14 @@
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem;">
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
 <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">121 nombres marcados como alérgenos</h3>
-<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Capa de alérgenos de fragancia de la UE (Rgto. (UE) 2023/1545): 121 nombres marcados por nombre INCI exacto, nombre de etiqueta o CAS para sustancias definidas; 43,9% de los productos llevan al menos uno (alrededor de 6,4% más listan los ingredientes como texto sin dividir, que los indicadores no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que aquí no existe ningún indicador estadounidense.</p>
+<p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Capa de alérgenos de fragancia de la UE (Rgto. (UE) 2023/1545): 121 nombres marcados por nombre INCI exacto, nombre de etiqueta o CAS para sustancias definidas; 46,9% de los productos llevan al menos uno (alrededor de 2,7% de los productos listan los ingredientes como texto sin dividir, que los indicadores de alérgenos no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que aquí no existe ningún indicador estadounidense.</p>
 </div>
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
-<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">145 índices comedogénicos</h3>
+<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">144 índices comedogénicos</h3>
 <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Ingredientes calificados 0–5, transcritos de Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Tabla I). <code>NULL</code> en todo lo que el artículo no abarca: la ausencia significa "no cubierto", nunca "seguro".</p>
 </div>
 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
-<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">270 indicadores de acné fúngico</h3>
+<h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">272 indicadores de acné fúngico</h3>
 <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.65; margin: 0;">Una heurística derivada de reglas, no una propiedad medida: ácidos grasos C11–C24 y sus ésteres, y polisorbatos 20/40/60/80, aplicada solo a ingredientes con coincidencia en CosIng. Base: DOI 10.3389/fcimb.2020.00112 y DOI 10.1093/femsyr/foaf043.</p>
 </div>
 </div>
@@ -493,7 +493,7 @@
 <div class="tier-price">$0</div>
 <ul class="tier-features">
 <li class="included"><span class="check-icon">✓</span> 200 productos, extraídos al azar de un conjunto con semilla fija</li>
-<li class="included"><span class="check-icon">✓</span> Sus marcas, enlaces y 1.109 ingredientes</li>
+<li class="included"><span class="check-icon">✓</span> Sus marcas, enlaces y 1.104 ingredientes</li>
 <li class="included"><span class="check-icon">✓</span> Las 7 tablas, en CSV <em>y</em> Parquet</li>
 <li class="included"><span class="check-icon">✓</span> Las mismas columnas de enriquecimiento, los mismos NULL</li>
 <li><span class="cross-icon">✕</span> Extraída de productos con coincidencia CosIng ≥80%, por lo que da mejor impresión que la media del corpus</li>
@@ -508,9 +508,9 @@
 <div class="tier-price">$79 <span>USD, pago único</span></div>
 <ul class="tier-features">
 <li class="included"><span class="check-icon">✓</span> 18.583 productos · 5.925 marcas</li>
-<li class="included"><span class="check-icon">✓</span> 46.973 nombres INCI canónicos</li>
-<li class="included"><span class="check-icon">✓</span> 318.758 enlaces de composición ordenados</li>
-<li class="included"><span class="check-icon">✓</span> La tabla <code>ingredient_name_map</code> de 55.426 filas</li>
+<li class="included"><span class="check-icon">✓</span> 46.009 nombres INCI canónicos</li>
+<li class="included"><span class="check-icon">✓</span> 341.904 enlaces de composición ordenados</li>
+<li class="included"><span class="check-icon">✓</span> La tabla <code>ingredient_name_map</code> de 77.059 filas</li>
 <li class="included"><span class="check-icon">✓</span> CSV delimitado por barras verticales <em>y</em> Apache Parquet</li>
 <li class="included"><span class="check-icon">✓</span> Enriquecimiento CosIng con la cobertura publicada arriba</li>
 <li class="included"><span class="check-icon">✓</span> Capa de la UE: <code>fragrance_allergens</code> y <code>regulatory_status</code></li>
@@ -532,7 +532,7 @@
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">¿Qué parte de los datos de ingredientes está realmente enriquecida?</h3>
-<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Dos cifras, ambas publicadas arriba. CosIng coincide con 11,0% de los 46.973 nombres canónicos distintos, pero con 82,5% de las 318.758 apariciones de ingredientes en etiquetas; funciones 10,9% / 81,5%; CAS 8,3% / 76,4%. La cola larga de nombres distintos está formada por variantes botánicas, grafías en varios idiomas y términos de marketing que ningún inventario incluye.</p>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Dos cifras, ambas publicadas arriba. CosIng coincide con 11,6% de los 46.009 nombres canónicos distintos, pero con 83,9% de las 341.904 apariciones de ingredientes en etiquetas; funciones 11,5% / 82,9%; CAS 8,7% / 77,6%. La cola larga de nombres distintos está formada por variantes botánicas, grafías en varios idiomas y términos de marketing que ningún inventario incluye.</p>
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">¿Cómo se convierten los tokens originales de etiqueta en nombres canónicos?</h3>
@@ -540,11 +540,11 @@
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">¿De qué lista de alérgenos proceden los indicadores?</h3>
-<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Una sola lista: los alérgenos de fragancia del anexo III de la UE (Reglamento (CE) 1223/2009, modificado por el Reglamento (UE) 2023/1545), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas; 121 nombres marcados, con <code>allergen_source</code> registrando la lista; 43,9% de los productos llevan al menos uno (alrededor de 6,4% más listan los ingredientes como texto sin dividir, que los indicadores no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.</p>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Una sola lista: los alérgenos de fragancia del anexo III de la UE (Reglamento (CE) 1223/2009, modificado por el Reglamento (UE) 2023/1545), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas; 121 nombres marcados, con <code>allergen_source</code> registrando la lista; 46,9% de los productos llevan al menos uno (alrededor de 2,7% de los productos listan los ingredientes como texto sin dividir, que los indicadores de alérgenos no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.</p>
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">¿De dónde proceden los índices comedogénicos y los indicadores de acné fúngico?</h3>
-<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">145 ingredientes calificados 0–5, transcritos de la Tabla I de Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333; <code>NULL</code> en los demás. El indicador de acné fúngico es una heurística derivada de reglas, no una propiedad medida: ácidos grasos C11–C24 y sus ésteres más polisorbatos 20/40/60/80, aplicada solo a ingredientes con coincidencia en CosIng, con 270 indicadores. Úsalo como filtro, no como hallazgo.</p>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">144 ingredientes calificados 0–5, transcritos de la Tabla I de Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333; <code>NULL</code> en los demás. El indicador de acné fúngico es una heurística derivada de reglas, no una propiedad medida: ácidos grasos C11–C24 y sus ésteres más polisorbatos 20/40/60/80, aplicada solo a ingredientes con coincidencia en CosIng, con 272 indicadores. Úsalo como filtro, no como hallazgo.</p>
 </div>
 </div>
 </div>
