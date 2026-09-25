@@ -1,6 +1,6 @@
 # INCIDB — The Skincare & Cosmetics INCI Database
 
-> A normalised relational snapshot of cosmetic ingredient labels: 18,583 products, 5,925 brands, 46,021 distinct canonical INCI names, 342,170 ordered product→ingredient composition links, and a 77,219-row `ingredient_name_map` recording how every raw label token was resolved to a canonical name. Product/brand/composition data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS, EC numbers, chemical descriptions, Annex II–VI membership, restrictions) joined on exact canonical name from the European Commission CosIng inventory. Where a source has no value the column is NULL — nothing is defaulted or inferred. Snapshot 2026.09.
+> A normalised relational snapshot of cosmetic ingredient labels: 18,583 products, 5,925 brands, 46,008 distinct canonical INCI names, 342,208 ordered product→ingredient composition links, and a 77,257-row `ingredient_name_map` recording how every raw label token was resolved to a canonical name. Product/brand/composition data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS, EC numbers, chemical descriptions, Annex II–VI membership, restrictions) joined on exact canonical name from the European Commission CosIng inventory. Where a source has no value the column is NULL — nothing is defaulted or inferred. Snapshot 2026.09.
 
 ## Key Links & Documentation
 - [Landing Page](https://incidb.dataengineered.io/)
@@ -14,7 +14,7 @@
 
 ## Measured Enrichment Coverage (do not round up)
 Coverage is reported two ways, because they differ by an order of magnitude and only quoting one would mislead:
-- **CosIng match:** 11.6% of the 46,021 distinct canonical names; 83.9% of the 342,170 ingredient occurrences on product labels (link-weighted).
+- **CosIng match:** 11.6% of the 46,008 distinct canonical names; 83.9% of the 342,208 ingredient occurrences on product labels (link-weighted).
 - **`functions` (CosIng vocabulary, multi-valued):** 11.5% of distinct names; 82.9% link-weighted.
 - **`cas_number`:** 8.7% of distinct names; 77.6% link-weighted.
 - **`chemical_description`:** 9.0% of distinct names, 4,101 distinct values.

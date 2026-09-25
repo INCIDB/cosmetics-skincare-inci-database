@@ -7,9 +7,9 @@ One product. One price. Snapshot 2026.09.
 | **Price** | `$0` | **`$79`** one-time |
 | **Products** | 200 (seeded random draw) | 18,583 |
 | **Brands** | the 200 products' brands | 5,925 |
-| **Distinct canonical INCI names** | 1,106 | 46,021 |
-| **Composition links** | the 200 products' links | 342,170 |
-| **`ingredient_name_map` rows** | the rows for the sampled products' own label tokens | 77,219 |
+| **Distinct canonical INCI names** | 1,106 | 46,008 |
+| **Composition links** | the 200 products' links | 342,208 |
+| **`ingredient_name_map` rows** | the rows for the sampled products' own label tokens | 77,257 |
 | **Tables** | all 7 | all 7 |
 | **Formats** | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet |
 | **CosIng enrichment columns** | included | included |
@@ -63,7 +63,7 @@ ODbL if you want to.
 Coverage is reported two ways because the two differ by an order of
 magnitude, and quoting only one of them would be a lie by omission.
 
-| Column | Share of the 46,021 distinct names | Share of the 342,170 label occurrences |
+| Column | Share of the 46,008 distinct names | Share of the 342,208 label occurrences |
 | :--- | ---: | ---: |
 | CosIng match (any) | 11.6% | 83.9% |
 | `functions` | 11.5% | 82.9% |
@@ -72,7 +72,7 @@ magnitude, and quoting only one of them would be a lie by omission.
 
 A cosmetic label corpus contains far more distinct strings than a regulatory
 inventory lists — botanical variants, multilingual spellings, marketing
-names, one-off blends. Those make up the long tail of the 46,021 names and
+names, one-off blends. Those make up the long tail of the 46,008 names and
 are mostly unmatched. The ingredients that actually fill label slots are
 overwhelmingly the ones CosIng covers, which is why the right-hand column is
 high. Pick the column that matches your use case.

@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4" name="google-site-verification"/>
 <title>INCIDB — Base de données INCI cosmétiques pour développeurs</title>
-<meta content="18 583 produits cosmétiques, 46 021 noms INCI canoniques et 342 170 liens de composition ordonnés, avec enrichissement CosIng (UE) sur 83,9% des occurrences sur les étiquettes. CSV + Parquet, $79." name="description"/>
+<meta content="18 583 produits cosmétiques, 46 008 noms INCI canoniques et 342 208 liens de composition ordonnés, avec enrichissement CosIng (UE) sur 83,9% des occurrences sur les étiquettes. CSV + Parquet, $79." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://incidb.dataengineered.io/fr/" rel="canonical"/>
 <!-- i18n:alternates -->
@@ -28,7 +28,7 @@
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- OpenGraph Meta Tags -->
 <meta content="INCIDB — La base de données INCI cosmétiques et soins de la peau pour les développeurs" property="og:title"/>
-<meta content="18 583 produits, 46 021 noms INCI canoniques, 342 170 liens de composition ordonnés et la table de correspondance des noms de 77 219 lignes qui montre comment chaque token d’étiquette a été résolu. CSV + Parquet." property="og:description"/>
+<meta content="18 583 produits, 46 008 noms INCI canoniques, 342 208 liens de composition ordonnés et la table de correspondance des noms de 77 257 lignes qui montre comment chaque token d’étiquette a été résolu. CSV + Parquet." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/fr/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="INCIDB — Base de données INCI cosmétiques et soins de la peau" property="og:site_name"/>
@@ -36,7 +36,7 @@
 <!-- Twitter Card Meta Tags -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="INCIDB — Base de données INCI cosmétiques et soins de la peau" name="twitter:title"/>
-<meta content="Données normalisées de composition des étiquettes : 18 583 produits, 46 021 noms INCI canoniques, couverture CosIng mesurée publiée d’emblée." name="twitter:description"/>
+<meta content="Données normalisées de composition des étiquettes : 18 583 produits, 46 008 noms INCI canoniques, couverture CosIng mesurée publiée d’emblée." name="twitter:description"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -50,7 +50,7 @@
     "@context": "https://schema.org",
     "@type": "Dataset",
     "name": "INCIDB, base de données INCI cosmétiques et soins de la peau",
-    "description": "Snapshot relationnel normalisé des étiquettes d’ingrédients cosmétiques : 18 583 produits, 5 925 marques, 46 021 noms INCI canoniques distincts, 342 170 liens de composition produit-ingrédient ordonnés et une table de correspondance de 77 219 lignes des noms bruts vers les noms canoniques. Données produits issues d’Open Beauty Facts (ODbL) ; enrichissement des ingrédients (fonctions, numéros CAS et CE, descriptions chimiques, appartenance aux annexes II-VI) joint sur le nom canonique exact depuis l’inventaire CosIng de la Commission européenne. Les colonnes sont NULL lorsque la source n’a pas de valeur.",
+    "description": "Snapshot relationnel normalisé des étiquettes d’ingrédients cosmétiques : 18 583 produits, 5 925 marques, 46 008 noms INCI canoniques distincts, 342 208 liens de composition produit-ingrédient ordonnés et une table de correspondance de 77 257 lignes des noms bruts vers les noms canoniques. Données produits issues d’Open Beauty Facts (ODbL) ; enrichissement des ingrédients (fonctions, numéros CAS et CE, descriptions chimiques, appartenance aux annexes II-VI) joint sur le nom canonique exact depuis l’inventaire CosIng de la Commission européenne. Les colonnes sont NULL lorsque la source n’a pas de valeur.",
     "url": "https://incidb.dataengineered.io/fr/",
     "version": "2026.09",
     "license": "https://opendatacommons.org/licenses/odbl/1-0/",
@@ -183,7 +183,7 @@
       "name": "Quelle part des données d’ingrédients est réellement enrichie ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Deux chiffres, tous deux publiés. CosIng apparie 11,6% des 46 021 noms INCI canoniques distincts, mais 83,9% des 342 170 occurrences d’ingrédients sur les étiquettes de produits. Les fonctions CosIng sont présentes sur 11,5% des noms et 82,9% des occurrences sur les étiquettes ; les numéros CAS sur 8,7% des noms et 77,6% des occurrences. La longue traîne des noms distincts se compose de variantes botaniques, de graphies multilingues et de tokens marketing qu’aucun inventaire réglementaire ne répertorie ; les emplacements d’une étiquette réelle sont très majoritairement occupés par des ingrédients que CosIng couvre effectivement."
+        "text": "Deux chiffres, tous deux publiés. CosIng apparie 11,6% des 46 008 noms INCI canoniques distincts, mais 83,9% des 342 208 occurrences d’ingrédients sur les étiquettes de produits. Les fonctions CosIng sont présentes sur 11,5% des noms et 82,9% des occurrences sur les étiquettes ; les numéros CAS sur 8,7% des noms et 77,6% des occurrences. La longue traîne des noms distincts se compose de variantes botaniques, de graphies multilingues et de tokens marketing qu’aucun inventaire réglementaire ne répertorie ; les emplacements d’une étiquette réelle sont très majoritairement occupés par des ingrédients que CosIng couvre effectivement."
       }
     },
     {
@@ -191,7 +191,7 @@
       "name": "Comment les tokens bruts d’étiquette deviennent-ils des noms INCI canoniques ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Par une procédure explicite et ordonnée : décodage des entités HTML, suppression de caractères, réduction des espaces et passage en majuscules, puis correspondance exacte avec l’inventaire, correspondance après nettoyage, une petite table de fautes de frappe sourcée, suppression des pourcentages, suppression des parenthèses, une table de synonymes, séparation des variantes à barre oblique, et découpage des concaténations uniquement lorsque les deux moitiés correspondent à l’inventaire. Les tokens qu’aucune méthode ne résout sont redécoupés selon des règles explicites en noms reconnus plus du texte unresolved_residual ; rien n’est approximatif. Tout ce qui échoue à toutes ces étapes est conservé tel quel et enregistré comme non résolu plutôt que deviné. La méthode utilisée pour chaque token est livrée dans la table ingredient_name_map de 77 219 lignes, de sorte que chaque décision est auditable."
+        "text": "Par une procédure explicite et ordonnée : décodage des entités HTML, suppression de caractères, réduction des espaces et passage en majuscules, puis correspondance exacte avec l’inventaire, correspondance après nettoyage, une petite table de fautes de frappe sourcée, suppression des pourcentages, suppression des parenthèses, une table de synonymes, séparation des variantes à barre oblique, et découpage des concaténations uniquement lorsque les deux moitiés correspondent à l’inventaire. Les tokens qu’aucune méthode ne résout sont redécoupés selon des règles explicites en noms reconnus plus du texte unresolved_residual ; rien n’est approximatif. Tout ce qui échoue à toutes ces étapes est conservé tel quel et enregistré comme non résolu plutôt que deviné. La méthode utilisée pour chaque token est livrée dans la table ingredient_name_map de 77 257 lignes, de sorte que chaque décision est auditable."
       }
     },
     {
@@ -316,7 +316,7 @@
                 La base de données INCI cosmétiques et soins de la peau <span>pour les équipes ML, NLP et conformité</span>
 </h1>
 <p class="hero-subtitle">
-                La table <strong><code>ingredient_name_map</code> de 77 219 lignes</strong> consigne comment chaque token brut d’étiquette a été résolu en nom INCI canonique — colonnes <code>method</code> et <code>confidence</code> sur chaque ligne — sous la forme d’un artefact hors ligne et auditable, destiné aux équipes ML/NLP et aux analystes conformité. Aucune source gratuite ni API en direct ne le fournit. En dessous : <strong>18 583 produits</strong>, <strong>46 021 noms INCI canoniques</strong>, <strong>342 170 liens de composition ordonnés</strong>, enrichis depuis CosIng (UE) ; lorsqu’une source n’a pas de valeur, la colonne est NULL.
+                La table <strong><code>ingredient_name_map</code> de 77 257 lignes</strong> consigne comment chaque token brut d’étiquette a été résolu en nom INCI canonique — colonnes <code>method</code> et <code>confidence</code> sur chaque ligne — sous la forme d’un artefact hors ligne et auditable, destiné aux équipes ML/NLP et aux analystes conformité. Aucune source gratuite ni API en direct ne le fournit. En dessous : <strong>18 583 produits</strong>, <strong>46 008 noms INCI canoniques</strong>, <strong>342 208 liens de composition ordonnés</strong>, enrichis depuis CosIng (UE) ; lorsqu’une source n’a pas de valeur, la colonne est NULL.
             </p>
 <div class="hero-actions">
 <a class="btn btn-primary" href="#pricing">Obtenir INCIDB Complete — $79 →</a>
@@ -329,11 +329,11 @@
 <div class="metric-label">Produits</div>
 </div>
 <div class="metric-card">
-<div class="metric-number">46 021</div>
+<div class="metric-number">46 008</div>
 <div class="metric-label">Noms INCI canoniques distincts</div>
 </div>
 <div class="metric-card">
-<div class="metric-number">342 170</div>
+<div class="metric-number">342 208</div>
 <div class="metric-label">Liens de composition ordonnés</div>
 </div>
 <div class="metric-card">
@@ -356,8 +356,8 @@
 <thead>
 <tr style="border-bottom: 1px solid var(--border-subtle);">
 <th style="padding: 0.9rem 1.1rem; text-align: left; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Colonne</th>
-<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Part des 46 021 noms distincts</th>
-<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Part des 342 170 occurrences sur les étiquettes</th>
+<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Part des 46 008 noms distincts</th>
+<th style="padding: 0.9rem 1.1rem; text-align: right; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--accent-cyan);">Part des 342 208 occurrences sur les étiquettes</th>
 </tr>
 </thead>
 <tbody>
@@ -508,9 +508,9 @@
 <div class="tier-price">$79 <span>USD, paiement unique</span></div>
 <ul class="tier-features">
 <li class="included"><span class="check-icon">✓</span> 18 583 produits · 5 925 marques</li>
-<li class="included"><span class="check-icon">✓</span> 46 021 noms INCI canoniques</li>
-<li class="included"><span class="check-icon">✓</span> 342 170 liens de composition ordonnés</li>
-<li class="included"><span class="check-icon">✓</span> La table <code>ingredient_name_map</code> de 77 219 lignes</li>
+<li class="included"><span class="check-icon">✓</span> 46 008 noms INCI canoniques</li>
+<li class="included"><span class="check-icon">✓</span> 342 208 liens de composition ordonnés</li>
+<li class="included"><span class="check-icon">✓</span> La table <code>ingredient_name_map</code> de 77 257 lignes</li>
 <li class="included"><span class="check-icon">✓</span> CSV délimité par des barres verticales <em>et</em> Apache Parquet</li>
 <li class="included"><span class="check-icon">✓</span> Enrichissement CosIng à la couverture publiée ci-dessus</li>
 <li class="included"><span class="check-icon">✓</span> Surcouche UE : <code>fragrance_allergens</code> et <code>regulatory_status</code></li>
@@ -532,7 +532,7 @@
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Quelle part des données d’ingrédients est réellement enrichie ?</h3>
-<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Deux chiffres, tous deux publiés ci-dessus. CosIng apparie 11,6% des 46 021 noms canoniques distincts, mais 83,9% des 342 170 occurrences d’ingrédients sur les étiquettes ; fonctions 11,5% / 82,9% ; CAS 8,7% / 77,6%. La longue traîne des noms distincts se compose de variantes botaniques, de graphies multilingues et de tokens marketing qu’aucun inventaire ne répertorie.</p>
+<p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">Deux chiffres, tous deux publiés ci-dessus. CosIng apparie 11,6% des 46 008 noms canoniques distincts, mais 83,9% des 342 208 occurrences d’ingrédients sur les étiquettes ; fonctions 11,5% / 82,9% ; CAS 8,7% / 77,6%. La longue traîne des noms distincts se compose de variantes botaniques, de graphies multilingues et de tokens marketing qu’aucun inventaire ne répertorie.</p>
 </div>
 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
 <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Comment les tokens bruts d’étiquette deviennent-ils des noms canoniques ?</h3>

@@ -101,9 +101,9 @@
             <ul>
                 <li><strong>18,583 products</strong> — one row per Open Beauty Facts product carrying a usable on-pack ingredient declaration, with the raw declaration kept verbatim so the parse can be re-derived.</li>
                 <li><strong>5,925 brands</strong> — brand identities as recorded upstream.</li>
-                <li><strong>46,021 distinct canonical INCI names</strong> — the result of canonicalising every raw label token, enriched from CosIng where CosIng lists them.</li>
-                <li><strong>342,170 ordered composition links</strong> — preserving label order in <code>position_index</code>.</li>
-                <li><strong>77,219 name-map rows</strong> — how each raw label token was resolved, and by which method.</li>
+                <li><strong>46,008 distinct canonical INCI names</strong> — the result of canonicalising every raw label token, enriched from CosIng where CosIng lists them.</li>
+                <li><strong>342,208 ordered composition links</strong> — preserving label order in <code>position_index</code>.</li>
+                <li><strong>77,257 name-map rows</strong> — how each raw label token was resolved, and by which method.</li>
                 <li><strong>269 <code>fragrance_allergens</code> rows</strong> — the EU Annex III fragrance-allergen entries, one row per legal name and INCIDB match, review rows and unmatched names included.</li>
                 <li><strong>633 <code>regulatory_status</code> rows</strong> — EU Annex II–VI status per ingredient and list entry, conditions verbatim. A row exists only where a list says something.</li>
             </ul>
@@ -124,7 +124,7 @@
             <h2>3. Measured coverage</h2>
             <p>Reported two ways, because the two differ by an order of magnitude and quoting only one would mislead:</p>
             <ul>
-                <li><strong>CosIng match (any):</strong> 11.6% of the 46,021 distinct canonical names; 83.9% of the 342,170 ingredient occurrences across product labels.</li>
+                <li><strong>CosIng match (any):</strong> 11.6% of the 46,008 distinct canonical names; 83.9% of the 342,208 ingredient occurrences across product labels.</li>
                 <li><strong><code>functions</code>:</strong> 11.5% of distinct names; 82.9% of label occurrences.</li>
                 <li><strong><code>cas_number</code>:</strong> 8.7% of distinct names; 77.6% of label occurrences.</li>
                 <li><strong><code>chemical_description</code>:</strong> 9.0% of distinct names, 4,101 distinct values.</li>

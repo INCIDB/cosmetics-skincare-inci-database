@@ -15,9 +15,9 @@ disagree.
 | :--- | ---: |
 | `products` | 18,583 |
 | `brands` | 5,925 |
-| `ingredients` | 46,021 |
-| `product_ingredients` | 342,170 |
-| `ingredient_name_map` | 77,219 |
+| `ingredients` | 46,008 |
+| `product_ingredients` | 342,208 |
+| `ingredient_name_map` | 77,257 |
 | `fragrance_allergens` | 269 |
 | `regulatory_status` | 633 |
 
@@ -76,7 +76,7 @@ Commission CosIng inventory on an exact name match; they are `NULL` otherwise.
 
 ### Coverage of the CosIng columns — both views
 
-| Column | Share of the 46,021 distinct names | Share of the 342,170 label occurrences |
+| Column | Share of the 46,008 distinct names | Share of the 342,208 label occurrences |
 | :--- | ---: | ---: |
 | CosIng match (any) | 11.6% | 83.9% |
 | `functions` | 11.5% | 82.9% |
@@ -126,8 +126,18 @@ wraps included (`COCO - BETAINE` → `COCO-BETAINE`), is re-joined before any
 split. A translation synonym printed next to its canonical name (`AQUA` …
 `WATER`) is one ingredient. A name cut off at a line end is not linked, and a
 short misspelt fragment at a line end leaves the next line's first name
-unlinked. Every recovered name must match the CosIng inventory, or the cited
-typo and synonym maps, exactly. `slash_same_cas` never merges two
+unlinked. A name cut by a period, colon or line break (`BENZYL. ALCOHOL`, or
+`SHEA` at a line end with `BUTTER` on the next line) is re-joined when the words on
+one side are the longest name there, one to four words on the other side
+belong to no name of their own, and together they are exactly one different
+name (`rejoin`). A complete name on either side of the separator is never cut
+into (`SODIUM HYALURONATE. RH-OLIGOPEPTIDE-1` stays two names), and a cut is
+never moved next to a slash. When both halves of a slash pair broken at the
+slash by a line break or spaced dash resolve, it is still one pair: one link
+when they share a CAS number or a canonical, otherwise neither is linked. A
+same-CAS pair inside a list without separators is one name of the
+full-coverage split. Every recovered name must match the CosIng inventory, or
+the cited typo and synonym maps, exactly. `slash_same_cas` never merges two
 colour-index codes.
 
 Nothing is guessed at: a token that neither the methods nor the re-split
@@ -226,9 +236,11 @@ confidence minus 0.1 (the usual confidence of `slash_same_cas` is 0.75);
 `unresolved_residual` rows carry 0.0. `split_rule` lists the rules in this order:
 `retokenise`, `slash_same_cas`, `bracket`, `square_bracket`, `blend`,
 `bullet`, `colon`, `period`, `marker`, `slash_space`, `newline`, `dash`,
-`cover`. `retokenise` on its own means the token resolved after
+`cover`, `rejoin`. `retokenise` on its own means the token resolved after
 re-tokenising its original text (line breaks intact) and re-joining line- or
-dash-wrapped names; no separator rule split it.
+dash-wrapped names; no separator rule split it. `rejoin` means a name cut by a
+period, colon or line break was re-joined across it; a period or colon that was
+re-joined, not cut, does not also record `period` or `colon`.
 
 `unresolved` is the largest bucket by distinct token and a small one by label
 occurrence: the same long-tail effect that produces the two coverage columns
