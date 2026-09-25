@@ -134,7 +134,7 @@
           "name": "How are raw label tokens turned into canonical INCI names?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "By an explicit ordered procedure: HTML-entity decode, character stripping, whitespace collapse and upper-casing, then exact inventory match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Anything that fails all of these is kept verbatim and recorded as unresolved rather than guessed. The method used for each token is shipped as the 77,059-row ingredient_name_map table, so every decision is auditable."
+            "text": "By an explicit ordered procedure: HTML-entity decode, character stripping, whitespace collapse and upper-casing, then exact inventory match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Tokens that no method resolves are re-split by explicit rules into matched names plus unresolved_residual text; nothing is fuzzy. Anything that fails all of these is kept verbatim and recorded as unresolved rather than guessed. The method used for each token is shipped as the 77,059-row ingredient_name_map table, so every decision is auditable."
           }
         },
         {
@@ -447,7 +447,7 @@
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
                     <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">How are raw label tokens turned into canonical names?</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">By an explicit ordered procedure — entity decode, character strip, whitespace collapse, upper-case, then exact match, cleaned match, typo map, percent stripping, parenthesis stripping, synonym map, slash variant, and concatenation splitting only when both halves match. Anything that fails all of them is recorded as <code>unresolved</code>, never guessed. The method per token ships as the <code>ingredient_name_map</code> table.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">By an explicit ordered procedure — entity decode, character strip, whitespace collapse, upper-case, then exact match, cleaned match, typo map, percent stripping, parenthesis stripping, synonym map, slash variant, and concatenation splitting only when both halves match. Tokens that no method resolves are re-split by explicit rules into matched names plus <code>unresolved_residual</code> text; nothing is fuzzy. Anything that fails all of them is recorded as <code>unresolved</code>, never guessed. The method per token ships as the <code>ingredient_name_map</code> table.</p>
                 </div>
                 <div style="background: var(--bg-card); padding: 1.75rem; border-radius: 12px; border: 1px solid var(--border-subtle);">
                     <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 0.75rem; font-family: var(--font-heading);">Which allergen list are the flags taken from?</h3>

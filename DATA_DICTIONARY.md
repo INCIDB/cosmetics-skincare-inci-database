@@ -222,12 +222,13 @@ seen anywhere in the corpus appears here exactly once per canonical target.
 | `unresolved` | No canonical match — the token is kept verbatim and flagged, never guessed |
 
 A part cut out of a token by the re-split carries its method's usual
-confidence minus 0.1; `slash_same_cas` rows carry 0.75 and
-`unresolved_residual` rows 0.0. `split_rule` lists the rules in this order:
+confidence minus 0.1 (the usual confidence of `slash_same_cas` is 0.75);
+`unresolved_residual` rows carry 0.0. `split_rule` lists the rules in this order:
 `retokenise`, `slash_same_cas`, `bracket`, `square_bracket`, `blend`,
 `bullet`, `colon`, `period`, `marker`, `slash_space`, `newline`, `dash`,
-`cover`. `retokenise` on its own means the original text was re-tokenised
-with its newlines intact and no other rule fired.
+`cover`. `retokenise` on its own means the token resolved after
+re-tokenising its original text (line breaks intact) and re-joining line- or
+dash-wrapped names; no separator rule split it.
 
 `unresolved` is the largest bucket by distinct token and a small one by label
 occurrence: the same long-tail effect that produces the two coverage columns

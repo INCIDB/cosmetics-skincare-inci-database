@@ -383,7 +383,7 @@ if __name__ == "__main__":
     parser.add_argument("--n", type=int, default=200)
     parser.add_argument("--seed", type=int, default=20260905)
     parser.add_argument("--pins", type=Path, default=DEFAULT_PINS_PATH,
-                        help="pinned sample barcodes (kept while eligible, topped up, rewritten)")
+                        help="pinned sample barcodes (kept while present in the corpus, topped up, rewritten)")
     parser.add_argument("--kaggle-dir", type=Path, default=Path("kaggle_dataset"),
                         help="mirror the five sample CSVs here (the Kaggle upload directory); "
                              "skipped when the directory does not exist")

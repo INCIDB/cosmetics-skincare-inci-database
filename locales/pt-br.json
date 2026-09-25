@@ -317,6 +317,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-17"
  },
+ "159be3658b4aea60": {
+  "src": "<0>Method — re-split.</0> Tokens that no method resolves are re-split by explicit rules (unclosed brackets, {1}/{2}, bullets, colons, {3} separators with an abbreviation guard, the last ingredient/\"contains\" marker, spacing around {4}, newlines and spaced dashes only where re-joining does not resolve, and a strict full-coverage split in which every word must belong to a matched name). Rules run only on unresolved tokens; nothing is fuzzy, and every recovered name must match the CosIng inventory or the cited typo and synonym maps exactly. {5} carries {6}. A part cut out of a token carries its method's usual confidence minus {7}, and {8} rows carry {9}. {10} in {11} means the token resolved after re-tokenising its original text (line breaks intact) and re-joining line- or dash-wrapped names; no separator rule split it. The full rule list is in {12}.",
+  "t": "<0>Método — nova divisão.</0> Os tokens que nenhum método resolve são redivididos por regras explícitas (parênteses não fechados, {1}/{2}, marcadores de lista, dois-pontos, separadores {3} com proteção para abreviações, o último marcador de ingredientes ou de “contém”, espaços ao redor de {4}, quebras de linha e travessões cercados de espaços somente onde reunir as partes não resolve, e uma divisão estrita de cobertura total em que cada palavra precisa pertencer a um nome reconhecido). As regras só se aplicam a tokens não resolvidos; nada é aproximado, e cada nome recuperado precisa corresponder exatamente ao inventário da CosIng ou aos mapas citados de erros de digitação e sinônimos. {5} carrega {6}. Uma parte recortada de um token carrega a confiança usual do seu método menos {7}, e as linhas {8} carregam {9}. {10} em {11} significa que o token foi resolvido após retokenizar seu texto original (com as quebras de linha intactas) e reunir nomes quebrados por uma quebra de linha ou um hífen; nenhuma regra de separação o dividiu. A lista completa de regras está em {12}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "15d780f26953f3db": {
   "src": "{0}. regulatory_status",
   "t": "{0}. regulatory_status",
@@ -1937,6 +1943,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "95d3c2bac6bb1910": {
+  "src": "By an explicit ordered procedure: HTML-entity decode, character stripping, whitespace collapse and upper-casing, then exact inventory match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Tokens that no method resolves are re-split by explicit rules into matched names plus unresolved_residual text; nothing is fuzzy. Anything that fails all of these is kept verbatim and recorded as unresolved rather than guessed. The method used for each token is shipped as the {0}-row ingredient_name_map table, so every decision is auditable.",
+  "t": "Por um procedimento explícito e ordenado: decodificação de entidades HTML, remoção de caracteres, colapso de espaços em branco e conversão para maiúsculas e, em seguida, correspondência exata com o inventário, correspondência limpa, um pequeno mapa de erros de digitação com citação, remoção de percentuais, remoção de parênteses, um mapa de sinônimos, divisão de variantes com barra e divisão de concatenações somente quando ambas as metades correspondem ao inventário. Os tokens que nenhum método resolve são redivididos por regras explícitas em nomes reconhecidos mais texto unresolved_residual; nada é aproximado. Tudo o que falha em todas essas etapas é mantido literalmente e registrado como unresolved, em vez de adivinhado. O método usado para cada token é fornecido na tabela ingredient_name_map de {0} linhas, de modo que cada decisão é auditável.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "964bd5656c7a016e": {
   "src": "PRODUCT",
   "t": "PRODUTO",
@@ -2540,6 +2552,12 @@
  "bbcead3544c516d9": {
   "src": "The re-split rules applied to {0}, {1}-joined; {2} when not re-split",
   "t": "As regras de nova divisão aplicadas a {0}, unidas por {1}; {2} quando não houve nova divisão",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
+ "bc0867efb37aa119": {
+  "src": "By an explicit ordered procedure — entity decode, character strip, whitespace collapse, upper-case, then exact match, cleaned match, typo map, percent stripping, parenthesis stripping, synonym map, slash variant, and concatenation splitting only when both halves match. Tokens that no method resolves are re-split by explicit rules into matched names plus {0} text; nothing is fuzzy. Anything that fails all of them is recorded as {1}, never guessed. The method per token ships as the {2} table.",
+  "t": "Por um procedimento explícito e ordenado — decodificação de entidades, remoção de caracteres, colapso de espaços em branco, conversão para maiúsculas e, em seguida, correspondência exata, correspondência limpa, mapa de erros de digitação, remoção de percentuais, remoção de parênteses, mapa de sinônimos, variante com barra e divisão de concatenações somente quando ambas as metades correspondem. Os tokens que nenhum método resolve são redivididos por regras explícitas em nomes reconhecidos mais texto {0}; nada é aproximado. Tudo o que falha em todas essas etapas é registrado como {1}, nunca adivinhado. O método de cada token é fornecido na tabela {2}.",
   "by": "claude-opus-5.5",
   "at": "2026-09-25"
  },

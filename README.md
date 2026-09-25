@@ -158,8 +158,8 @@ instead of taking it on trust.
 same seven tables, the same columns, as CSV and Parquet:
 
 * **200 products**, with their brands, their **1,104** referenced
-  ingredients, all their composition links, and the name-map rows for those
-  ingredients.
+  ingredients, all their composition links, and the name-map rows for the
+  sampled products' own label tokens.
 * Selection is disclosed and reproducible
   ([`scripts/make_sample.py`](scripts/make_sample.py)): a product is
   *eligible* when at least 80% of its linked ingredients are CosIng-matched;

@@ -9,7 +9,7 @@ One product. One price. Snapshot 2026.09.
 | **Brands** | the 200 products' brands | 5,925 |
 | **Distinct canonical INCI names** | 1,104 | 46,009 |
 | **Composition links** | the 200 products' links | 341,904 |
-| **`ingredient_name_map` rows** | for the sampled ingredients | 77,059 |
+| **`ingredient_name_map` rows** | the rows for the sampled products' own label tokens | 77,059 |
 | **Tables** | all 7 | all 7 |
 | **Formats** | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet |
 | **CosIng enrichment columns** | included | included |
