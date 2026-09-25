@@ -128,11 +128,13 @@ split. A translation synonym printed next to its canonical name (`AQUA` …
 short misspelt fragment at a line end leaves the next line's first name
 unlinked. A name cut by a period, colon or line break (`BENZYL. ALCOHOL`, or
 `SHEA` at a line end with `BUTTER` on the next line) is re-joined when the words on
-one side resolve on their own to one name, the one to four words on the other
-side do not, and together they are exactly one different CosIng name
-(`rejoin`); a cut is never moved next to a slash. A slash pair broken at the
-slash by a line break or spaced dash is still one pair: one link when its
-names share a CAS number or a canonical, otherwise neither is linked. A
+one side are the longest name there, one to four words on the other side
+belong to no name of their own, and together they are exactly one different
+name (`rejoin`). A complete name on either side of the separator is never cut
+into (`SODIUM HYALURONATE. RH-OLIGOPEPTIDE-1` stays two names), and a cut is
+never moved next to a slash. When both halves of a slash pair broken at the
+slash by a line break or spaced dash resolve, it is still one pair: one link
+when they share a CAS number or a canonical, otherwise neither is linked. A
 same-CAS pair inside a list without separators is one name of the
 full-coverage split. Every recovered name must match the CosIng inventory, or
 the cited typo and synonym maps, exactly. `slash_same_cas` never merges two
