@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4">
     <title>INCIDB — Skincare & Cosmetics INCI Database for Developers</title>
-    <meta name="description" content="18,583 cosmetic products, 46,008 canonical INCI names and 342,208 ordered composition links, with EU CosIng enrichment on 83.9% of label occurrences. CSV + Parquet, $79.">
+    <meta name="description" content="18,583 products, 46,008 canonical INCI names, 342,208 composition links; CosIng on 83.9% of occurrences; EU fragrance-allergen and Annex II–VI tables. $79.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://incidb.dataengineered.io/">
     <!-- i18n:alternates -->
@@ -27,7 +27,7 @@
 
     <!-- OpenGraph Meta Tags -->
     <meta property="og:title" content="INCIDB — The Skincare & Cosmetics INCI Database for Developers">
-    <meta property="og:description" content="18,583 products, 46,008 canonical INCI names, 342,208 ordered composition links and the 77,257-row name map that shows how every label token was resolved. CSV + Parquet.">
+    <meta property="og:description" content="18,583 products, 46,008 canonical INCI names, 342,208 ordered composition links, the 77,257-row name map, and EU fragrance-allergen (Reg. (EU) 2023/1545) and Annex II–VI status tables. CSV + Parquet.">
     <meta property="og:url" content="https://incidb.dataengineered.io/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="INCIDB — Skincare & Cosmetics INCI Database">
@@ -36,7 +36,7 @@
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="INCIDB — Skincare & Cosmetics INCI Database">
-    <meta name="twitter:description" content="Normalised label composition data: 18,583 products, 46,008 canonical INCI names, measured CosIng coverage published up front.">
+    <meta name="twitter:description" content="Normalised label composition data: 18,583 products, 46,008 canonical INCI names, EU fragrance-allergen and Annex II–VI tables, measured CosIng coverage up front.">
     <meta name="twitter:image" content="https://incidb.dataengineered.io/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +52,7 @@
         "@context": "https://schema.org",
         "@type": "Dataset",
         "name": "INCIDB Skincare & Cosmetics INCI Database",
-        "description": "Normalised relational snapshot of cosmetic ingredient labels: 18,583 products, 5,925 brands, 46,008 distinct canonical INCI names, 342,208 ordered product-ingredient composition links and a 77,257-row raw-to-canonical name map. Product data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS and EC numbers, chemical descriptions, Annex II-VI membership) joined on exact canonical name from the European Commission CosIng inventory. Columns are NULL where the source has no value.",
+        "description": "Normalised relational snapshot of cosmetic ingredient labels: 18,583 products, 5,925 brands, 46,008 distinct canonical INCI names, 342,208 ordered product-ingredient composition links and a 77,257-row raw-to-canonical name map. Product data from Open Beauty Facts (ODbL); ingredient enrichment (functions, CAS and EC numbers, chemical descriptions, Annex II-VI membership) joined on exact canonical name from the European Commission CosIng inventory. EU regulatory overlay: fragrance_allergens (the Annex III labelling list of Regulation (EU) 2023/1545, with thresholds and transition dates) and regulatory_status (Annex II-VI entries with their conditions verbatim). Columns are NULL where the source has no value.",
         "url": "https://incidb.dataengineered.io/",
         "version": "2026.09",
         "license": "https://opendatacommons.org/licenses/odbl/1-0/",
