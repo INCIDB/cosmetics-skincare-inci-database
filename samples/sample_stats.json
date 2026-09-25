@@ -1,12 +1,12 @@
 {
   "allergen_flagged": 52,
   "brands": 153,
-  "ingredients": 1104,
-  "ingredients_cosing_matched": 907,
-  "ingredients_with_cas": 786,
-  "ingredients_with_functions": 896,
-  "links": 4067,
-  "name_map_rows": 1426,
+  "ingredients": 1106,
+  "ingredients_cosing_matched": 908,
+  "ingredients_with_cas": 787,
+  "ingredients_with_functions": 897,
+  "links": 4070,
+  "name_map_rows": 1434,
   "products": 200,
   "rated": 71
 }

@@ -7,14 +7,14 @@
  "totals": {
   "products": 18583,
   "brands": 5925,
-  "ingredient_names": 46009,
-  "links": 341904,
+  "ingredient_names": 46021,
+  "links": 342170,
   "categorised": 12860
  },
  "top_ingredients": [
   {
    "inci_name": "Aqua / Water",
-   "products": 13219,
+   "products": 13218,
    "share_pct": 71.1
   },
   {
@@ -39,7 +39,7 @@
   },
   {
    "inci_name": "SODIUM BENZOATE",
-   "products": 4987,
+   "products": 4986,
    "share_pct": 26.8
   },
   {
@@ -49,22 +49,22 @@
   },
   {
    "inci_name": "SODIUM CHLORIDE",
-   "products": 4341,
+   "products": 4340,
    "share_pct": 23.4
   },
   {
    "inci_name": "PHENOXYETHANOL",
-   "products": 3783,
-   "share_pct": 20.4
+   "products": 3781,
+   "share_pct": 20.3
   },
   {
    "inci_name": "SODIUM HYDROXIDE",
-   "products": 3484,
+   "products": 3483,
    "share_pct": 18.7
   },
   {
    "inci_name": "COCAMIDOPROPYL BETAINE",
-   "products": 3212,
+   "products": 3211,
    "share_pct": 17.3
   },
   {
@@ -74,13 +74,13 @@
   },
   {
    "inci_name": "BENZYL ALCOHOL",
-   "products": 2866,
+   "products": 2865,
    "share_pct": 15.4
   },
   {
    "inci_name": "SODIUM LAURETH SULFATE",
-   "products": 2686,
-   "share_pct": 14.5
+   "products": 2685,
+   "share_pct": 14.4
   },
   {
    "inci_name": "PROPYLENE GLYCOL",
@@ -99,17 +99,17 @@
   },
   {
    "inci_name": "XANTHAN GUM",
-   "products": 2486,
+   "products": 2485,
    "share_pct": 13.4
   },
   {
    "inci_name": "DIMETHICONE",
-   "products": 2328,
+   "products": 2329,
    "share_pct": 12.5
   },
   {
    "inci_name": "CETEARYL ALCOHOL",
-   "products": 2286,
+   "products": 2283,
    "share_pct": 12.3
   }
  ],
@@ -121,7 +121,7 @@
   },
   {
    "group": "EU-listed fragrance allergens",
-   "products": 8721,
+   "products": 8720,
    "share_pct": 46.9
   },
   {
@@ -131,8 +131,8 @@
   },
   {
    "group": "Phenoxyethanol",
-   "products": 3783,
-   "share_pct": 20.4
+   "products": 3781,
+   "share_pct": 20.3
   },
   {
    "group": "Sulfate surfactants (SLS / SLES)",
@@ -209,37 +209,37 @@
   "buckets": [
    {
     "bucket": "1 to 5",
-    "products": 2413,
+    "products": 2412,
     "share_pct": 13.0
    },
    {
     "bucket": "6 to 10",
-    "products": 1836,
+    "products": 1835,
     "share_pct": 9.9
    },
    {
     "bucket": "11 to 15",
-    "products": 3413,
+    "products": 3415,
     "share_pct": 18.4
    },
    {
     "bucket": "16 to 20",
-    "products": 3891,
+    "products": 3887,
     "share_pct": 20.9
    },
    {
     "bucket": "21 to 30",
-    "products": 4845,
-    "share_pct": 26.1
+    "products": 4839,
+    "share_pct": 26.0
    },
    {
     "bucket": "31 to 50",
-    "products": 1922,
-    "share_pct": 10.3
+    "products": 1931,
+    "share_pct": 10.4
    },
    {
     "bucket": "51 or more",
-    "products": 263,
+    "products": 264,
     "share_pct": 1.4
    }
   ],
@@ -329,8 +329,8 @@
   "rows": [
    {
     "inci_name": "AQUA",
-    "products": 7796,
-    "share_pct": 42.0
+    "products": 7795,
+    "share_pct": 41.9
    },
    {
     "inci_name": "WATER",
@@ -390,7 +390,7 @@
   ]
  },
  "annex_iii": {
-  "products_with_any": 12677,
+  "products_with_any": 12676,
   "share_pct": 68.2,
   "names_in_catalogue": 304,
   "top": [
@@ -406,12 +406,12 @@
    },
    {
     "inci_name": "SODIUM HYDROXIDE",
-    "products": 3484,
+    "products": 3483,
     "share_pct": 18.7
    },
    {
     "inci_name": "BENZYL ALCOHOL",
-    "products": 2866,
+    "products": 2865,
     "share_pct": 15.4
    },
    {
@@ -447,101 +447,101 @@
   ]
  },
  "functions": {
-  "denominator_positions": 283487,
+  "denominator_positions": 283673,
   "rows": [
    {
     "function": "FRAGRANCE",
-    "positions": 77965,
+    "positions": 77960,
     "share_pct": 27.5
    },
    {
     "function": "SKIN CONDITIONING",
-    "positions": 67112,
+    "positions": 67094,
     "share_pct": 23.7
    },
    {
     "function": "VISCOSITY CONTROLLING",
-    "positions": 60653,
+    "positions": 60640,
     "share_pct": 21.4
    },
    {
     "function": "PERFUMING",
-    "positions": 60313,
+    "positions": 60314,
     "share_pct": 21.3
    },
    {
     "function": "SOLVENT",
-    "positions": 48314,
+    "positions": 48306,
     "share_pct": 17.0
    },
    {
     "function": "SKIN CONDITIONING - EMOLLIENT",
-    "positions": 36980,
+    "positions": 36968,
     "share_pct": 13.0
    },
    {
     "function": "SURFACTANT - CLEANSING",
-    "positions": 36496,
+    "positions": 36484,
     "share_pct": 12.9
    },
    {
     "function": "SURFACTANT - EMULSIFYING",
-    "positions": 34319,
+    "positions": 34310,
     "share_pct": 12.1
    },
    {
     "function": "HAIR CONDITIONING",
-    "positions": 32742,
+    "positions": 32735,
     "share_pct": 11.5
    },
    {
     "function": "HUMECTANT",
-    "positions": 23821,
+    "positions": 23817,
     "share_pct": 8.4
    },
    {
     "function": "PRESERVATIVE",
-    "positions": 22705,
+    "positions": 22697,
     "share_pct": 8.0
    },
    {
     "function": "CLEANSING",
-    "positions": 19200,
+    "positions": 19194,
     "share_pct": 6.8
    }
   ]
  },
  "coverage": {
-  "cosing_matched_names": 5343,
+  "cosing_matched_names": 5345,
   "cosing_matched_names_pct": 11.6,
-  "cosing_matched_positions": 287002,
+  "cosing_matched_positions": 287187,
   "cosing_matched_positions_pct": 83.9,
-  "name_map_rows": 77059,
+  "name_map_rows": 77219,
   "methods": [
    {
     "method": "unresolved",
-    "rows": 35256,
-    "share_pct": 45.8
+    "rows": 35262,
+    "share_pct": 45.7
    },
    {
     "method": "split",
-    "rows": 12019,
-    "share_pct": 15.6
+    "rows": 11976,
+    "share_pct": 15.5
    },
    {
     "method": "exact",
-    "rows": 9413,
+    "rows": 9390,
     "share_pct": 12.2
    },
    {
     "method": "cleaned",
-    "rows": 7725,
+    "rows": 7713,
     "share_pct": 10.0
    },
    {
     "method": "unresolved_residual",
-    "rows": 7018,
-    "share_pct": 9.1
+    "rows": 7066,
+    "share_pct": 9.2
    },
    {
     "method": "paren_stripped",
@@ -559,14 +559,14 @@
     "share_pct": 0.4
    },
    {
+    "method": "slash_same_cas",
+    "rows": 237,
+    "share_pct": 0.3
+   },
+   {
     "method": "percent_stripped",
     "rows": 159,
     "share_pct": 0.2
-   },
-   {
-    "method": "slash_same_cas",
-    "rows": 53,
-    "share_pct": 0.1
    },
    {
     "method": "typo_map",

@@ -100,11 +100,11 @@
 <ul>
 <li><strong>18.583 produtos</strong> — uma linha por produto do Open Beauty Facts com uma lista de ingredientes utilizável na embalagem, com a declaração bruta mantida literalmente para que a análise possa ser refeita.</li>
 <li><strong>5.925 marcas</strong> — identidades de marca conforme registradas na origem.</li>
-<li><strong>46.009 nomes INCI canônicos distintos</strong> — resultado da canonicalização de cada token bruto dos rótulos, enriquecidos com o CosIng onde o CosIng os lista.</li>
-<li><strong>341.904 vínculos de composição ordenados</strong> — preservando a ordem do rótulo em <code>position_index</code>.</li>
-<li><strong>77.059 linhas do mapa de nomes</strong> — como cada token bruto dos rótulos foi resolvido e por qual método.</li>
+<li><strong>46.021 nomes INCI canônicos distintos</strong> — resultado da canonicalização de cada token bruto dos rótulos, enriquecidos com o CosIng onde o CosIng os lista.</li>
+<li><strong>342.170 vínculos de composição ordenados</strong> — preservando a ordem do rótulo em <code>position_index</code>.</li>
+<li><strong>77.219 linhas do mapa de nomes</strong> — como cada token bruto dos rótulos foi resolvido e por qual método.</li>
 <li><strong>269 linhas de <code>fragrance_allergens</code></strong> — as entradas de alergênicos de fragrância do Anexo III da UE, uma linha por nome legal e correspondência no INCIDB, incluindo linhas de revisão e nomes sem correspondência.</li>
-<li><strong>631 linhas de <code>regulatory_status</code></strong> — o status dos Anexos II–VI da UE por ingrediente e entrada de lista, condições literais. Uma linha só existe onde uma lista diz algo.</li>
+<li><strong>633 linhas de <code>regulatory_status</code></strong> — o status dos Anexos II–VI da UE por ingrediente e entrada de lista, condições literais. Uma linha só existe onde uma lista diz algo.</li>
 </ul>
 </div>
 <div class="doc-section">
@@ -121,10 +121,10 @@
 <h2>3. Cobertura medida</h2>
 <p>Apresentada de duas formas, porque as duas diferem em uma ordem de grandeza e citar apenas uma induziria ao erro:</p>
 <ul>
-<li><strong>Correspondência CosIng (qualquer):</strong> 11,6% dos 46.009 nomes canônicos distintos; 83,9% das 341.904 ocorrências de ingredientes nos rótulos dos produtos.</li>
+<li><strong>Correspondência CosIng (qualquer):</strong> 11,6% dos 46.021 nomes canônicos distintos; 83,9% das 342.170 ocorrências de ingredientes nos rótulos dos produtos.</li>
 <li><strong><code>functions</code>:</strong> 11,5% dos nomes distintos; 82,9% das ocorrências em rótulos.</li>
 <li><strong><code>cas_number</code>:</strong> 8,7% dos nomes distintos; 77,6% das ocorrências em rótulos.</li>
-<li><strong><code>chemical_description</code>:</strong> 9,0% dos nomes distintos, 4.099 valores distintos.</li>
+<li><strong><code>chemical_description</code>:</strong> 9,0% dos nomes distintos, 4.101 valores distintos.</li>
 </ul>
 <p>Um corpus de rótulos contém muito mais strings distintas — variantes botânicas, grafias multilíngues, tokens de marketing — do que qualquer inventário regulatório lista, e é por isso que o primeiro número de cada par é baixo. As posições em um rótulo real são preenchidas, em sua esmagadora maioria, por ingredientes que o CosIng cobre, e é por isso que o segundo é alto. Nenhum dos dois números, isoladamente, descreve os dados.</p>
 </div>

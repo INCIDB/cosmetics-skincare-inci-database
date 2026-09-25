@@ -119,11 +119,11 @@
                     <tbody>
                         <tr><td><code>products</code></td><td>18,583</td></tr>
                         <tr><td><code>brands</code></td><td>5,925</td></tr>
-                        <tr><td><code>ingredients</code></td><td>46,009</td></tr>
-                        <tr><td><code>product_ingredients</code></td><td>341,904</td></tr>
-                        <tr><td><code>ingredient_name_map</code></td><td>77,059</td></tr>
+                        <tr><td><code>ingredients</code></td><td>46,021</td></tr>
+                        <tr><td><code>product_ingredients</code></td><td>342,170</td></tr>
+                        <tr><td><code>ingredient_name_map</code></td><td>77,219</td></tr>
                         <tr><td><code>fragrance_allergens</code></td><td>269</td></tr>
-                        <tr><td><code>regulatory_status</code></td><td>631</td></tr>
+                        <tr><td><code>regulatory_status</code></td><td>633</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -171,7 +171,7 @@
         <!-- Ingredients -->
         <div class="doc-section">
             <h2>3. ingredients</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">One row per distinct canonical INCI name — 46,009 of them. Every CosIng-derived column is populated only where the canonical name matched the European Commission CosIng inventory on an exact name match, and is <code>NULL</code> otherwise.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">One row per distinct canonical INCI name — 46,021 of them. Every CosIng-derived column is populated only where the canonical name matched the European Commission CosIng inventory on an exact name match, and is <code>NULL</code> otherwise.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -202,13 +202,13 @@
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr><th>Column</th><th>Share of the 46,009 distinct names</th><th>Share of the 341,904 label occurrences</th></tr>
+                        <tr><th>Column</th><th>Share of the 46,021 distinct names</th><th>Share of the 342,170 label occurrences</th></tr>
                     </thead>
                     <tbody>
                         <tr><td>CosIng match (any)</td><td>11.6%</td><td>83.9%</td></tr>
                         <tr><td><code>functions</code></td><td>11.5%</td><td>82.9%</td></tr>
                         <tr><td><code>cas_number</code></td><td>8.7%</td><td>77.6%</td></tr>
-                        <tr><td><code>chemical_description</code></td><td>9.0% · 4,099 distinct values</td><td>—</td></tr>
+                        <tr><td><code>chemical_description</code></td><td>9.0% · 4,101 distinct values</td><td>—</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -232,7 +232,7 @@
         <!-- Product Ingredients -->
         <div class="doc-section">
             <h2>4. product_ingredients</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">341,904 ordered composition links, preserving the order in which ingredients are declared on the label.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">342,170 ordered composition links, preserving the order in which ingredients are declared on the label.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -251,7 +251,7 @@
         <!-- Name map -->
         <div class="doc-section">
             <h2>5. ingredient_name_map</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">77,059 rows: the canonicalisation evidence, shipped with the data so every decision the pipeline made can be audited or overridden.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">77,219 rows: the canonicalisation evidence, shipped with the data so every decision the pipeline made can be audited or overridden.</p>
             <div class="table-container">
                 <table>
                     <thead>

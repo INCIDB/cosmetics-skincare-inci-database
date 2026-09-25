@@ -119,11 +119,11 @@
 <tbody>
 <tr><td><code>products</code></td><td>18 583</td></tr>
 <tr><td><code>brands</code></td><td>5 925</td></tr>
-<tr><td><code>ingredients</code></td><td>46 009</td></tr>
-<tr><td><code>product_ingredients</code></td><td>341 904</td></tr>
-<tr><td><code>ingredient_name_map</code></td><td>77 059</td></tr>
+<tr><td><code>ingredients</code></td><td>46 021</td></tr>
+<tr><td><code>product_ingredients</code></td><td>342 170</td></tr>
+<tr><td><code>ingredient_name_map</code></td><td>77 219</td></tr>
 <tr><td><code>fragrance_allergens</code></td><td>269</td></tr>
-<tr><td><code>regulatory_status</code></td><td>631</td></tr>
+<tr><td><code>regulatory_status</code></td><td>633</td></tr>
 </tbody>
 </table>
 </div>
@@ -168,7 +168,7 @@
 <!-- Ingredients -->
 <div class="doc-section">
 <h2>3. ingredients</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">Une ligne par nom INCI canonique distinct — 46 009 au total. Chaque colonne issue de CosIng n’est renseignée que si le nom canonique correspond exactement à un nom de l’inventaire CosIng de la Commission européenne, et vaut <code>NULL</code> sinon.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Une ligne par nom INCI canonique distinct — 46 021 au total. Chaque colonne issue de CosIng n’est renseignée que si le nom canonique correspond exactement à un nom de l’inventaire CosIng de la Commission européenne, et vaut <code>NULL</code> sinon.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -198,13 +198,13 @@
 <div class="table-container">
 <table>
 <thead>
-<tr><th>Colonne</th><th>Part des 46 009 noms distincts</th><th>Part des 341 904 occurrences sur les étiquettes</th></tr>
+<tr><th>Colonne</th><th>Part des 46 021 noms distincts</th><th>Part des 342 170 occurrences sur les étiquettes</th></tr>
 </thead>
 <tbody>
 <tr><td>Correspondance CosIng (toutes)</td><td>11,6%</td><td>83,9%</td></tr>
 <tr><td><code>functions</code></td><td>11,5%</td><td>82,9%</td></tr>
 <tr><td><code>cas_number</code></td><td>8,7%</td><td>77,6%</td></tr>
-<tr><td><code>chemical_description</code></td><td>9,0% · 4 099 valeurs distinctes</td><td>—</td></tr>
+<tr><td><code>chemical_description</code></td><td>9,0% · 4 101 valeurs distinctes</td><td>—</td></tr>
 </tbody>
 </table>
 </div>
@@ -224,7 +224,7 @@
 <!-- Product Ingredients -->
 <div class="doc-section">
 <h2>4. product_ingredients</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">341 904 liens de composition ordonnés, qui conservent l’ordre dans lequel les ingrédients sont déclarés sur l’étiquette.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">342 170 liens de composition ordonnés, qui conservent l’ordre dans lequel les ingrédients sont déclarés sur l’étiquette.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -242,7 +242,7 @@
 <!-- Name map -->
 <div class="doc-section">
 <h2>5. ingredient_name_map</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">77 059 lignes : les preuves de la canonicalisation, livrées avec les données pour que chaque décision du pipeline puisse être auditée ou corrigée.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">77 219 lignes : les preuves de la canonicalisation, livrées avec les données pour que chaque décision du pipeline puisse être auditée ou corrigée.</p>
 <div class="table-container">
 <table>
 <thead>

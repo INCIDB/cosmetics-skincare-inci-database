@@ -15,11 +15,11 @@ disagree.
 | :--- | ---: |
 | `products` | 18,583 |
 | `brands` | 5,925 |
-| `ingredients` | 46,009 |
-| `product_ingredients` | 341,904 |
-| `ingredient_name_map` | 77,059 |
+| `ingredients` | 46,021 |
+| `product_ingredients` | 342,170 |
+| `ingredient_name_map` | 77,219 |
 | `fragrance_allergens` | 269 |
-| `regulatory_status` | 631 |
+| `regulatory_status` | 633 |
 
 ---
 
@@ -76,12 +76,12 @@ Commission CosIng inventory on an exact name match; they are `NULL` otherwise.
 
 ### Coverage of the CosIng columns — both views
 
-| Column | Share of the 46,009 distinct names | Share of the 341,904 label occurrences |
+| Column | Share of the 46,021 distinct names | Share of the 342,170 label occurrences |
 | :--- | ---: | ---: |
 | CosIng match (any) | 11.6% | 83.9% |
 | `functions` | 11.5% | 82.9% |
 | `cas_number` | 8.7% | 77.6% |
-| `chemical_description` | 9.0% (4,099 distinct values) | — |
+| `chemical_description` | 9.0% (4,101 distinct values) | — |
 
 The left column counts distinct names; the right counts ingredient
 occurrences across product labels. They differ by an order of magnitude
