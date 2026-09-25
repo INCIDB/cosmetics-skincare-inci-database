@@ -119,11 +119,11 @@
                     <tbody>
                         <tr><td><code>products</code></td><td>18,583</td></tr>
                         <tr><td><code>brands</code></td><td>5,925</td></tr>
-                        <tr><td><code>ingredients</code></td><td>46,973</td></tr>
-                        <tr><td><code>product_ingredients</code></td><td>318,758</td></tr>
-                        <tr><td><code>ingredient_name_map</code></td><td>55,426</td></tr>
-                        <tr><td><code>fragrance_allergens</code></td><td>268</td></tr>
-                        <tr><td><code>regulatory_status</code></td><td>614</td></tr>
+                        <tr><td><code>ingredients</code></td><td>46,021</td></tr>
+                        <tr><td><code>product_ingredients</code></td><td>342,170</td></tr>
+                        <tr><td><code>ingredient_name_map</code></td><td>77,219</td></tr>
+                        <tr><td><code>fragrance_allergens</code></td><td>269</td></tr>
+                        <tr><td><code>regulatory_status</code></td><td>633</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -171,7 +171,7 @@
         <!-- Ingredients -->
         <div class="doc-section">
             <h2>3. ingredients</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">One row per distinct canonical INCI name — 46,973 of them. Every CosIng-derived column is populated only where the canonical name matched the European Commission CosIng inventory on an exact name match, and is <code>NULL</code> otherwise.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">One row per distinct canonical INCI name — 46,021 of them. Every CosIng-derived column is populated only where the canonical name matched the European Commission CosIng inventory on an exact name match, and is <code>NULL</code> otherwise.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -202,13 +202,13 @@
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr><th>Column</th><th>Share of the 46,973 distinct names</th><th>Share of the 318,758 label occurrences</th></tr>
+                        <tr><th>Column</th><th>Share of the 46,021 distinct names</th><th>Share of the 342,170 label occurrences</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>CosIng match (any)</td><td>11.0%</td><td>82.5%</td></tr>
-                        <tr><td><code>functions</code></td><td>10.9%</td><td>81.5%</td></tr>
-                        <tr><td><code>cas_number</code></td><td>8.3%</td><td>76.4%</td></tr>
-                        <tr><td><code>chemical_description</code></td><td>8.5% · 3,965 distinct values</td><td>—</td></tr>
+                        <tr><td>CosIng match (any)</td><td>11.6%</td><td>83.9%</td></tr>
+                        <tr><td><code>functions</code></td><td>11.5%</td><td>82.9%</td></tr>
+                        <tr><td><code>cas_number</code></td><td>8.7%</td><td>77.6%</td></tr>
+                        <tr><td><code>chemical_description</code></td><td>9.0% · 4,101 distinct values</td><td>—</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -221,18 +221,18 @@
             </div>
 
             <div class="note">
-                <strong>Method — comedogenic ratings.</strong> 145 ingredients carry a rating on the 0–5 scale, transcribed from Table I (pp. 324–326) of Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Where the paper prints a range rather than a single grade, the rating is left <code>NULL</code>. Absence of a rating means "not covered by the cited source", never "safe".
+                <strong>Method — comedogenic ratings.</strong> 144 ingredients carry a rating on the 0–5 scale, transcribed from Table I (pp. 324–326) of Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Where the paper prints a range rather than a single grade, the rating is left <code>NULL</code>. Absence of a rating means "not covered by the cited source", never "safe".
             </div>
 
             <div class="note">
-                <strong>Method — fungal-acne flag.</strong> A rule-derived heuristic, not a measured property: no per-ingredient <em>Malassezia</em> assay exists to transcribe. The rule flags C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, giving 270 flags. Basis: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), with the chain-length window from Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Specific oils, butters and waxes are not flagged — the literature does not support ingredient-level calls on them.
+                <strong>Method — fungal-acne flag.</strong> A rule-derived heuristic, not a measured property: no per-ingredient <em>Malassezia</em> assay exists to transcribe. The rule flags C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, giving 272 flags. Basis: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), with the chain-length window from Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Specific oils, butters and waxes are not flagged — the literature does not support ingredient-level calls on them.
             </div>
         </div>
 
         <!-- Product Ingredients -->
         <div class="doc-section">
             <h2>4. product_ingredients</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">318,758 ordered composition links, preserving the order in which ingredients are declared on the label.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">342,170 ordered composition links, preserving the order in which ingredients are declared on the label.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -241,7 +241,7 @@
                     <tbody>
                         <tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>products.product_id</code></td><td><code>68597</code></td></tr>
                         <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>ingredients.ingredient_id</code></td><td><code>1214</code></td></tr>
-                        <tr><td><code>position_index</code></td><td><code class="type-tag">INTEGER</code></td><td>1-indexed label position; lower means declared earlier, i.e. present in a higher proportion</td><td><code>1</code></td></tr>
+                        <tr><td><code>position_index</code></td><td><code class="type-tag">INTEGER</code></td><td>1-indexed label position, contiguous 1..n per product (a repeated ingredient keeps its first position); lower means declared earlier, i.e. present in a higher proportion</td><td><code>1</code></td></tr>
                         <tr><td><code>concentration_percentage</code></td><td><code class="type-tag">STRING</code></td><td>Always <code>NULL</code> in this snapshot — labels almost never declare percentages</td><td></td></tr>
                     </tbody>
                 </table>
@@ -251,7 +251,7 @@
         <!-- Name map -->
         <div class="doc-section">
             <h2>5. ingredient_name_map</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">55,426 rows: the canonicalisation evidence, shipped with the data so every decision the pipeline made can be audited or overridden.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">77,219 rows: the canonicalisation evidence, shipped with the data so every decision the pipeline made can be audited or overridden.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -263,6 +263,8 @@
                         <tr><td><code>method</code></td><td><code class="type-tag">STRING</code></td><td>How it resolved — see below</td><td><code>paren_stripped</code></td></tr>
                         <tr><td><code>confidence</code></td><td><code class="type-tag">FLOAT</code></td><td>Confidence attached to the method</td><td><code>0.9</code></td></tr>
                         <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>ingredients.ingredient_id</code></td><td><code>162</code></td></tr>
+                        <tr><td><code>part_index</code></td><td><code class="type-tag">INTEGER</code></td><td>Order of this part within <code>raw_name</code>; 1 when the token was not cut</td><td><code>2</code></td></tr>
+                        <tr><td><code>split_rule</code></td><td><code class="type-tag">STRING</code></td><td>The re-split rules applied to <code>raw_name</code>, <code>+</code>-joined; <code>NULL</code> when not re-split</td><td><code>bracket+period</code></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -279,9 +281,14 @@
                         <tr><td><code>synonym_map</code></td><td>Resolved through an explicit synonym table</td></tr>
                         <tr><td><code>slash_variant</code></td><td>A slash-joined multilingual variant</td></tr>
                         <tr><td><code>split</code></td><td>A run-together token split into two names, both of which matched the inventory</td></tr>
+                        <tr><td><code>slash_same_cas</code></td><td>Two slash-joined CosIng names that share a CAS number (<code>CI 77891 / TITANIUM DIOXIDE</code>): one ingredient, mapped to the first-listed name</td></tr>
+                        <tr><td><code>unresolved_residual</code></td><td>Unmatched text left between names recovered by the re-split, kept in label order, never guessed</td></tr>
                         <tr><td><code>unresolved</code></td><td>No canonical match — kept verbatim and flagged, never guessed</td></tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="note">
+                <strong>Method — re-split.</strong> Tokens that no method resolves are re-split by explicit rules (unclosed brackets, <code>(and)</code>/<code>&amp;</code>, bullets, colons, <code>. </code> separators with an abbreviation guard, the last ingredient/"contains" marker, spacing around <code>/</code>, newlines and spaced dashes only where re-joining does not resolve, and a strict full-coverage split in which every word must belong to a matched name). Rules run only on unresolved tokens; nothing is fuzzy, and every recovered name must match the CosIng inventory or the cited typo and synonym maps exactly. <code>slash_same_cas</code> carries 0.75. A part cut out of a token carries its method's usual confidence minus 0.1, and <code>unresolved_residual</code> rows carry 0.0. <code>retokenise</code> in <code>split_rule</code> means the token resolved after re-tokenising its original text (line breaks intact) and re-joining line- or dash-wrapped names; no separator rule split it. The full rule list is in <code>DATA_DICTIONARY.md</code>.
             </div>
             <div class="note">
                 <code>unresolved</code> is the largest bucket by distinct token and a small one by label occurrence — the same long-tail effect that produces the two coverage columns above.

@@ -101,11 +101,11 @@
             <ul>
                 <li><strong>18,583 products</strong> — one row per Open Beauty Facts product carrying a usable on-pack ingredient declaration, with the raw declaration kept verbatim so the parse can be re-derived.</li>
                 <li><strong>5,925 brands</strong> — brand identities as recorded upstream.</li>
-                <li><strong>46,973 distinct canonical INCI names</strong> — the result of canonicalising every raw label token, enriched from CosIng where CosIng lists them.</li>
-                <li><strong>318,758 ordered composition links</strong> — preserving label order in <code>position_index</code>.</li>
-                <li><strong>55,426 name-map rows</strong> — how each raw label token was resolved, and by which method.</li>
-                <li><strong>268 <code>fragrance_allergens</code> rows</strong> — the EU Annex III fragrance-allergen entries, one row per legal name and INCIDB match, review rows and unmatched names included.</li>
-                <li><strong>614 <code>regulatory_status</code> rows</strong> — EU Annex II–VI status per ingredient and list entry, conditions verbatim. A row exists only where a list says something.</li>
+                <li><strong>46,021 distinct canonical INCI names</strong> — the result of canonicalising every raw label token, enriched from CosIng where CosIng lists them.</li>
+                <li><strong>342,170 ordered composition links</strong> — preserving label order in <code>position_index</code>.</li>
+                <li><strong>77,219 name-map rows</strong> — how each raw label token was resolved, and by which method.</li>
+                <li><strong>269 <code>fragrance_allergens</code> rows</strong> — the EU Annex III fragrance-allergen entries, one row per legal name and INCIDB match, review rows and unmatched names included.</li>
+                <li><strong>633 <code>regulatory_status</code> rows</strong> — EU Annex II–VI status per ingredient and list entry, conditions verbatim. A row exists only where a list says something.</li>
             </ul>
         </div>
 
@@ -115,8 +115,8 @@
             <ul>
                 <li><strong>Open Beauty Facts</strong> — the product corpus (barcodes, brands, the source's own <code>categories_tags</code>, raw ingredient declarations) under the Open Database License (ODbL).</li>
                 <li><strong>European Commission CosIng</strong> — the ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names are <code>NULL</code> in every CosIng-derived column, never a placeholder. The Annex II–VI exports also feed <code>regulatory_status</code>, matched by the CosIng glossary name or the CosIng "Identified INGREDIENTS" name only (no CAS route). Absence of a row is not a status, and nothing in it is legal advice.</li>
-                <li><strong>EU fragrance allergens.</strong> The 81 labelling entries of Annex III to Regulation (EC) 1223/2009, as amended by Regulation (EU) 2023/1545 (consolidated text of 18.05.2026), are matched to INCIDB by exact INCI name, then by the collective label name the Regulation prescribes (e.g. "Rose Ketones"), then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. 121 names are flagged; 43.9% of products contain at least one. About 6.4% of products list ingredients as unsplit text that the allergen flags do not reach. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.</li>
-                <li><strong>Authored layer</strong> — 145 comedogenic ratings transcribed from one published table, and 270 rule-derived fungal-acne flags. Both carry their citation per row in <code>rating_source</code>, and are <code>NULL</code> everywhere else.</li>
+                <li><strong>EU fragrance allergens.</strong> The 81 labelling entries of Annex III to Regulation (EC) 1223/2009, as amended by Regulation (EU) 2023/1545 (consolidated text of 18.05.2026), are matched to INCIDB by exact INCI name, then by the collective label name the Regulation prescribes (e.g. "Rose Ketones"), then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. 121 names are flagged; 46.9% of products contain at least one. About 2.7% of products list ingredients as unsplit text that the allergen flags do not reach. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.</li>
+                <li><strong>Authored layer</strong> — 144 comedogenic ratings transcribed from one published table, and 272 rule-derived fungal-acne flags. Both carry their citation per row in <code>rating_source</code>, and are <code>NULL</code> everywhere else.</li>
             </ul>
         </div>
 
@@ -124,17 +124,17 @@
             <h2>3. Measured coverage</h2>
             <p>Reported two ways, because the two differ by an order of magnitude and quoting only one would mislead:</p>
             <ul>
-                <li><strong>CosIng match (any):</strong> 11.0% of the 46,973 distinct canonical names; 82.5% of the 318,758 ingredient occurrences across product labels.</li>
-                <li><strong><code>functions</code>:</strong> 10.9% of distinct names; 81.5% of label occurrences.</li>
-                <li><strong><code>cas_number</code>:</strong> 8.3% of distinct names; 76.4% of label occurrences.</li>
-                <li><strong><code>chemical_description</code>:</strong> 8.5% of distinct names, 3,965 distinct values.</li>
+                <li><strong>CosIng match (any):</strong> 11.6% of the 46,021 distinct canonical names; 83.9% of the 342,170 ingredient occurrences across product labels.</li>
+                <li><strong><code>functions</code>:</strong> 11.5% of distinct names; 82.9% of label occurrences.</li>
+                <li><strong><code>cas_number</code>:</strong> 8.7% of distinct names; 77.6% of label occurrences.</li>
+                <li><strong><code>chemical_description</code>:</strong> 9.0% of distinct names, 4,101 distinct values.</li>
             </ul>
             <p>A label corpus contains far more distinct strings — botanical variants, multilingual spellings, marketing tokens — than any regulatory inventory lists, which is why the first number in each pair is low. The slots on a real label are filled overwhelmingly by ingredients CosIng does cover, which is why the second is high. Neither number alone describes the data.</p>
         </div>
 
         <div class="doc-section">
             <h2>4. Canonicalisation</h2>
-            <p>Raw label tokens are resolved to canonical INCI names by an explicit ordered procedure — entity decode, character strip, whitespace collapse, upper-case, then exact match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Anything that fails all of them is kept verbatim and recorded as <code>unresolved</code>, never guessed. The method used is stored per row in <code>ingredient_name_map.method</code>, so every decision is auditable and reversible.</p>
+            <p>Raw label tokens are resolved to canonical INCI names by an explicit ordered procedure — entity decode, character strip, whitespace collapse, upper-case, then exact match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Tokens that none of them resolves are re-split by explicit rules (brackets, <code>(and)</code>, bullets, colons, <code>. </code> separators, line breaks), never fuzzily: every recovered name must match the inventory or the cited maps exactly, and unmatched text between recovered names is kept as <code>unresolved_residual</code>. A token that nothing resolves is kept verbatim and recorded as <code>unresolved</code>, never guessed. The method used is stored per row in <code>ingredient_name_map.method</code>, with <code>part_index</code> and <code>split_rule</code> recording each cut, so every decision is auditable and reversible.</p>
         </div>
 
         <div class="doc-section">

@@ -43,8 +43,14 @@ the sample reads better than the corpus average BY CONSTRUCTION.
 `ingredients`, `product_ingredients`, `ingredient_name_map`,
 `fragrance_allergens`, `regulatory_status`) restricted to the selected
 products — their own rows, their brands, the ingredients they link to, the
-ingredient_name_map rows for those ingredients, the product-ingredient links
-themselves, and the regulatory overlay rows for those ingredients
+ingredient_name_map rows for the sample's own label tokens (kept only when a
+row's ingredient_id is a sample ingredient AND its raw_name occurs as a
+substring of at least one sampled product's own normalised
+raw_ingredient_text — otherwise a common ingredient such as AQUA, reached
+from thousands of long raw label texts belonging to products that are NOT in
+the sample, would drag those non-sample products' whole ingredient
+declarations into the free sample), the product-ingredient links themselves,
+and the regulatory overlay rows for those ingredients
 (`fragrance_allergens` limited to `flagged = 1` — review rows stay in the
 paid table) — as pipe-delimited CSV and Parquet, using the same column set as
 the full dataset export (`src/exporter.py`'s `SELECT * FROM <table>`), and
@@ -59,6 +65,7 @@ import argparse
 import shutil
 import json
 import random
+import re
 import sqlite3
 import zipfile
 from pathlib import Path
@@ -95,6 +102,31 @@ def _sanitize(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def _sample_label_texts(products_df: pd.DataFrame) -> list:
+    """Sampled products' own `raw_ingredient_text`, normalised the same way the pipeline
+    normalises raw label text before it becomes `ingredient_name_map.raw_name`
+    (whitespace-collapsed, upper-cased; see src/enrichment/tokenise.py). raw_name itself is
+    already stored in that normalised form, so no further transform is applied to it --
+    only the product side needs normalising here."""
+    texts = []
+    for raw in products_df["raw_ingredient_text"]:
+        raw = raw if pd.notna(raw) else ""
+        texts.append(re.sub(r"\s+", " ", str(raw).strip()).upper())
+    return texts
+
+
+def _limit_name_map_to_sample_labels(name_map_df: pd.DataFrame, label_texts: list) -> pd.DataFrame:
+    """Keeps a name-map row only if its raw_name occurs as a substring of at least one
+    sampled product's own normalised label text (see module docstring). Without this, a
+    common ingredient (AQUA, GLYCERIN, ...) reached from thousands of long raw label texts
+    of products that are NOT in the sample would drag those products' whole ingredient
+    declarations into the free sample -- the old filter kept a name-map row whenever its
+    ingredient_id was a sample ingredient, regardless of which product's raw text it came
+    from. Row order (ORDER BY ingredient_id, raw_name from the caller's query) is preserved."""
+    keep = name_map_df["raw_name"].apply(lambda rn: any(rn in text for text in label_texts))
+    return name_map_df[keep].reset_index(drop=True)
+
+
 DEFAULT_PINS_PATH = Path("samples/sample_barcodes.json")
 
 
@@ -118,7 +150,7 @@ def save_pins(pins_path: Path, barcodes: list) -> None:
         "_comment": ("Barcodes of the products in the free sample, pinned so the sample -- and the "
                      "landing pages derived from it -- stay put across rebuilds (product_id is a "
                      "database autoincrement and changes every full rebuild). scripts/make_sample.py "
-                     "keeps every pinned barcode that is still eligible, tops up dropouts "
+                     "keeps every pinned barcode still present in the corpus, tops up dropouts "
                      "deterministically (sorted by barcode, seeded) and rewrites this file."),
         "barcodes": list(barcodes),
     }, indent=2) + "\n", encoding="utf-8")
@@ -128,13 +160,17 @@ def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905,
                            pins_path: Path = None) -> list:
     """Returns a deterministic sample of eligible product_ids.
 
-    With `pins_path` (a JSON file of pinned barcodes): every pinned product
-    that is still eligible is kept, in pin order; if fewer than `n` remain,
-    the shortfall is drawn uniformly at random (seeded) from the other
-    eligible products sorted by barcode -- a stable source key, unlike
-    product_id -- and the pin file is rewritten with the resulting barcodes.
-    When the pin file does not exist yet it is created from the plain draw
-    below, so introducing pins changes nothing on the first run.
+    With `pins_path` (a JSON file of pinned barcodes): every pinned barcode
+    whose product still exists in the corpus with at least one linked
+    ingredient is kept, in pin order -- the 0.80 eligibility threshold does
+    not apply to pins, only to the top-up draw below, so a data-quality
+    improvement can never reshuffle a landing page that is already live. If
+    fewer than `n` remain, the shortfall is drawn uniformly at random
+    (seeded) from the other ELIGIBLE products sorted by barcode -- a stable
+    source key, unlike product_id -- and the pin file is rewritten with the
+    resulting barcodes. When the pin file does not exist yet it is created
+    from the plain draw below, so introducing pins changes nothing on the
+    first run.
 
     Without `pins_path`: a deterministic, uniformly random sample of eligible
     product_ids (the pre-2026-09-20 behaviour).
@@ -161,15 +197,19 @@ def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905,
         conn.close()
 
     eligible = []          # product_ids, ascending
-    barcode_of = {}        # product_id -> barcode
+    barcode_of = {}        # product_id -> barcode (eligible only; top-up pool)
+    present = {}           # barcode -> product_id for every product with >= 1 link (pins)
     for product_id, barcode, total_ing, matched_ing in rows:
         total_ing = total_ing or 0
         matched_ing = matched_ing or 0
         if total_ing == 0:
             continue
+        bc = str(barcode or "").strip()
+        if bc:
+            present[bc] = product_id
         if (matched_ing / total_ing) >= ELIGIBILITY_THRESHOLD:
             eligible.append(product_id)
-            barcode_of[product_id] = str(barcode or "").strip()
+            barcode_of[product_id] = bc
 
     if not eligible:
         return []
@@ -186,8 +226,11 @@ def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905,
 
     id_of = {bc: pid for pid, bc in barcode_of.items() if bc}
     pins = load_pins(pins_path)
-    kept = [bc for bc in pins if bc in id_of]
-    need = min(n, len(id_of)) - len(kept)
+    # A pin stays while its product is still in the corpus: eligibility gates only the
+    # top-up draw, so a data improvement can never reshuffle the landing pages.
+    kept = [bc for bc in pins if bc in present]
+    pool = set(id_of) | set(kept)
+    need = min(n, len(pool)) - len(kept)
     topup = []
     if need > 0:
         remaining = sorted(bc for bc in id_of if bc not in kept)
@@ -197,7 +240,7 @@ def select_sample_products(db_path: Path, n: int = 200, seed: int = 20260905,
         save_pins(pins_path, new_pins)
         print(f"[Pins] kept {len(kept)} pinned products, dropped {len(pins) - len(kept)}, "
               f"topped up {len(topup)} -> {pins_path}")
-    return sorted(id_of[bc] for bc in new_pins)
+    return sorted(present[bc] for bc in new_pins)
 
 
 def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
@@ -252,6 +295,9 @@ def write_sample(db_path: Path, product_ids: list, out_dir: Path) -> dict:
                 "ORDER BY ingredient_id, raw_name",
                 conn, params=ingredient_ids,
             )
+            # Limit further to the sample's own label tokens -- see
+            # _limit_name_map_to_sample_labels and the module docstring.
+            name_map_df = _limit_name_map_to_sample_labels(name_map_df, _sample_label_texts(products_df))
             # Regulatory overlay: rows of the sampled ingredients only; review rows
             # (flagged = 0) stay in the paid table -- the sample shows what is flagged.
             allergens_df = pd.read_sql_query(
@@ -337,7 +383,7 @@ if __name__ == "__main__":
     parser.add_argument("--n", type=int, default=200)
     parser.add_argument("--seed", type=int, default=20260905)
     parser.add_argument("--pins", type=Path, default=DEFAULT_PINS_PATH,
-                        help="pinned sample barcodes (kept while eligible, topped up, rewritten)")
+                        help="pinned sample barcodes (kept while present in the corpus, topped up, rewritten)")
     parser.add_argument("--kaggle-dir", type=Path, default=Path("kaggle_dataset"),
                         help="mirror the five sample CSVs here (the Kaggle upload directory); "
                              "skipped when the directory does not exist")

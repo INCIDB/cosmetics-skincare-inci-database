@@ -119,11 +119,11 @@
 <tbody>
 <tr><td><code>products</code></td><td>18.583</td></tr>
 <tr><td><code>brands</code></td><td>5.925</td></tr>
-<tr><td><code>ingredients</code></td><td>46.973</td></tr>
-<tr><td><code>product_ingredients</code></td><td>318.758</td></tr>
-<tr><td><code>ingredient_name_map</code></td><td>55.426</td></tr>
-<tr><td><code>fragrance_allergens</code></td><td>268</td></tr>
-<tr><td><code>regulatory_status</code></td><td>614</td></tr>
+<tr><td><code>ingredients</code></td><td>46.021</td></tr>
+<tr><td><code>product_ingredients</code></td><td>342.170</td></tr>
+<tr><td><code>ingredient_name_map</code></td><td>77.219</td></tr>
+<tr><td><code>fragrance_allergens</code></td><td>269</td></tr>
+<tr><td><code>regulatory_status</code></td><td>633</td></tr>
 </tbody>
 </table>
 </div>
@@ -168,7 +168,7 @@
 <!-- Ingredients -->
 <div class="doc-section">
 <h2>3. ingredients</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">Eine Zeile pro eindeutigem kanonischem INCI-Namen — 46.973 insgesamt. Jede aus CosIng abgeleitete Spalte ist nur befüllt, wenn der kanonische Name exakt mit einem Namen im CosIng-Verzeichnis der Europäischen Kommission übereinstimmt, und andernfalls <code>NULL</code>.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Eine Zeile pro eindeutigem kanonischem INCI-Namen — 46.021 insgesamt. Jede aus CosIng abgeleitete Spalte ist nur befüllt, wenn der kanonische Name exakt mit einem Namen im CosIng-Verzeichnis der Europäischen Kommission übereinstimmt, und andernfalls <code>NULL</code>.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -198,13 +198,13 @@
 <div class="table-container">
 <table>
 <thead>
-<tr><th>Spalte</th><th>Anteil der 46.973 eindeutigen Namen</th><th>Anteil der 318.758 Vorkommen auf Etiketten</th></tr>
+<tr><th>Spalte</th><th>Anteil der 46.021 eindeutigen Namen</th><th>Anteil der 342.170 Vorkommen auf Etiketten</th></tr>
 </thead>
 <tbody>
-<tr><td>CosIng-Treffer (beliebig)</td><td>11,0%</td><td>82,5%</td></tr>
-<tr><td><code>functions</code></td><td>10,9%</td><td>81,5%</td></tr>
-<tr><td><code>cas_number</code></td><td>8,3%</td><td>76,4%</td></tr>
-<tr><td><code>chemical_description</code></td><td>8,5% · 3.965 eindeutige Werte</td><td>—</td></tr>
+<tr><td>CosIng-Treffer (beliebig)</td><td>11,6%</td><td>83,9%</td></tr>
+<tr><td><code>functions</code></td><td>11,5%</td><td>82,9%</td></tr>
+<tr><td><code>cas_number</code></td><td>8,7%</td><td>77,6%</td></tr>
+<tr><td><code>chemical_description</code></td><td>9,0% · 4.101 eindeutige Werte</td><td>—</td></tr>
 </tbody>
 </table>
 </div>
@@ -215,16 +215,16 @@
 <strong>Methode — Allergen-Markierungen.</strong> Nur eine Liste: die Duftstoffallergene aus Anhang III der EU-Kosmetikverordnung (Verordnung (EG) 1223/2009, geändert durch Verordnung (EU) 2023/1545), abgeglichen zunächst über den exakten INCI-Namen, dann über den kollektiven Kennzeichnungsnamen, den die Verordnung vorschreibt, und schließlich über die CAS-Nummer nur bei chemisch definierten Stoffen. CAS-Treffer botanischen Ursprungs werden als Prüfzeilen ausgeliefert, niemals als Markierung. 121 Namen sind markiert; die Belege je Eintrag stehen in <code>fragrance_allergens</code> (Tabelle 6). Die US-amerikanische FDA hat ihre MoCRA-Liste der Duftstoffallergene noch nicht veröffentlicht, daher enthält dieser Datensatz keine US-Markierung.
             </div>
 <div class="note">
-<strong>Methode — Komedogenitätsbewertungen.</strong> 145 Inhaltsstoffe tragen eine Bewertung auf der Skala 0–5, übernommen aus Table I (S. 324–326) von Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Wo die Arbeit statt eines einzelnen Grades einen Bereich angibt, bleibt die Bewertung <code>NULL</code>. Das Fehlen einer Bewertung bedeutet „von der zitierten Quelle nicht abgedeckt“, niemals „unbedenklich“.
+<strong>Methode — Komedogenitätsbewertungen.</strong> 144 Inhaltsstoffe tragen eine Bewertung auf der Skala 0–5, übernommen aus Table I (S. 324–326) von Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Wo die Arbeit statt eines einzelnen Grades einen Bereich angibt, bleibt die Bewertung <code>NULL</code>. Das Fehlen einer Bewertung bedeutet „von der zitierten Quelle nicht abgedeckt“, niemals „unbedenklich“.
             </div>
 <div class="note">
-<strong>Methode — Pilzakne-Markierung.</strong> Eine regelbasierte Heuristik, keine gemessene Eigenschaft: Es gibt keinen <em>Malassezia</em>-Test pro Inhaltsstoff, der übernommen werden könnte. Die Regel markiert C11–C24-Fettsäuren und deren Ester sowie Polysorbate 20/40/60/80, nur auf in CosIng gefundene Inhaltsstoffe angewendet, und ergibt 270 Markierungen. Grundlage: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), mit dem Kettenlängenfenster aus Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Bestimmte Öle, Butter und Wachse werden nicht markiert — die Literatur stützt keine Aussagen auf Ebene einzelner Inhaltsstoffe für sie.
+<strong>Methode — Pilzakne-Markierung.</strong> Eine regelbasierte Heuristik, keine gemessene Eigenschaft: Es gibt keinen <em>Malassezia</em>-Test pro Inhaltsstoff, der übernommen werden könnte. Die Regel markiert C11–C24-Fettsäuren und deren Ester sowie Polysorbate 20/40/60/80, nur auf in CosIng gefundene Inhaltsstoffe angewendet, und ergibt 272 Markierungen. Grundlage: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), mit dem Kettenlängenfenster aus Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Bestimmte Öle, Butter und Wachse werden nicht markiert — die Literatur stützt keine Aussagen auf Ebene einzelner Inhaltsstoffe für sie.
             </div>
 </div>
 <!-- Product Ingredients -->
 <div class="doc-section">
 <h2>4. product_ingredients</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">318.758 geordnete Zusammensetzungsverknüpfungen, die die Reihenfolge erhalten, in der die Inhaltsstoffe auf dem Etikett deklariert sind.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">342.170 geordnete Zusammensetzungsverknüpfungen, die die Reihenfolge erhalten, in der die Inhaltsstoffe auf dem Etikett deklariert sind.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -233,7 +233,7 @@
 <tbody>
 <tr><td><code>product_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>products.product_id</code></td><td><code>68597</code></td></tr>
 <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>ingredients.ingredient_id</code></td><td><code>1214</code></td></tr>
-<tr><td><code>position_index</code></td><td><code class="type-tag">INTEGER</code></td><td>Position auf dem Etikett, ab 1 gezählt; niedriger bedeutet früher deklariert, d. h. in einem höheren Anteil enthalten</td><td><code>1</code></td></tr>
+<tr><td><code>position_index</code></td><td><code class="type-tag">INTEGER</code></td><td>Position auf dem Etikett, ab 1 gezählt, lückenlos 1..n je Produkt (ein wiederholter Inhaltsstoff behält seine erste Position); niedriger bedeutet früher deklariert, d. h. in einem höheren Anteil enthalten</td><td><code>1</code></td></tr>
 <tr><td><code>concentration_percentage</code></td><td><code class="type-tag">STRING</code></td><td>In diesem Snapshot immer <code>NULL</code> — Etiketten geben so gut wie nie Prozentangaben an</td><td></td></tr>
 </tbody>
 </table>
@@ -242,7 +242,7 @@
 <!-- Name map -->
 <div class="doc-section">
 <h2>5. ingredient_name_map</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">55.426 Zeilen: die Belege der Kanonisierung, mit den Daten ausgeliefert, damit jede Entscheidung der Pipeline geprüft oder übersteuert werden kann.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">77.219 Zeilen: die Belege der Kanonisierung, mit den Daten ausgeliefert, damit jede Entscheidung der Pipeline geprüft oder übersteuert werden kann.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -254,6 +254,8 @@
 <tr><td><code>method</code></td><td><code class="type-tag">STRING</code></td><td>Wie es aufgelöst wurde — siehe unten</td><td><code>paren_stripped</code></td></tr>
 <tr><td><code>confidence</code></td><td><code class="type-tag">FLOAT</code></td><td>Der Methode zugeordnete Konfidenz</td><td><code>0.9</code></td></tr>
 <tr><td><code>ingredient_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>ingredients.ingredient_id</code></td><td><code>162</code></td></tr>
+<tr><td><code>part_index</code></td><td><code class="type-tag">INTEGER</code></td><td>Reihenfolge dieses Teils innerhalb von <code>raw_name</code>; 1, wenn das Token nicht geschnitten wurde</td><td><code>2</code></td></tr>
+<tr><td><code>split_rule</code></td><td><code class="type-tag">STRING</code></td><td>Die auf <code>raw_name</code> angewandten Regeln der Neuaufteilung, mit <code>+</code> verbunden; <code>NULL</code>, wenn nicht neu aufgeteilt</td><td><code>bracket+period</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -269,10 +271,15 @@
 <tr><td><code>synonym_map</code></td><td>Über eine explizite Synonymtabelle aufgelöst</td></tr>
 <tr><td><code>slash_variant</code></td><td>Eine mehrsprachige Variante mit Schrägstrich</td></tr>
 <tr><td><code>split</code></td><td>Ein zusammengeschriebenes Token, aufgeteilt in zwei Namen, die beide im Verzeichnis gefunden wurden</td></tr>
+<tr><td><code>slash_same_cas</code></td><td>Zwei per Schrägstrich verbundene CosIng-Namen mit derselben CAS-Nummer (<code>CI 77891 / TITANIUM DIOXIDE</code>): ein Inhaltsstoff, dem zuerst genannten Namen zugeordnet</td></tr>
+<tr><td><code>unresolved_residual</code></td><td>Nicht zugeordneter Text zwischen Namen, die durch die Neuaufteilung wiedergewonnen wurden, in Etikettenreihenfolge erhalten, niemals geraten</td></tr>
 <tr><td><code>unresolved</code></td><td>Keine kanonische Entsprechung — wörtlich beibehalten und markiert, niemals geraten</td></tr>
 </tbody>
 </table>
 </div>
+<div class="note">
+<strong>Methode — Neuaufteilung.</strong> Tokens, die keine Methode auflöst, werden nach expliziten Regeln neu aufgeteilt (nicht geschlossene Klammern, <code>(and)</code>/<code>&amp;</code>, Aufzählungszeichen, Doppelpunkte, <code>. </code>-Trenner mit Schutz für Abkürzungen, die letzte Inhaltsstoff- bzw. „enthält“-Markierung, Leerzeichen um <code>/</code>, Zeilenumbrüche und von Leerzeichen umgebene Bindestriche nur dort, wo das Wiederzusammenfügen nichts auflöst, sowie eine strikte Aufteilung mit vollständiger Abdeckung, bei der jedes Wort zu einem gefundenen Namen gehören muss). Die Regeln laufen nur auf nicht aufgelösten Tokens; nichts ist unscharf, und jeder wiedergewonnene Name muss exakt im CosIng-Verzeichnis oder in den belegten Tippfehler- und Synonymtabellen stehen. <code>slash_same_cas</code> trägt 0.75. Ein aus einem Token herausgeschnittener Teil trägt die übliche Konfidenz seiner Methode minus 0.1, und <code>unresolved_residual</code>-Zeilen tragen 0.0. <code>retokenise</code> in <code>split_rule</code> bedeutet, dass das Token aufgelöst wurde, nachdem sein Originaltext (mit erhaltenen Zeilenumbrüchen) neu tokenisiert und an einem Zeilenumbruch oder Bindestrich umbrochene Namen wieder zusammengefügt wurden; keine Trennregel hat es aufgeteilt. Die vollständige Regelliste steht in <code>DATA_DICTIONARY.md</code>.
+            </div>
 <div class="note">
 <code>unresolved</code> ist nach eindeutigen Tokens die größte Gruppe und nach Vorkommen auf Etiketten eine kleine — derselbe Long-Tail-Effekt, der die beiden Abdeckungsspalten oben erzeugt.
             </div>

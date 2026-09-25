@@ -100,11 +100,11 @@
 <ul>
 <li><strong>18.583 productos</strong>: una fila por producto de Open Beauty Facts con una lista de ingredientes utilizable en el envase, conservando la declaración original literal para que el análisis pueda volver a derivarse.</li>
 <li><strong>5.925 marcas</strong>: identidades de marca tal como constan en la fuente.</li>
-<li><strong>46.973 nombres INCI canónicos distintos</strong>: el resultado de canonicalizar cada token original de etiqueta, enriquecidos con CosIng cuando CosIng los incluye.</li>
-<li><strong>318.758 enlaces de composición ordenados</strong>: conservan el orden de la etiqueta en <code>position_index</code>.</li>
-<li><strong>55.426 filas del mapa de nombres</strong>: cómo se resolvió cada token original de etiqueta y con qué método.</li>
-<li><strong>268 filas de <code>fragrance_allergens</code></strong>: las entradas de alérgenos de fragancia del Anexo III de la UE, una fila por nombre legal y coincidencia en INCIDB, incluidas las filas de revisión y los nombres sin coincidencia.</li>
-<li><strong>614 filas de <code>regulatory_status</code></strong>: el estado de los Anexos II–VI de la UE por ingrediente y entrada de lista, con las condiciones tal cual. Una fila existe solo donde una lista dice algo.</li>
+<li><strong>46.021 nombres INCI canónicos distintos</strong>: el resultado de canonicalizar cada token original de etiqueta, enriquecidos con CosIng cuando CosIng los incluye.</li>
+<li><strong>342.170 enlaces de composición ordenados</strong>: conservan el orden de la etiqueta en <code>position_index</code>.</li>
+<li><strong>77.219 filas del mapa de nombres</strong>: cómo se resolvió cada token original de etiqueta y con qué método.</li>
+<li><strong>269 filas de <code>fragrance_allergens</code></strong>: las entradas de alérgenos de fragancia del Anexo III de la UE, una fila por nombre legal y coincidencia en INCIDB, incluidas las filas de revisión y los nombres sin coincidencia.</li>
+<li><strong>633 filas de <code>regulatory_status</code></strong>: el estado de los Anexos II–VI de la UE por ingrediente y entrada de lista, con las condiciones tal cual. Una fila existe solo donde una lista dice algo.</li>
 </ul>
 </div>
 <div class="doc-section">
@@ -113,24 +113,24 @@
 <ul>
 <li><strong>Open Beauty Facts</strong>: el corpus de productos (códigos de barras, marcas, las <code>categories_tags</code> propias de la fuente, listas de ingredientes originales) bajo la Open Database License (ODbL).</li>
 <li><strong>CosIng de la Comisión Europea</strong>: el inventario de ingredientes (categorías funcionales, números CAS y CE, descripciones químicas, restricciones y pertenencia a los anexos II–VI). Unido por coincidencia exacta del nombre canónico; los nombres sin coincidencia son <code>NULL</code> en todas las columnas derivadas de CosIng, nunca un valor de relleno. Las exportaciones de los anexos II–VI también alimentan <code>regulatory_status</code>, cotejadas únicamente por el nombre del glosario CosIng o por el nombre «Identified INGREDIENTS» de CosIng (sin ruta por CAS). La ausencia de una fila no es un estado, y nada de ello constituye asesoramiento legal.</li>
-<li><strong>Alérgenos de fragancia de la UE.</strong> Las 81 entradas de etiquetado del Anexo III del Reglamento (CE) 1223/2009, modificado por el Reglamento (UE) 2023/1545 (texto consolidado de 18.05.2026), se cotejan con INCIDB por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento (p. ej., «Rose Ketones»), y por último por número CAS solo en sustancias químicamente definidas. Las coincidencias CAS de origen botánico se entregan como filas de revisión, nunca como indicadores. Hay 121 nombres marcados; 43,9% de los productos contienen al menos uno. Alrededor de 6,4% de los productos listan los ingredientes como texto sin dividir, que los indicadores no alcanzan. La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.</li>
-<li><strong>Capa redactada</strong>: 145 índices comedogénicos transcritos de una única tabla publicada y 270 indicadores de acné fúngico derivados de reglas. Ambos llevan su cita por fila en <code>rating_source</code> y son <code>NULL</code> en todos los demás casos.</li>
+<li><strong>Alérgenos de fragancia de la UE.</strong> Las 81 entradas de etiquetado del Anexo III del Reglamento (CE) 1223/2009, modificado por el Reglamento (UE) 2023/1545 (texto consolidado de 18.05.2026), se cotejan con INCIDB por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento (p. ej., «Rose Ketones»), y por último por número CAS solo en sustancias químicamente definidas. Las coincidencias CAS de origen botánico se entregan como filas de revisión, nunca como indicadores. Hay 121 nombres marcados; 46,9% de los productos contienen al menos uno. Alrededor de 2,7% de los productos listan los ingredientes como texto sin dividir, que los indicadores no alcanzan. La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.</li>
+<li><strong>Capa redactada</strong>: 144 índices comedogénicos transcritos de una única tabla publicada y 272 indicadores de acné fúngico derivados de reglas. Ambos llevan su cita por fila en <code>rating_source</code> y son <code>NULL</code> en todos los demás casos.</li>
 </ul>
 </div>
 <div class="doc-section">
 <h2>3. Cobertura medida</h2>
 <p>Se informa de dos maneras, porque ambas difieren en un orden de magnitud y citar solo una induciría a error:</p>
 <ul>
-<li><strong>Coincidencia CosIng (cualquiera):</strong> 11,0% de los 46.973 nombres canónicos distintos; 82,5% de las 318.758 apariciones de ingredientes en las etiquetas de productos.</li>
-<li><strong><code>functions</code>:</strong> 10,9% de los nombres distintos; 81,5% de las apariciones en etiquetas.</li>
-<li><strong><code>cas_number</code>:</strong> 8,3% de los nombres distintos; 76,4% de las apariciones en etiquetas.</li>
-<li><strong><code>chemical_description</code>:</strong> 8,5% de los nombres distintos, 3.965 valores distintos.</li>
+<li><strong>Coincidencia CosIng (cualquiera):</strong> 11,6% de los 46.021 nombres canónicos distintos; 83,9% de las 342.170 apariciones de ingredientes en las etiquetas de productos.</li>
+<li><strong><code>functions</code>:</strong> 11,5% de los nombres distintos; 82,9% de las apariciones en etiquetas.</li>
+<li><strong><code>cas_number</code>:</strong> 8,7% de los nombres distintos; 77,6% de las apariciones en etiquetas.</li>
+<li><strong><code>chemical_description</code>:</strong> 9,0% de los nombres distintos, 4.101 valores distintos.</li>
 </ul>
 <p>Un corpus de etiquetas contiene muchas más cadenas distintas (variantes botánicas, grafías en varios idiomas, términos de marketing) de las que incluye cualquier inventario regulatorio; por eso la primera cifra de cada par es baja. Los huecos de una etiqueta real los ocupan de forma abrumadora ingredientes que CosIng sí cubre; por eso la segunda es alta. Ninguna de las dos cifras por sí sola describe los datos.</p>
 </div>
 <div class="doc-section">
 <h2>4. Canonicalización</h2>
-<p>Los tokens originales de etiqueta se resuelven en nombres INCI canónicos mediante un procedimiento explícito y ordenado: decodificación de entidades, eliminación de caracteres, compactación de espacios, conversión a mayúsculas y, después, coincidencia exacta, coincidencia tras limpieza, un pequeño mapa de erratas con fuentes citadas, eliminación de porcentajes, eliminación de paréntesis, un mapa de sinónimos, separación de variantes con barra y división de palabras concatenadas solo cuando ambas mitades coinciden con el inventario. Todo lo que no supera ninguno de estos pasos se conserva literalmente y se registra como <code>unresolved</code>, nunca se adivina. El método utilizado se guarda por fila en <code>ingredient_name_map.method</code>, de modo que cada decisión es auditable y reversible.</p>
+<p>Los tokens originales de etiqueta se resuelven en nombres INCI canónicos mediante un procedimiento explícito y ordenado: decodificación de entidades, eliminación de caracteres, compactación de espacios, conversión a mayúsculas y, después, coincidencia exacta, coincidencia tras limpieza, un pequeño mapa de erratas con fuentes citadas, eliminación de porcentajes, eliminación de paréntesis, un mapa de sinónimos, separación de variantes con barra y división de palabras concatenadas solo cuando ambas mitades coinciden con el inventario. Los tokens que ninguno de estos pasos resuelve se vuelven a dividir mediante reglas explícitas (paréntesis, <code>(and)</code>, viñetas, dos puntos, separadores <code>. </code>, saltos de línea), nunca de forma aproximada: cada nombre recuperado debe coincidir exactamente con el inventario o con los mapas citados, y el texto sin coincidencia entre los nombres recuperados se conserva como <code>unresolved_residual</code>. Un token que nada resuelve se conserva literalmente y se registra como <code>unresolved</code>, nunca se adivina. El método utilizado se guarda por fila en <code>ingredient_name_map.method</code>, con <code>part_index</code> y <code>split_rule</code> registrando cada corte, de modo que cada decisión es auditable y reversible.</p>
 </div>
 <div class="doc-section">
 <h2>5. Inicio rápido — PyArrow y Pandas</h2>

@@ -100,11 +100,11 @@
 <ul>
 <li><strong>18.583 produtos</strong> — uma linha por produto do Open Beauty Facts com uma lista de ingredientes utilizável na embalagem, com a declaração bruta mantida literalmente para que a análise possa ser refeita.</li>
 <li><strong>5.925 marcas</strong> — identidades de marca conforme registradas na origem.</li>
-<li><strong>46.973 nomes INCI canônicos distintos</strong> — resultado da canonicalização de cada token bruto dos rótulos, enriquecidos com o CosIng onde o CosIng os lista.</li>
-<li><strong>318.758 vínculos de composição ordenados</strong> — preservando a ordem do rótulo em <code>position_index</code>.</li>
-<li><strong>55.426 linhas do mapa de nomes</strong> — como cada token bruto dos rótulos foi resolvido e por qual método.</li>
-<li><strong>268 linhas de <code>fragrance_allergens</code></strong> — as entradas de alergênicos de fragrância do Anexo III da UE, uma linha por nome legal e correspondência no INCIDB, incluindo linhas de revisão e nomes sem correspondência.</li>
-<li><strong>614 linhas de <code>regulatory_status</code></strong> — o status dos Anexos II–VI da UE por ingrediente e entrada de lista, condições literais. Uma linha só existe onde uma lista diz algo.</li>
+<li><strong>46.021 nomes INCI canônicos distintos</strong> — resultado da canonicalização de cada token bruto dos rótulos, enriquecidos com o CosIng onde o CosIng os lista.</li>
+<li><strong>342.170 vínculos de composição ordenados</strong> — preservando a ordem do rótulo em <code>position_index</code>.</li>
+<li><strong>77.219 linhas do mapa de nomes</strong> — como cada token bruto dos rótulos foi resolvido e por qual método.</li>
+<li><strong>269 linhas de <code>fragrance_allergens</code></strong> — as entradas de alergênicos de fragrância do Anexo III da UE, uma linha por nome legal e correspondência no INCIDB, incluindo linhas de revisão e nomes sem correspondência.</li>
+<li><strong>633 linhas de <code>regulatory_status</code></strong> — o status dos Anexos II–VI da UE por ingrediente e entrada de lista, condições literais. Uma linha só existe onde uma lista diz algo.</li>
 </ul>
 </div>
 <div class="doc-section">
@@ -113,24 +113,24 @@
 <ul>
 <li><strong>Open Beauty Facts</strong> — o corpus de produtos (códigos de barras, marcas, as próprias <code>categories_tags</code> da fonte, listas de ingredientes brutas) sob a Open Database License (ODbL).</li>
 <li><strong>CosIng da Comissão Europeia</strong> — o inventário de ingredientes: categorias funcionais, números CAS e CE, descrições químicas, restrições e inclusão nos Anexos II–VI. Junção pelo nome canônico exato; nomes sem correspondência ficam <code>NULL</code> em todas as colunas derivadas do CosIng, nunca com um valor de preenchimento. As exportações dos Anexos II–VI também alimentam <code>regulatory_status</code>, correspondidas apenas pelo nome do glossário do CosIng ou pelo nome "Identified INGREDIENTS" do CosIng (sem via de CAS). A ausência de uma linha não é um status, e nada nela constitui aconselhamento jurídico.</li>
-<li><strong>Alergênicos de fragrância da UE.</strong> As 81 entradas de rotulagem do Anexo III do Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545 (texto consolidado de 18.05.2026), são correspondidas ao INCIDB pelo nome INCI exato, depois pelo nome coletivo de rotulagem que o Regulamento prescreve (por exemplo, "Rose Ketones"), depois por número CAS somente para substâncias quimicamente definidas. As correspondências de CAS de origem botânica são entregues como linhas de revisão, nunca como sinalizações. 121 nomes são sinalizados; 43,9% dos produtos contêm pelo menos um. Cerca de 6,4% dos produtos listam os ingredientes como texto não dividido, que as sinalizações de alergênicos não alcançam. A FDA dos EUA ainda não publicou sua lista de alergênicos de fragrância da MoCRA; por isso, este conjunto de dados não traz sinalização dos EUA.</li>
-<li><strong>Camada autoral</strong> — 145 classificações comedogênicas transcritas de uma única tabela publicada e 270 sinalizações de acne fúngica derivadas de regras. Ambas trazem sua citação por linha em <code>rating_source</code> e são <code>NULL</code> em todos os outros casos.</li>
+<li><strong>Alergênicos de fragrância da UE.</strong> As 81 entradas de rotulagem do Anexo III do Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545 (texto consolidado de 18.05.2026), são correspondidas ao INCIDB pelo nome INCI exato, depois pelo nome coletivo de rotulagem que o Regulamento prescreve (por exemplo, "Rose Ketones"), depois por número CAS somente para substâncias quimicamente definidas. As correspondências de CAS de origem botânica são entregues como linhas de revisão, nunca como sinalizações. 121 nomes são sinalizados; 46,9% dos produtos contêm pelo menos um. Cerca de 2,7% dos produtos listam os ingredientes como texto não dividido, que as sinalizações de alergênicos não alcançam. A FDA dos EUA ainda não publicou sua lista de alergênicos de fragrância da MoCRA; por isso, este conjunto de dados não traz sinalização dos EUA.</li>
+<li><strong>Camada autoral</strong> — 144 classificações comedogênicas transcritas de uma única tabela publicada e 272 sinalizações de acne fúngica derivadas de regras. Ambas trazem sua citação por linha em <code>rating_source</code> e são <code>NULL</code> em todos os outros casos.</li>
 </ul>
 </div>
 <div class="doc-section">
 <h2>3. Cobertura medida</h2>
 <p>Apresentada de duas formas, porque as duas diferem em uma ordem de grandeza e citar apenas uma induziria ao erro:</p>
 <ul>
-<li><strong>Correspondência CosIng (qualquer):</strong> 11,0% dos 46.973 nomes canônicos distintos; 82,5% das 318.758 ocorrências de ingredientes nos rótulos dos produtos.</li>
-<li><strong><code>functions</code>:</strong> 10,9% dos nomes distintos; 81,5% das ocorrências em rótulos.</li>
-<li><strong><code>cas_number</code>:</strong> 8,3% dos nomes distintos; 76,4% das ocorrências em rótulos.</li>
-<li><strong><code>chemical_description</code>:</strong> 8,5% dos nomes distintos, 3.965 valores distintos.</li>
+<li><strong>Correspondência CosIng (qualquer):</strong> 11,6% dos 46.021 nomes canônicos distintos; 83,9% das 342.170 ocorrências de ingredientes nos rótulos dos produtos.</li>
+<li><strong><code>functions</code>:</strong> 11,5% dos nomes distintos; 82,9% das ocorrências em rótulos.</li>
+<li><strong><code>cas_number</code>:</strong> 8,7% dos nomes distintos; 77,6% das ocorrências em rótulos.</li>
+<li><strong><code>chemical_description</code>:</strong> 9,0% dos nomes distintos, 4.101 valores distintos.</li>
 </ul>
 <p>Um corpus de rótulos contém muito mais strings distintas — variantes botânicas, grafias multilíngues, tokens de marketing — do que qualquer inventário regulatório lista, e é por isso que o primeiro número de cada par é baixo. As posições em um rótulo real são preenchidas, em sua esmagadora maioria, por ingredientes que o CosIng cobre, e é por isso que o segundo é alto. Nenhum dos dois números, isoladamente, descreve os dados.</p>
 </div>
 <div class="doc-section">
 <h2>4. Canonicalização</h2>
-<p>Os tokens brutos dos rótulos são resolvidos em nomes INCI canônicos por um procedimento explícito e ordenado — decodificação de entidades, remoção de caracteres, colapso de espaços em branco, conversão para maiúsculas e, em seguida, correspondência exata, correspondência limpa, um pequeno mapa de erros de digitação com citação, remoção de percentuais, remoção de parênteses, um mapa de sinônimos, divisão de variantes com barra e divisão de concatenações somente quando ambas as metades correspondem ao inventário. Tudo o que falha em todas essas etapas é mantido literalmente e registrado como <code>unresolved</code>, nunca adivinhado. O método utilizado fica armazenado por linha em <code>ingredient_name_map.method</code>, de modo que cada decisão é auditável e reversível.</p>
+<p>Os tokens brutos dos rótulos são resolvidos em nomes INCI canônicos por um procedimento explícito e ordenado — decodificação de entidades, remoção de caracteres, colapso de espaços em branco, conversão para maiúsculas e, em seguida, correspondência exata, correspondência limpa, um pequeno mapa de erros de digitação com citação, remoção de percentuais, remoção de parênteses, um mapa de sinônimos, divisão de variantes com barra e divisão de concatenações somente quando ambas as metades correspondem ao inventário. Os tokens que nenhuma dessas etapas resolve são redivididos por regras explícitas (parênteses, <code>(and)</code>, marcadores de lista, dois-pontos, separadores <code>. </code>, quebras de linha), nunca de forma aproximada: cada nome recuperado precisa corresponder exatamente ao inventário ou aos mapas citados, e o texto sem correspondência entre nomes recuperados é mantido como <code>unresolved_residual</code>. Um token que nada resolve é mantido literalmente e registrado como <code>unresolved</code>, nunca adivinhado. O método utilizado fica armazenado por linha em <code>ingredient_name_map.method</code>, com <code>part_index</code> e <code>split_rule</code> registrando cada corte, de modo que cada decisão é auditável e reversível.</p>
 </div>
 <div class="doc-section">
 <h2>5. Início rápido — PyArrow &amp; Pandas</h2>

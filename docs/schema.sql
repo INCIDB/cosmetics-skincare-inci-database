@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS products (
 
 CREATE TABLE IF NOT EXISTS ingredients (
     ingredient_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    inci_name VARCHAR(255) NOT NULL UNIQUE,          -- canonical (CosIng-style upper-case)
+    inci_name TEXT NOT NULL UNIQUE,                  -- canonical (CosIng-style upper-case)
     cosing_matched BOOLEAN,                          -- NULL until enrichment runs
     cosing_ref_no VARCHAR(20),
     cas_number VARCHAR(50),
@@ -44,11 +44,13 @@ CREATE TABLE IF NOT EXISTS ingredients (
     rating_source TEXT                               -- citation for the two authored columns
 );
 CREATE TABLE IF NOT EXISTS ingredient_name_map (
-    raw_name VARCHAR(255) NOT NULL,
-    canonical_name VARCHAR(255) NOT NULL,
+    raw_name TEXT NOT NULL,
+    canonical_name TEXT NOT NULL,
     method VARCHAR(20) NOT NULL,
     confidence REAL NOT NULL,
     ingredient_id INTEGER NOT NULL REFERENCES ingredients(ingredient_id),
+    part_index INTEGER NOT NULL,        -- 1-based order of this part within raw_name (1 when not cut)
+    split_rule VARCHAR(120),            -- '+'-joined re-split rules; NULL when the token was not re-split
     PRIMARY KEY (raw_name, canonical_name)
 );
 
