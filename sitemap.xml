@@ -121,6 +121,66 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/documentation"/>
   </url>
   <url>
+    <loc>https://incidb.dataengineered.io/eu-fragrance-allergens/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+  </url>
+  <url>
+    <loc>https://incidb.dataengineered.io/es/eu-fragrance-allergens/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+  </url>
+  <url>
+    <loc>https://incidb.dataengineered.io/de/eu-fragrance-allergens/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+  </url>
+  <url>
+    <loc>https://incidb.dataengineered.io/fr/eu-fragrance-allergens/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+  </url>
+  <url>
+    <loc>https://incidb.dataengineered.io/pt-br/eu-fragrance-allergens/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://incidb.dataengineered.io/es/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://incidb.dataengineered.io/de/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://incidb.dataengineered.io/fr/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://incidb.dataengineered.io/pt-br/eu-fragrance-allergens/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://incidb.dataengineered.io/eu-fragrance-allergens/"/>
+  </url>
+  <url>
     <loc>https://incidb.dataengineered.io/landing/1_2_hexanediol</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -854,7 +914,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/acetyl_cedrene</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/acetyl_cedrene"/>
@@ -8534,7 +8594,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/camphor</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/camphor"/>
@@ -13754,7 +13814,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/citrus_aurantium_dulcis_peel_oil</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/citrus_aurantium_dulcis_peel_oil"/>
@@ -17594,7 +17654,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/dimethyl_phenethyl_acetate</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/dimethyl_phenethyl_acetate"/>
@@ -19814,7 +19874,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/eucalyptus_globulus_oil</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/eucalyptus_globulus_oil"/>
@@ -20654,7 +20714,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/geranyl_acetate</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/geranyl_acetate"/>
@@ -26894,7 +26954,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/jasminum_officinale_oil</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/jasminum_officinale_oil"/>
@@ -28034,7 +28094,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/lavandula_angustifolia_oil</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/lavandula_angustifolia_oil"/>
@@ -28094,7 +28154,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/lavandula_oil_extract</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/lavandula_oil_extract"/>
@@ -30074,7 +30134,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/menthol</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/menthol"/>
@@ -30254,7 +30314,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/methyl_salicylate</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/methyl_salicylate"/>
@@ -36674,7 +36734,7 @@
   </url>
   <url>
     <loc>https://incidb.dataengineered.io/es/landing/pogostemon_cablin_oil</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/landing/pogostemon_cablin_oil"/>

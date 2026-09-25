@@ -903,6 +903,9 @@ def hub_intro_html(hub_key, ing_list):
     facts_sentence = ". ".join(facts) + "."
     intro = HUB_INTROS.get(hub_key, "")
     intro_html = f"<span>{e(intro)}</span> " if intro else ""
+    if hub_key == "fragrance_colour":
+        intro_html += ('<span>The full EU list of fragrance allergens that labels must name, with thresholds and '
+                       'deadlines, is on <a href="/eu-fragrance-allergens/">its own page</a>.</span> ')
     return (f'{intro_html}<span>{facts_sentence}</span> '
             '<span>Membership is read from the data, not assigned by hand — an ingredient '
             'with no CosIng function has no monograph, because there would be nothing to say about it.</span>')
@@ -1080,6 +1083,8 @@ def main():
     ]
     if os.path.exists(os.path.join(ROOT_DIR, "stats", "index.html")):  # scripts/generate_stats.py -- citable, embeddable asset
         sitemap_entries.append((BASE_URL + "/stats/", os.path.join(ROOT_DIR, "stats", "index.html"), "monthly", "0.9"))
+    if os.path.exists(os.path.join(ROOT_DIR, "eu-fragrance-allergens", "index.html")):  # scripts/generate_allergen_page.py
+        sitemap_entries.append((BASE_URL + "/eu-fragrance-allergens/", os.path.join(ROOT_DIR, "eu-fragrance-allergens", "index.html"), "monthly", "0.9"))
 
     # Pass 2: render every monograph, now that each hub's full sorted
     # membership is known.

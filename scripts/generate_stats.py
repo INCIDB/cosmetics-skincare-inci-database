@@ -232,7 +232,7 @@ def build_page(s, charts):
     par = next(p for lbl, _, p in gb if lbl == "Parabens")
     sections.append(section(
         site, "groups", "Fragrance, preservatives, surfactants and silicones",
-        f"<strong>{frag}%</strong> of products contain fragrance and {next(p for lbl, _, p in gb if 'allergen' in lbl)}% contain at least one EU-listed fragrance allergen. "
+        f"<strong>{frag}%</strong> of products contain fragrance and {next(p for lbl, _, p in gb if 'allergen' in lbl)}% contain at least one EU-listed fragrance allergen (<a href=\"/eu-fragrance-allergens/\">the full list</a>). "
         f"Parabens appear in <strong>{par}%</strong> of products and phenoxyethanol, the preservative that has largely replaced them, in "
         f"{next(p for lbl, _, p in gb if lbl == 'Phenoxyethanol')}%.",
         figure(site, "ingredient-groups", charts["ingredient-groups"], "Ingredient groups by share of products", f"{n(P)} products"),
