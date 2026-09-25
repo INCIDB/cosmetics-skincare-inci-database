@@ -11,9 +11,9 @@ prototype against the CSV and ship against the Parquet.
 | :--- | ---: | ---: | ---: | ---: |
 | `brands` | 0.11 MiB | 0.12 MiB | 5,925 | 2 |
 | `products` | 4.86 MiB | 9.83 MiB | 18,583 | 7 |
-| `ingredients` | 2.17 MiB | 4.49 MiB | 46,021 | 20 |
-| `product_ingredients` | 1.03 MiB | 5.34 MiB | 342,170 | 4 |
-| `ingredient_name_map` | 4.40 MiB | 19.67 MiB | 77,219 | 7 |
+| `ingredients` | 2.17 MiB | 4.49 MiB | 46,008 | 20 |
+| `product_ingredients` | 1.03 MiB | 5.34 MiB | 342,208 | 4 |
+| `ingredient_name_map` | 4.40 MiB | 19.70 MiB | 77,257 | 7 |
 | `fragrance_allergens` | 0.02 MiB | 0.09 MiB | 269 | 18 |
 | `regulatory_status` | 0.05 MiB | 0.27 MiB | 633 | 15 |
 

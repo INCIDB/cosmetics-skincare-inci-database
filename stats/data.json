@@ -7,25 +7,25 @@
  "totals": {
   "products": 18583,
   "brands": 5925,
-  "ingredient_names": 46021,
-  "links": 342170,
+  "ingredient_names": 46008,
+  "links": 342208,
   "categorised": 12860
  },
  "top_ingredients": [
   {
    "inci_name": "Aqua / Water",
-   "products": 13218,
+   "products": 13220,
    "share_pct": 71.1
   },
   {
    "inci_name": "PARFUM",
-   "products": 9460,
+   "products": 9461,
    "share_pct": 50.9
   },
   {
    "inci_name": "GLYCERIN",
-   "products": 8910,
-   "share_pct": 47.9
+   "products": 8911,
+   "share_pct": 48.0
   },
   {
    "inci_name": "CITRIC ACID",
@@ -39,17 +39,17 @@
   },
   {
    "inci_name": "SODIUM BENZOATE",
-   "products": 4986,
+   "products": 4987,
    "share_pct": 26.8
   },
   {
    "inci_name": "LINALOOL",
-   "products": 4980,
+   "products": 4981,
    "share_pct": 26.8
   },
   {
    "inci_name": "SODIUM CHLORIDE",
-   "products": 4340,
+   "products": 4341,
    "share_pct": 23.4
   },
   {
@@ -59,8 +59,8 @@
   },
   {
    "inci_name": "SODIUM HYDROXIDE",
-   "products": 3483,
-   "share_pct": 18.7
+   "products": 3485,
+   "share_pct": 18.8
   },
   {
    "inci_name": "COCAMIDOPROPYL BETAINE",
@@ -74,17 +74,17 @@
   },
   {
    "inci_name": "BENZYL ALCOHOL",
-   "products": 2865,
+   "products": 2866,
    "share_pct": 15.4
   },
   {
    "inci_name": "SODIUM LAURETH SULFATE",
-   "products": 2685,
-   "share_pct": 14.4
+   "products": 2686,
+   "share_pct": 14.5
   },
   {
    "inci_name": "PROPYLENE GLYCOL",
-   "products": 2619,
+   "products": 2621,
    "share_pct": 14.1
   },
   {
@@ -116,7 +116,7 @@
  "ingredient_groups": [
   {
    "group": "Fragrance (Parfum / Fragrance / Aroma)",
-   "products": 10589,
+   "products": 10590,
    "share_pct": 57.0
   },
   {
@@ -146,7 +146,7 @@
   },
   {
    "group": "Alcohol / Alcohol denat.",
-   "products": 2248,
+   "products": 2246,
    "share_pct": 12.1
   },
   {
@@ -209,12 +209,12 @@
   "buckets": [
    {
     "bucket": "1 to 5",
-    "products": 2412,
+    "products": 2411,
     "share_pct": 13.0
    },
    {
     "bucket": "6 to 10",
-    "products": 1835,
+    "products": 1836,
     "share_pct": 9.9
    },
    {
@@ -224,17 +224,17 @@
    },
    {
     "bucket": "16 to 20",
-    "products": 3887,
+    "products": 3888,
     "share_pct": 20.9
    },
    {
     "bucket": "21 to 30",
-    "products": 4839,
+    "products": 4836,
     "share_pct": 26.0
    },
    {
     "bucket": "31 to 50",
-    "products": 1931,
+    "products": 1933,
     "share_pct": 10.4
    },
    {
@@ -329,8 +329,8 @@
   "rows": [
    {
     "inci_name": "AQUA",
-    "products": 7795,
-    "share_pct": 41.9
+    "products": 7796,
+    "share_pct": 42.0
    },
    {
     "inci_name": "WATER",
@@ -401,17 +401,17 @@
    },
    {
     "inci_name": "LINALOOL",
-    "products": 4980,
+    "products": 4981,
     "share_pct": 26.8
    },
    {
     "inci_name": "SODIUM HYDROXIDE",
-    "products": 3483,
-    "share_pct": 18.7
+    "products": 3485,
+    "share_pct": 18.8
    },
    {
     "inci_name": "BENZYL ALCOHOL",
-    "products": 2865,
+    "products": 2866,
     "share_pct": 15.4
    },
    {
@@ -447,66 +447,66 @@
   ]
  },
  "functions": {
-  "denominator_positions": 283673,
+  "denominator_positions": 283725,
   "rows": [
    {
     "function": "FRAGRANCE",
-    "positions": 77960,
+    "positions": 77966,
     "share_pct": 27.5
    },
    {
     "function": "SKIN CONDITIONING",
-    "positions": 67094,
+    "positions": 67105,
     "share_pct": 23.7
    },
    {
     "function": "VISCOSITY CONTROLLING",
-    "positions": 60640,
+    "positions": 60657,
     "share_pct": 21.4
    },
    {
     "function": "PERFUMING",
-    "positions": 60314,
+    "positions": 60324,
     "share_pct": 21.3
    },
    {
     "function": "SOLVENT",
-    "positions": 48306,
+    "positions": 48310,
     "share_pct": 17.0
    },
    {
     "function": "SKIN CONDITIONING - EMOLLIENT",
-    "positions": 36968,
+    "positions": 36977,
     "share_pct": 13.0
    },
    {
     "function": "SURFACTANT - CLEANSING",
-    "positions": 36484,
+    "positions": 36494,
     "share_pct": 12.9
    },
    {
     "function": "SURFACTANT - EMULSIFYING",
-    "positions": 34310,
+    "positions": 34323,
     "share_pct": 12.1
    },
    {
     "function": "HAIR CONDITIONING",
-    "positions": 32735,
+    "positions": 32737,
     "share_pct": 11.5
    },
    {
     "function": "HUMECTANT",
-    "positions": 23817,
+    "positions": 23822,
     "share_pct": 8.4
    },
    {
     "function": "PRESERVATIVE",
-    "positions": 22697,
+    "positions": 22699,
     "share_pct": 8.0
    },
    {
     "function": "CLEANSING",
-    "positions": 19194,
+    "positions": 19197,
     "share_pct": 6.8
    }
   ]
@@ -514,53 +514,53 @@
  "coverage": {
   "cosing_matched_names": 5345,
   "cosing_matched_names_pct": 11.6,
-  "cosing_matched_positions": 287187,
+  "cosing_matched_positions": 287240,
   "cosing_matched_positions_pct": 83.9,
-  "name_map_rows": 77219,
+  "name_map_rows": 77257,
   "methods": [
    {
     "method": "unresolved",
-    "rows": 35262,
-    "share_pct": 45.7
+    "rows": 35257,
+    "share_pct": 45.6
    },
    {
     "method": "split",
-    "rows": 11976,
-    "share_pct": 15.5
+    "rows": 12023,
+    "share_pct": 15.6
    },
    {
     "method": "exact",
-    "rows": 9390,
-    "share_pct": 12.2
+    "rows": 9384,
+    "share_pct": 12.1
    },
    {
     "method": "cleaned",
-    "rows": 7713,
+    "rows": 7712,
     "share_pct": 10.0
    },
    {
     "method": "unresolved_residual",
-    "rows": 7066,
-    "share_pct": 9.2
+    "rows": 7056,
+    "share_pct": 9.1
    },
    {
     "method": "paren_stripped",
-    "rows": 4161,
+    "rows": 4158,
     "share_pct": 5.4
    },
    {
     "method": "slash_variant",
-    "rows": 935,
+    "rows": 936,
     "share_pct": 1.2
    },
    {
     "method": "synonym_map",
-    "rows": 272,
+    "rows": 275,
     "share_pct": 0.4
    },
    {
     "method": "slash_same_cas",
-    "rows": 237,
+    "rows": 249,
     "share_pct": 0.3
    },
    {
