@@ -89,6 +89,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "04884fd3fc73d2ac": {
+  "src": "Regulation (EU) {0} rewrote {1} existing Annex III entries and added {2} new ones (entries {3} to {4}). Products that do not comply with the amended entries could be placed on the EU market until {5} Jul {6}; that date has passed. Products already on the market may be made available until {7} Jul {8}. For the {9} entries marked *, that transition applies only to products that met the rules in force on {10} August {11}.",
+  "t": "Die Verordnung (EU) {0} hat {1} bestehende Einträge des Anhangs III geändert und {2} neue hinzugefügt (Einträge {3} bis {4}). Produkte, die den geänderten Einträgen nicht entsprachen, durften bis zum {5}. Juli {6} in Verkehr gebracht werden; dieses Datum ist bereits verstrichen. Bereits auf dem Markt befindliche Produkte dürfen bis zum {7}. Juli {8} auf dem Markt bereitgestellt werden. Für die {9} mit * gekennzeichneten Einträge gilt diese Übergangsfrist nur für Produkte, die am {10}. August {11} den geltenden Vorschriften entsprachen.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "04ed2eb8e068f17d": {
   "src": "(Ph. Eur.)",
   "t": "(Ph. Eur.)",
@@ -166,6 +172,12 @@
   "t": "Das mediane Produkt führt <0>{1} Inhaltsstoffe</0> auf (Mittelwert {2}, längste Liste {3}). {4} haben die längsten Listen mit einem Median von {5}, {6} die kürzesten mit {7}.",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "0c50d6753bf19898": {
+  "src": "EU cosmetics regulation · list of {0}",
+  "t": "EU-Kosmetikverordnung · Liste der {0}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "0c845d40bcbe59ba": {
   "src": "Seven tables, exported as pipe-delimited {0} CSV and Apache Parquet with identical columns:",
@@ -371,6 +383,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "19172e9e47fee410": {
+  "src": "Entry",
+  "t": "Eintrag",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "193f6756f8a4fecb": {
   "src": "Enrichment coverage, stated two ways",
   "t": "Anreicherungsabdeckung, auf zwei Arten angegeben",
@@ -413,6 +431,18 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "1d3bca819d12f632": {
+  "src": "EU fragrance allergens",
+  "t": "EU-Duftstoffallergene",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
+ "1dd8871fce7c7606": {
+  "src": "Entries found on labels",
+  "t": "Auf Etiketten gefundene Einträge",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "1dea36566274d6e2": {
   "src": "<0>{1} distinct canonical INCI names</0> — the result of canonicalising every raw label token, enriched from CosIng where CosIng lists them.",
   "t": "<0>{1} eindeutige kanonische INCI-Namen</0> — das Ergebnis der Kanonisierung jedes rohen Etikett-Tokens, angereichert aus CosIng, soweit CosIng sie führt.",
@@ -424,6 +454,12 @@
   "t": "CosIng erfasst ihn außerdem als {0} (chemische Bezeichnung), {1} (chemische Bezeichnung) und {2} (chemische Bezeichnung).",
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
+ },
+ "1e4c20c351aaeb92": {
+  "src": "<0>Reuse.</0> The counts on this page are published under <1>CC BY {2}</1> with a link to {3}. The machine-readable version is <4>data.json</4>.",
+  "t": "<0>Weiterverwendung.</0> Die Zahlen auf dieser Seite werden unter <1>CC BY {2}</1> veröffentlicht, mit einem Link zu {3}. Die maschinenlesbare Fassung ist <4>data.json</4>.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "1e5b370e52139567": {
   "src": "CosIng also records it as {0} (chemical name).",
@@ -533,6 +569,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "22970e343ddaa501": {
+  "src": "<0>Legal list.</0> Annex III to Regulation (EC) No {1}, consolidated version {2} on <3>EUR-Lex</3>, including the corrigendum to Regulation (EU) {4} published in {5}. © European Union, reused under Commission Decision {6}.",
+  "t": "<0>Rechtsliste.</0> Anhang III der Verordnung (EG) Nr. {1}, konsolidierte Fassung {2} auf <3>EUR-Lex</3>, einschließlich der Berichtigung zur Verordnung (EU) {4}, veröffentlicht in {5}. © Europäische Union, weiterverwendet gemäß Beschluss der Kommission {6}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "22d0dff102e3d0ca": {
   "src": "Order of this part within {0}; {1} when the token was not cut",
   "t": "Reihenfolge dieses Teils innerhalb von {0}; {1}, wenn das Token nicht geschnitten wurde",
@@ -562,6 +604,12 @@
   "t": "{0} Komedogenitätsbewertungen",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "2491d2e4dffaa8c8": {
+  "src": "Products declaring one",
+  "t": "Produkte, die einen deklarieren",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "24a7223361214cbb": {
   "src": "<0>Refresh.</0> INCIDB ships editions; this page and its charts are regenerated with each edition, so figures move. Cite the snapshot date.",
@@ -676,6 +724,12 @@
   "t": "Wirkstoffe, Peelingstoffe &amp; UV-Filter | INCIDB",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "2cb7992be4b22928": {
+  "src": "INCIDB Complete ships the {0} table: every INCIDB ingredient matched to each entry and how it was matched, the review rows that were not flagged, and the {1} table for EU Annexes II to VI. CSV and Parquet.",
+  "t": "INCIDB Complete enthält die Tabelle {0}: jeder INCIDB-Inhaltsstoff, der einem Eintrag zugeordnet wurde, und wie er zugeordnet wurde, die nicht markierten Prüfzeilen sowie die Tabelle {1} für die EU-Anhänge II bis VI. CSV und Parquet.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "2cca2a5a5bf11c19": {
   "src": "Two sources, one documented join. Every source file's URL, download timestamp and {0} is recorded in the {1} shipped with the data.",
@@ -809,11 +863,29 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
  },
+ "35e584f469d8ced7": {
+  "src": "Need the ingredient-level mapping?",
+  "t": "Benötigen Sie die Zuordnung auf Inhaltsstoffebene?",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "36a4908b119bf761": {
   "src": "By product type",
   "t": "Nach Produkttyp",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "36c448baa76eafa7": {
+  "src": "<0>{1}</0> of the {2} products in the corpus declare at least one of these allergens, and {3} of the {4} entries appear on at least one label. About {5} of products list their ingredients as unsplit text that the counts below cannot reach.",
+  "t": "<0>{1}</0> der {2} Produkte im Korpus deklarieren mindestens einen dieser Allergene, und {3} der {4} Einträge erscheinen auf mindestens einem Etikett. Bei etwa {5} der Produkte sind die Inhaltsstoffe als unaufgeteilter Text angegeben, den die folgenden Zahlen nicht erfassen können.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
+ "374c6cd3b035268e": {
+  "src": "The {0} fragrance-allergen entries of Annex III to the EU Cosmetics Regulation (Regulation (EC) No {1} as amended by Regulation (EU) {2}). Each one must be named in a cosmetic's ingredient list when its concentration exceeds {3} % in leave-on products or {4} % in rinse-off products. Next to each entry: how many of the {5} product labels in the INCIDB corpus declare it.",
+  "t": "Die {0} Duftstoffallergen-Einträge des Anhangs III der EU-Kosmetikverordnung (Verordnung (EG) Nr. {1}, geändert durch Verordnung (EU) {2}). Jeder muss in der Zutatenliste eines Kosmetikprodukts genannt werden, wenn seine Konzentration {3} % in auf der Haut verbleibenden Produkten oder {4} % in abzuspülenden Produkten übersteigt. Neben jedem Eintrag: wie viele der {5} Produktetiketten im INCIDB-Korpus ihn deklarieren.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "37a1bb8cdcd4753c": {
   "src": "INCIDB Data Schema &amp; Relational Dictionary",
@@ -838,6 +910,12 @@
   "t": "Kanonische INCI-Monografie",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "3a21aff4714ca090": {
+  "src": "Products counts how many labels declare an ingredient INCIDB matched to the entry: by the exact name printed in the Regulation, by the prescribed label name, or by CAS number for chemically defined substances. A count of {0} means no label token INCIDB could resolve matched the entry, not that the substance is absent from the market. Monograph links appear only where the ingredient's own name is printed in the Regulation.",
+  "t": "Die Spalte Produkte gibt an, wie viele Etiketten einen Inhaltsstoff deklarieren, den INCIDB dem Eintrag zugeordnet hat: über den exakten, in der Verordnung abgedruckten Namen, über den vorgeschriebenen Kennzeichnungsnamen oder über die CAS-Nummer bei chemisch definierten Stoffen. Eine Anzahl von {0} bedeutet, dass kein von INCIDB auflösbarer Etikettenbegriff dem Eintrag entsprach — nicht, dass der Stoff auf dem Markt fehlt. Links zur Monografie erscheinen nur dort, wo der eigene Name des Inhaltsstoffs in der Verordnung abgedruckt ist.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "3a6edd85cca1088c": {
   "src": "One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) {0} as amended by Regulation (EU) {1}), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. {2} names are flagged and allergen_source records the list; {3} of products carry at least one (about {4} more list ingredients as unsplit text the flags do not reach). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.",
@@ -917,6 +995,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "4164df65258494b9": {
+  "src": "Legal list: Annex III to Regulation (EC) No {0} as amended by Regulation (EU) {1}, EUR-Lex (© European Union), reused with attribution. Product data © <2>Open Beauty Facts</2> contributors, under the <3>Open Database License (ODbL) {4}</3>.",
+  "t": "Rechtsliste: Anhang III der Verordnung (EG) Nr. {0}, geändert durch Verordnung (EU) {1}, EUR-Lex (© Europäische Union), weiterverwendet mit Quellenangabe. Produktdaten © Mitwirkende von <2>Open Beauty Facts</2>, unter der <3>Open Database License (ODbL) {4}</3>.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "41aac7148507b61d": {
   "src": "{0} — CAS {1}. INCI name for {2} (INN). CosIng functions: {3}, {4}, {5}.",
   "t": "{0} — CAS {1}. INCI-Name für {2} (INN). CosIng-Funktionen: {3}, {4}, {5}.",
@@ -929,6 +1013,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "42433559ae2cc50a": {
+  "src": "monograph",
+  "t": "Monografie",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "42d220769ee8f936": {
   "src": "The list entry, e.g. an Annex III entry",
   "t": "Der Listeneintrag, z. B. ein Eintrag aus Anhang III",
@@ -940,6 +1030,12 @@
   "t": "CosIng verzeichnet eine Beschränkung für diesen Stoff ({0}); prüfen Sie daher vor der Formulierung den entsprechenden Anhangseintrag.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "43284b74b99cd6ff": {
+  "src": "The {0} EU fragrance allergens that must be named on cosmetic labels above {1} % (leave-on) / {2} % (rinse-off), their deadlines, and how often each appears on {3} products.",
+  "t": "Die {0} EU-Duftstoffallergene, die auf Kosmetiketiketten oberhalb von {1} % (auf der Haut verbleibend) / {2} % (abzuspülend) genannt werden müssen, ihre Fristen und wie oft jeder auf {3} Produkten erscheint.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "438cf7dad1ba4fb5": {
   "src": "no CAS in CosIng",
@@ -989,6 +1085,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "47c17da054f0562e": {
+  "src": "EU fragrance allergens: the labelling list of Regulation (EU) {0}",
+  "t": "EU-Duftstoffallergene: die Kennzeichnungsliste der Verordnung (EU) {0}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "4908c71c18763b2d": {
   "src": "{0} (Annex II), {1} (Annex III), {2} (Annexes IV–VI); {3} reserved",
   "t": "{0} (Anhang II), {1} (Anhang III), {2} (Anhänge IV–VI); {3} reserviert",
@@ -1012,6 +1114,12 @@
   "t": "<0>✓</0> Gleiche Anreicherungsspalten, gleiche NULLs",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "4a9ffa9086fdbf48": {
+  "src": "Some entries prescribe a collective label name (for example {0} or {1}), shown in the Label name column. A dash in the Transition column means the consolidated text sets no transition period for that entry. The legal text is the <2>consolidated Regulation on EUR-Lex</2> (version {3}); this page transcribes it and is not legal advice.",
+  "t": "Manche Einträge schreiben einen Sammel-Kennzeichnungsnamen vor (zum Beispiel {0} oder {1}), gezeigt in der Spalte Kennzeichnungsname. Ein Gedankenstrich in der Spalte Übergangsfrist bedeutet, dass der konsolidierte Text für diesen Eintrag keine Übergangsfrist vorsieht. Der Rechtstext ist die <2>konsolidierte Verordnung auf EUR-Lex</2> (Fassung {3}); diese Seite gibt ihn wieder und stellt keine Rechtsberatung dar.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "4b640de7369f2f44": {
   "src": "{0} (CosIng vocabulary)",
@@ -1139,6 +1247,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
  },
+ "54e96745c4b95bb5": {
+  "src": "EU Fragrance Allergens",
+  "t": "EU-Duftstoffallergene",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "54fe9929694d1213": {
   "src": "<0>{1} name-map rows</0> — how each raw label token was resolved, and by which method.",
   "t": "<0>{1} Zeilen der Namenszuordnung</0> — wie jedes rohe Etikett-Token aufgelöst wurde und mit welcher Methode.",
@@ -1229,6 +1343,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-25"
  },
+ "5c37b4fb98f41cec": {
+  "src": "Declare above (leave-on / rinse-off)",
+  "t": "Kennzeichnungspflichtig ab (auf der Haut verbleibend / abzuspülend)",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "5cdb6387f2905115": {
   "src": "The ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names get {0}, not a guess.",
   "t": "Das Inhaltsstoffverzeichnis: Funktionskategorien, CAS- und EG-Nummern, chemische Beschreibungen, Beschränkungen und Zugehörigkeit zu den Anhängen II–VI. Verknüpft über den exakten kanonischen Namen; nicht zugeordnete Namen erhalten {0}, keine Vermutung.",
@@ -1300,6 +1420,12 @@
   "t": "Kosmetik-Datenbank",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "6256801cfbc1a60b": {
+  "src": "Entries in the list",
+  "t": "Einträge in der Liste",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "6294c37768c7d684": {
   "src": "The most common cosmetic ingredients",
@@ -1438,6 +1564,12 @@
   "t": "Ende der Übergangsfrist für das Inverkehrbringen bei Einträgen, deren konsolidierter Text die Übergangsfußnote trägt (({0}), ({1}) oder ({2})); {3} bei den übrigen",
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
+ },
+ "6b0a5bdb21bad820": {
+  "src": "INCIDB · snapshot {0} · EU fragrance-allergen list",
+  "t": "INCIDB · Snapshot {0} · EU-Duftstoffallergenliste",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "6b21fb791ac05170": {
   "src": "About",
@@ -1625,6 +1757,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "785b877576631d63": {
+  "src": "What the rule requires",
+  "t": "Was die Vorschrift verlangt",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "7b0432cf0db7b4df": {
   "src": "Open Beauty Facts",
   "t": "Open Beauty Facts",
@@ -1720,6 +1858,12 @@
   "t": "Hautpflegemittel &amp; Emollienzien →",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "80be97b0d92b61b8": {
+  "src": "<0>{1}</0> of products contain fragrance and {2} contain at least one EU-listed fragrance allergen (<3>the full list</3>). Parabens appear in <4>{5}</4> of products and phenoxyethanol, the preservative that has largely replaced them, in {6}.",
+  "t": "<0>{1}</0> der Produkte enthalten Duftstoffe, und {2} enthalten mindestens ein EU-gelistetes Duftstoffallergen (<3>die vollständige Liste</3>). Parabene kommen in <4>{5}</4> der Produkte vor, Phenoxyethanol, das Konservierungsmittel, das sie größtenteils ersetzt hat, in {6}.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "80e13549b47a4dfc": {
   "src": "Coverage",
@@ -1937,6 +2081,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
  },
+ "911cf46502324f25": {
+  "src": "<0>Product counts.</0> The full INCIDB snapshot of {1} product labels from <2>Open Beauty Facts</2> (product data © Open Beauty Facts contributors, <3>ODbL {4}</3>). Labels do not state concentrations, so a count says an allergen is declared, not how much is present.",
+  "t": "<0>Produktzahlen.</0> Der vollständige INCIDB-Snapshot von {1} Produktetiketten von <2>Open Beauty Facts</2> (Produktdaten © Mitwirkende von Open Beauty Facts, <3>ODbL {4}</3>). Etiketten geben keine Konzentrationen an, daher besagt eine Zahl, dass ein Allergen deklariert ist, nicht wie viel davon enthalten ist.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "9297913eea881537": {
   "src": "Copy snippet",
   "t": "Schnipsel kopieren",
@@ -1948,6 +2098,12 @@
   "t": "INCI-Monografie: {0}",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "936da4b1e8a5b3fa": {
+  "src": "Label name",
+  "t": "Kennzeichnungsname",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "9409e09face61496": {
   "src": "<0>✕</0> Drawn from products that are {1} CosIng-matched, so it reads better than the corpus average",
@@ -2213,6 +2369,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "a4a09ff241156884": {
+  "src": "Transition (placing / making available)",
+  "t": "Übergangsfrist (Inverkehrbringen / Bereitstellung auf dem Markt)",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "a55a275aa676930d": {
   "src": "Terms",
   "t": "Nutzungsbedingungen",
@@ -2435,6 +2597,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
  },
+ "b334d2063a1173d3": {
+  "src": "EU Fragrance Allergens List (Regulation {0}): {1} Annex III Entries, Thresholds &amp; Deadlines | INCIDB",
+  "t": "EU-Duftstoffallergenliste (Verordnung {0}): {1} Einträge des Anhangs III, Schwellenwerte &amp; Fristen | INCIDB",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "b36b2b9fc1c602e6": {
   "src": "<0>✓</0> Their brands, links and {1} ingredients",
   "t": "<0>✓</0> Ihre Marken, Verknüpfungen und {1} Inhaltsstoffe",
@@ -2567,6 +2735,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "bb768d009de898ae": {
+  "src": "Sources, reuse and citation",
+  "t": "Quellen, Weiterverwendung und Zitierung",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "bb8d1dbc673cc533": {
   "src": "Product data © <0>Open Beauty Facts</0> contributors, under the <1>Open Database License (ODbL) {2}</1> — attribution and share-alike apply to derivatives. Ingredient enrichment contains data from the European Commission CosIng database, reused with attribution. EU fragrance-allergen list: Annex III to Regulation (EC) No {3} as amended by Regulation (EU) {4}, EUR-Lex (© European Union), reused with attribution.",
   "t": "Produktdaten © Mitwirkende von <0>Open Beauty Facts</0>, unter der <1>Open Database License (ODbL) {2}</1> — für abgeleitete Werke gelten Namensnennung und Weitergabe unter gleichen Bedingungen. Die Inhaltsstoff-Anreicherung enthält Daten aus der CosIng-Datenbank der Europäischen Kommission, weiterverwendet mit Quellenangabe. EU-Duftstoffallergenliste: Anhang III der Verordnung (EG) Nr. {3}, geändert durch Verordnung (EU) {4}, EUR-Lex (© Europäische Union), weiterverwendet mit Quellenangabe.",
@@ -2602,6 +2776,12 @@
   "t": "CosIng-Funktionskategorien",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "bdcf6b371a34927f": {
+  "src": "The {0} entries, by how many products declare them",
+  "t": "Die {0} Einträge, nach der Zahl der Produkte, die sie deklarieren",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "be394ad2786686aa": {
   "src": "<0>{1}</0> of products list {2}, {3} list {4} and {5} list {6}. The catalogue holds {7} distinct canonical INCI names across {8} ingredient positions.",
@@ -2698,6 +2878,12 @@
   "t": "Eine regelbasierte Heuristik, keine gemessene Eigenschaft: {0}-Fettsäuren und deren Ester sowie Polysorbate {1}, nur auf in CosIng gefundene Inhaltsstoffe angewendet. Grundlage: DOI {2} und DOI {3}.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "c273f016f1fdb961": {
+  "src": "The full EU list of fragrance allergens that labels must name, with thresholds and deadlines, is on <0>its own page</0>.",
+  "t": "Die vollständige EU-Liste der Duftstoffallergene, die auf Etiketten genannt werden müssen, mit Schwellenwerten und Fristen, befindet sich auf <0>einer eigenen Seite</0>.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "c2789acbe4951fa7": {
   "src": "Raw label tokens are resolved to canonical INCI names by an explicit ordered procedure — entity decode, character strip, whitespace collapse, upper-case, then exact match, cleaned match, a small cited typo map, percentage stripping, parenthesis stripping, a synonym map, slash-variant splitting, and concatenation splitting only where both halves match the inventory. Anything that fails all of them is kept verbatim and recorded as {0}, never guessed. The method used is stored per row in {1}, so every decision is auditable and reversible.",
@@ -3119,6 +3305,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
  },
+ "e494151620b660d1": {
+  "src": "Name(s) in the Regulation",
+  "t": "Name(n) in der Verordnung",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
+ },
  "e49508d67ebe9802": {
   "src": "CosIng also records it as {0} (chemical name), {1} (chemical name), {2} (chemical name) and {3} (chemical name).",
   "t": "CosIng erfasst ihn außerdem als {0} (chemische Bezeichnung), {1} (chemische Bezeichnung), {2} (chemische Bezeichnung) und {3} (chemische Bezeichnung).",
@@ -3334,6 +3526,12 @@
   "t": "{0} — CAS {1}. Komedogen {2} (Fulton). CosIng-Funktionen: {3}. INCI-Name gemäß dem CosIng-Inventar der EU.",
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
+ },
+ "f3fbb20691369e20": {
+  "src": "EU fragrance allergens: the labelling list",
+  "t": "EU-Duftstoffallergene: die Kennzeichnungsliste",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-25"
  },
  "f4bbf8103efddb82": {
   "src": "Primary key",

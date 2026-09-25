@@ -12,7 +12,8 @@
     "documentation.html",
     "404.html",
     "landing/*.html",
-    "stats/index.html"
+    "stats/index.html",
+    "eu-fragrance-allergens/index.html"
   ],
   "exclude": [],
   "not_found": "404.html",
