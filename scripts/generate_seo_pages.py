@@ -294,7 +294,23 @@ REG_STATUS_LABEL = {
     "ALLOWED_WITH_CONDITIONS": "Allowed with conditions",
     "LISTED_EXISTING": "Listed (existing ingredient)",
 }
-REG_JURISDICTION_LABEL = {"EU": "European Union"}
+REG_JURISDICTION_LABEL = {"EU": "European Union", "KR": "South Korea (MFDS)"}
+
+# INCIDB Korea teaser (specs/2026-09-25-incidb-korea-tier-design.md §7): one line per
+# linked annex section, naming the annex and section only -- never a limit, a condition
+# or an absence. Rows come from `python -m src.enrichment.regulatory.kr_mfds_build`
+# (non-review links only; gitignored under data/, never in samples/, Kaggle or HF) and
+# render only once claims.json carries a released "korea" block.
+KOREA_LISTED_PATH = os.path.join(ROOT_DIR, "data", "exports", "korea", "kr_mfds_listed.csv")
+KR_REGULATION_KO = "화장품 안전기준 등에 관한 규정"
+KR_SECTION_LABEL = {
+    "prohibited": "ingredients that may not be used (scope in the entry text)",
+    "preservative": "preservative ingredients",
+    "uv_filter": "UV-filter ingredients",
+    "hair_dye": "hair-dye ingredients",
+    "other": "other ingredients with restrictions on use",
+}
+KR_SECTION_ANNEX = {"prohibited": "1", "preservative": "2", "uv_filter": "2", "hair_dye": "2", "other": "2"}
 
 
 def load_regulatory(samples_dir=SAMPLES_DIR):
@@ -313,6 +329,57 @@ def load_regulatory(samples_dir=SAMPLES_DIR):
     return out
 
 
+def load_korea_listed(claims, path=KOREA_LISTED_PATH):
+    """inci_name -> [{"annex", "section", "notice_no"}, ...] for the Korea teaser.
+
+    Empty unless claims.json carries a released "korea" block, so before launch no
+    Korea line renders anywhere (tests/test_public_claims.py::test_no_korea_tier_before_launch).
+    Once released, a missing file is an error rather than a silent page without teasers.
+    Positive-only: an ingredient without a row gets no line at all."""
+    if (claims.get("korea") or {}).get("released") is not True:
+        return {}
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            f"{path} not found: run python -m src.enrichment.regulatory.kr_mfds_build first")
+    with open(path, encoding="utf-8", newline="") as f:
+        delimiter = "|" if "|" in f.readline() else ","
+        f.seek(0)
+        rows = list(csv.DictReader(f, delimiter=delimiter))
+    out = {}
+    for r in rows:
+        name, annex, section, notice = (field(r, k) for k in ("inci_name", "annex", "section", "notice_no"))
+        if not name or not notice or KR_SECTION_ANNEX.get(section) != annex:
+            raise ValueError(f"unexpected kr_mfds_listed row: {r}")
+        item = {"annex": annex, "section": section, "notice_no": notice}
+        if item not in out.setdefault(name, []):
+            out[name].append(item)
+    order = list(KR_SECTION_LABEL)
+    for items in out.values():
+        items.sort(key=lambda i: (i["annex"], order.index(i["section"]), i["notice_no"]))
+    return out
+
+
+def korea_teaser_html(rows):
+    """The "South Korea (MFDS)" sub-block: annex and section only, positive statements
+    only. English copy is translatable (i18n segments); the notice number is data and
+    only the Korean regulation title carries lang="ko"."""
+    if not rows:
+        return ""
+    e = html.escape
+    notices = ", ".join(sorted({r["notice_no"] for r in rows}))
+    items = "".join(
+        f'<li><span>Listed in MFDS Notice <span translate="no">{e(r["notice_no"])}</span>, '
+        f'Annex {e(r["annex"])} — {e(KR_SECTION_LABEL[r["section"]])}.</span> '
+        f'<span>Limits and conditions:</span> <a href="/#pricing" style="color: #38BDF8;">INCIDB Korea →</a></li>'
+        for r in rows)
+    return (f'<h3 style="font-size: 1rem; color: #CBD5E1;">{e(REG_JURISDICTION_LABEL["KR"])}</h3>'
+            f'<p style="font-size: 0.8rem; color: #64748B;">Matched by CAS number to '
+            f'<span translate="no" lang="ko">{KR_REGULATION_KO}</span> '
+            f'(MFDS Notice <span translate="no">{e(notices)}</span>). The notice gives its CAS numbers as '
+            f'examples, so only a match is shown.</p>'
+            f'<ul style="color: #CBD5E1; line-height: 1.6;">{items}</ul>')
+
+
 def _date(iso):
     import datetime as _dt
     try:
@@ -322,10 +389,11 @@ def _date(iso):
         return ""
 
 
-def regulatory_block(allergens, status):
+def regulatory_block(allergens, status, korea=()):
     """'Regulatory status by region': rendered only from rows. Legal text is data
-    (translate="no", captioned 'Official text (EN)'); labels are copy."""
-    if not allergens and not status:
+    (translate="no", captioned 'Official text (EN)'); labels are copy. EU rows sit
+    under the EU heading only; Korea rows get their own sub-block (korea_teaser_html)."""
+    if not allergens and not status and not korea:
         return ""
     e = html.escape
 
@@ -364,11 +432,14 @@ def regulatory_block(allergens, status):
         parts.append(f'<a href="{e(field(r, "source_url"))}" rel="nofollow noopener">Source</a> '
                      f'<span>retrieved {data(field(r, "retrieved_at"))}</span>')
         items.append("<li>" + " · ".join(parts) + "</li>")
-    jur = REG_JURISDICTION_LABEL["EU"]
+    eu = ""
+    if items:
+        jur = REG_JURISDICTION_LABEL["EU"]
+        eu = (f'<h3 style="font-size: 1rem; color: #CBD5E1;">{jur}</h3>'
+              f'<p style="font-size: 0.8rem; color: #64748B;">Official text (EN), quoted verbatim from the source list.</p>'
+              f'<ul style="color: #CBD5E1; line-height: 1.6;">{"".join(items)}</ul>')
     return (f'<section class="regulatory" style="margin: 2rem 0;"><h2 style="font-size: 1.3rem; color: #F8FAFC;">'
-            f'Regulatory status by region</h2><h3 style="font-size: 1rem; color: #CBD5E1;">{jur}</h3>'
-            f'<p style="font-size: 0.8rem; color: #64748B;">Official text (EN), quoted verbatim from the source list.</p>'
-            f'<ul style="color: #CBD5E1; line-height: 1.6;">{"".join(items)}</ul></section>')
+            f'Regulatory status by region</h2>{eu}{korea_teaser_html(korea)}</section>')
 
 
 def load_cosing_names(path=COSING_INVENTORY_PATH):
@@ -557,7 +628,8 @@ def ingredient_profile(ing, prod_list, names=()):
     )
 
 
-def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_row=None, regulatory=None):
+def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_row=None, regulatory=None,
+                       korea=None):
     e = html.escape
     reg = regulatory or {"allergens": [], "status": []}
     inci_name = field(ing, 'inci_name') or 'UNKNOWN INCI'
@@ -824,7 +896,7 @@ def generate_monograph(ing, prod_list, hub_info, claims, related_members, ref_ro
 {facts_html}
             </div>
 
-            {regulatory_block(reg["allergens"], reg["status"])}
+            {regulatory_block(reg["allergens"], reg["status"], korea or ())}
         </div>
 
         <div style="margin-bottom: 2.5rem;">
@@ -1040,6 +1112,9 @@ def main():
     claims = load_claims()
     ingredients, products, prod_ing = load_data()
     regulatory = load_regulatory()
+    korea_listed = load_korea_listed(claims)
+    if korea_listed:
+        print(f"Korea teaser: {len(korea_listed)} INCI names with a non-review MFDS link.")
     print(f"Loaded {len(ingredients)} sample ingredients and {len(products)} sample products.")
     cosing_names = load_cosing_names()
     if cosing_names:
@@ -1097,7 +1172,8 @@ def main():
             related_members = related_neighbors(members, idx, hub_key, hub_order, buckets)
             filename = generate_monograph(ing, p_list, (hub_key, hub_name, hub_file), claims, related_members,
                                           cosing_names.get(field(ing, 'inci_name')),
-                                          regulatory.get(field(ing, 'ingredient_id')))
+                                          regulatory.get(field(ing, 'ingredient_id')),
+                                          korea=korea_listed.get(field(ing, 'inci_name')))
             sitemap_entries.append(
                 (f"{BASE_URL}/landing/{filename[:-5]}", os.path.join(LANDING_DIR, filename), "monthly", "0.8"))
 
