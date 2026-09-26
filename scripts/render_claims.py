@@ -69,8 +69,9 @@ PRICE_USD = 79
 # Adaptation note (spec §6 amended 2026-09-26): claims.json is a public file and spec §7
 # requires no Korea content before launch, so claims["korea"] is added by build_claims()
 # only once korea_claims() returns a non-None block (tier released). The Korea ZIP's
-# report-vs-claims count gates (build_delivery.build_korea) run every month regardless of
-# whether the tier is released.
+# report-vs-CSV/Parquet count gates (build_delivery.build_korea) run every month regardless
+# of whether the tier is released; its claims-vs-report gate starts only once released,
+# since there is no "korea" block in claims.json to check before then.
 KOREA_TIER = {
     "price_usd": 149,
     "released": False,
