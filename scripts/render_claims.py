@@ -55,9 +55,33 @@ REPORT_PATH = ROOT / "data" / "exports" / "build_report.json"
 CSV_DIR = ROOT / "data" / "exports" / "csv"
 SAMPLE_STATS_PATH = ROOT / "samples" / "sample_stats.json"
 CLAIMS_PATH = ROOT / "claims.json"
+KOREA_REPORT_PATH = ROOT / "data" / "exports" / "korea" / "korea_report.json"
 
 # The one number here that is a decision rather than a measurement.
 PRICE_USD = 79
+
+# INCIDB Korea launch constants: decisions, not measurements, kept here like PRICE_USD
+# because claims.json is regenerated whole. claims.json gets a "korea" block only once
+# `released` is True; until then nothing public may name the tier
+# (tests/test_public_claims.py::test_no_korea_tier_before_launch). At launch the owner
+# supplies the Stripe price id and payment link, set here together with released=True.
+#
+# Adaptation note (spec §6 amended 2026-09-26): claims.json is a public file and spec §7
+# requires no Korea content before launch, so claims["korea"] is added by build_claims()
+# only once korea_claims() returns a non-None block (tier released). The Korea ZIP's
+# report-vs-CSV/Parquet count gates (build_delivery.build_korea) run every month regardless
+# of whether the tier is released; its claims-vs-report gate starts only once released,
+# since there is no "korea" block in claims.json to check before then.
+KOREA_TIER = {
+    "price_usd": 149,
+    "released": False,
+    "payment_link": "https://buy.stripe.com/REPLACE-WITH-INCIDB-KOREA-LINK",
+    "stripe_price_id": None,
+}
+# korea_report.json keys (written by src.enrichment.regulatory.kr_mfds_build) that the
+# block carries; build_delivery.build_korea checks the same keys against the ZIP.
+KOREA_MEASURED_KEYS = ("entries_annex1", "entries_annex2", "substances", "linked_names",
+                       "products_pct", "notice_no", "notice_date")
 
 
 def pct(value):
@@ -97,8 +121,30 @@ def link_weighted_coverage(csv_dir=CSV_DIR):
     return {k: v / total for k, v in covered.items()}
 
 
+def korea_claims(report_path=KOREA_REPORT_PATH, tier=KOREA_TIER):
+    """The claims.json "korea" block, or None while the tier is unreleased.
+
+    A released tier must carry a live Stripe payment link and price id: the worker
+    maps the price id to the two ZIPs, and a placeholder link on the site would be a
+    dead checkout. `products_pct` is copied as the build wrote it (a percentage with
+    one decimal)."""
+    if tier.get("released") is not True:
+        return None
+    link, price_id = tier.get("payment_link") or "", tier.get("stripe_price_id") or ""
+    if not link.startswith("https://buy.stripe.com/") or "REPLACE-WITH" in link:
+        raise ValueError(f"KOREA_TIER is released but payment_link is not a live Stripe link: {link!r}")
+    if not price_id.startswith("price_"):
+        raise ValueError(f"KOREA_TIER is released but stripe_price_id is not a Stripe price id: {price_id!r}")
+    report = json.loads(Path(report_path).read_text(encoding="utf-8"))
+    block = {k: report[k] for k in KOREA_MEASURED_KEYS}
+    block.update(price_usd=tier["price_usd"], released=True, payment_link=link,
+                 stripe_price_id=price_id)
+    return block
+
+
 def build_claims(report_path=REPORT_PATH, csv_dir=CSV_DIR,
-                 sample_stats_path=SAMPLE_STATS_PATH):
+                 sample_stats_path=SAMPLE_STATS_PATH, korea_report_path=KOREA_REPORT_PATH,
+                 korea_tier=None):
     report = json.loads(Path(report_path).read_text(encoding="utf-8"))
     sample = json.loads(Path(sample_stats_path).read_text(encoding="utf-8"))
 
@@ -111,7 +157,7 @@ def build_claims(report_path=REPORT_PATH, csv_dir=CSV_DIR,
     generated_at = report["generated_at"]
     snapshot = f"{generated_at[0:4]}.{generated_at[5:7]}"
 
-    return {
+    claims = {
         # Corpus row counts.
         "products": counts["products"],
         "brands": counts["brands"],
@@ -160,6 +206,10 @@ def build_claims(report_path=REPORT_PATH, csv_dir=CSV_DIR,
         "snapshot": snapshot,
         "price_usd": PRICE_USD,
     }
+    korea = korea_claims(korea_report_path, KOREA_TIER if korea_tier is None else korea_tier)
+    if korea is not None:
+        claims["korea"] = korea
+    return claims
 
 
 def main(argv=None):

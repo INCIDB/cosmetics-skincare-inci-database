@@ -7,3 +7,7 @@ requests>=2.31.0
 # scripts/render_og_image.py renders assets/og-image.html to og-image.png at
 # the exact 1200x630 OpenGraph size with headless Chromium.
 playwright==1.61.0
+# Local-only PDF table reader for regulatory annex PDFs committed as reference
+# data. The monthly CI never parses a PDF, so requirements-ci.txt must not
+# carry it.
+pdfplumber==0.11.10
