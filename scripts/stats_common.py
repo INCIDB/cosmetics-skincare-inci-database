@@ -26,6 +26,8 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
+from section_links import insert as section_links_insert  # copied next to this file, like it
+
 
 # ---------------------------------------------------------------------------
 # site parameters
@@ -182,7 +184,8 @@ def svg_line(site, title, subtitle, points, fmt, note, width=720, height=320, pe
 
 def embed_block(site, slug, title):
     img = f"{site.base_url}{site.page_path}charts/{slug}.svg"
-    snippet = (f'<a href="{site.page_url}#{slug}"><img src="{img}" alt="{esc(title)}" width="720" '
+    # the chart's own id is fig-<slug> (figure() below); #<slug> alone matches no element
+    snippet = (f'<a href="{site.page_url}#fig-{slug}"><img src="{img}" alt="{esc(title)}" width="720" '
                f'style="max-width:100%;height:auto"></a>\n'
                f'<p><small>Source: <a href="{site.page_url}">{site.snippet_label}</a> (CC BY 4.0)</small></p>')
     return (f'<details><summary>Embed this chart</summary>'
@@ -297,8 +300,11 @@ STATS_CSS = """
 
 
 def write_outputs(out_dir, page, charts, data_json):
-    """Write stats/index.html, stats/charts/*.svg and stats/data.json (LF line endings)."""
+    """Write stats/index.html, stats/charts/*.svg and stats/data.json (LF line endings). The page
+    gets the shared section-links snippet (scripts/section_links.py): embed links and the table of
+    contents land on their chart/section after the web fonts swap in."""
     out_dir = Path(out_dir)
+    page = section_links_insert(page)
     (out_dir / "charts").mkdir(parents=True, exist_ok=True)
     (out_dir / "index.html").write_text(page, encoding="utf-8", newline="\n")
     for slug, svg in charts.items():

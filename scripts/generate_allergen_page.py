@@ -38,6 +38,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import generate_stats as gs  # noqa: E402
+from section_links import insert as section_links_insert  # noqa: E402
 from stats_common import COPY_JS, STATS_CSS, esc, n, pct, tiles  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -279,8 +280,12 @@ def build_data_json(s):
 
 
 def write_outputs(out_dir, page, data_json):
+    """Write the page and data.json (LF). Like the stats page (stats_common.write_outputs), the page
+    gets the shared section-links snippet (scripts/section_links.py) after its sticky header, so
+    #rule / #list / #entry-<ref> arrivals land clear of the header once the web fonts swap in."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+    page = section_links_insert(page)
     (out_dir / "index.html").write_text(page, encoding="utf-8", newline="\n")
     (out_dir / "data.json").write_text(json.dumps(data_json, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
 
