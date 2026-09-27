@@ -26,7 +26,8 @@ This module reads the finished English HTML and:
    falls short is simply not published in that language (never a half-English page).
 3. rewrites internal links to the localized page when one exists, sets <html lang>,
    canonical, og:url/og:locale, adds a hidden ``lang`` field to forms, formats grouped
-   numbers per locale, and marks JSON-LD with inLanguage.
+   numbers per locale, and marks JSON-LD with inLanguage. A translated Dataset gets its
+   English original in ``sameAs``; a Dataset's hasPart/isPartOf stay the English canonical.
 4. injects a reciprocal hreflang block + a static language switcher into EVERY page
    (English in place, idempotently, between ``<!-- i18n:… -->`` markers), writes
    ``/i18n/i18n.js`` (a dismissible "also available in …" suggestion, no redirects),
@@ -136,6 +137,9 @@ JSONLD_NAME_OPAQUE_TYPES = {"Organization", "Brand", "Person", "ChemicalSubstanc
 JSONLD_LANG_TYPES = {"WebPage", "WebSite", "TechArticle", "Article", "BlogPosting", "Dataset",
                      "FAQPage", "ItemList", "CollectionPage", "AboutPage", "ContactPage",
                      "HowTo", "DefinedTermSet"}
+# A Dataset's hasPart / isPartOf name other datasets by their English canonical pages: the
+# value is kept exactly as on the English page (not translated, no URL rewrite, no inLanguage).
+JSONLD_CANONICAL_LINKS = {"hasPart", "isPartOf"}
 LINK_ATTRS = ("href", "src", "action", "poster", "data-src", "xlink:href")
 
 TOKEN_RE = re.compile(r"<(\d+)>|</(\d+)>|\{(\d+)\}")
@@ -328,6 +332,8 @@ def _jsonld_walk(node, parent_type, visit):
     t = node.get("@type")
     types = set(t) if isinstance(t, list) else {t}
     for k, v in list(node.items()):
+        if k in JSONLD_CANONICAL_LINKS and "Dataset" in types:
+            continue
         if isinstance(v, (dict, list)) and k != "keywords":
             _jsonld_walk(v, types, visit)
         elif k in JSONLD_KEYS:
@@ -976,6 +982,15 @@ def localize_page(site, rel, lang, catalog):
                 node.replace_with(NavigableString(new))
 
     # JSON-LD: urls + inLanguage, then re-serialize
+    def english_twin(value):
+        """The English page a same-host URL resolves to, in its canonical form (None when the
+        URL is on another host or names no page of this site)."""
+        parts = urlsplit(urljoin(page_url, value.strip()))
+        if parts.netloc != site.host:
+            return None
+        target = site.url_to_page(parts.path)
+        return site.url(target, SOURCE) if target else None
+
     def fix_ld(node):
         if isinstance(node, list):
             for v in node:
@@ -985,13 +1000,29 @@ def localize_page(site, rel, lang, catalog):
             return
         t = node.get("@type")
         types = set(t) if isinstance(t, list) else {t}
+        is_dataset = "Dataset" in types
+        en_url = node.get("url")
         if types & JSONLD_LANG_TYPES and "inLanguage" not in node:
             node["inLanguage"] = LOCALES[lang]["html"]
         for k, v in list(node.items()):
+            if is_dataset and k in JSONLD_CANONICAL_LINKS:
+                continue
             if k in ("url", "item", "@id", "mainEntityOfPage") and isinstance(v, str):
                 node[k] = rewrite_url(v, page_url, site, lang)
             elif isinstance(v, (dict, list)):
                 fix_ld(v)
+        # A translated Dataset names its English original: Google's Dataset guidance uses sameAs
+        # to tie copies of a dataset to its canonical page. Kept next to any sameAs the English
+        # page already carries (Kaggle, GitHub, ...).
+        if is_dataset and isinstance(en_url, str) and node.get("url") != en_url:
+            twin = english_twin(en_url)
+            same = node.get("sameAs")
+            if twin and same is None:
+                node["sameAs"] = twin
+            elif twin and isinstance(same, str) and same != twin:
+                node["sameAs"] = [same, twin]
+            elif twin and isinstance(same, list) and twin not in same:
+                same.append(twin)
 
     for doc in docs:
         if not doc["strings"]:
