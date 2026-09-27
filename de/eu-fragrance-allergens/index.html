@@ -147,6 +147,52 @@
 <!-- i18n:header --><details class="i18n-menu i18n-menu--nav" translate="no"><summary aria-label="Sprache: Deutsch" title="Sprache: Deutsch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>DE</span></summary><ul><li><a href="/eu-fragrance-allergens/" hreflang="en" lang="en" data-i18n-lang="en">English</a></li><li><a href="/es/eu-fragrance-allergens/" hreflang="es" lang="es" data-i18n-lang="es">Español</a></li><li><span aria-current="true" lang="de">Deutsch</span></li><li><a href="/fr/eu-fragrance-allergens/" hreflang="fr" lang="fr" data-i18n-lang="fr">Français</a></li><li><a href="/pt-br/eu-fragrance-allergens/" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></li></ul></details><!-- /i18n:header --></nav>
 </div>
 </header>
+<!-- section-links --><script>
+/* Section links (#pricing, ...): keep jumps clear of the sticky header, and land an arrival from
+   another page again once late web fonts or late content have moved the page - on a fresh
+   navigation only, never after the visitor has scrolled. Shared portfolio snippet
+   (scripts/section_links.py). */
+(function () {
+  var root = document.documentElement, watched = [];
+  var ro = window.ResizeObserver && new ResizeObserver(function () { pad(); });
+  function pad() {  /* re-checked each time: some headers are sticky only above a breakpoint */
+    var hdr = null;
+    [].forEach.call(document.querySelectorAll('header, .page-header, .navbar, .site-nav'), function (h) {
+      if (ro && watched.indexOf(h) < 0) { watched.push(h); ro.observe(h); }
+      if (!hdr && /sticky|fixed/.test(getComputedStyle(h).position)) hdr = h;
+    });
+    root.style.scrollPaddingTop = hdr ? Math.ceil(hdr.getBoundingClientRect().height) + 8 + 'px' : '';
+  }
+  pad();
+  document.addEventListener('DOMContentLoaded', pad);
+  window.addEventListener('resize', pad);
+  window.realignSectionLink = function () {};
+  var id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch (e) { return; }
+  if (!id) return;
+  var nav = window.performance && performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if (nav ? (nav.type === 'reload' || nav.type === 'back_forward')
+          : (window.performance && performance.navigation && performance.navigation.type !== 0)) return;
+  var moved = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+    window.addEventListener(ev, function () { moved = true; }, { passive: true, once: true });
+  });
+  function realign() {
+    var el = document.getElementById(id);
+    if (moved || !el || !el.getClientRects().length || performance.now() > 15000) return;
+    if (getComputedStyle(el).position === 'fixed') return;  /* an open dialog, not a section */
+    pad();
+    var behavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';  /* a jump, not a second smooth scroll */
+    el.scrollIntoView({ block: 'start' });
+    root.style.scrollBehavior = behavior;
+  }
+  window.realignSectionLink = realign;  /* pages that render content late call it afterwards */
+  if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', realign);
+  /* after the other load handlers (i18n.js may move the language menu then) */
+  window.addEventListener('load', function () { setTimeout(realign, 0); });
+})();
+</script><!-- /section-links -->
 <main class="stats-wrap">
 <p class="crumbs"><a href="/de/">Startseite</a> › <span>EU-Duftstoffallergene</span></p>
 <p class="eyebrow">EU-Kosmetikverordnung · Liste der 18.05.2026</p>
