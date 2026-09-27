@@ -307,6 +307,52 @@
 <!-- i18n:header --><details class="i18n-menu i18n-menu--nav" translate="no"><summary aria-label="Idioma: Español" title="Idioma: Español"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>ES</span></summary><ul><li><a href="/" hreflang="en" lang="en" data-i18n-lang="en">English</a></li><li><span aria-current="true" lang="es">Español</span></li><li><a href="/de/" hreflang="de" lang="de" data-i18n-lang="de">Deutsch</a></li><li><a href="/fr/" hreflang="fr" lang="fr" data-i18n-lang="fr">Français</a></li><li><a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></li></ul></details><!-- /i18n:header --></nav>
 </div>
 </header>
+<!-- section-links --><script>
+/* Section links (#pricing, ...): keep jumps clear of the sticky header, and land an arrival from
+   another page again once late web fonts or late content have moved the page - on a fresh
+   navigation only, never after the visitor has scrolled. Shared portfolio snippet
+   (scripts/section_links.py). */
+(function () {
+  var root = document.documentElement, watched = [];
+  var ro = window.ResizeObserver && new ResizeObserver(function () { pad(); });
+  function pad() {  /* re-checked each time: some headers are sticky only above a breakpoint */
+    var hdr = null;
+    [].forEach.call(document.querySelectorAll('header, .page-header, .navbar, .site-nav'), function (h) {
+      if (ro && watched.indexOf(h) < 0) { watched.push(h); ro.observe(h); }
+      if (!hdr && /sticky|fixed/.test(getComputedStyle(h).position)) hdr = h;
+    });
+    root.style.scrollPaddingTop = hdr ? Math.ceil(hdr.getBoundingClientRect().height) + 8 + 'px' : '';
+  }
+  pad();
+  document.addEventListener('DOMContentLoaded', pad);
+  window.addEventListener('resize', pad);
+  window.realignSectionLink = function () {};
+  var id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch (e) { return; }
+  if (!id) return;
+  var nav = window.performance && performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if (nav ? (nav.type === 'reload' || nav.type === 'back_forward')
+          : (window.performance && performance.navigation && performance.navigation.type !== 0)) return;
+  var moved = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+    window.addEventListener(ev, function () { moved = true; }, { passive: true, once: true });
+  });
+  function realign() {
+    var el = document.getElementById(id);
+    if (moved || !el || !el.getClientRects().length || performance.now() > 15000) return;
+    if (getComputedStyle(el).position === 'fixed') return;  /* an open dialog, not a section */
+    pad();
+    var behavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';  /* a jump, not a second smooth scroll */
+    el.scrollIntoView({ block: 'start' });
+    root.style.scrollBehavior = behavior;
+  }
+  window.realignSectionLink = realign;  /* pages that render content late call it afterwards */
+  if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', realign);
+  /* after the other load handlers (i18n.js may move the language menu then) */
+  window.addEventListener('load', function () { setTimeout(realign, 0); });
+})();
+</script><!-- /section-links -->
 <!-- Hero Section -->
 <section class="hero">
 <div class="container">
@@ -520,7 +566,7 @@
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_es_home" style="width: 100%; justify-content: center;">Comprar ahora · Descarga inmediata</a>
 </div>
 </div>
-<p style="text-align:center; margin-top: 24px; font-size: 0.9rem; opacity: 0.85; max-width: 700px; margin-left: auto; margin-right: auto;">Pago seguro con tarjeta mediante Stripe (tarjeta / Apple Pay / Google Pay) con <b>descarga inmediata</b> tras el pago. La compra cubre la entrega y el trabajo de ingeniería, <b>no</b> derechos exclusivos sobre los datos, que siguen bajo ODbL. ¿Necesitas una factura de empresa, una extracción a medida o antes quieres hacer una pregunta? <a href="#" onclick="openModal('Custom / Invoice Inquiry'); return false;">Abre el formulario de contacto</a>.</p>
+<p id="contact" style="text-align:center; margin-top: 24px; font-size: 0.9rem; opacity: 0.85; max-width: 700px; margin-left: auto; margin-right: auto;">Pago seguro con tarjeta mediante Stripe (tarjeta / Apple Pay / Google Pay) con <b>descarga inmediata</b> tras el pago. La compra cubre la entrega y el trabajo de ingeniería, <b>no</b> derechos exclusivos sobre los datos, que siguen bajo ODbL. ¿Necesitas una factura de empresa, una extracción a medida o antes quieres hacer una pregunta? <a href="#" onclick="openModal('Custom / Invoice Inquiry'); return false;">Abre el formulario de contacto</a>.</p>
 </div>
 </section>
 <!-- Visible FAQ -->
@@ -818,6 +864,17 @@ name_map = pd.read_csv(<span class="string">'ingredient_name_map.csv'</span>, se
                 alertBox.append(desk, ' ' + I18N.failAfter);
                 if (submitBtn) submitBtn.disabled = false;
             }
+        }
+
+        // /#contact (the "contact form" links of /stats/ and /eu-fragrance-allergens/) lands on the
+        // #pricing paragraph with the "Open the contact form" link and opens that form, as the link
+        // does. Fresh navigations only (the section-links snippet's guard): a reload or Back/Forward
+        // leaves a form the visitor closed closed.
+        if (location.hash === '#contact') {
+            const nav = window.performance && performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+            const revisit = nav ? (nav.type === 'reload' || nav.type === 'back_forward')
+                                : (window.performance && performance.navigation && performance.navigation.type !== 0);
+            if (!revisit) openModal('Custom / Invoice Inquiry');
         }
 
         // Progressive Web App Service Worker Registration
