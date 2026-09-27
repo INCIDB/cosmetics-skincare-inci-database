@@ -43,8 +43,14 @@ export async function onRequest({ request, next }) {
   }
   const r = MONOGRAPH.exec(url.pathname);
   if (r && Object.prototype.hasOwnProperty.call(RETIRED, r[2])) {
-    const response = await next();
-    if (response.status !== 404) return response;
+    // Probe with a query string: on 2026-09-27 the bare URLs of monographs deleted from the
+    // deployment still answered 200 from an edge copy (Age > 2 days; /landing/* is
+    // max-age 1 day + stale-while-revalidate 7 days), while the same path with any query
+    // answered the real 404.
+    const probe = new URL(url);
+    probe.search = "?retired-probe";
+    const found = await next(new Request(probe.toString(), request));
+    if (found.status !== 404) return next();
     const [path, hash] = RETIRED[r[2]].split("#");
     url.pathname = `${r[1] || ""}${path}`;
     url.search = "";
