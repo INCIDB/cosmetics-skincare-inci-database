@@ -147,7 +147,7 @@
 <span style="background: rgba(245, 158, 11, 0.15); color: #F59E0B; border: 1px solid #F59E0B; padding: 0.3rem 0.75rem; border-radius: 99px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">Gatilho de acne fúngica sinalizado por regra</span>
 </div>
 </div>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">ASCORBYL PALMITATE</strong> consta no inventário CosIng da Comissão Europeia nas categorias funcionais <span translate="no">Antioxidant, Fragrance</span>, com número CAS <span translate="no">137-66-6</span> e número CE <span translate="no">205-305-4</span>.</span> <span>O CosIng também o registra como <span translate="no">6-O-Palmitoylascorbic acid</span> (nome químico).</span> <span>Na amostra gratuita do INCIDB, aparece nos rótulos de 7 produtos, chegando à posição 14 em <span translate="no">Labello Blackberry Shine 5.5ml</span>.</span> <span>Fulton (1989) atribui a ele o grau 2 na escala de comedogenicidade 0–5; esse grau é transcrito tal como está e é a única fonte de classificação utilizada.</span> <span>A heurística baseada em regras do INCIDB sinaliza este ingrediente como possível gatilho de Malassezia (acne fúngica). Trata-se de uma regra, não de uma medição — use-a como filtro, não como constatação.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">ASCORBYL PALMITATE</strong> consta no inventário CosIng da Comissão Europeia nas categorias funcionais <span translate="no">Antioxidant, Fragrance</span>, com número CAS <span translate="no">137-66-6</span> e número CE <span translate="no">205-305-4</span>.</span> <span>O CosIng também o registra como <span translate="no">6-O-Palmitoylascorbic acid</span> (nome químico).</span> <span>Na amostra gratuita do INCIDB, aparece nos rótulos de 8 produtos, chegando à posição 14 em <span translate="no">Labello Blackberry Shine 5.5ml</span>.</span> <span>Fulton (1989) atribui a ele o grau 2 na escala de comedogenicidade 0–5; esse grau é transcrito tal como está e é a única fonte de classificação utilizada.</span> <span>A heurística baseada em regras do INCIDB sinaliza este ingrediente como possível gatilho de Malassezia (acne fúngica). Trata-se de uma regra, não de uma medição — use-a como filtro, não como constatação.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">NÚMERO DE REGISTRO CAS</div>
@@ -192,6 +192,10 @@
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#27</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Botox-like Peptide Serum</td>
+<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#21</td>
+</tr>
+<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Labello Blackberry Shine 5.5ml</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#14</td>
 </tr>
@@ -222,7 +226,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "ASCORBYL PALMITATE"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">O snapshot completo abrange 18.583 produtos. A cobertura de cada coluna de enriquecimento é publicada, tanto por nome distinto quanto ponderada por ocorrência nos rótulos — consulte a <a href="/pt-br/#coverage" style="color: #38BDF8;">tabela de cobertura</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">O snapshot completo abrange 19.764 produtos. A cobertura de cada coluna de enriquecimento é publicada, tanto por nome distinto quanto ponderada por ocorrência nos rótulos — consulte a <a href="/pt-br/#coverage" style="color: #38BDF8;">tabela de cobertura</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_pt-br_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">Adquira o INCIDB Complete — $79 →</a>
 </div>

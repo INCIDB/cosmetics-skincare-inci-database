@@ -192,6 +192,10 @@
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#9</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Balea Mandelblüte &amp; Magnolie Cremedusche</td>
+<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#6</td>
+</tr>
+<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Body Wash Shower Gel Naturals Milk &amp; Honey 1L</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#16</td>
 </tr>
@@ -202,10 +206,6 @@
 <tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Żel pod prysznic wnwrgetyzujący</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#7</td>
-</tr>
-<tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Cosmetic Product 3264680004063</td>
-<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#14</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Schwarzkopf Extra Care Full Hair Protect Anti-Breakage Shampoo 200mL</td>
@@ -222,7 +222,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "GLYCERYL OLEATE"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 18.583 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 19.764 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_de_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">INCIDB Complete erwerben — $79 →</a>
 </div>

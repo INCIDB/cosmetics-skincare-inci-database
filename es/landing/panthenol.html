@@ -149,7 +149,7 @@
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
 </div>
 </div>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">PANTHENOL</strong> figura en el inventario CosIng de la Comisión Europea en las categorías funcionales <span translate="no">Antistatic, Hair Conditioning, Skin Conditioning</span>, con número CAS <span translate="no">81-13-0 / 16485-10-2</span> y número CE <span translate="no">201-327-3 / 240-540-6</span>.</span> <span><span translate="no">PANTHENOL</span> es el nombre INCI de la sustancia conocida como <span translate="no">dexpanthenol</span> (DCI), registrada también como <span translate="no">dexpanthenolum</span> (Ph. Eur.), <span translate="no">Butanamide, 2,4-dihydroxy-N-(3-hydroxypropyl)-3,3-dimethyl-, (2R)-</span> (nombre químico) y <span translate="no">dl-Panthenol</span> (nombre químico).</span> <span>En la muestra gratuita de INCIDB aparece en 25 etiquetas de producto y alcanza la posición 4 en <span translate="no">Fresh Deo Zerstäuber</span>.</span> <span>Fulton (1989) le asigna un 0 en la escala de comedogenicidad 0–5; esa calificación se transcribe tal cual y es la única fuente de calificación utilizada.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">PANTHENOL</strong> figura en el inventario CosIng de la Comisión Europea en las categorías funcionales <span translate="no">Antistatic, Hair Conditioning, Skin Conditioning</span>, con número CAS <span translate="no">81-13-0 / 16485-10-2</span> y número CE <span translate="no">201-327-3 / 240-540-6</span>.</span> <span><span translate="no">PANTHENOL</span> es el nombre INCI de la sustancia conocida como <span translate="no">dexpanthenol</span> (DCI), registrada también como <span translate="no">dexpanthenolum</span> (Ph. Eur.), <span translate="no">Butanamide, 2,4-dihydroxy-N-(3-hydroxypropyl)-3,3-dimethyl-, (2R)-</span> (nombre químico) y <span translate="no">dl-Panthenol</span> (nombre químico).</span> <span>En la muestra gratuita de INCIDB aparece en 27 etiquetas de producto y alcanza la posición 4 en <span translate="no">Fresh Deo Zerstäuber</span>.</span> <span>Fulton (1989) le asigna un 0 en la escala de comedogenicidad 0–5; esa calificación se transcribe tal cual y es la única fuente de calificación utilizada.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">NÚMERO DE REGISTRO CAS</div>
@@ -202,6 +202,10 @@
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#7</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Schauma Phyto-Coffein</td>
+<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#7</td>
+</tr>
+<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">HiPP Babysanft Sonnenschutz</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#15</td>
 </tr>
@@ -212,10 +216,6 @@
 <tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Booster antifatiga les cosmetiques nº2 booster plan</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#8</td>
-</tr>
-<tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Cosmetic Product 5037156227499</td>
-<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#24</td>
 </tr>
 </tbody>
 </table>
@@ -228,7 +228,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "PANTHENOL"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">El snapshot completo abarca 18.583 productos. Se publica la cobertura de cada columna de enriquecimiento, tanto por nombre distinto como ponderada por aparición en etiquetas: consulta la <a href="/es/#coverage" style="color: #38BDF8;">tabla de cobertura</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">El snapshot completo abarca 19.764 productos. Se publica la cobertura de cada columna de enriquecimiento, tanto por nombre distinto como ponderada por aparición en etiquetas: consulta la <a href="/es/#coverage" style="color: #38BDF8;">tabla de cobertura</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_es_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">Obtén INCIDB Complete — $79 →</a>
 </div>

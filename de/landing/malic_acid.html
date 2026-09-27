@@ -146,7 +146,7 @@
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
 </div>
 </div>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">MALIC ACID</strong> ist im CosIng-Verzeichnis der Europäischen Kommission unter der Funktionskategorie <span translate="no">Buffering</span> aufgeführt, mit CAS-Nummer <span translate="no">97-67-6</span> und EG-Nummer <span translate="no">202-601-5</span>.</span> <span>CosIng erfasst ihn außerdem als <span translate="no">Butenedioic acid, hydroxy-, (2S)-</span> (chemische Bezeichnung).</span> <span>In den kostenlosen INCIDB-Beispieldaten erscheint er auf 2 Produktetiketten und erreicht bei <span translate="no">Clairol Colour Strong 8.1 Medium Ash Blonde 1 Pack</span> Position 7.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">MALIC ACID</strong> ist im CosIng-Verzeichnis der Europäischen Kommission unter der Funktionskategorie <span translate="no">Buffering</span> aufgeführt, mit CAS-Nummer <span translate="no">97-67-6</span> und EG-Nummer <span translate="no">202-601-5</span>.</span> <span>CosIng erfasst ihn außerdem als <span translate="no">Butenedioic acid, hydroxy-, (2S)-</span> (chemische Bezeichnung).</span> <span>In den kostenlosen INCIDB-Beispieldaten erscheint er auf 1 Produktetikett und erreicht bei <span translate="no">Clairol Colour Strong 8.1 Medium Ash Blonde 1 Pack</span> Position 7.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">CAS-REGISTRIERUNGSNUMMER</div>
@@ -179,10 +179,6 @@
 </thead>
 <tbody>
 <tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Cosmetic Product 5037156227499</td>
-<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#22</td>
-</tr>
-<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Clairol Colour Strong 8.1 Medium Ash Blonde 1 Pack</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#7</td>
 </tr>
@@ -197,7 +193,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "MALIC ACID"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 18.583 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 19.764 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_de_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">INCIDB Complete erwerben — $79 →</a>
 </div>

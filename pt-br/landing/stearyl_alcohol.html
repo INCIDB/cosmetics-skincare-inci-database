@@ -147,7 +147,7 @@
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
 </div>
 </div>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">STEARYL ALCOHOL</strong> consta no inventário CosIng da Comissão Europeia nas categorias funcionais <span translate="no">Skin Conditioning - Emollient, Surfactant - Emulsifying, Emulsion Stabilising, Surfactant - Foam Boosting, Fragrance, Opacifying, Refatting, Surfactant - Cleansing, Viscosity Controlling</span>, com número CAS <span translate="no">112-92-5</span> e número CE <span translate="no">204-017-6</span>.</span> <span>O CosIng também o registra como <span translate="no">alcohol stearylicus</span> (Ph. Eur.) e <span translate="no">Octadecan-1-ol</span> (nome químico).</span> <span>Na amostra gratuita do INCIDB, aparece nos rótulos de 9 produtos, chegando à posição 3 em <span translate="no">Rexona MotionSense Shower Fresh Kadın Anti-Perspirant Stick</span>.</span> <span>Fulton (1989) atribui a ele o grau 2 na escala de comedogenicidade 0–5; esse grau é transcrito tal como está e é a única fonte de classificação utilizada.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">STEARYL ALCOHOL</strong> consta no inventário CosIng da Comissão Europeia nas categorias funcionais <span translate="no">Skin Conditioning - Emollient, Surfactant - Emulsifying, Emulsion Stabilising, Surfactant - Foam Boosting, Fragrance, Opacifying, Refatting, Surfactant - Cleansing, Viscosity Controlling</span>, com número CAS <span translate="no">112-92-5</span> e número CE <span translate="no">204-017-6</span>.</span> <span>O CosIng também o registra como <span translate="no">alcohol stearylicus</span> (Ph. Eur.) e <span translate="no">Octadecan-1-ol</span> (nome químico).</span> <span>Na amostra gratuita do INCIDB, aparece nos rótulos de 10 produtos, chegando à posição 3 em <span translate="no">Rexona MotionSense Shower Fresh Kadın Anti-Perspirant Stick</span>.</span> <span>Fulton (1989) atribui a ele o grau 2 na escala de comedogenicidade 0–5; esse grau é transcrito tal como está e é a única fonte de classificação utilizada.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">NÚMERO DE REGISTRO CAS</div>
@@ -196,6 +196,10 @@
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#4</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">love hemp Uncle Bud's organic hemp oil rose gold face mask</td>
+<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#9</td>
+</tr>
+<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Garnier Fructis</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#5</td>
 </tr>
@@ -211,10 +215,6 @@
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Crème mains réparatrice beurre de karité</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#5</td>
 </tr>
-<tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Pantene Pro-v Shampoo Colour Protection 375mL</td>
-<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#9</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -226,12 +226,12 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "STEARYL ALCOHOL"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">O snapshot completo abrange 18.583 produtos. A cobertura de cada coluna de enriquecimento é publicada, tanto por nome distinto quanto ponderada por ocorrência nos rótulos — consulte a <a href="/pt-br/#coverage" style="color: #38BDF8;">tabela de cobertura</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">O snapshot completo abrange 19.764 produtos. A cobertura de cada coluna de enriquecimento é publicada, tanto por nome distinto quanto ponderada por ocorrência nos rótulos — consulte a <a href="/pt-br/#coverage" style="color: #38BDF8;">tabela de cobertura</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_pt-br_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">Adquira o INCIDB Complete — $79 →</a>
 </div>
 </div>
-<section class="related"><h2>Ingredientes relacionados</h2><ul><li><a href="/pt-br/landing/sorbitol" translate="no">SORBITOL</a> <span class="related-why">— mesmo grupo de funções CosIng</span></li><li><a href="/pt-br/landing/stearic_acid" translate="no">STEARIC ACID</a> <span class="related-why">— mesmo grupo de funções CosIng</span></li><li><a href="/pt-br/landing/stevioside" translate="no">STEVIOSIDE</a> <span class="related-why">— mesmo grupo de funções CosIng</span></li><li><a href="/pt-br/landing/succinic_acid" translate="no">SUCCINIC ACID</a> <span class="related-why">— mesmo grupo de funções CosIng</span></li><li><a href="/pt-br/landing/fragrance_colour">Agentes de fragrância, perfume e corantes</a></li></ul></section>
+<section class="related"><h2>Ingredientes relacionados</h2><ul><li><a href="/pt-br/landing/sorbitol" translate="no">SORBITOL</a> <span class="related-why">— mesmo grupo de funções CosIng</span></li><li><a href="/pt-br/landing/stearic_acid" translate="no">STEARIC ACID</a> <span class="related-why">— mesmo grupo de funções CosIng</span></li><li><a href="/pt-br/landing/stevioside" translate="no">STEVIOSIDE</a> <span class="related-why">— mesmo grupo de funções CosIng</span></li><li><a href="/pt-br/landing/synthetic_wax" translate="no">SYNTHETIC WAX</a> <span class="related-why">— mesmo grupo de funções CosIng</span></li><li><a href="/pt-br/landing/fragrance_colour">Agentes de fragrância, perfume e corantes</a></li></ul></section>
 </main>
 <footer style="background: #111318; border-top: 1px solid #232838; padding: 2rem 0; text-align: center; font-size: 0.85rem; color: #64748B; margin-top: auto;">
 <div class="container">

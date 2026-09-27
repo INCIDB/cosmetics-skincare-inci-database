@@ -143,7 +143,7 @@
 </div>
 </div>
 <p lang="en" style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; margin-bottom: 1.75rem;" translate="no">Leuconostoc/Radish Root Ferment Filtrate is a filtrate of the product obtained by the fermentation of Raphanus sativus roots by the microorganism, Leuconostoc</p>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">LEUCONOSTOC/RADISH ROOT FERMENT FILTRATE</strong> figura en el inventario CosIng de la Comisión Europea en las categorías funcionales <span translate="no">Anti-Seborrheic, Antimicrobial</span>. CosIng no registra ningún número CAS para este ingrediente, por lo que la columna es NULL en lugar de una suposición.</span> <span>En la muestra gratuita de INCIDB aparece en 1 etiqueta de producto y alcanza la posición 9 en <span translate="no">Urban Care Argan Yağı &amp; Keratin Sıvı Saç Bakım Kremi</span>.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">LEUCONOSTOC/RADISH ROOT FERMENT FILTRATE</strong> figura en el inventario CosIng de la Comisión Europea en las categorías funcionales <span translate="no">Anti-Seborrheic, Antimicrobial</span>. CosIng no registra ningún número CAS para este ingrediente, por lo que la columna es NULL en lugar de una suposición.</span> <span>En la muestra gratuita de INCIDB aparece en 2 etiquetas de producto y alcanza la posición 9 en <span translate="no">Urban Care Argan Yağı &amp; Keratin Sıvı Saç Bakım Kremi</span>.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">FUNCIONES COSING</div>
@@ -164,6 +164,10 @@
 </thead>
 <tbody>
 <tr style="border-bottom: 1px solid #232838;">
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Botox-like Peptide Serum</td>
+<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#27</td>
+</tr>
+<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Urban Care Argan Yağı &amp; Keratin Sıvı Saç Bakım Kremi</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#9</td>
 </tr>
@@ -178,7 +182,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "LEUCONOSTOC/RADISH ROOT FERMENT FILTRATE"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">El snapshot completo abarca 18.583 productos. Se publica la cobertura de cada columna de enriquecimiento, tanto por nombre distinto como ponderada por aparición en etiquetas: consulta la <a href="/es/#coverage" style="color: #38BDF8;">tabla de cobertura</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">El snapshot completo abarca 19.764 productos. Se publica la cobertura de cada columna de enriquecimiento, tanto por nombre distinto como ponderada por aparición en etiquetas: consulta la <a href="/es/#coverage" style="color: #38BDF8;">tabla de cobertura</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_es_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">Obtén INCIDB Complete — $79 →</a>
 </div>

@@ -144,7 +144,7 @@
 </div>
 </div>
 <p lang="en" style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; margin-bottom: 1.75rem;" translate="no">Methyl-D-glucopyranoside, ethers with 1,2,3-propanetriol homopolymer, octadecanoates (1:1:2)  (3 mol glycerol average molar ratio)</p>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">POLYGLYCERYL-3 METHYLGLUCOSE DISTEARATE</strong> figura en el inventario CosIng de la Comisión Europea en la categoría funcional <span translate="no">Surfactant - Emulsifying</span>. CosIng no registra ningún número CAS para este ingrediente, por lo que la columna es NULL en lugar de una suposición.</span> <span>En la muestra gratuita de INCIDB aparece en 1 etiqueta de producto y alcanza la posición 5 en <span translate="no">NIVEA MEN  protect &amp; care</span>.</span> <span>La heurística basada en reglas de INCIDB lo marca como posible desencadenante de Malassezia (acné fúngico). Es una regla, no una medición: úsalo como filtro, no como hallazgo.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">POLYGLYCERYL-3 METHYLGLUCOSE DISTEARATE</strong> figura en el inventario CosIng de la Comisión Europea en la categoría funcional <span translate="no">Surfactant - Emulsifying</span>. CosIng no registra ningún número CAS para este ingrediente, por lo que la columna es NULL en lugar de una suposición.</span> <span>En la muestra gratuita de INCIDB aparece en 1 etiqueta de producto y alcanza la posición 5 en <span translate="no">NIVEA MEN protect &amp; care</span>.</span> <span>La heurística basada en reglas de INCIDB lo marca como posible desencadenante de Malassezia (acné fúngico). Es una regla, no una medición: úsalo como filtro, no como hallazgo.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">FUNCIONES COSING</div>
@@ -165,7 +165,7 @@
 </thead>
 <tbody>
 <tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">NIVEA MEN  protect &amp; care</td>
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">NIVEA MEN protect &amp; care</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#5</td>
 </tr>
 </tbody>
@@ -179,7 +179,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "POLYGLYCERYL-3 METHYLGLUCOSE DISTEARATE"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">El snapshot completo abarca 18.583 productos. Se publica la cobertura de cada columna de enriquecimiento, tanto por nombre distinto como ponderada por aparición en etiquetas: consulta la <a href="/es/#coverage" style="color: #38BDF8;">tabla de cobertura</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">El snapshot completo abarca 19.764 productos. Se publica la cobertura de cada columna de enriquecimiento, tanto por nombre distinto como ponderada por aparición en etiquetas: consulta la <a href="/es/#coverage" style="color: #38BDF8;">tabla de cobertura</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_es_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">Obtén INCIDB Complete — $79 →</a>
 </div>

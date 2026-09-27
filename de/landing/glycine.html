@@ -146,7 +146,7 @@
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
 </div>
 </div>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">GLYCINE</strong> ist im CosIng-Verzeichnis der Europäischen Kommission unter den Funktionskategorien <span translate="no">Antistatic, Buffering, Hair Conditioning, Skin Conditioning</span> aufgeführt, mit CAS-Nummer <span translate="no">56-40-6</span> und EG-Nummer <span translate="no">200-272-2</span>.</span> <span>CosIng erfasst ihn außerdem als <span translate="no">glycinum</span> (Ph. Eur.).</span> <span>In den kostenlosen INCIDB-Beispieldaten erscheint er auf 5 Produktetiketten und erreicht bei <span translate="no">Signal Bain de Bouche Antibactérien Integral 8 Nature Elements Fraîcheur Naturelle 500ml</span> Position 5.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">GLYCINE</strong> ist im CosIng-Verzeichnis der Europäischen Kommission unter den Funktionskategorien <span translate="no">Antistatic, Buffering, Hair Conditioning, Skin Conditioning</span> aufgeführt, mit CAS-Nummer <span translate="no">56-40-6</span> und EG-Nummer <span translate="no">200-272-2</span>.</span> <span>CosIng erfasst ihn außerdem als <span translate="no">glycinum</span> (Ph. Eur.).</span> <span>In den kostenlosen INCIDB-Beispieldaten erscheint er auf 4 Produktetiketten und erreicht bei <span translate="no">Signal Bain de Bouche Antibactérien Integral 8 Nature Elements Fraîcheur Naturelle 500ml</span> Position 5.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">CAS-REGISTRIERUNGSNUMMER</div>
@@ -179,10 +179,6 @@
 </thead>
 <tbody>
 <tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Cosmetic Product 5037156227499</td>
-<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#19</td>
-</tr>
-<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Signal Bain de Bouche Antibactérien Integral 8 Nature Elements Fraîcheur Naturelle 500ml</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#5</td>
 </tr>
@@ -209,12 +205,12 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "GLYCINE"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 18.583 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 19.764 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_de_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">INCIDB Complete erwerben — $79 →</a>
 </div>
 </div>
-<section class="related"><h2>Verwandte Inhaltsstoffe</h2><ul><li><a href="/de/landing/galactoarabinan" translate="no">GALACTOARABINAN</a> <span class="related-why">— gleiche CosIng-Funktionsgruppe</span></li><li><a href="/de/landing/glycidyl_neodecanoate_phthalic_anhydride_tmp_crosspolymer" translate="no">GLYCIDYL NEODECANOATE/PHTHALIC ANHYDRIDE/TMP CROSSPOLYMER</a> <span class="related-why">— gleiche CosIng-Funktionsgruppe</span></li><li><a href="/de/landing/glycol" translate="no">GLYCOL</a> <span class="related-why">— gleiche CosIng-Funktionsgruppe</span></li><li><a href="/de/landing/glycol_dilaurate" translate="no">GLYCOL DILAURATE</a> <span class="related-why">— gleiche CosIng-Funktionsgruppe</span></li><li><a href="/de/landing/solvents">Lösungsmittel, Viskositäts- &amp; Strukturgeber</a></li></ul></section>
+<section class="related"><h2>Verwandte Inhaltsstoffe</h2><ul><li><a href="/de/landing/gellan_gum" translate="no">GELLAN GUM</a> <span class="related-why">— gleiche CosIng-Funktionsgruppe</span></li><li><a href="/de/landing/glycidyl_neodecanoate_phthalic_anhydride_tmp_crosspolymer" translate="no">GLYCIDYL NEODECANOATE/PHTHALIC ANHYDRIDE/TMP CROSSPOLYMER</a> <span class="related-why">— gleiche CosIng-Funktionsgruppe</span></li><li><a href="/de/landing/glycol" translate="no">GLYCOL</a> <span class="related-why">— gleiche CosIng-Funktionsgruppe</span></li><li><a href="/de/landing/glycol_dilaurate" translate="no">GLYCOL DILAURATE</a> <span class="related-why">— gleiche CosIng-Funktionsgruppe</span></li><li><a href="/de/landing/solvents">Lösungsmittel, Viskositäts- &amp; Strukturgeber</a></li></ul></section>
 </main>
 <footer style="background: #111318; border-top: 1px solid #232838; padding: 2rem 0; text-align: center; font-size: 0.85rem; color: #64748B; margin-top: auto;">
 <div class="container">
