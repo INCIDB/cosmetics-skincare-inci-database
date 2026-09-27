@@ -8,28 +8,28 @@
 
 [![Live Portal](https://img.shields.io/badge/Live_Portal-incidb.dataengineered.io-0080d0?style=flat-square)](https://incidb.dataengineered.io/)
 [![License](https://img.shields.io/badge/License-ODbL_v1.0-008080?style=flat-square)](https://opendatacommons.org/licenses/odbl/1-0/)
-[![Products](https://img.shields.io/badge/Products-18,583-0080d0?style=flat-square)](https://incidb.dataengineered.io/schema)
-[![INCI names](https://img.shields.io/badge/INCI_names-46,008-d03030?style=flat-square)](https://incidb.dataengineered.io/schema)
-[![Brands](https://img.shields.io/badge/Brands-5,925-800080?style=flat-square)](https://incidb.dataengineered.io/schema)
-[![Composition links](https://img.shields.io/badge/Composition_links-342,208-60a020?style=flat-square)](https://incidb.dataengineered.io/schema)
-[![Name map rows](https://img.shields.io/badge/Name_map_rows-77,257-e06020?style=flat-square)](https://incidb.dataengineered.io/schema)
+[![Products](https://img.shields.io/badge/Products-19,764-0080d0?style=flat-square)](https://incidb.dataengineered.io/schema)
+[![INCI names](https://img.shields.io/badge/INCI_names-45,327-d03030?style=flat-square)](https://incidb.dataengineered.io/schema)
+[![Brands](https://img.shields.io/badge/Brands-6,412-800080?style=flat-square)](https://incidb.dataengineered.io/schema)
+[![Composition links](https://img.shields.io/badge/Composition_links-367,785-60a020?style=flat-square)](https://incidb.dataengineered.io/schema)
+[![Name map rows](https://img.shields.io/badge/Name_map_rows-77,367-e06020?style=flat-square)](https://incidb.dataengineered.io/schema)
 [![Snapshot](https://img.shields.io/badge/Snapshot-2026.09-7020d0?style=flat-square)](https://incidb.dataengineered.io/)
 
 > **Live portal, interactive schema & free sample:** [https://incidb.dataengineered.io/](https://incidb.dataengineered.io/)
 >
-> **Free sample:** [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) (200 products, 1,106 ingredients) · **INCIDB Complete: $79 one-time, CSV + Parquet** → [Buy on Stripe](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g)
+> **Free sample:** [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) (200 products, 1,123 ingredients) · **INCIDB Complete: $79 one-time, CSV + Parquet** → [Buy on Stripe](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g)
 > **Same sample on [Hugging Face](https://huggingface.co/datasets/Ichlibitiche/incidb-skincare-free-sample)** · **[Kaggle](https://www.kaggle.com/datasets/dataengineered/incidb-skincare-and-cosmetics-inci-formulations)**
 
 **For ML/NLP teams training ingredient-normalisation models and compliance
-analysts running bulk EU Annex audits:** INCIDB ships the **77,257-row
+analysts running bulk EU Annex audits:** INCIDB ships the **77,367-row
 `ingredient_name_map`** — every raw label token resolved to a canonical INCI
 name, with the resolution `method` and a `confidence` on each row — as one
 offline, auditable artifact that no free source or live API provides.
 
 Underneath it, a normalised, relational snapshot of what is actually printed on cosmetic
-ingredient labels: **18,583 products**, **5,925 brands**, **46,008 distinct
-canonical INCI names**, **342,208 ordered product→ingredient links**, and the
-**77,257-row `ingredient_name_map`** that shows how every raw label token was
+ingredient labels: **19,764 products**, **6,412 brands**, **45,327 distinct
+canonical INCI names**, **367,785 ordered product→ingredient links**, and the
+**77,367-row `ingredient_name_map`** that shows how every raw label token was
 resolved to a canonical name.
 
 Product, brand and composition data come from **Open Beauty Facts** (ODbL).
@@ -46,13 +46,13 @@ Shipped as pipe-delimited UTF-8 CSV (`|`) and Apache Parquet.
 
 | Table | Rows | What it is |
 | :--- | ---: | :--- |
-| `products` | 18,583 | One row per Open Beauty Facts product: name, brand FK, EAN, the source's own tag list, raw label text |
-| `brands` | 5,925 | Canonical brand identities |
-| `ingredients` | 46,008 | Distinct canonical INCI names, plus their CosIng enrichment where CosIng lists them |
-| `product_ingredients` | 342,208 | Ordered composition links (`position_index` = label order) |
-| `ingredient_name_map` | 77,257 | Raw label token → canonical name, with the resolution `method` and a confidence |
-| `fragrance_allergens` | 269 | EU Annex III fragrance-allergen labelling entries, one row per legal name × INCIDB match (review rows and unmatched names included) |
-| `regulatory_status` | 633 | EU Annex II–VI status per ingredient × list entry; a row exists only where a list says something |
+| `products` | 19,764 | One row per Open Beauty Facts product: name, brand FK, EAN, the source's own tag list, raw label text |
+| `brands` | 6,412 | Canonical brand identities |
+| `ingredients` | 45,327 | Distinct canonical INCI names, plus their CosIng enrichment where CosIng lists them |
+| `product_ingredients` | 367,785 | Ordered composition links (`position_index` = label order) |
+| `ingredient_name_map` | 77,367 | Raw label token → canonical name, with the resolution `method` and a confidence |
+| `fragrance_allergens` | 274 | EU Annex III fragrance-allergen labelling entries, one row per legal name × INCIDB match (review rows and unmatched names included) |
+| `regulatory_status` | 637 | EU Annex II–VI status per ingredient × list entry; a row exists only where a list says something |
 
 ### Enrichment coverage — stated two ways, honestly
 
@@ -61,12 +61,12 @@ far more distinct strings than any inventory lists (botanical variants,
 multilingual spellings, marketing tokens, one-off blends). So coverage looks
 very different depending on what you count:
 
-| Column | Share of the 46,008 distinct names | Share of the 342,208 label occurrences |
+| Column | Share of the 45,327 distinct names | Share of the 367,785 label occurrences |
 | :--- | ---: | ---: |
-| CosIng match (any) | 11.6% | **83.9%** |
-| `functions` | 11.5% | **82.9%** |
-| `cas_number` | 8.7% | **77.6%** |
-| `chemical_description` | 9.0% (4,101 distinct values) | — |
+| CosIng match (any) | 12.2% | **85.1%** |
+| `functions` | 12.0% | **84.0%** |
+| `cas_number` | 9.0% | **78.6%** |
+| `chemical_description` | 9.5% (4,257 distinct values) | — |
 
 Read it like this: **most distinct names in the long tail are not in CosIng,
 but most of the ingredient slots on an actual product label are.** If you are
@@ -83,8 +83,8 @@ you can decide before you pay.
   matched to INCIDB by exact INCI name, then by the collective label name the
   Regulation prescribes (e.g. "Rose Ketones"), then by CAS number for
   chemically defined substances only. Botanical CAS hits are shipped as review
-  rows, never flags. 121 names are flagged; 46.9% of products contain at least
-  one. About 2.7% of products list ingredients as unsplit text that the
+  rows, never flags. 120 names are flagged; 47.2% of products contain at least
+  one. About 2.4% of products list ingredients as unsplit text that the
   allergen flags do not reach. The US FDA has not yet published its MoCRA
   fragrance-allergen list, so this dataset carries no US flag.
   `allergen_source` records the list on each flagged ingredient; the
@@ -97,11 +97,11 @@ you can decide before you pay.
   CosIng glossary name or the CosIng "Identified INGREDIENTS" name only; there
   is no CAS route. Absence of a row is not a status, and nothing here is legal
   advice.
-* **`comedogenic_rating` — 144 ingredients rated 0–5.** Transcribed from
+* **`comedogenic_rating` — 142 ingredients rated 0–5.** Transcribed from
   Fulton JE Jr., *Comedogenicity and irritancy of commonly used ingredients
   in skin care products*, J Soc Cosmet Chem 1989;40:321–333 (Table I).
   `NULL` for every ingredient the paper does not cover.
-* **`is_fungal_acne_trigger` — 272 flags.** A rule-derived heuristic, not a
+* **`is_fungal_acne_trigger` — 275 flags.** A rule-derived heuristic, not a
   measured property: C11–C24 fatty acids and their esters, and polysorbates
   20/40/60/80, applied only to CosIng-matched ingredients. Basis: Saunte et
   al. 2020 (DOI 10.3389/fcimb.2020.00112) and Liebregts et al. 2025 (DOI
@@ -157,7 +157,7 @@ instead of taking it on trust.
 [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) — the
 same seven tables, the same columns, as CSV and Parquet:
 
-* **200 products**, with their brands, their **1,106** referenced
+* **200 products**, with their brands, their **1,123** referenced
   ingredients, all their composition links, and the name-map rows for the
   sampled products' own label tokens.
 * Selection is disclosed and reproducible
@@ -235,8 +235,8 @@ duckdb.query("""
 * **Ingredient scanner apps** — resolve a scanned label to canonical names via
   `ingredient_name_map`, then surface CosIng functions and EU Annex III
   allergen flags for the slots you can resolve.
-* **Formulation and recommender models** — 342,208 ordered links give you
-  position-weighted composition vectors across 18,583 products.
+* **Formulation and recommender models** — 367,785 ordered links give you
+  position-weighted composition vectors across 19,764 products.
 * **Retail and marketplace enrichment** — attach functions and restrictions to
   product pages, with `NULL` where nothing is known rather than a guess.
 * **Regulatory and research work** — Annex II–VI status rows per ingredient

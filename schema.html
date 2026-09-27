@@ -117,13 +117,13 @@
                 <table>
                     <thead><tr><th>Table</th><th>Rows</th></tr></thead>
                     <tbody>
-                        <tr><td><code>products</code></td><td>18,583</td></tr>
-                        <tr><td><code>brands</code></td><td>5,925</td></tr>
-                        <tr><td><code>ingredients</code></td><td>46,008</td></tr>
-                        <tr><td><code>product_ingredients</code></td><td>342,208</td></tr>
-                        <tr><td><code>ingredient_name_map</code></td><td>77,257</td></tr>
-                        <tr><td><code>fragrance_allergens</code></td><td>269</td></tr>
-                        <tr><td><code>regulatory_status</code></td><td>633</td></tr>
+                        <tr><td><code>products</code></td><td>19,764</td></tr>
+                        <tr><td><code>brands</code></td><td>6,412</td></tr>
+                        <tr><td><code>ingredients</code></td><td>45,327</td></tr>
+                        <tr><td><code>product_ingredients</code></td><td>367,785</td></tr>
+                        <tr><td><code>ingredient_name_map</code></td><td>77,367</td></tr>
+                        <tr><td><code>fragrance_allergens</code></td><td>274</td></tr>
+                        <tr><td><code>regulatory_status</code></td><td>637</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -132,7 +132,7 @@
         <!-- Brands -->
         <div class="doc-section">
             <h2>1. brands</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">5,925 brand identities as recorded in Open Beauty Facts.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">6,412 brand identities as recorded in Open Beauty Facts.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -149,7 +149,7 @@
         <!-- Products -->
         <div class="doc-section">
             <h2>2. products</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">18,583 products, one row each, every one carrying a usable on-pack ingredient declaration.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">19,764 products, one row each, every one carrying a usable on-pack ingredient declaration.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -160,7 +160,7 @@
                         <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>brands.brand_id</code>. <strong>NULL</strong> when the source label records no brand</td><td><code>55</code></td></tr>
                         <tr><td><code>barcode_ean</code></td><td><code class="type-tag">STRING</code></td><td>GTIN / EAN barcode</td><td><code>4006381333931</code></td></tr>
                         <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Product name as recorded upstream</td><td><code>Good Genes Lactic Acid Treatment</code></td></tr>
-                        <tr><td><code>obf_categories_tags</code></td><td><code class="type-tag">STRING</code></td><td>Open Beauty Facts' own tag list, joined with <code>;</code>, verbatim — present on 12,860 of 18,583 products (69.2%), NULL where the source has none</td><td><code>en:hygiene;en:soaps</code></td></tr>
+                        <tr><td><code>obf_categories_tags</code></td><td><code class="type-tag">STRING</code></td><td>Open Beauty Facts' own tag list, joined with <code>;</code>, verbatim — present on 13,462 of 19,764 products (68.1%), NULL where the source has none</td><td><code>en:hygiene;en:soaps</code></td></tr>
                         <tr><td><code>raw_ingredient_text</code></td><td><code class="type-tag">STRING</code></td><td>The unparsed declaration, kept verbatim so the parse can be re-derived</td><td><code>Water, Glycerin, ...</code></td></tr>
                         <tr><td><code>created_at</code></td><td><code class="type-tag">STRING</code></td><td>Ingestion timestamp (ISO 8601)</td><td><code>2026-07-02T14:01:48Z</code></td></tr>
                     </tbody>
@@ -171,7 +171,7 @@
         <!-- Ingredients -->
         <div class="doc-section">
             <h2>3. ingredients</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">One row per distinct canonical INCI name — 46,008 of them. Every CosIng-derived column is populated only where the canonical name matched the European Commission CosIng inventory on an exact name match, and is <code>NULL</code> otherwise.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">One row per distinct canonical INCI name — 45,327 of them. Every CosIng-derived column is populated only where the canonical name matched the European Commission CosIng inventory on an exact name match, and is <code>NULL</code> otherwise.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -202,13 +202,13 @@
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr><th>Column</th><th>Share of the 46,008 distinct names</th><th>Share of the 342,208 label occurrences</th></tr>
+                        <tr><th>Column</th><th>Share of the 45,327 distinct names</th><th>Share of the 367,785 label occurrences</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>CosIng match (any)</td><td>11.6%</td><td>83.9%</td></tr>
-                        <tr><td><code>functions</code></td><td>11.5%</td><td>82.9%</td></tr>
-                        <tr><td><code>cas_number</code></td><td>8.7%</td><td>77.6%</td></tr>
-                        <tr><td><code>chemical_description</code></td><td>9.0% · 4,101 distinct values</td><td>—</td></tr>
+                        <tr><td>CosIng match (any)</td><td>12.2%</td><td>85.1%</td></tr>
+                        <tr><td><code>functions</code></td><td>12.0%</td><td>84.0%</td></tr>
+                        <tr><td><code>cas_number</code></td><td>9.0%</td><td>78.6%</td></tr>
+                        <tr><td><code>chemical_description</code></td><td>9.5% · 4,257 distinct values</td><td>—</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -217,22 +217,22 @@
             </div>
 
             <div class="note">
-                <strong>Method — allergen flags.</strong> One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. 121 names are flagged; the per-entry evidence is in <code>fragrance_allergens</code> (table 6). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.
+                <strong>Method — allergen flags.</strong> One list only: the fragrance allergens of Annex III to the EU Cosmetics Regulation (Regulation (EC) 1223/2009 as amended by Regulation (EU) 2023/1545), matched by exact INCI name, then by the collective label name the Regulation prescribes, then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. 120 names are flagged; the per-entry evidence is in <code>fragrance_allergens</code> (table 6). The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.
             </div>
 
             <div class="note">
-                <strong>Method — comedogenic ratings.</strong> 144 ingredients carry a rating on the 0–5 scale, transcribed from Table I (pp. 324–326) of Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Where the paper prints a range rather than a single grade, the rating is left <code>NULL</code>. Absence of a rating means "not covered by the cited source", never "safe".
+                <strong>Method — comedogenic ratings.</strong> 142 ingredients carry a rating on the 0–5 scale, transcribed from Table I (pp. 324–326) of Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Where the paper prints a range rather than a single grade, the rating is left <code>NULL</code>. Absence of a rating means "not covered by the cited source", never "safe".
             </div>
 
             <div class="note">
-                <strong>Method — fungal-acne flag.</strong> A rule-derived heuristic, not a measured property: no per-ingredient <em>Malassezia</em> assay exists to transcribe. The rule flags C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, giving 272 flags. Basis: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), with the chain-length window from Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Specific oils, butters and waxes are not flagged — the literature does not support ingredient-level calls on them.
+                <strong>Method — fungal-acne flag.</strong> A rule-derived heuristic, not a measured property: no per-ingredient <em>Malassezia</em> assay exists to transcribe. The rule flags C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, applied only to CosIng-matched ingredients, giving 275 flags. Basis: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), with the chain-length window from Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Specific oils, butters and waxes are not flagged — the literature does not support ingredient-level calls on them.
             </div>
         </div>
 
         <!-- Product Ingredients -->
         <div class="doc-section">
             <h2>4. product_ingredients</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">342,208 ordered composition links, preserving the order in which ingredients are declared on the label.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">367,785 ordered composition links, preserving the order in which ingredients are declared on the label.</p>
             <div class="table-container">
                 <table>
                     <thead>
@@ -251,7 +251,7 @@
         <!-- Name map -->
         <div class="doc-section">
             <h2>5. ingredient_name_map</h2>
-            <p style="color: var(--text-secondary); margin-top: 0.5rem;">77,257 rows: the canonicalisation evidence, shipped with the data so every decision the pipeline made can be audited or overridden.</p>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">77,367 rows: the canonicalisation evidence, shipped with the data so every decision the pipeline made can be audited or overridden.</p>
             <div class="table-container">
                 <table>
                     <thead>

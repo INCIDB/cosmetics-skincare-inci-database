@@ -5,11 +5,11 @@ One product. One price. Snapshot 2026.09.
 | | Free sample | **INCIDB Complete** |
 | :--- | :--- | :--- |
 | **Price** | `$0` | **`$79`** one-time |
-| **Products** | 200 (seeded random draw) | 18,583 |
-| **Brands** | the 200 products' brands | 5,925 |
-| **Distinct canonical INCI names** | 1,106 | 46,008 |
-| **Composition links** | the 200 products' links | 342,208 |
-| **`ingredient_name_map` rows** | the rows for the sampled products' own label tokens | 77,257 |
+| **Products** | 200 (seeded random draw) | 19,764 |
+| **Brands** | the 200 products' brands | 6,412 |
+| **Distinct canonical INCI names** | 1,123 | 45,327 |
+| **Composition links** | the 200 products' links | 367,785 |
+| **`ingredient_name_map` rows** | the rows for the sampled products' own label tokens | 77,367 |
 | **Tables** | all 7 | all 7 |
 | **Formats** | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet |
 | **CosIng enrichment columns** | included | included |
@@ -63,16 +63,16 @@ ODbL if you want to.
 Coverage is reported two ways because the two differ by an order of
 magnitude, and quoting only one of them would be a lie by omission.
 
-| Column | Share of the 46,008 distinct names | Share of the 342,208 label occurrences |
+| Column | Share of the 45,327 distinct names | Share of the 367,785 label occurrences |
 | :--- | ---: | ---: |
-| CosIng match (any) | 11.6% | 83.9% |
-| `functions` | 11.5% | 82.9% |
-| `cas_number` | 8.7% | 77.6% |
-| `chemical_description` | 9.0% (4,101 distinct values) | — |
+| CosIng match (any) | 12.2% | 85.1% |
+| `functions` | 12.0% | 84.0% |
+| `cas_number` | 9.0% | 78.6% |
+| `chemical_description` | 9.5% (4,257 distinct values) | — |
 
 A cosmetic label corpus contains far more distinct strings than a regulatory
 inventory lists — botanical variants, multilingual spellings, marketing
-names, one-off blends. Those make up the long tail of the 46,008 names and
+names, one-off blends. Those make up the long tail of the 45,327 names and
 are mostly unmatched. The ingredients that actually fill label slots are
 overwhelmingly the ones CosIng covers, which is why the right-hand column is
 high. Pick the column that matches your use case.
@@ -80,18 +80,18 @@ high. Pick the column that matches your use case.
 Flags and ratings are deliberately small:
 
 * `is_common_allergen` — EU fragrance-allergen overlay (Reg. (EU) 2023/1545):
-  **121** names flagged by exact INCI name, label name or CAS for defined
-  substances; 46.9% of products carry at least one (about 2.7% of products
+  **120** names flagged by exact INCI name, label name or CAS for defined
+  substances; 47.2% of products carry at least one (about 2.4% of products
   list ingredients as unsplit text that the allergen flags do not reach). The
   per-entry evidence ships in `fragrance_allergens`. The US FDA has not yet published its MoCRA
   fragrance-allergen list, so there is no US flag in this dataset.
 * `regulatory_status` — EU Annex II–VI status rows from the CosIng exports,
   conditions verbatim, matched by CosIng glossary or "Identified INGREDIENTS"
   name only. Absence of a row is not a status; not legal advice.
-* `comedogenic_rating` — **144** ingredients rated 0–5, transcribed from
+* `comedogenic_rating` — **142** ingredients rated 0–5, transcribed from
   Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Table I). `NULL`
   everywhere the paper does not reach.
-* `is_fungal_acne_trigger` — **272** flags from an explicit rule (C11–C24
+* `is_fungal_acne_trigger` — **275** flags from an explicit rule (C11–C24
   fatty acids and their esters, polysorbates 20/40/60/80, applied only to
   CosIng-matched ingredients). A heuristic, not a measured property. Basis:
   DOI 10.3389/fcimb.2020.00112 and DOI 10.1093/femsyr/foaf043.
