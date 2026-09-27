@@ -14,8 +14,9 @@ The snippet is placed right after the page's sticky header (so the header exists
   which header is sticky, since some are sticky only above a breakpoint);
 - on a fresh navigation with a #hash (not a reload or Back/Forward, where the browser restores
   the visitor's own position), it jumps to the section again after the fonts have loaded, just
-  after window load (behind i18n.js, which may move the language menu then), and when a page that renders content late calls window.realignSectionLink() -
-  never after the visitor has scrolled or pressed a key, never after 15 s.
+  after window load (behind i18n.js, which may move the language menu then), and when a page
+  that renders content late calls window.realignSectionLink() - never after the visitor has
+  scrolled, pressed a key or gone to another #fragment, never after 15 s.
 
 Source of truth for the portfolio; copied into each site repo's scripts/ like i18n_common.py.
     python scripts/section_links.py <file.html> [...]   # insert or refresh the snippet
@@ -54,9 +55,9 @@ SNIPPET = BEGIN + """<script>
   if (nav ? (nav.type === 'reload' || nav.type === 'back_forward')
           : (window.performance && performance.navigation && performance.navigation.type !== 0)) return;
   var moved = false;
-  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+  ['wheel', 'touchstart', 'keydown', 'mousedown', 'hashchange'].forEach(function (ev) {
     window.addEventListener(ev, function () { moved = true; }, { passive: true, once: true });
-  });
+  });  /* hashchange: the visitor went to another #fragment (e.g. via assistive tech or page code) */
   function realign() {
     var el = document.getElementById(id);
     if (moved || !el || !el.getClientRects().length || performance.now() > 15000) return;

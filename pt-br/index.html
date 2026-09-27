@@ -334,9 +334,9 @@
   if (nav ? (nav.type === 'reload' || nav.type === 'back_forward')
           : (window.performance && performance.navigation && performance.navigation.type !== 0)) return;
   var moved = false;
-  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+  ['wheel', 'touchstart', 'keydown', 'mousedown', 'hashchange'].forEach(function (ev) {
     window.addEventListener(ev, function () { moved = true; }, { passive: true, once: true });
-  });
+  });  /* hashchange: the visitor went to another #fragment (e.g. via assistive tech or page code) */
   function realign() {
     var el = document.getElementById(id);
     if (moved || !el || !el.getClientRects().length || performance.now() > 15000) return;
