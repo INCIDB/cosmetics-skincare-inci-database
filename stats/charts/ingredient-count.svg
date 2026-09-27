@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 312" width="720" height="312" role="img" aria-labelledby="t d" font-family="'Space Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12">
-<title id="t">How many ingredients a product lists</title><desc id="d">Share of 19,764 products by ingredient count</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 312" width="720" height="312" role="img" aria-labelledby="t-ingredient-count d-ingredient-count" font-family="'Space Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12">
+<title id="t-ingredient-count">How many ingredients a product lists</title><desc id="d-ingredient-count">Share of 19,764 products by ingredient count</desc>
 <rect width="720" height="312" fill="#0A0B0E"/>
 <text x="20" y="26" font-size="15" font-weight="600" fill="#F8FAFC">How many ingredients a product lists</text>
 <text x="20" y="44" font-size="12" fill="#94A3B8">Share of 19,764 products by ingredient count</text>

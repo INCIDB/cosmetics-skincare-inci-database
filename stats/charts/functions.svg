@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 462" width="720" height="462" role="img" aria-labelledby="t d" font-family="'Space Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12">
-<title id="t">What ingredients are for</title><desc id="d">Share of 309,116 ingredient positions with a CosIng function</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 462" width="720" height="462" role="img" aria-labelledby="t-functions d-functions" font-family="'Space Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12">
+<title id="t-functions">What ingredients are for</title><desc id="d-functions">Share of 309,116 ingredient positions with a CosIng function</desc>
 <rect width="720" height="462" fill="#0A0B0E"/>
 <text x="20" y="26" font-size="15" font-weight="600" fill="#F8FAFC">What ingredients are for</text>
 <text x="20" y="44" font-size="12" fill="#94A3B8">Share of 309,116 ingredient positions with a CosIng function</text>

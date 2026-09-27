@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 492" width="720" height="492" role="img" aria-labelledby="t d" font-family="'Space Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12">
-<title id="t">Median ingredient count by product type</title><desc id="d">Open Beauty Facts category tags with 100+ products</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 492" width="720" height="492" role="img" aria-labelledby="t-ingredients-by-category d-ingredients-by-category" font-family="'Space Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12">
+<title id="t-ingredients-by-category">Median ingredient count by product type</title><desc id="d-ingredients-by-category">Open Beauty Facts category tags with 100+ products</desc>
 <rect width="720" height="492" fill="#0A0B0E"/>
 <text x="20" y="26" font-size="15" font-weight="600" fill="#F8FAFC">Median ingredient count by product type</text>
 <text x="20" y="44" font-size="12" fill="#94A3B8">Open Beauty Facts category tags with 100+ products</text>

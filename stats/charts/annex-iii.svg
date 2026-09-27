@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 402" width="720" height="402" role="img" aria-labelledby="t d" font-family="'Space Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12">
-<title id="t">Most common EU Annex III restricted ingredients</title><desc id="d">Share of 19,764 products; restricted = permitted under conditions</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 402" width="720" height="402" role="img" aria-labelledby="t-annex-iii d-annex-iii" font-family="'Space Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12">
+<title id="t-annex-iii">Most common EU Annex III restricted ingredients</title><desc id="d-annex-iii">Share of 19,764 products; restricted = permitted under conditions</desc>
 <rect width="720" height="402" fill="#0A0B0E"/>
 <text x="20" y="26" font-size="15" font-weight="600" fill="#F8FAFC">Most common EU Annex III restricted ingredients</text>
 <text x="20" y="44" font-size="12" fill="#94A3B8">Share of 19,764 products; restricted = permitted under conditions</text>
