@@ -1,5 +1,5 @@
 {
-  "_comment": "Barcodes of the products in the free sample, pinned so the sample -- and the landing pages derived from it -- stay put across rebuilds (product_id is a database autoincrement and changes every full rebuild). scripts/make_sample.py keeps every pinned barcode that is still eligible, tops up dropouts deterministically (sorted by barcode, seeded) and rewrites this file.",
+  "_comment": "Barcodes of the products in the free sample, pinned so the sample -- and the landing pages derived from it -- stay put across rebuilds (product_id is a database autoincrement and changes every full rebuild). scripts/make_sample.py keeps every pinned barcode still present in the corpus, tops up dropouts deterministically (sorted by barcode, seeded) and rewrites this file.",
   "barcodes": [
     "3014284027445",
     "3140100336979",
@@ -61,7 +61,6 @@
     "8710447329191",
     "8710522440919",
     "0679602158213",
-    "5037156227499",
     "8710522351840",
     "8710522329795",
     "5412748731187",
@@ -69,7 +68,6 @@
     "8710847962301",
     "8720181141676",
     "8002410022988",
-    "5601312601173",
     "8710908832420",
     "0767332601243",
     "3614229376777",
@@ -130,7 +128,6 @@
     "7702018015665",
     "4640145087519",
     "7501007533971",
-    "8051739581140",
     "4006000085036",
     "7032069717424",
     "8720181334030",
@@ -142,7 +139,6 @@
     "3265660399407",
     "8720289261542",
     "3337875588621",
-    "8700216035842",
     "8906157900762",
     "4008666106308",
     "3760378510415",
@@ -166,7 +162,6 @@
     "0792850897687",
     "3058325066246",
     "3251241041629",
-    "3264680004063",
     "3378872067566",
     "3401572288129",
     "3464660001628",
@@ -200,6 +195,11 @@
     "8852660636875",
     "8699375052091",
     "8033765642088",
-    "0810175610641"
+    "0810175610641",
+    "0857843008720",
+    "3770036159047",
+    "4015000994569",
+    "4066447429411",
+    "4260486335904"
   ]
 }
