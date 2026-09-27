@@ -117,13 +117,13 @@
 <table>
 <thead><tr><th>Table</th><th>Lignes</th></tr></thead>
 <tbody>
-<tr><td><code>products</code></td><td>18 583</td></tr>
-<tr><td><code>brands</code></td><td>5 925</td></tr>
-<tr><td><code>ingredients</code></td><td>46 008</td></tr>
-<tr><td><code>product_ingredients</code></td><td>342 208</td></tr>
-<tr><td><code>ingredient_name_map</code></td><td>77 257</td></tr>
-<tr><td><code>fragrance_allergens</code></td><td>269</td></tr>
-<tr><td><code>regulatory_status</code></td><td>633</td></tr>
+<tr><td><code>products</code></td><td>19 764</td></tr>
+<tr><td><code>brands</code></td><td>6 412</td></tr>
+<tr><td><code>ingredients</code></td><td>45 327</td></tr>
+<tr><td><code>product_ingredients</code></td><td>367 785</td></tr>
+<tr><td><code>ingredient_name_map</code></td><td>77 367</td></tr>
+<tr><td><code>fragrance_allergens</code></td><td>274</td></tr>
+<tr><td><code>regulatory_status</code></td><td>637</td></tr>
 </tbody>
 </table>
 </div>
@@ -131,7 +131,7 @@
 <!-- Brands -->
 <div class="doc-section">
 <h2>1. brands</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">5 925 identités de marque telles qu’enregistrées dans Open Beauty Facts.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">6 412 identités de marque telles qu’enregistrées dans Open Beauty Facts.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -147,7 +147,7 @@
 <!-- Products -->
 <div class="doc-section">
 <h2>2. products</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">18 583 produits, une ligne chacun, tous dotés d’une liste des ingrédients exploitable sur l’emballage.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">19 764 produits, une ligne chacun, tous dotés d’une liste des ingrédients exploitable sur l’emballage.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -158,7 +158,7 @@
 <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>brands.brand_id</code>. <strong>NULL</strong> lorsque l’étiquette source n’indique aucune marque</td><td><code>55</code></td></tr>
 <tr><td><code>barcode_ean</code></td><td><code class="type-tag">STRING</code></td><td>Code-barres GTIN / EAN</td><td><code>4006381333931</code></td></tr>
 <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Nom du produit tel qu’enregistré à la source</td><td><code>Good Genes Lactic Acid Treatment</code></td></tr>
-<tr><td><code>obf_categories_tags</code></td><td><code class="type-tag">STRING</code></td><td>Liste de tags propre à Open Beauty Facts, jointe par <code>;</code>, telle quelle — présente sur 12 860 des 18 583 produits (69,2%), NULL lorsque la source n’en a pas</td><td><code>en:hygiene;en:soaps</code></td></tr>
+<tr><td><code>obf_categories_tags</code></td><td><code class="type-tag">STRING</code></td><td>Liste de tags propre à Open Beauty Facts, jointe par <code>;</code>, telle quelle — présente sur 13 462 des 19 764 produits (68,1%), NULL lorsque la source n’en a pas</td><td><code>en:hygiene;en:soaps</code></td></tr>
 <tr><td><code>raw_ingredient_text</code></td><td><code class="type-tag">STRING</code></td><td>La déclaration non analysée, conservée telle quelle pour que l’analyse puisse être refaite</td><td><code>Water, Glycerin, ...</code></td></tr>
 <tr><td><code>created_at</code></td><td><code class="type-tag">STRING</code></td><td>Horodatage d’ingestion (ISO 8601)</td><td><code>2026-07-02T14:01:48Z</code></td></tr>
 </tbody>
@@ -168,7 +168,7 @@
 <!-- Ingredients -->
 <div class="doc-section">
 <h2>3. ingredients</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">Une ligne par nom INCI canonique distinct — 46 008 au total. Chaque colonne issue de CosIng n’est renseignée que si le nom canonique correspond exactement à un nom de l’inventaire CosIng de la Commission européenne, et vaut <code>NULL</code> sinon.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Une ligne par nom INCI canonique distinct — 45 327 au total. Chaque colonne issue de CosIng n’est renseignée que si le nom canonique correspond exactement à un nom de l’inventaire CosIng de la Commission européenne, et vaut <code>NULL</code> sinon.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -198,13 +198,13 @@
 <div class="table-container">
 <table>
 <thead>
-<tr><th>Colonne</th><th>Part des 46 008 noms distincts</th><th>Part des 342 208 occurrences sur les étiquettes</th></tr>
+<tr><th>Colonne</th><th>Part des 45 327 noms distincts</th><th>Part des 367 785 occurrences sur les étiquettes</th></tr>
 </thead>
 <tbody>
-<tr><td>Correspondance CosIng (toutes)</td><td>11,6%</td><td>83,9%</td></tr>
-<tr><td><code>functions</code></td><td>11,5%</td><td>82,9%</td></tr>
-<tr><td><code>cas_number</code></td><td>8,7%</td><td>77,6%</td></tr>
-<tr><td><code>chemical_description</code></td><td>9,0% · 4 101 valeurs distinctes</td><td>—</td></tr>
+<tr><td>Correspondance CosIng (toutes)</td><td>12,2%</td><td>85,1%</td></tr>
+<tr><td><code>functions</code></td><td>12,0%</td><td>84,0%</td></tr>
+<tr><td><code>cas_number</code></td><td>9,0%</td><td>78,6%</td></tr>
+<tr><td><code>chemical_description</code></td><td>9,5% · 4 257 valeurs distinctes</td><td>—</td></tr>
 </tbody>
 </table>
 </div>
@@ -212,19 +212,19 @@
                 La colonne de gauche compte les noms distincts ; celle de droite, les occurrences d’ingrédients sur les étiquettes de produits. Elles diffèrent d’un ordre de grandeur, car un corpus d’étiquettes contient bien plus de chaînes distinctes — variantes botaniques, graphies multilingues, tokens marketing — qu’aucun inventaire réglementaire n’en répertorie, tandis que les emplacements d’une étiquette réelle sont très majoritairement occupés par des ingrédients que CosIng couvre effectivement. <strong>Aucun des deux chiffres ne décrit à lui seul les données.</strong> <code>ec_number</code>, <code>cosing_restriction</code> et les indicateurs d’annexe ne sont renseignés que sur le sous-ensemble apparié à CosIng, chacun à son propre taux — voir le <code>build_report.json</code> livré avec l’archive.
             </div>
 <div class="note">
-<strong>Méthode — indicateurs d'allergènes.</strong> Une seule liste : les allergènes parfumants de l'annexe III du règlement cosmétique de l'UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545), rapprochés par le nom INCI exact, puis par le nom collectif d'étiquetage prescrit par le règlement, puis par numéro CAS uniquement pour les substances chimiquement définies. Les correspondances CAS d'origine botanique sont livrées comme lignes à vérifier, jamais comme indicateurs. 121 noms sont signalés ; les preuves par entrée figurent dans <code>fragrance_allergens</code> (table 6). La FDA américaine n'a pas encore publié sa liste d'allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain.
+<strong>Méthode — indicateurs d'allergènes.</strong> Une seule liste : les allergènes parfumants de l'annexe III du règlement cosmétique de l'UE (règlement (CE) 1223/2009 modifié par le règlement (UE) 2023/1545), rapprochés par le nom INCI exact, puis par le nom collectif d'étiquetage prescrit par le règlement, puis par numéro CAS uniquement pour les substances chimiquement définies. Les correspondances CAS d'origine botanique sont livrées comme lignes à vérifier, jamais comme indicateurs. 120 noms sont signalés ; les preuves par entrée figurent dans <code>fragrance_allergens</code> (table 6). La FDA américaine n'a pas encore publié sa liste d'allergènes parfumants au titre du MoCRA ; ce jeu de données ne comporte donc aucun indicateur américain.
             </div>
 <div class="note">
-<strong>Méthode — indices de comédogénicité.</strong> 144 ingrédients ont une note sur l’échelle 0–5, retranscrite du tableau I (p. 324–326) de Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Lorsque l’article indique une plage plutôt qu’une note unique, la note est laissée à <code>NULL</code>. L’absence de note signifie « non couvert par la source citée », jamais « sans risque ».
+<strong>Méthode — indices de comédogénicité.</strong> 142 ingrédients ont une note sur l’échelle 0–5, retranscrite du tableau I (p. 324–326) de Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Lorsque l’article indique une plage plutôt qu’une note unique, la note est laissée à <code>NULL</code>. L’absence de note signifie « non couvert par la source citée », jamais « sans risque ».
             </div>
 <div class="note">
-<strong>Méthode — indicateur d’acné fongique.</strong> Une heuristique dérivée d’une règle, pas une propriété mesurée : il n’existe aucun test de <em>Malassezia</em> par ingrédient à retranscrire. La règle signale les acides gras C11–C24 et leurs esters, ainsi que les polysorbates 20/40/60/80, et ne s’applique qu’aux ingrédients appariés à CosIng, ce qui donne 272 indicateurs. Fondement : Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), avec la fenêtre de longueur de chaîne de Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Les huiles, beurres et cires spécifiques ne sont pas signalés — la littérature ne permet pas de se prononcer à leur sujet au niveau de l’ingrédient.
+<strong>Méthode — indicateur d’acné fongique.</strong> Une heuristique dérivée d’une règle, pas une propriété mesurée : il n’existe aucun test de <em>Malassezia</em> par ingrédient à retranscrire. La règle signale les acides gras C11–C24 et leurs esters, ainsi que les polysorbates 20/40/60/80, et ne s’applique qu’aux ingrédients appariés à CosIng, ce qui donne 275 indicateurs. Fondement : Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), avec la fenêtre de longueur de chaîne de Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). Les huiles, beurres et cires spécifiques ne sont pas signalés — la littérature ne permet pas de se prononcer à leur sujet au niveau de l’ingrédient.
             </div>
 </div>
 <!-- Product Ingredients -->
 <div class="doc-section">
 <h2>4. product_ingredients</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">342 208 liens de composition ordonnés, qui conservent l’ordre dans lequel les ingrédients sont déclarés sur l’étiquette.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">367 785 liens de composition ordonnés, qui conservent l’ordre dans lequel les ingrédients sont déclarés sur l’étiquette.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -242,7 +242,7 @@
 <!-- Name map -->
 <div class="doc-section">
 <h2>5. ingredient_name_map</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">77 257 lignes : les preuves de la canonicalisation, livrées avec les données pour que chaque décision du pipeline puisse être auditée ou corrigée.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">77 367 lignes : les preuves de la canonicalisation, livrées avec les données pour que chaque décision du pipeline puisse être auditée ou corrigée.</p>
 <div class="table-container">
 <table>
 <thead>

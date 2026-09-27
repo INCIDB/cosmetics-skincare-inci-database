@@ -13,13 +13,13 @@ disagree.
 
 | Table | Rows |
 | :--- | ---: |
-| `products` | 18,583 |
-| `brands` | 5,925 |
-| `ingredients` | 46,008 |
-| `product_ingredients` | 342,208 |
-| `ingredient_name_map` | 77,257 |
-| `fragrance_allergens` | 269 |
-| `regulatory_status` | 633 |
+| `products` | 19,764 |
+| `brands` | 6,412 |
+| `ingredients` | 45,327 |
+| `product_ingredients` | 367,785 |
+| `ingredient_name_map` | 77,367 |
+| `fragrance_allergens` | 274 |
+| `regulatory_status` | 637 |
 
 ---
 
@@ -40,10 +40,10 @@ declaration.
 | Field | Type | Description | Example |
 | :--- | :--- | :--- | :--- |
 | `product_id` | `INTEGER` | Primary key | `68597` |
-| `brand_id` | `INTEGER` | FK → `brands.brand_id`. **`NULL` = no brand on the source label** — 1,151 products carry no brand in Open Beauty Facts, and are given NULL rather than being attached to a placeholder brand row | `55` |
+| `brand_id` | `INTEGER` | FK → `brands.brand_id`. **`NULL` = no brand on the source label** — 2,184 products carry no brand in Open Beauty Facts, and are given NULL rather than being attached to a placeholder brand row | `55` |
 | `barcode_ean` | `STRING` | GTIN / EAN barcode | `4006381333931` |
 | `name` | `STRING` | Product name as recorded upstream | `Good Genes Lactic Acid Treatment` |
-| `obf_categories_tags` | `STRING` | Open Beauty Facts' own `categories_tags` list for this product, joined with `;` and otherwise **verbatim** — not normalised, not translated, not collapsed into a taxonomy of ours. Present on 12,860 of 18,583 products (69.2%); `NULL` where the source record carries no tags | `en:hygiene;en:soaps` |
+| `obf_categories_tags` | `STRING` | Open Beauty Facts' own `categories_tags` list for this product, joined with `;` and otherwise **verbatim** — not normalised, not translated, not collapsed into a taxonomy of ours. Present on 13,462 of 19,764 products (68.1%); `NULL` where the source record carries no tags | `en:hygiene;en:soaps` |
 | `raw_ingredient_text` | `STRING` | The unparsed on-pack ingredient declaration, kept verbatim so you can re-derive the parse | `Water, Glycerin, ...` |
 | `created_at` | `STRING` | Ingestion timestamp (ISO 8601) | `2026-07-02T14:01:48Z` |
 
@@ -76,12 +76,12 @@ Commission CosIng inventory on an exact name match; they are `NULL` otherwise.
 
 ### Coverage of the CosIng columns — both views
 
-| Column | Share of the 46,008 distinct names | Share of the 342,208 label occurrences |
+| Column | Share of the 45,327 distinct names | Share of the 367,785 label occurrences |
 | :--- | ---: | ---: |
-| CosIng match (any) | 11.6% | 83.9% |
-| `functions` | 11.5% | 82.9% |
-| `cas_number` | 8.7% | 77.6% |
-| `chemical_description` | 9.0% (4,101 distinct values) | — |
+| CosIng match (any) | 12.2% | 85.1% |
+| `functions` | 12.0% | 84.0% |
+| `cas_number` | 9.0% | 78.6% |
+| `chemical_description` | 9.5% (4,257 distinct values) | — |
 
 The left column counts distinct names; the right counts ingredient
 occurrences across product labels. They differ by an order of magnitude
@@ -153,8 +153,8 @@ Regulation (EC) 1223/2009, as amended by Regulation (EU) 2023/1545
 (consolidated text of 18.05.2026), are matched to INCIDB by exact INCI name,
 then by the collective label name the Regulation prescribes (e.g. "Rose
 Ketones"), then by CAS number for chemically defined substances only.
-Botanical CAS hits are shipped as review rows, never flags. 121 names are
-flagged; 46.9% of products contain at least one. About 2.7% of products list
+Botanical CAS hits are shipped as review rows, never flags. 120 names are
+flagged; 47.2% of products contain at least one. About 2.4% of products list
 ingredients as unsplit text that the allergen flags do not reach. The US FDA
 has not yet published its MoCRA fragrance-allergen list, so this dataset
 carries no US flag.
@@ -167,7 +167,7 @@ a distinct `allergen_source` value.
 
 ### Method note — `comedogenic_rating`
 
-**144** ingredients carry a rating on the 0–5 scale, transcribed from
+**142** ingredients carry a rating on the 0–5 scale, transcribed from
 Table I (pp. 324–326) of Fulton JE Jr., *Comedogenicity and irritancy of
 commonly used ingredients in skin care products*, J Soc Cosmet Chem
 1989;40:321–333 (ISSN 0037-9832; the paper predates DOI and PMID
@@ -181,7 +181,7 @@ This is a **rule-derived heuristic, not a measured property.** No
 per-ingredient *Malassezia* assay exists to transcribe. The rule flags
 C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, and it is
 applied only to CosIng-matched ingredients (so the chemical identity behind
-the flag is a known one). **272** ingredients are flagged. The basis is the
+the flag is a known one). **275** ingredients are flagged. The basis is the
 lipid dependence of *Malassezia* — Saunte et al., *Front Cell Infect
 Microbiol* 2020;10:112 (DOI 10.3389/fcimb.2020.00112) — with the chain-length
 window taken from Liebregts et al., *FEMS Yeast Res* 2025;25:foaf043 (DOI
@@ -253,7 +253,7 @@ above.
 The EU fragrance-allergen labelling entries of Annex III to Regulation (EC)
 1223/2009, as amended by Regulation (EU) 2023/1545. One row per legal name ×
 INCIDB match. A legal name with no INCIDB match still gets one row, with
-`ingredient_id` `NULL`, so the unmatched part of the list ships too. 77 of
+`ingredient_id` `NULL`, so the unmatched part of the list ships too. 76 of
 the 81 entries match at least one INCIDB name.
 
 | Field | Type | Description |
@@ -296,7 +296,7 @@ name, and tagged `source = COSING_ANNEX_III` so you can filter them out.
 **The unsplit caveat.** Some products carry part of their ingredient list as
 one unsplit text string that never resolved into individual names; an
 allergen inside such a string is not flagged. `unsplit`, as used in the
-2.7% figure above, is defined as:
+2.4% figure above, is defined as:
 
 > share of products linked to an ingredient row with cosing_matched = 0 whose name is longer than 60 characters or has >= 2 commas or >= 2 ' - ' separators, and contains a flagged allergen name or label name at word boundaries; an estimate used only for the coverage caveat, never a flag
 
