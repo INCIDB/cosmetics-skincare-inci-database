@@ -181,10 +181,6 @@
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#2</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Cosmetic Product 5601312601173</td>
-<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#9</td>
-</tr>
-<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Nature In A Jar Gentle Detoxifying Cleanser With Agave</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#21</td>
 </tr>
@@ -195,6 +191,10 @@
 <tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Tea Tree Lavender Mint Conditioning Spray</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#3</td>
+</tr>
+<tr style="border-bottom: 1px solid #232838;">
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Botox-like Peptide Serum</td>
+<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#2</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Aussie Balsam Miracle Moist 400ml</td>
@@ -215,7 +215,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "ALOE BARBADENSIS LEAF JUICE"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Le snapshot complet couvre 18 583 produits. La couverture de chaque colonne d’enrichissement est publiée, à la fois par nom distinct et pondérée par occurrence sur les étiquettes — voir le <a href="/fr/#coverage" style="color: #38BDF8;">tableau de couverture</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Le snapshot complet couvre 19 764 produits. La couverture de chaque colonne d’enrichissement est publiée, à la fois par nom distinct et pondérée par occurrence sur les étiquettes — voir le <a href="/fr/#coverage" style="color: #38BDF8;">tableau de couverture</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_fr_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">Obtenir INCIDB Complete — $79 →</a>
 </div>

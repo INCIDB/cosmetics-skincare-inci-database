@@ -144,7 +144,7 @@
 </div>
 </div>
 <p lang="en" style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; margin-bottom: 1.75rem;" translate="no">Castor oil (Ricinus communis), hydrogenated, ethoxylated (40 mol EO average molar ratio)</p>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">PEG-40 HYDROGENATED CASTOR OIL</strong> consta no inventário CosIng da Comissão Europeia nas categorias funcionais <span translate="no">Surfactant - Emulsifying, Surfactant - Cleansing</span>, com número CAS <span translate="no">61788-85-0</span>.</span> <span>Na amostra gratuita do INCIDB, aparece nos rótulos de 11 produtos, chegando à posição 3 em <span translate="no">Signal Bain de Bouche Antibactérien Integral 8 Nature Elements Fraîcheur Naturelle 500ml</span>.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">PEG-40 HYDROGENATED CASTOR OIL</strong> consta no inventário CosIng da Comissão Europeia nas categorias funcionais <span translate="no">Surfactant - Emulsifying, Surfactant - Cleansing</span>, com número CAS <span translate="no">61788-85-0</span>.</span> <span>Na amostra gratuita do INCIDB, aparece nos rótulos de 12 produtos, chegando à posição 3 em <span translate="no">Signal Bain de Bouche Antibactérien Integral 8 Nature Elements Fraîcheur Naturelle 500ml</span>.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">NÚMERO DE REGISTRO CAS</div>
@@ -181,6 +181,10 @@
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#13</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Schauma Phyto-Coffein</td>
+<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#4</td>
+</tr>
+<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Booster antifatiga les cosmetiques nº2 booster plan</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#12</td>
 </tr>
@@ -196,10 +200,6 @@
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">L'Oreal Color Riche Liner Matte Signature Emeraude</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#11</td>
 </tr>
-<tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Urban Care Argan Yağı &amp; Keratin Sıvı Saç Bakım Kremi</td>
-<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#4</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -211,7 +211,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "PEG-40 HYDROGENATED CASTOR OIL"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">O snapshot completo abrange 18.583 produtos. A cobertura de cada coluna de enriquecimento é publicada, tanto por nome distinto quanto ponderada por ocorrência nos rótulos — consulte a <a href="/pt-br/#coverage" style="color: #38BDF8;">tabela de cobertura</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">O snapshot completo abrange 19.764 produtos. A cobertura de cada coluna de enriquecimento é publicada, tanto por nome distinto quanto ponderada por ocorrência nos rótulos — consulte a <a href="/pt-br/#coverage" style="color: #38BDF8;">tabela de cobertura</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_pt-br_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">Adquira o INCIDB Complete — $79 →</a>
 </div>

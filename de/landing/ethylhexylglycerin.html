@@ -147,7 +147,7 @@
 </div>
 </div>
 <p lang="en" style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; margin-bottom: 1.75rem;" translate="no">Ethylhexylglycerin is the organic compound that conforms to the formula</p>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">ETHYLHEXYLGLYCERIN</strong> ist im CosIng-Verzeichnis der Europäischen Kommission unter den Funktionskategorien <span translate="no">Deodorant, Skin Conditioning</span> aufgeführt, mit CAS-Nummer <span translate="no">70445-33-9</span> und EG-Nummer <span translate="no">408-080-2</span>.</span> <span>CosIng erfasst ihn außerdem als <span translate="no">1,2-Propanediol, 3-(2-ethylhexyloxy)</span> (chemische Bezeichnung).</span> <span>In den kostenlosen INCIDB-Beispieldaten erscheint er auf 21 Produktetiketten und erreicht bei <span translate="no">Fresh Deo Zerstäuber</span> Position 5.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">ETHYLHEXYLGLYCERIN</strong> ist im CosIng-Verzeichnis der Europäischen Kommission unter den Funktionskategorien <span translate="no">Deodorant, Skin Conditioning</span> aufgeführt, mit CAS-Nummer <span translate="no">70445-33-9</span> und EG-Nummer <span translate="no">408-080-2</span>.</span> <span>CosIng erfasst ihn außerdem als <span translate="no">1,2-Propanediol, 3-(2-ethylhexyloxy)</span> (chemische Bezeichnung).</span> <span>In den kostenlosen INCIDB-Beispieldaten erscheint er auf 20 Produktetiketten und erreicht bei <span translate="no">Fresh Deo Zerstäuber</span> Position 5.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">CAS-REGISTRIERUNGSNUMMER</div>
@@ -204,12 +204,12 @@
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#6</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Cosmetic Product 5601312601173</td>
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Lingettes papier toilette</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#8</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
-<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Lingettes papier toilette</td>
-<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#8</td>
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">NIVEA MEN protect &amp; care</td>
+<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#13</td>
 </tr>
 </tbody>
 </table>
@@ -222,7 +222,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "ETHYLHEXYLGLYCERIN"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 18.583 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 19.764 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_de_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">INCIDB Complete erwerben — $79 →</a>
 </div>

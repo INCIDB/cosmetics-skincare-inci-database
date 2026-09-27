@@ -147,7 +147,7 @@
 </div>
 </div>
 <p lang="en" style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; margin-bottom: 1.75rem;" translate="no">Potassium Hydroxide is the inorganic base</p>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">POTASSIUM HYDROXIDE</strong> ist im CosIng-Verzeichnis der Europäischen Kommission unter der Funktionskategorie <span translate="no">Buffering</span> aufgeführt, mit CAS-Nummer <span translate="no">1310-58-3</span> und EG-Nummer <span translate="no">215-181-3</span>.</span> <span>CosIng erfasst ihn außerdem als <span translate="no">kalii hydroxidum</span> (Ph. Eur.).</span> <span>CosIng verzeichnet eine Beschränkung für diesen Stoff (<span translate="no">III/15a, 15d</span>); prüfen Sie daher vor der Formulierung den entsprechenden Anhangseintrag.</span> <span>In den kostenlosen INCIDB-Beispieldaten erscheint er auf 3 Produktetiketten und erreicht bei <span translate="no">Nature In A Jar Gentle Detoxifying Cleanser With Agave</span> Position 5.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">POTASSIUM HYDROXIDE</strong> ist im CosIng-Verzeichnis der Europäischen Kommission unter der Funktionskategorie <span translate="no">Buffering</span> aufgeführt, mit CAS-Nummer <span translate="no">1310-58-3</span> und EG-Nummer <span translate="no">215-181-3</span>.</span> <span>CosIng erfasst ihn außerdem als <span translate="no">kalii hydroxidum</span> (Ph. Eur.).</span> <span>CosIng verzeichnet eine Beschränkung für diesen Stoff (<span translate="no">III/15a, 15d</span>); prüfen Sie daher vor der Formulierung den entsprechenden Anhangseintrag.</span> <span>In den kostenlosen INCIDB-Beispieldaten erscheint er auf 4 Produktetiketten und erreicht bei <span translate="no">Nature In A Jar Gentle Detoxifying Cleanser With Agave</span> Position 5.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">CAS-REGISTRIERUNGSNUMMER</div>
@@ -177,44 +177,25 @@
 Callosity softener/remover (entry 15d)</span> · <span>Höchstkonzentration:</span> <span lang="en" translate="no">(a) 5%
 (b) 2% (General use) and 4.5% (Professional use)
 Entry 15d: 1,5%</span> · <span>Bedingungen:</span> <span lang="en" translate="no">(b)
-
 1. General use
-
 2. Professional use
-
 (c) up to pH 12.7
-
 (d) up to pH 11
 
-
-
 15 d Contains alcakali, Avoid contact with eyes
-
 Keep out of reach of chindren ans Read directions for use carefully | (a) Contains alkali 
-
 Avoid contact with eyes 
-
 Can cause blindness 
-
 Keep out of reach of children
-
 (b) 1. Contains alkali
-
 Avoid contact with eyes 
-
 Can cause blindness 
-
 Keep out of reach of children
-
 2. For professional use only 
-
 Avoid contact with eyes 
-
 Can cause blindness
-
 (c) Keep out of reach of children 
-
-Avoid contact with eyes</span> · <span>Instrument:</span> <span lang="en" translate="no">(EU) 2016/622</span> · <a href="https://api.tech.ec.europa.eu/cosing20/1.0/api/annexes/III/export-csv" rel="nofollow noopener">Quelle</a> <span>abgerufen am <span lang="en" translate="no">2026-09-24</span></span></li></ul></section>
+Avoid contact with eyes</span> · <span>Instrument:</span> <span lang="en" translate="no">(EU) 2016/622</span> · <a href="https://api.tech.ec.europa.eu/cosing20/1.0/api/annexes/III/export-csv" rel="nofollow noopener">Quelle</a> <span>abgerufen am <span lang="en" translate="no">2026-09-27</span></span></li></ul></section>
 </div>
 <div style="margin-bottom: 2.5rem;">
 <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: #F8FAFC;">Beispielprodukte mit <span translate="no">POTASSIUM HYDROXIDE</span></h2>
@@ -237,6 +218,10 @@ Avoid contact with eyes</span> · <span>Instrument:</span> <span lang="en" trans
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#5</td>
 </tr>
 <tr style="border-bottom: 1px solid #232838;">
+<td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Botox-like Peptide Serum</td>
+<td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#23</td>
+</tr>
+<tr style="border-bottom: 1px solid #232838;">
 <td style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;" translate="no">Mousse à raser douceur</td>
 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#6</td>
 </tr>
@@ -251,7 +236,7 @@ Avoid contact with eyes</span> · <span>Instrument:</span> <span lang="en" trans
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "POTASSIUM HYDROXIDE"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 18.583 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Der vollständige Snapshot umfasst 19.764 Produkte. Die Abdeckung jeder Anreicherungsspalte wird veröffentlicht, sowohl pro eindeutigem Namen als auch gewichtet nach Vorkommen auf Etiketten — siehe die <a href="/de/#coverage" style="color: #38BDF8;">Abdeckungstabelle</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_de_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">INCIDB Complete erwerben — $79 →</a>
 </div>

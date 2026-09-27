@@ -147,7 +147,7 @@
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
 </div>
 </div>
-<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">SODIUM CITRATE</strong> est inscrit dans l’inventaire CosIng de la Commission européenne sous les catégories fonctionnelles <span translate="no">Buffering, Chelating, Fragrance</span>, avec le numéro CAS <span translate="no">68-04-2 / 6132-04-3</span> et le numéro CE <span translate="no">200-675-3</span>.</span> <span>CosIng l'enregistre aussi sous <span translate="no">natrii citras</span> (Ph. Eur.) et <span translate="no">Trisodium citrate</span> (nom chimique).</span> <span>Dans l’échantillon gratuit INCIDB, il figure sur les étiquettes de 13 produits et atteint la position 4 sur <span translate="no">Lingettes intimes</span>.</span></p>
+<p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">SODIUM CITRATE</strong> est inscrit dans l’inventaire CosIng de la Commission européenne sous les catégories fonctionnelles <span translate="no">Buffering, Chelating, Fragrance</span>, avec le numéro CAS <span translate="no">68-04-2 / 6132-04-3</span> et le numéro CE <span translate="no">200-675-3</span>.</span> <span>CosIng l'enregistre aussi sous <span translate="no">natrii citras</span> (Ph. Eur.) et <span translate="no">Trisodium citrate</span> (nom chimique).</span> <span>Dans l’échantillon gratuit INCIDB, il figure sur les étiquettes de 12 produits et atteint la position 4 sur <span translate="no">Lingettes intimes</span>.</span></p>
 <div class="fact-grid">
 <div>
 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #64748B; margin-bottom: 0.25rem;">NUMÉRO D’ENREGISTREMENT CAS</div>
@@ -222,7 +222,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "SODIUM CITRATE"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Le snapshot complet couvre 18 583 produits. La couverture de chaque colonne d’enrichissement est publiée, à la fois par nom distinct et pondérée par occurrence sur les étiquettes — voir le <a href="/fr/#coverage" style="color: #38BDF8;">tableau de couverture</a>.</p>
+<p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">Le snapshot complet couvre 19 764 produits. La couverture de chaque colonne d’enrichissement est publiée, à la fois par nom distinct et pondérée par occurrence sur les étiquettes — voir le <a href="/fr/#coverage" style="color: #38BDF8;">tableau de couverture</a>.</p>
 <div style="text-align: right;">
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_fr_landing" style="padding: 0.75rem 1.5rem; text-decoration: none;">Obtenir INCIDB Complete — $79 →</a>
 </div>
