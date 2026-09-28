@@ -108,6 +108,16 @@ def _svg_foot(site, width, height, note):
     return [f'<text x="20" y="{height - 12}" font-size="11" fill="{site.muted}">{esc(note)}</text>', "</svg>"]
 
 
+def chart_ids(svg, slug):
+    """Scope a chart's <title id="t">/<desc id="d"> (and its aria-labelledby) to its slug: a page
+    inlines many charts, and repeated ids make every chart's accessible name the first chart's.
+    Charts are built before the generator files them under a slug, so figure() applies this to the
+    inline copy and write_outputs() to stats/charts/<slug>.svg; the two stay identical."""
+    return (svg.replace('aria-labelledby="t d"', f'aria-labelledby="t-{slug} d-{slug}"', 1)
+               .replace('<title id="t">', f'<title id="t-{slug}">', 1)
+               .replace('<desc id="d">', f'<desc id="d-{slug}">', 1))
+
+
 def svg_hbar(site, title, subtitle, rows, note, width=720, label_w=196):
     """rows: [(label, value, display)] -- one series, bars in the accent hue,
     <= 24px thick, 4px rounded data-end and square at the baseline, value at the tip."""
@@ -195,7 +205,7 @@ def embed_block(site, slug, title):
 
 
 def figure(site, slug, svg, title, note):
-    return (f'<figure id="fig-{slug}">{svg}<figcaption><span>{esc(note)}</span>'
+    return (f'<figure id="fig-{slug}">{chart_ids(svg, slug)}<figcaption><span>{esc(note)}</span>'
             f'<a href="{site.page_path}charts/{slug}.svg" download="{site.download_prefix}-{slug}.svg">Download SVG</a></figcaption></figure>'
             + embed_block(site, slug, title))
 
@@ -302,12 +312,13 @@ STATS_CSS = """
 def write_outputs(out_dir, page, charts, data_json):
     """Write stats/index.html, stats/charts/*.svg and stats/data.json (LF line endings). The page
     gets the shared section-links snippet (scripts/section_links.py): embed links and the table of
-    contents land on their chart/section after the web fonts swap in."""
+    contents land on their chart/section after the web fonts swap in. Each chart file carries the
+    same slug-scoped ids as its inline copy (chart_ids)."""
     out_dir = Path(out_dir)
     page = section_links_insert(page)
     (out_dir / "charts").mkdir(parents=True, exist_ok=True)
     (out_dir / "index.html").write_text(page, encoding="utf-8", newline="\n")
     for slug, svg in charts.items():
-        (out_dir / "charts" / f"{slug}.svg").write_text(svg + "\n", encoding="utf-8", newline="\n")
+        (out_dir / "charts" / f"{slug}.svg").write_text(chart_ids(svg, slug) + "\n", encoding="utf-8", newline="\n")
     (out_dir / "data.json").write_text(json.dumps(data_json, ensure_ascii=False, indent=1) + "\n",
                                        encoding="utf-8", newline="\n")
