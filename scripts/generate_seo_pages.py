@@ -297,10 +297,11 @@ REG_STATUS_LABEL = {
 REG_JURISDICTION_LABEL = {"EU": "European Union", "KR": "South Korea (MFDS)"}
 
 # INCIDB Korea teaser (specs/2026-09-25-incidb-korea-tier-design.md §7): one line per
-# linked annex section, naming the annex and section only -- never a limit, a condition
-# or an absence. Rows come from `python -m src.enrichment.regulatory.kr_mfds_build`
-# (non-review links only; gitignored under data/, never in samples/, Kaggle or HF) and
-# render only once claims.json carries a released "korea" block.
+# linked annex section, naming the annex and section, plus one fixed clause on conditional
+# Annex 1 entries (never the condition text itself, a limit or an absence). Rows come from
+# `python -m src.enrichment.regulatory.kr_mfds_build` (non-review links only; gitignored
+# under data/, never in samples/, Kaggle or HF) and render only once claims.json carries a
+# released "korea" block.
 KOREA_LISTED_PATH = os.path.join(ROOT_DIR, "data", "exports", "korea", "kr_mfds_listed.csv")
 KR_REGULATION_KO = "화장품 안전기준 등에 관한 규정"
 KR_SECTION_LABEL = {
@@ -311,6 +312,10 @@ KR_SECTION_LABEL = {
     "other": "other ingredients with restrictions on use",
 }
 KR_SECTION_ANNEX = {"prohibited": "1", "preservative": "2", "uv_filter": "2", "hair_dye": "2", "other": "2"}
+# An Annex 1 entry that applies only as limited by the condition or exception it prints
+# (kr_mfds_listed.csv `conditional`: a peroxide value, an impurity specification, an exception
+# or the hair-dye footnote). Positive wording only.
+KR_CONDITIONAL_CLAUSE = "This entry applies only as limited by the condition or exception it states."
 
 
 def load_regulatory(samples_dir=SAMPLES_DIR):
@@ -330,11 +335,13 @@ def load_regulatory(samples_dir=SAMPLES_DIR):
 
 
 def load_korea_listed(claims, path=KOREA_LISTED_PATH):
-    """inci_name -> [{"annex", "section", "notice_no"}, ...] for the Korea teaser.
+    """inci_name -> [{"annex", "section", "notice_no", "conditional"}, ...] for the Korea teaser.
 
     Empty unless claims.json carries a released "korea" block, so before launch no
     Korea line renders anywhere (tests/test_public_claims.py::test_no_korea_tier_before_launch).
-    Once released, a missing file is an error rather than a silent page without teasers.
+    Once released, a missing file, or one without the `conditional` column (written before
+    kr_mfds_build flagged conditional entries), is an error rather than a silent page.
+    Rows of one (annex, section, notice) are conditional only when every row says so.
     Positive-only: an ingredient without a row gets no line at all."""
     if (claims.get("korea") or {}).get("released") is not True:
         return {}
@@ -344,15 +351,25 @@ def load_korea_listed(claims, path=KOREA_LISTED_PATH):
     with open(path, encoding="utf-8", newline="") as f:
         delimiter = "|" if "|" in f.readline() else ","
         f.seek(0)
-        rows = list(csv.DictReader(f, delimiter=delimiter))
+        reader = csv.DictReader(f, delimiter=delimiter)
+        rows = list(reader)
+    if "conditional" not in (reader.fieldnames or []):
+        raise ValueError(f"{path} has no 'conditional' column: rebuild it with "
+                         "python -m src.enrichment.regulatory.kr_mfds_build")
     out = {}
     for r in rows:
-        name, annex, section, notice = (field(r, k) for k in ("inci_name", "annex", "section", "notice_no"))
-        if not name or not notice or KR_SECTION_ANNEX.get(section) != annex:
+        name, annex, section, notice, cond = (field(r, k) for k in (
+            "inci_name", "annex", "section", "notice_no", "conditional"))
+        if (not name or not notice or KR_SECTION_ANNEX.get(section) != annex
+                or cond not in ("0", "1") or (cond == "1" and annex != "1")):
             raise ValueError(f"unexpected kr_mfds_listed row: {r}")
-        item = {"annex": annex, "section": section, "notice_no": notice}
-        if item not in out.setdefault(name, []):
-            out[name].append(item)
+        items = out.setdefault(name, [])
+        item = next((i for i in items if (i["annex"], i["section"], i["notice_no"]) == (annex, section, notice)),
+                    None)
+        if item is None:
+            items.append({"annex": annex, "section": section, "notice_no": notice, "conditional": cond == "1"})
+        else:
+            item["conditional"] = item["conditional"] and cond == "1"
     order = list(KR_SECTION_LABEL)
     for items in out.values():
         items.sort(key=lambda i: (i["annex"], order.index(i["section"]), i["notice_no"]))
@@ -360,9 +377,11 @@ def load_korea_listed(claims, path=KOREA_LISTED_PATH):
 
 
 def korea_teaser_html(rows):
-    """The "South Korea (MFDS)" sub-block: annex and section only, positive statements
-    only. English copy is translatable (i18n segments); the notice number is data and
-    only the Korean regulation title carries lang="ko"."""
+    """The "South Korea (MFDS)" sub-block: annex and section, plus one fixed clause on
+    conditional Annex 1 entries (never the condition text itself, a limit or an absence);
+    positive statements only. English copy is translatable (i18n segments); the notice
+    number is data, the tier name is translate="no", and only the Korean regulation title
+    carries lang="ko"."""
     if not rows:
         return ""
     e = html.escape
@@ -370,7 +389,9 @@ def korea_teaser_html(rows):
     items = "".join(
         f'<li><span>Listed in MFDS Notice <span translate="no">{e(r["notice_no"])}</span>, '
         f'Annex {e(r["annex"])} — {e(KR_SECTION_LABEL[r["section"]])}.</span> '
-        f'<span>Limits and conditions:</span> <a href="/#pricing" style="color: #38BDF8;">INCIDB Korea →</a></li>'
+        + (f'<span>{e(KR_CONDITIONAL_CLAUSE)}</span> ' if r.get("conditional") else "")
+        + '<span>Limits and conditions:</span> <a href="/#pricing" style="color: #38BDF8;">'
+        '<span translate="no">INCIDB Korea</span> →</a></li>'
         for r in rows)
     return (f'<h3 style="font-size: 1rem; color: #CBD5E1;">{e(REG_JURISDICTION_LABEL["KR"])}</h3>'
             f'<p style="font-size: 0.8rem; color: #64748B;">Matched by CAS number to '

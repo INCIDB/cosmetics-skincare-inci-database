@@ -46,6 +46,7 @@ writing, exiting non-zero on any difference.
 import argparse
 import csv
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -72,6 +73,9 @@ PRICE_USD = 79
 # report-vs-CSV/Parquet count gates (build_delivery.build_korea) run every month regardless
 # of whether the tier is released; its claims-vs-report gate starts only once released,
 # since there is no "korea" block in claims.json to check before then.
+# A live-mode Payment Link (a test-mode link is buy.stripe.com/test_...) and a Stripe price id.
+STRIPE_LINK_RE = re.compile(r"https://buy\.stripe\.com/[A-Za-z0-9]+")
+STRIPE_PRICE_RE = re.compile(r"price_[A-Za-z0-9]+")
 KOREA_TIER = {
     "price_usd": 149,
     "released": False,
@@ -131,9 +135,9 @@ def korea_claims(report_path=KOREA_REPORT_PATH, tier=KOREA_TIER):
     if tier.get("released") is not True:
         return None
     link, price_id = tier.get("payment_link") or "", tier.get("stripe_price_id") or ""
-    if not link.startswith("https://buy.stripe.com/") or "REPLACE-WITH" in link:
+    if not STRIPE_LINK_RE.fullmatch(link):
         raise ValueError(f"KOREA_TIER is released but payment_link is not a live Stripe link: {link!r}")
-    if not price_id.startswith("price_"):
+    if not STRIPE_PRICE_RE.fullmatch(price_id):
         raise ValueError(f"KOREA_TIER is released but stripe_price_id is not a Stripe price id: {price_id!r}")
     report = json.loads(Path(report_path).read_text(encoding="utf-8"))
     block = {k: report[k] for k in KOREA_MEASURED_KEYS}
