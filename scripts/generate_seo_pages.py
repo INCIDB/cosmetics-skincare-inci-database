@@ -945,7 +945,7 @@ print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']]
 </body>
 </html>"""
 
-    with open(filepath, mode='w', encoding='utf-8') as f:
+    with open(filepath, mode='w', encoding='utf-8', newline='\n') as f:
         f.write(page)
 
     return filename
@@ -1096,7 +1096,7 @@ def generate_hub(hub_key, hub_name, hub_file, ing_list, claims):
 </body>
 </html>"""
 
-    with open(filepath, mode='w', encoding='utf-8') as f:
+    with open(filepath, mode='w', encoding='utf-8', newline='\n') as f:
         f.write(page)
 
 
