@@ -1,33 +1,54 @@
 # Security Policy — INCIDB
 
-## Supported Versions
+## Reporting a vulnerability or data concern
 
-Only the latest major data release (v1.0.x) receives active security audits, regulatory synchronization, and data hygiene updates.
+We take the integrity of the INCIDB data seriously. If you discover any of the
+following, please report it privately:
 
-| Version | Supported          | Status |
-| ------- | ------------------ | ------ |
-| 1.0.x   | :white_check_mark: | Active Production Release |
-| < 1.0   | :x:                | Deprecated Alpha Pre-releases |
+- A security vulnerability in the site ([incidb.dataengineered.io](https://incidb.dataengineered.io))
+  or in anything published in this repository.
+- A critical regulatory data error, such as a misclassified EU Annex II–VI
+  restriction or a wrong EU fragrance-allergen flag.
+- A data-privacy concern, or content that should be removed.
+- Any suspected leak of the full (paid) dataset or pipeline source.
 
----
+**Please email: incidb@dataengineered.io**
 
-## Reporting a Vulnerability or Data Anomaly
+Do **not** open a public GitHub issue for security-sensitive reports. Ordinary
+data corrections (a typo in an INCI name, an outdated CAS number) are welcome as
+issues; see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-If you discover a potential security issue, pipeline vulnerability, or critical regulatory data discrepancy (such as a misclassified EU Annex II–VI restriction or EU fragrance-allergen flag), please follow responsible disclosure protocols:
+## What to include
 
-1. **DO NOT open a public GitHub issue** for sensitive security flaws or potential data integrity exploits.
-2. **Email the INCIDB Security Team directly at:** `incidb@dataengineered.io`.
-3. Include clear reproduction steps, affected INCI compound IDs or EAN barcodes, and your contact details.
+- A clear description of the issue and its impact.
+- Steps to reproduce (for site issues) or the affected `ingredient_id`,
+  `inci_name` or `barcode_ean` (for data concerns).
+- Your contact details if you'd like a response.
 
-### Response Timeline
-* **Initial Acknowledgement:** Within 24 hours.
-* **Triage & Audit Verification:** Within 72 hours.
-* **Patch / Data Correction Release:** Issued in the next monthly data release.
+## Our commitment
 
----
+- We aim to acknowledge reports within **5 business days**.
+- We will keep you informed as we investigate and resolve the issue.
+- We aim to ship a confirmed data correction in the next monthly snapshot.
+- We will not pursue legal action against good-faith security research that
+  respects user privacy and avoids service disruption or data destruction.
 
-## Dataset Hygiene & Execution Safeguards
+## Supported snapshots
 
-INCIDB adheres to strict data engineering security practices:
-* **No Active Payloads:** All CSV (`|`) and Apache Parquet (`pyarrow`) files contain strictly flat scalar primitives (`STRING`, `INTEGER`, `FLOAT`). They contain zero macros, embedded scripts, or executable binaries.
-* **Sanitization Audits:** All string fields undergo automated stripping of unescaped carriage returns (`\r`), control characters, and multiline linebreaks (`\n`) prior to release.
+INCIDB is released as monthly snapshots named `YYYY.MM`. Only the latest
+snapshot receives corrections; earlier snapshots are superseded, not re-issued.
+
+## Data files
+
+- The CSV (pipe-delimited) and Apache Parquet files hold flat values only (text,
+  numbers, true/false flags and dates): no macros, embedded scripts or
+  executables.
+- Before export, line breaks, carriage returns and tabs inside text fields are
+  replaced by a single space, and each field is trimmed.
+
+## Scope
+
+This repository contains only a **public sample**, the site and its
+documentation. It holds no credentials, no pipeline source and not the full
+dataset. Reports about those (e.g. a suspected leak) are still very welcome via
+the email above.
