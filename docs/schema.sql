@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS ingredients (
     cosing_update_date VARCHAR(10),
     annex_ii BOOLEAN, annex_iii BOOLEAN, annex_iv BOOLEAN, annex_v BOOLEAN, annex_vi BOOLEAN,
     is_common_allergen BOOLEAN,
-    allergen_source VARCHAR(30),                     -- EU_ANNEX_III | FDA_MOCRA | BOTH
+    allergen_source VARCHAR(30),                     -- EU_ANNEX_III on flagged rows, else NULL
     comedogenic_rating INTEGER CHECK(comedogenic_rating BETWEEN 0 AND 5),
     is_fungal_acne_trigger BOOLEAN,
     rating_source TEXT                               -- citation for the two authored columns

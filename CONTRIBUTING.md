@@ -12,10 +12,10 @@ If you notice a typo in an INCI compound name, an outdated CAS number, or a miss
 2. Open a new issue with clear descriptive details:
    * **Affected Field:** e.g., `ingredients.cas_number`
    * **Current Value vs. Expected Value:** e.g., `50-81-7` -> `50-81-8`
-   * **Regulatory Citation:** Link to official EU CosIng, US FDA MoCRA, or PubChem compound records.
+   * **Regulatory Citation:** Link to official EU CosIng, EUR-Lex (Annex III), or PubChem compound records.
 
 ### Suggesting Schema Enhancements
-If you have ideas for new columns (such as comedogenic breakdown by skin type or K-Beauty PAO shelf-life tracking):
+If you have ideas for new columns (such as comedogenic breakdown by skin type or period-after-opening (PAO) shelf life):
 * Open a **Feature Request** issue detailing the scientific rationale and sample data formats.
 
 ---
