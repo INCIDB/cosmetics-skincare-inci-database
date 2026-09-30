@@ -413,6 +413,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "1a7812e27115ebf3": {
+  "src": "{0}. {1} tables",
+  "t": "{0}. Tablas de {1}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "1ab86b31462dcd1d": {
   "src": "Maximum concentration:",
   "t": "Concentración máxima:",
@@ -538,6 +544,18 @@
   "t": "Anexo II: el texto de Chemical name / INN tal cual (donde figuran las prohibiciones condicionales). Anexos III–VI: las columnas Other y Wording of conditions, combinadas",
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
+ },
+ "20cfdfac28ef3d37": {
+  "src": "<0>South Korea MFDS ({1} only)</0> — Annexes {2} and {3} of MFDS Notice {4} (Regulation on Safety Standards etc. of Cosmetics), from law.go.kr. Each entry is linked to INCIDB only where one of its printed CAS numbers equals the single CAS INCIDB holds for an ingredient. Links on botanical entries, links a hand check found wrong and links whose CAS number several INCIDB names share ship as review links; they, and links not yet hand-checked, stay outside the published counts; a shared CAS still links normally for a name hand-checked as that same substance. Many Annex {5} entries apply only as limited by a condition or exception written in the entry. The notice URL and the annex PDF hash are on every entry row ({6}, {7}), not in {8}. Not legal advice.",
+  "t": "<0>MFDS de Corea del Sur (solo {1})</0> — Anexos {2} y {3} del aviso {4} del MFDS (Regulation on Safety Standards etc. of Cosmetics), de law.go.kr. Cada entrada se vincula a INCIDB solo cuando uno de sus números CAS impresos coincide con el único CAS que INCIDB tiene para un ingrediente. Los vínculos de entradas botánicas, los vínculos que una revisión a mano determinó erróneos y los vínculos cuyo número CAS comparten varios nombres de INCIDB se entregan como vínculos retenidos para revisión; estos, y los vínculos aún no revisados a mano, quedan fuera de los recuentos publicados; un CAS compartido sigue vinculándose con normalidad a un nombre revisado a mano como esa misma sustancia. Muchas entradas del Anexo {5} solo se aplican en los límites de una condición o excepción escrita en la entrada. La URL del aviso y el hash del PDF del anexo figuran en cada fila de entrada ({6}, {7}), no en {8}. No constituye asesoramiento legal.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
+ "20d7cad68d4fb73a": {
+  "src": "Listed in MFDS Notice {0}, Annex {1} — other ingredients with restrictions on use.",
+  "t": "Figura en el aviso {0} del MFDS, Anexo {1} — otros ingredientes con restricciones de uso.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "2137ff1d5cd09a54": {
   "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). Comedogenic {3} (Fulton).",
@@ -683,6 +701,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
  },
+ "293074aa3203a855": {
+  "src": "INCIDB ingredients linked to entries by exact CAS; review links and links not yet hand-checked ship but are left out of the published counts",
+  "t": "Ingredientes de INCIDB vinculados a entradas por CAS exacto; los vínculos retenidos para revisión y los vínculos aún no revisados a mano se entregan, pero quedan fuera de los recuentos publicados",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "29409887210ed701": {
   "src": "{0}. products",
   "t": "{0}. products",
@@ -755,6 +779,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "2d8406f6a948f700": {
+  "src": "Listed in MFDS Notice {0}, Annex {1} — ingredients that may not be used (scope in the entry text).",
+  "t": "Figura en el aviso {0} del MFDS, Anexo {1} — ingredientes que no pueden utilizarse (alcance en el texto de la entrada).",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "2d8f186101ef047b": {
   "src": "Regulation (EC) {0} as amended by Regulation (EU) {1} — the single list behind {2}, recorded per row in {3}, with thresholds, transition dates and the match method in {4}.",
   "t": "Reglamento (CE) {0}, modificado por el Reglamento (UE) {1}: la única lista en la que se basa {2}, registrada por fila en {3}, con umbrales, fechas de transición y el método de coincidencia en {4}.",
@@ -784,6 +814,12 @@
   "t": "Página de categoría",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "2ef3364a6f9e76bc": {
+  "src": "One row per printed entry, with the parsed limit and scope fields and the page it is printed on",
+  "t": "Una fila por entrada impresa, con los campos extraídos de límite y alcance y la página en la que está impresa",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "2f692020bf4a8030": {
   "src": "Preservatives &amp; Antioxidants →",
@@ -863,6 +899,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
  },
+ "35b22701c056aa33": {
+  "src": "Listed in MFDS Notice {0}, Annex {1} — UV-filter ingredients.",
+  "t": "Figura en el aviso {0} del MFDS, Anexo {1} — ingredientes de filtro UV.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "35e584f469d8ced7": {
   "src": "Need the ingredient-level mapping?",
   "t": "¿Necesitas el mapeo a nivel de ingrediente?",
@@ -922,6 +964,12 @@
   "t": "Una sola lista: los alérgenos de fragancia del anexo III del Reglamento de Cosméticos de la UE (Reglamento (CE) {0}, modificado por el Reglamento (UE) {1}), cotejados por nombre INCI exacto, luego por el nombre colectivo de etiqueta que prescribe el Reglamento, y por último por número CAS solo en sustancias químicamente definidas. Hay {2} nombres marcados y allergen_source registra la lista; {3} de los productos llevan al menos uno (alrededor de {4} más listan los ingredientes como texto sin dividir, que los indicadores no alcanzan). La FDA de EE. UU. aún no ha publicado su lista de alérgenos de fragancia de MoCRA, por lo que este conjunto de datos no incluye ningún indicador estadounidense.",
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
+ },
+ "3aaaac0462c8aa00": {
+  "src": "Key columns",
+  "t": "Columnas clave",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "3b48ff76b72670f2": {
   "src": "The ingredient inventory: functional categories, CAS and EC numbers, chemical descriptions, restrictions, and Annex II–VI membership. Joined on exact canonical name; unmatched names get {0}, not a guess. The Annex II–VI exports also feed {1}: one row per ingredient and list entry, conditions verbatim; absence of a row is not a status, and none of it is legal advice.",
@@ -1036,6 +1084,12 @@
   "t": "Los {0} alérgenos de fragancia de la UE que deben nombrarse en las etiquetas de cosméticos por encima del {1} % (sin aclarado) / {2} % (con aclarado), sus plazos, y con qué frecuencia aparece cada uno en {3} productos.",
   "by": "claude-opus-5.5",
   "at": "2026-09-25"
+ },
+ "43352908f1908666": {
+  "src": "{0} links are positive listings by exact CAS number. The notice gives its CAS numbers as examples, so an ingredient without a link has no status in this data, and many Annex {1} entries apply only as limited by a condition or exception written in the entry. Not legal advice.",
+  "t": "Los vínculos de {0} son inclusiones positivas en la lista, por número CAS exacto. El aviso da sus números CAS como ejemplos, por lo que un ingrediente sin vínculo no tiene ningún estatus en estos datos, y muchas entradas del Anexo {1} solo se aplican en los límites de una condición o excepción escrita en la entrada. No constituye asesoramiento legal.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "438cf7dad1ba4fb5": {
   "src": "no CAS in CosIng",
@@ -1175,6 +1229,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "4ed3cc99cea48a2c": {
+  "src": "<0>✓</0> Korean text as printed, plus parsed limit, scope and effective-date fields",
+  "t": "<0>✓</0> Texto coreano tal como se imprime, más campos extraídos de límite, alcance y fecha de entrada en vigor",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "4f346cca96743715": {
   "src": "Questions, invoices &amp; custom slices",
   "t": "Preguntas, facturas y extracciones a medida",
@@ -1258,6 +1318,12 @@
   "t": "<0>{1} filas del mapa de nombres</0>: cómo se resolvió cada token original de etiqueta y con qué método.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "55eb4788ad7d5461": {
+  "src": "Limits and conditions:",
+  "t": "Límites y condiciones:",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "55f8ebc805e65b5b": {
   "src": "Description",
@@ -1343,6 +1409,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-25"
  },
+ "5c01ffe0a31ed48c": {
+  "src": "South Korea (MFDS)",
+  "t": "Corea del Sur (MFDS)",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "5c37b4fb98f41cec": {
   "src": "Declare above (leave-on / rinse-off)",
   "t": "Declarar por encima de (sin aclarado / con aclarado)",
@@ -1427,6 +1499,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-25"
  },
+ "627e613ca4737fa7": {
+  "src": "The EU overlay is part of INCIDB Complete. {0} adds the South Korea MFDS overlay, a separate parse of a separate legal text, and always ships together with INCIDB Complete from the same edition, because its links join to that edition's ingredient ids.",
+  "t": "La capa de la UE forma parte de INCIDB Complete. {0} añade la capa del MFDS de Corea del Sur, un análisis aparte de un texto legal distinto, y siempre se entrega junto con INCIDB Complete de la misma edición, porque sus vínculos se unen a los identificadores de ingredientes de esa edición.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "6294c37768c7d684": {
   "src": "The most common cosmetic ingredients",
   "t": "Los ingredientes cosméticos más comunes",
@@ -1439,6 +1517,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "63331b7a1f9ccbc7": {
+  "src": "<0>✓</0> {1}, {2}, {3} in CSV <4>and</4> Parquet",
+  "t": "<0>✓</0> {1}, {2}, {3} en CSV <4>y</4> Parquet",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "63461a3faec7e777": {
   "src": "{0} INCI monographs whose recorded CosIng functions place them under Fragrance, Perfuming &amp; Colorant Agents. CAS numbers, functional categories and label…",
   "t": "{0} monografías INCI cuyas funciones CosIng registradas las sitúan en Fragancias, perfumantes y colorantes. Números CAS, categorías funcionales y posiciones…",
@@ -1450,6 +1534,12 @@
   "t": "Especificación del esquema",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "6370c8f5d19a30a7": {
+  "src": "One row per CAS sub-row, with the CosIng names that share the CAS number (a cross-reference, not a translation)",
+  "t": "Una fila por subfila CAS, con los nombres de CosIng que comparten el número CAS (una referencia cruzada, no una traducción)",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "63b8c4b72e5b052e": {
   "src": "The canonical INCI name it resolved to",
@@ -1871,6 +1961,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "80edddc23d83c4c1": {
+  "src": "Sold separately as {0} (INCIDB Complete plus the South Korea MFDS overlay); not part of INCIDB Complete. Every entry of MFDS Notice {1}, Annex {2} and Annex {3}, with the Korean text as printed and INCIDB links by exact CAS. Many Annex {4} entries apply only as limited by a condition or exception written in the entry ({5}, {6}, {7}). An ingredient without a link has no status in this data. Not legal advice. Every column is described in {8} (section {9}).",
+  "t": "Se vende por separado como {0} (INCIDB Complete más la capa del MFDS de Corea del Sur); no forma parte de INCIDB Complete. Todas las entradas del aviso {1} del MFDS, Anexo {2} y Anexo {3}, con el texto coreano tal como se imprime y vínculos de INCIDB por CAS exacto. Muchas entradas del Anexo {4} solo se aplican en los límites de una condición o excepción escrita en la entrada ({5}, {6}, {7}). Un ingrediente sin vínculo no tiene ningún estatus en estos datos. No constituye asesoramiento legal. Cada columna se describe en {8} (sección {9}).",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "81136b7fd6dde898": {
   "src": "<0>Method — fungal-acne flag.</0> A rule-derived heuristic, not a measured property: no per-ingredient <1>Malassezia</1> assay exists to transcribe. The rule flags {2} fatty acids and their esters, and polysorbates {3}, applied only to CosIng-matched ingredients, giving {4} flags. Basis: Saunte et al., <5>Front Cell Infect Microbiol</5> {6} (DOI {7}), with the chain-length window from Liebregts et al., <8>FEMS Yeast Res</8> {9} (DOI {10}). Specific oils, butters and waxes are not flagged — the literature does not support ingredient-level calls on them.",
   "t": "<0>Método: indicador de acné fúngico.</0> Una heurística derivada de reglas, no una propiedad medida: no existe ningún ensayo de <1>Malassezia</1> por ingrediente que transcribir. La regla marca los ácidos grasos {2} y sus ésteres, y los polisorbatos {3}, aplicada solo a ingredientes con coincidencia en CosIng, con {4} indicadores. Base: Saunte et al., <5>Front Cell Infect Microbiol</5> {6} (DOI {7}), con la ventana de longitud de cadena de Liebregts et al., <8>FEMS Yeast Res</8> {9} (DOI {10}). No se marcan aceites, mantecas ni ceras concretos: la bibliografía no respalda conclusiones a nivel de ingrediente sobre ellos.",
@@ -1894,6 +1990,12 @@
   "t": "Ingredientes más comunes",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "829af3155f095563": {
+  "src": "Listed in MFDS Notice {0}, Annex {1} — preservative ingredients.",
+  "t": "Figura en el aviso {0} del MFDS, Anexo {1} — ingredientes conservantes.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "82a17231e0925f49": {
   "src": "{0} — CAS {1}. INCI name for {2} (INN). CosIng functions: {3}, {4}.",
@@ -1991,6 +2093,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "898a4deacd2e2225": {
+  "src": "<0>✓</0> Everything in INCIDB Complete",
+  "t": "<0>✓</0> Todo lo incluido en INCIDB Complete",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "89a44cf4ce80cc18": {
   "src": "{0} — CAS {1}. INCI name for {2} (chemical name). Comedogenic {3} (Fulton). CosIng functions: {4}, {5}.",
   "t": "{0} — CAS {1}. Nombre INCI de {2} (nombre químico). Comedogenicidad {3} (Fulton). Funciones CosIng: {4}, {5}.",
@@ -2050,6 +2158,18 @@
   "t": "{0} ingredientes de la muestra gratuita de INCIDB cuyas {1} registradas en CosIng los sitúan aquí, {2} de ellos con número CAS en CosIng. {3} tienen una restricción CosIng; {4} son alérgenos de fragancia del Anexo III; {5} tienen un grado de comedogenicidad documentado.",
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
+ },
+ "8e4f59b06665cbbb": {
+  "src": "Matched by CAS number to {0} (MFDS Notice {1}). The notice gives its CAS numbers as examples, so only a match is shown.",
+  "t": "Cotejado por número CAS con {0} (aviso {1} del MFDS). El aviso da sus números CAS como ejemplos, por lo que solo se muestran coincidencias.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
+ "8e64f594137d5696": {
+  "src": "<0>✓</0> {1} INCIDB ingredient names linked by exact CAS and hand-checked; {2} of products contain at least one",
+  "t": "<0>✓</0> {1} nombres de ingredientes de INCIDB vinculados por CAS exacto y revisados a mano; {2} de los productos contienen al menos uno",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "8e85db0691ea2034": {
   "src": "EU Annex III fragrance allergens",
@@ -2116,6 +2236,12 @@
   "t": "Obtén INCIDB Complete — {0}",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "94c2e56cba920fcb": {
+  "src": "INCIDB Complete plus the South Korea MFDS overlay: one checkout, two archives from the same edition.",
+  "t": "INCIDB Complete más la capa del MFDS de Corea del Sur: un solo pago, dos archivos de la misma edición.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "95215b002079f29b": {
   "src": "Data Schema",
@@ -2441,6 +2567,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
  },
+ "aa6a9fda2851f9c4": {
+  "src": "{0}: Annexes {1} and {2} of MFDS Notice {3} (Regulation on Safety Standards etc. of Cosmetics), from the Korean National Law Information Center (law.go.kr).",
+  "t": "{0}: Anexos {1} y {2} del aviso {3} del MFDS (Regulation on Safety Standards etc. of Cosmetics), del Centro Nacional de Información Legislativa de Corea (law.go.kr).",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "aa859ea9e5bae712": {
   "src": "INCI monographs whose recorded CosIng functions place them under Preservatives, Antimicrobials &amp; Antioxidants.",
   "t": "Monografías INCI cuyas funciones CosIng registradas las sitúan en Conservantes, antimicrobianos y antioxidantes.",
@@ -2591,6 +2723,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "b2ca31d091537032": {
+  "src": "Listed in MFDS Notice {0}, Annex {1} — hair-dye ingredients.",
+  "t": "Figura en el aviso {0} del MFDS, Anexo {1} — ingredientes de tintes capilares.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "b312e2b057ff9dc2": {
   "src": "Annex III entry reference as printed",
   "t": "Referencia de la entrada del Anexo III tal como se imprime",
@@ -2650,6 +2788,12 @@
   "t": "¿Necesitas las tablas fila a fila detrás de estas cifras?",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "b647dacbc7a06c0f": {
+  "src": "<0>✓</0> {1} CAS sub-rows, with CosIng English names cross-referenced by CAS",
+  "t": "<0>✓</0> {1} subfilas CAS, con los nombres en inglés de CosIng cruzados por CAS",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "b6ab39b5c987a7dc": {
   "src": "The identical schema, small enough to evaluate in an afternoon.",
@@ -2854,6 +2998,12 @@
   "t": "CosIng también lo registra como {0} (Ph. Eur.), {1} (Ph. Eur.) y {2} (nombre químico).",
   "by": "claude-fable-5-1",
   "at": "2026-09-18"
+ },
+ "c1c1a84df9772e6a": {
+  "src": "{0}, sold separately, adds three tables in a second archive from the same edition: {1}, {2} and {3}, built from Annexes {4} and {5} of South Korea's MFDS Notice {6}, with the Korean text as printed and INCIDB links by exact CAS. An ingredient without a link has no status in this data.",
+  "t": "{0}, que se vende por separado, añade tres tablas en un segundo archivo de la misma edición: {1}, {2} y {3}, creadas a partir de los Anexos {4} y {5} del aviso {6} del MFDS de Corea del Sur, con el texto coreano tal como se imprime y vínculos de INCIDB por CAS exacto. Un ingrediente sin vínculo no tiene ningún estatus en estos datos.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "c1d86a4e4c4c9a30": {
   "src": "CosIng also records it as {0} (Ph. Eur.).",
@@ -3095,6 +3245,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "d0be70cec654f77a": {
+  "src": "This entry applies only as limited by the condition or exception it states.",
+  "t": "Esta entrada solo se aplica en los límites de la condición o excepción que establece.",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "d0f30274b5118b8f": {
   "src": "{0} — CAS {1}. INCI name for {2} (Ph. Eur.). CosIng functions: {3}, {4}, {5}, {6}, {7}.",
   "t": "{0} — CAS {1}. Nombre INCI de {2} (Ph. Eur.). Funciones CosIng: {3}, {4}, {5}, {6}, {7}.",
@@ -3142,6 +3298,12 @@
   "t": "Siempre {0} en este snapshot: las etiquetas casi nunca declaran porcentajes",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "d4e18168ce6fb2ff": {
+  "src": "INCIDB Complete · {0}",
+  "t": "INCIDB Complete · {0}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "d4f6325f9d1fb0f3": {
   "src": "CosIng also records it as {0} (Ph. Eur.) and {1} (Ph. Eur.).",
@@ -3269,6 +3431,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
  },
+ "e0fac9f5312a8bd6": {
+  "src": "{0}: INCIDB Complete plus the South Korea MFDS overlay",
+  "t": "{0}: INCIDB Complete más la capa del MFDS de Corea del Sur",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "e1450713fca3f7a6": {
   "src": "<0>✓</0> Pipe-delimited CSV <1>and</1> Apache Parquet",
   "t": "<0>✓</0> CSV delimitado por barras verticales <1>y</1> Apache Parquet",
@@ -3280,6 +3448,12 @@
   "t": "Una variante multilingüe unida por barra",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "e1d5551b726096e5": {
+  "src": "<0>✓</0> MFDS Notice {1} in full: {2} Annex {3} and {4} Annex {5} entries",
+  "t": "<0>✓</0> El aviso {1} del MFDS completo: {2} entradas del Anexo {3} y {4} del Anexo {5}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "e278e2d086f53636": {
   "src": "Get INCIDB Complete ({0})",
@@ -3484,6 +3658,12 @@
   "t": "{0} figura en el inventario CosIng de la Comisión Europea en la categoría funcional {1}. CosIng no registra ningún número CAS para este ingrediente, por lo que la columna es NULL en lugar de una suposición.",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "f0462153220b55b5": {
+  "src": "Buy {0} · Instant download",
+  "t": "Comprar {0} · Descarga inmediata",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "f145e6d45243a88e": {
   "src": "{0} — CAS {1}. CosIng functions: {2}, {3}, {4}, {5}. INCI name as listed in the EU CosIng inventory.",

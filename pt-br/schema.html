@@ -341,6 +341,23 @@
 </div>
 <p style="color: var(--text-secondary); margin-top: 0.75rem;"><code>status</code> é a categoria de anexo da entrada, não um veredito sobre o ingrediente. Uma linha, sobretudo uma com <code>match_method = IDENTIFIED_INGREDIENT</code>, significa que o CosIng vincula o nome INCI a essa entrada da lista. Uma proibição do Anexo II abrange apenas a substância, a forma ou o uso que a entrada descreve em <code>condition_text</code> (por exemplo, apenas o uso em tinturas capilares, apenas a forma nano ou um componente como as furocumarinas), de modo que o mesmo ingrediente também pode ter uma linha dos Anexos III–VI. Leia <code>condition_text</code> antes de tirar qualquer conclusão.</p>
 </div>
+<!-- INCIDB Korea tables -->
+<div class="doc-section">
+<h2>8. Tabelas do <span translate="no">INCIDB Korea</span></h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Vendido separadamente como <span translate="no">INCIDB Korea</span> (INCIDB Complete mais a camada do MFDS da Coreia do Sul); não faz parte do INCIDB Complete. Todas as entradas do aviso 2026-19 do MFDS, Anexo 1 e Anexo 2, com o texto coreano conforme impresso e vínculos do INCIDB por CAS exato. Muitas entradas do Anexo 1 só se aplicam nos limites de uma condição ou exceção escrita na entrada (<code>condition_kind</code>, <code>hair_dye_exemption</code>, <code>scope_note</code>). Um ingrediente sem vínculo não tem nenhum status nestes dados. Não constitui aconselhamento jurídico. Cada coluna é descrita em <code>DATA_DICTIONARY.md</code> (seção 8).</p>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Tabela</th><th>Colunas-chave</th><th>Descrição</th></tr>
+</thead>
+<tbody>
+<tr><td><code>kr_mfds_entries</code></td><td><code>entry_id</code>, <code>annex</code>, <code>section</code>, <code>name_ko</code>, <code>limit_ko</code>, <code>max_pct</code>, <code>condition_kind</code>, <code>effective_from</code></td><td>Uma linha por entrada impressa, com os campos extraídos de limite e escopo e a página em que está impressa</td></tr>
+<tr><td><code>kr_mfds_substances</code></td><td><code>entry_id</code>, <code>cas</code>, <code>cas_valid</code>, <code>chemical_name_ko</code>, <code>cosing_inci_names</code></td><td>Uma linha por sublinha CAS, com os nomes do CosIng que compartilham o número CAS (uma referência cruzada, não uma tradução)</td></tr>
+<tr><td><code>kr_mfds_links</code></td><td><code>ingredient_id</code>, <code>inci_name</code>, <code>cas</code>, <code>entry_id</code>, <code>review</code>, <code>scope_note</code></td><td>Ingredientes do INCIDB vinculados a entradas por CAS exato; os vínculos retidos para revisão e os vínculos ainda não verificados manualmente são entregues, mas ficam fora das contagens publicadas</td></tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <!-- Footer -->
 <footer>

@@ -106,6 +106,7 @@
 <li><strong>274 linhas de <code>fragrance_allergens</code></strong> — as entradas de alergênicos de fragrância do Anexo III da UE, uma linha por nome legal e correspondência no INCIDB, incluindo linhas de revisão e nomes sem correspondência.</li>
 <li><strong>637 linhas de <code>regulatory_status</code></strong> — o status dos Anexos II–VI da UE por ingrediente e entrada de lista, condições literais. Uma linha só existe onde uma lista diz algo.</li>
 </ul>
+<p><span translate="no">INCIDB Korea</span>, vendido separadamente, adiciona três tabelas em um segundo arquivo da mesma edição: <code>kr_mfds_entries</code>, <code>kr_mfds_substances</code> e <code>kr_mfds_links</code>, criadas a partir dos Anexos 1 e 2 do aviso 2026-19 do MFDS da Coreia do Sul, com o texto coreano conforme impresso e vínculos do INCIDB por CAS exato. Um ingrediente sem vínculo não tem nenhum status nestes dados.</p>
 </div>
 <div class="doc-section">
 <h2>2. Fontes e a junção</h2>
@@ -116,6 +117,7 @@
 <li><strong>Alergênicos de fragrância da UE.</strong> As 81 entradas de rotulagem do Anexo III do Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545 (texto consolidado de 18.05.2026), são correspondidas ao INCIDB pelo nome INCI exato, depois pelo nome coletivo de rotulagem que o Regulamento prescreve (por exemplo, "Rose Ketones"), depois por número CAS somente para substâncias quimicamente definidas. As correspondências de CAS de origem botânica são entregues como linhas de revisão, nunca como sinalizações. 120 nomes são sinalizados; 47,2% dos produtos contêm pelo menos um. Cerca de 2,4% dos produtos listam os ingredientes como texto não dividido, que as sinalizações de alergênicos não alcançam. A FDA dos EUA ainda não publicou sua lista de alergênicos de fragrância da MoCRA; por isso, este conjunto de dados não traz sinalização dos EUA.</li>
 <li><strong>Camada autoral</strong> — 142 classificações comedogênicas transcritas de uma única tabela publicada e 275 sinalizações de acne fúngica derivadas de regras. Ambas trazem sua citação por linha em <code>rating_source</code> e são <code>NULL</code> em todos os outros casos.</li>
 </ul>
+<p><strong>MFDS da Coreia do Sul (somente <span translate="no">INCIDB Korea</span>)</strong> — Anexos 1 e 2 do aviso 2026-19 do MFDS (Regulation on Safety Standards etc. of Cosmetics), do law.go.kr. Uma entrada é vinculada ao INCIDB somente quando um de seus números CAS impressos é igual ao único CAS que o INCIDB mantém para um ingrediente. Vínculos em entradas botânicas, vínculos que uma verificação manual considerou errados e vínculos cujo número CAS é compartilhado por vários nomes do INCIDB são entregues como vínculos retidos para revisão; eles, e os vínculos ainda não verificados manualmente, ficam fora das contagens publicadas; um CAS compartilhado continua vinculando normalmente um nome verificado manualmente como essa mesma substância. Muitas entradas do Anexo 1 só se aplicam nos limites de uma condição ou exceção escrita na entrada. A URL do aviso e o hash do PDF do anexo estão em cada linha de entrada (<code>source_url</code>, <code>pdf_sha256</code>), não em <code>build_report.json</code>. Não constitui aconselhamento jurídico.</p>
 </div>
 <div class="doc-section">
 <h2>3. Cobertura medida</h2>
@@ -164,6 +166,15 @@ duckdb.query("""
 SELECT method, COUNT(*) AS n
 FROM 'ingredient_name_map.parquet'
 GROUP BY 1 ORDER BY 2 DESC;
+""").show()
+
+# INCIDB Korea: Annex 2 preservatives linked to INCIDB ingredients
+duckdb.query("""
+SELECT l.inci_name, e.name_ko, e.limit_ko, l.scope_note
+FROM 'kr_mfds_links.parquet' l
+JOIN 'kr_mfds_entries.parquet' e USING (entry_id)
+WHERE e.section = 'preservative' AND l.review = 0
+ORDER BY l.inci_name;
 """).show()</code></pre>
 </div>
 </div>
