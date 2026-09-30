@@ -5,6 +5,7 @@ Source of truth: <portfolio root>/scripts/seo_common.py — edit there, then re-
 """
 import datetime
 import html
+import os
 import re
 import subprocess
 from pathlib import Path
@@ -70,24 +71,64 @@ def fit_desc(text, max_len=DESC_MAX):
     return cut if cut.endswith((".", "!", "?")) else cut + "…"
 
 
+# What scripts/i18n_common.py build rewrites in every English page: it drops any hreflang
+# <link> from <head> and injects its own blocks (hreflang alternates, the header language
+# menu, the footer switcher). Same patterns as its BLOCK_RE / HREFLANG_RE; keep them in
+# step. The page generators run BEFORE the i18n build, so when they write the sitemap a
+# freshly regenerated page still has the generator's hreflang links and none of the blocks.
+I18N_BLOCK_RE = re.compile(r"[ \t]*<!-- i18n:alternates -->.*?<!-- /i18n:alternates -->[ \t]*(?:\r?\n)?"
+                           r"|<!-- i18n:(switcher|header) -->.*?<!-- /i18n:\1 -->", re.S)
+I18N_HREFLANG_RE = re.compile(r"[ \t]*<link\b[^>]*\bhreflang\s*=[^>]*>[ \t]*(?:\r?\n)?", re.I)
+
+
+def _page_content(data):
+    """What lastmod compares: the page with LF line ends and without what the i18n build
+    owns (I18N_BLOCK_RE anywhere, I18N_HREFLANG_RE in <head>)."""
+    # LF: a checkout with core.autocrlf=true has every page in CRLF.
+    text = I18N_BLOCK_RE.sub("", data.decode("utf-8", "surrogateescape").replace("\r\n", "\n"))
+    head_end = text.lower().find("</head>")
+    if head_end < 0:
+        return text
+    return I18N_HREFLANG_RE.sub("", text[:head_end]) + text[head_end:]
+
+
 def git_lastmod(path, repo_dir):
-    """YYYY-MM-DD of the last commit touching path; today if untracked or modified."""
+    """YYYY-MM-DD the page's content last changed: today if the working copy differs from
+    HEAD (or is untracked), else the date of the last commit that changed it.
+
+    Both comparisons ignore line endings and what the i18n build owns (_page_content): a
+    page the generator rewrote identically, before the i18n build re-injects its blocks,
+    is unchanged, and a commit that only moved those blocks (a new locale, an i18n.js
+    version bump) is skipped over. So lastmod moves only when the page itself changes,
+    and a rerun on an unchanged tree reproduces the committed dates.
+
+    A relative path is relative to repo_dir, as it was when git ran with cwd=repo_dir:
+    ApplianceDB's tools/generate_landing.py passes "landing/<page>.html" with repo_dir
+    "../ApplianceDB-public".
+    """
     today = datetime.date.today().isoformat()
-    rel = str(Path(path))
+    path = os.path.join(str(repo_dir), path)  # unchanged when path is absolute
+    rel = os.path.relpath(path, repo_dir).replace(os.sep, "/")
 
     def git(*args):
-        return subprocess.run(["git", *args, "--", rel], cwd=str(repo_dir),
-                              capture_output=True, text=True)
+        return subprocess.run(["git", *args], cwd=str(repo_dir), capture_output=True)
 
-    if git("ls-files", "--error-unmatch").returncode != 0:
+    def committed(rev):
+        r = git("cat-file", "blob", f"{rev}:./{rel}")
+        return _page_content(r.stdout) if r.returncode == 0 else None
+
+    newer = committed("HEAD")
+    if newer is None or not os.path.isfile(path):
         return today
-    # --ignore-cr-at-eol: a checkout with core.autocrlf=true reports every
-    # regenerated LF page as modified; only a content change should move lastmod.
-    if (git("diff", "--quiet", "--ignore-cr-at-eol").returncode != 0
-            or git("diff", "--cached", "--quiet", "--ignore-cr-at-eol").returncode != 0):
+    if _page_content(Path(path).read_bytes()) != newer:
         return today
-    out = git("log", "-1", "--format=%cs").stdout.strip()
-    return out or today
+    log = git("log", "--format=%H %cs", "--", rel).stdout.decode("ascii").split()
+    commits = list(zip(log[0::2], log[1::2]))  # newest first
+    for i, (_, day) in enumerate(commits):
+        older = committed(commits[i + 1][0]) if i + 1 < len(commits) else None
+        if older != newer:  # this commit changed the page itself; else it was i18n-only
+            return day
+    return today
 
 
 def write_sitemap(repo_dir, entries, out="sitemap.xml"):
