@@ -1,6 +1,6 @@
 # INCIDB Apache Parquet Technical Specification
 
-Snapshot 2026.09. Every table ships twice: as pipe-delimited (`|`) UTF-8 CSV
+Snapshot <!--claims:snapshot-->2026.09<!--/claims-->. Every table ships twice: as pipe-delimited (`|`) UTF-8 CSV
 and as an Apache Parquet archive written with `pyarrow` (Snappy compression,
 dictionary encoding where it pays). Both carry identical columns, so you can
 prototype against the CSV and ship against the Parquet.
@@ -9,15 +9,15 @@ prototype against the CSV and ship against the Parquet.
 
 | Table | Parquet size | CSV size | Rows | Columns |
 | :--- | ---: | ---: | ---: | ---: |
-| `brands` | 0.12 MiB | 0.12 MiB | 6,412 | 2 |
-| `products` | 4.95 MiB | 10.23 MiB | 19,764 | 7 |
-| `ingredients` | 2.08 MiB | 4.33 MiB | 45,327 | 20 |
-| `product_ingredients` | 1.08 MiB | 5.21 MiB | 367,785 | 4 |
-| `ingredient_name_map` | 4.15 MiB | 19.44 MiB | 77,367 | 7 |
-| `fragrance_allergens` | 0.02 MiB | 0.09 MiB | 274 | 18 |
-| `regulatory_status` | 0.05 MiB | 0.27 MiB | 637 | 15 |
+| `brands` | <!--archive:parquet_mib.brands-->0.12<!--/archive--> MiB | <!--archive:csv_mib.brands-->0.12<!--/archive--> MiB | <!--claims:brands-->6,453<!--/claims--> | 2 |
+| `products` | <!--archive:parquet_mib.products-->5.03<!--/archive--> MiB | <!--archive:csv_mib.products-->10.35<!--/archive--> MiB | <!--claims:products-->20,029<!--/claims--> | 7 |
+| `ingredients` | <!--archive:parquet_mib.ingredients-->2.09<!--/archive--> MiB | <!--archive:csv_mib.ingredients-->4.35<!--/archive--> MiB | <!--claims:ingredients-->45,584<!--/claims--> | 20 |
+| `product_ingredients` | <!--archive:parquet_mib.product_ingredients-->1.10<!--/archive--> MiB | <!--archive:csv_mib.product_ingredients-->5.29<!--/archive--> MiB | <!--claims:links-->373,216<!--/claims--> | 4 |
+| `ingredient_name_map` | <!--archive:parquet_mib.ingredient_name_map-->4.19<!--/archive--> MiB | <!--archive:csv_mib.ingredient_name_map-->19.66<!--/archive--> MiB | <!--claims:name_map_rows-->78,151<!--/claims--> | 7 |
+| `fragrance_allergens` | <!--archive:parquet_mib.fragrance_allergens-->0.02<!--/archive--> MiB | <!--archive:csv_mib.fragrance_allergens-->0.09<!--/archive--> MiB | <!--claims:fragrance_allergens_rows-->274<!--/claims--> | 18 |
+| `regulatory_status` | <!--archive:parquet_mib.regulatory_status-->0.05<!--/archive--> MiB | <!--archive:csv_mib.regulatory_status-->0.27<!--/archive--> MiB | <!--claims:regulatory_status_rows-->637<!--/claims--> | 15 |
 
-Parquet is roughly **69%** smaller than the equivalent CSV across the whole
+Parquet is roughly **<!--archive:parquet_saving_pct-->69<!--/archive-->%** smaller than the equivalent CSV across the whole
 snapshot — less than the headline figures compression benchmarks usually
 quote, because most of the payload is high-cardinality free text (raw label
 declarations, chemical descriptions, per-row citations) rather than the
