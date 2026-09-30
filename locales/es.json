@@ -547,7 +547,7 @@
  },
  "20cfdfac28ef3d37": {
   "src": "<0>South Korea MFDS ({1} only)</0> — Annexes {2} and {3} of MFDS Notice {4} (Regulation on Safety Standards etc. of Cosmetics), from law.go.kr. Each entry is linked to INCIDB only where one of its printed CAS numbers equals the single CAS INCIDB holds for an ingredient. Links on botanical entries, links a hand check found wrong and links whose CAS number several INCIDB names share ship as review links; they, and links not yet hand-checked, stay outside the published counts; a shared CAS still links normally for a name hand-checked as that same substance. Many Annex {5} entries apply only as limited by a condition or exception written in the entry. The notice URL and the annex PDF hash are on every entry row ({6}, {7}), not in {8}. Not legal advice.",
-  "t": "<0>MFDS de Corea del Sur (solo {1})</0> — Anexos {2} y {3} del aviso {4} del MFDS (Regulation on Safety Standards etc. of Cosmetics), de law.go.kr. Cada entrada se vincula a INCIDB solo cuando uno de sus números CAS impresos coincide con el único CAS que INCIDB tiene para un ingrediente. Los vínculos de entradas botánicas, los vínculos que una revisión a mano determinó erróneos y los vínculos cuyo número CAS comparten varios nombres de INCIDB se entregan como vínculos retenidos para revisión; estos, y los vínculos aún no revisados a mano, quedan fuera de los recuentos publicados; un CAS compartido sigue vinculándose con normalidad a un nombre revisado a mano como esa misma sustancia. Muchas entradas del Anexo {5} solo se aplican en los límites de una condición o excepción escrita en la entrada. La URL del aviso y el hash del PDF del anexo figuran en cada fila de entrada ({6}, {7}), no en {8}. No constituye asesoramiento legal.",
+  "t": "<0>MFDS de Corea del Sur (solo {1})</0> — Anexos {2} y {3} del aviso {4} del MFDS (Regulation on Safety Standards etc. of Cosmetics), procedentes de law.go.kr. Cada entrada se vincula a INCIDB solo cuando uno de sus números CAS impresos coincide con el único CAS que INCIDB tiene para un ingrediente. Los vínculos de entradas botánicas, los vínculos que una revisión a mano determinó erróneos y los vínculos cuyo número CAS comparten varios nombres de INCIDB se entregan como vínculos retenidos para revisión; estos, y los vínculos aún no revisados a mano, quedan fuera de los recuentos publicados; un CAS compartido sigue vinculándose con normalidad a un nombre revisado a mano como esa misma sustancia. Muchas entradas del Anexo {5} solo se aplican en los límites de una condición o excepción escrita en la entrada. La URL del aviso y el hash del PDF del anexo figuran en cada fila de entrada ({6}, {7}), no en {8}. No constituye asesoramiento legal.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -604,6 +604,12 @@
   "t": "Pega el fragmento en tu publicación. Enlaza el gráfico a esta página, que es la única atribución que pedimos.",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "231c59ddee2edbb4": {
+  "src": "<0>✓</0> Annexes {1} and {2} of MFDS Notice {3} in full: {4} Annex {5} and {6} Annex {7} entries",
+  "t": "<0>✓</0> Los Anexos {1} y {2} del aviso {3} del MFDS completos: {4} entradas del Anexo {5} y {6} del Anexo {7}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "235c14c382f4bbe3": {
   "src": "LABEL POSITION",
@@ -2363,6 +2369,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "9f177840253c3119": {
+  "src": "<0>✓</0> {1} CAS sub-rows, with CosIng English names cross-referenced by CAS where CosIng lists the number",
+  "t": "<0>✓</0> {1} subfilas CAS, con referencia cruzada por CAS a los nombres en inglés de CosIng cuando CosIng registra el número",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "9f28194ee971485b": {
   "src": "Fragrance, Perfuming &amp; Colorant Agents | INCIDB",
   "t": "Fragancias, perfumantes y colorantes | INCIDB",
@@ -2569,7 +2581,7 @@
  },
  "aa6a9fda2851f9c4": {
   "src": "{0}: Annexes {1} and {2} of MFDS Notice {3} (Regulation on Safety Standards etc. of Cosmetics), from the Korean National Law Information Center (law.go.kr).",
-  "t": "{0}: Anexos {1} y {2} del aviso {3} del MFDS (Regulation on Safety Standards etc. of Cosmetics), del Centro Nacional de Información Legislativa de Corea (law.go.kr).",
+  "t": "{0}: Anexos {1} y {2} del aviso {3} del MFDS (Regulation on Safety Standards etc. of Cosmetics), procedentes del Centro Nacional de Información Legislativa de Corea (law.go.kr).",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },

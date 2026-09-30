@@ -547,7 +547,7 @@
  },
  "20cfdfac28ef3d37": {
   "src": "<0>South Korea MFDS ({1} only)</0> — Annexes {2} and {3} of MFDS Notice {4} (Regulation on Safety Standards etc. of Cosmetics), from law.go.kr. Each entry is linked to INCIDB only where one of its printed CAS numbers equals the single CAS INCIDB holds for an ingredient. Links on botanical entries, links a hand check found wrong and links whose CAS number several INCIDB names share ship as review links; they, and links not yet hand-checked, stay outside the published counts; a shared CAS still links normally for a name hand-checked as that same substance. Many Annex {5} entries apply only as limited by a condition or exception written in the entry. The notice URL and the annex PDF hash are on every entry row ({6}, {7}), not in {8}. Not legal advice.",
-  "t": "<0>MFDS de Corée du Sud ({1} uniquement)</0> — annexes {2} et {3} de l'avis {4} du MFDS (Regulation on Safety Standards etc. of Cosmetics), depuis law.go.kr. Une entrée n'est liée à INCIDB que lorsqu'un de ses numéros CAS imprimés est égal à l'unique numéro CAS qu'INCIDB détient pour un ingrédient. Les liens sur des entrées botaniques, les liens qu'une vérification à la main a jugés erronés et les liens dont plusieurs noms INCIDB partagent le numéro CAS sont livrés comme liens retenus pour vérification ; ceux-ci, ainsi que les liens pas encore vérifiés à la main, restent en dehors des chiffres publiés ; un numéro CAS partagé lie toujours normalement un nom vérifié à la main comme étant cette même substance. De nombreuses entrées de l'annexe {5} ne s'appliquent que dans les limites d'une condition ou d'une exception écrite dans l'entrée. L'URL de l'avis et le hash du PDF de l'annexe figurent sur chaque ligne d'entrée ({6}, {7}), pas dans {8}. Ne constitue pas un avis juridique.",
+  "t": "<0>MFDS de Corée du Sud ({1} uniquement)</0> — annexes {2} et {3} de l'avis {4} du MFDS (Regulation on Safety Standards etc. of Cosmetics), issues de law.go.kr. Une entrée n'est liée à INCIDB que lorsqu'un de ses numéros CAS imprimés est égal à l'unique numéro CAS qu'INCIDB détient pour un ingrédient. Les liens sur des entrées botaniques, les liens qu'une vérification à la main a jugés erronés et les liens dont plusieurs noms INCIDB partagent le numéro CAS sont livrés comme liens retenus pour vérification ; ceux-ci, ainsi que les liens pas encore vérifiés à la main, restent en dehors des chiffres publiés ; un numéro CAS partagé lie toujours normalement un nom vérifié à la main comme étant cette même substance. De nombreuses entrées de l'annexe {5} ne s'appliquent que dans les limites d'une condition ou d'une exception écrite dans l'entrée. L'URL de l'avis et le hash du PDF de l'annexe figurent sur chaque ligne d'entrée ({6}, {7}), pas dans {8}. Ne constitue pas un avis juridique.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -604,6 +604,12 @@
   "t": "Collez l'extrait dans votre article. Il relie le graphique à cette page, seule attribution que nous demandons.",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "231c59ddee2edbb4": {
+  "src": "<0>✓</0> Annexes {1} and {2} of MFDS Notice {3} in full: {4} Annex {5} and {6} Annex {7} entries",
+  "t": "<0>✓</0> Les annexes {1} et {2} de l'avis {3} du MFDS en entier : {4} entrées de l'annexe {5} et {6} de l'annexe {7}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "235c14c382f4bbe3": {
   "src": "LABEL POSITION",
@@ -1501,7 +1507,7 @@
  },
  "627e613ca4737fa7": {
   "src": "The EU overlay is part of INCIDB Complete. {0} adds the South Korea MFDS overlay, a separate parse of a separate legal text, and always ships together with INCIDB Complete from the same edition, because its links join to that edition's ingredient ids.",
-  "t": "La surcouche UE fait partie d'INCIDB Complete. {0} ajoute la surcouche MFDS de Corée du Sud, une analyse distincte d'un texte juridique distinct, et est toujours livré avec INCIDB Complete de la même édition, car ses liens se joignent aux identifiants d'ingrédients de cette édition.",
+  "t": "La surcouche UE fait partie d'INCIDB Complete. {0} ajoute la surcouche MFDS de Corée du Sud, une analyse distincte d'un texte juridique distinct, et est toujours livré avec INCIDB Complete de la même édition, car ses liens font la jointure sur les identifiants d'ingrédients de cette édition.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -2363,6 +2369,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "9f177840253c3119": {
+  "src": "<0>✓</0> {1} CAS sub-rows, with CosIng English names cross-referenced by CAS where CosIng lists the number",
+  "t": "<0>✓</0> {1} sous-lignes CAS, avec les noms anglais de CosIng mis en correspondance par numéro CAS lorsque CosIng répertorie ce numéro",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "9f28194ee971485b": {
   "src": "Fragrance, Perfuming &amp; Colorant Agents | INCIDB",
   "t": "Parfums, agents parfumants et colorants | INCIDB",
@@ -2569,7 +2581,7 @@
  },
  "aa6a9fda2851f9c4": {
   "src": "{0}: Annexes {1} and {2} of MFDS Notice {3} (Regulation on Safety Standards etc. of Cosmetics), from the Korean National Law Information Center (law.go.kr).",
-  "t": "{0} : annexes {1} et {2} de l'avis {3} du MFDS (Regulation on Safety Standards etc. of Cosmetics), du Centre national d'information juridique de Corée (law.go.kr).",
+  "t": "{0} : annexes {1} et {2} de l'avis {3} du MFDS (Regulation on Safety Standards etc. of Cosmetics), issues du Centre national d'information juridique de Corée (law.go.kr).",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },

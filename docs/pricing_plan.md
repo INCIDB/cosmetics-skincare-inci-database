@@ -68,13 +68,14 @@ MFDS Notice 2026-19 (Regulation on Safety Standards etc. of Cosmetics),
 Annex 1 (ingredients that may not be used) and Annex 2 (ingredients with use
 restrictions):
 
-* **The whole notice.** 1,077 Annex 1 and 248 Annex 2 entries and 1,784 CAS
-  sub-rows, including entries that match nothing in INCIDB. The Korean text
-  ships as printed; limits, rinse-off scope and effective dates are parsed
-  into their own fields only where the entry states them.
-* **English identities by CAS.** Each CAS sub-row carries the CosIng
-  inventory names that share its CAS number. That is a cross-reference, not
-  a translation of the Korean entry.
+* **Both annexes in full.** 1,077 Annex 1 and 248 Annex 2 entries and 1,784
+  CAS sub-rows, including entries that match nothing in INCIDB. The Korean
+  text ships as printed; limits and rinse-off scope are parsed into their own
+  fields only where the entry states them; later effective dates come from
+  the notice's supplementary provisions (부칙).
+* **English identities by CAS.** A CAS sub-row carries the CosIng inventory
+  names that share its CAS number, where CosIng lists it. That is a
+  cross-reference, not a translation of the Korean entry.
 * **Links by exact CAS.** 191 INCIDB ingredient names are linked by
   exact CAS and hand-checked; 73.2% of products contain at least one.
   Nothing is fuzzy, and names are never used to match. Links on botanical

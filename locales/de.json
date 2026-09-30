@@ -547,13 +547,13 @@
  },
  "20cfdfac28ef3d37": {
   "src": "<0>South Korea MFDS ({1} only)</0> — Annexes {2} and {3} of MFDS Notice {4} (Regulation on Safety Standards etc. of Cosmetics), from law.go.kr. Each entry is linked to INCIDB only where one of its printed CAS numbers equals the single CAS INCIDB holds for an ingredient. Links on botanical entries, links a hand check found wrong and links whose CAS number several INCIDB names share ship as review links; they, and links not yet hand-checked, stay outside the published counts; a shared CAS still links normally for a name hand-checked as that same substance. Many Annex {5} entries apply only as limited by a condition or exception written in the entry. The notice URL and the annex PDF hash are on every entry row ({6}, {7}), not in {8}. Not legal advice.",
-  "t": "<0>MFDS Südkorea (nur {1})</0> — Anhänge {2} und {3} der MFDS-Bekanntmachung {4} (Regulation on Safety Standards etc. of Cosmetics), von law.go.kr. Ein Eintrag wird nur dann mit INCIDB verknüpft, wenn eine seiner abgedruckten CAS-Nummern der einzigen CAS-Nummer entspricht, die INCIDB für einen Inhaltsstoff führt. Verknüpfungen bei botanischen Einträgen, Verknüpfungen, die eine Prüfung von Hand als falsch erkannt hat, und Verknüpfungen, deren CAS-Nummer sich mehrere INCIDB-Namen teilen, werden als zur Prüfung zurückgehaltene Verknüpfungen ausgeliefert; sie und noch nicht von Hand geprüfte Verknüpfungen bleiben außerhalb der veröffentlichten Zahlen; eine geteilte CAS-Nummer verknüpft einen Namen, der von Hand als genau dieser Stoff geprüft wurde, weiterhin normal. Viele Einträge in Anhang {5} gelten nur im Rahmen einer im Eintrag genannten Bedingung oder Ausnahme. Die URL der Bekanntmachung und der Hash des Anhang-PDFs stehen in jeder Eintragszeile ({6}, {7}), nicht in {8}. Keine Rechtsberatung.",
+  "t": "<0>MFDS (Südkorea, nur {1})</0> — Anhänge {2} und {3} der MFDS-Bekanntmachung {4} (Regulation on Safety Standards etc. of Cosmetics), von law.go.kr. Ein Eintrag wird nur dann mit INCIDB verknüpft, wenn eine seiner abgedruckten CAS-Nummern der einzigen CAS-Nummer entspricht, die INCIDB für einen Inhaltsstoff führt. Verknüpfungen bei botanischen Einträgen, Verknüpfungen, die eine Prüfung von Hand als falsch erkannt hat, und Verknüpfungen, deren CAS-Nummer sich mehrere INCIDB-Namen teilen, werden als zur Prüfung zurückgehaltene Verknüpfungen ausgeliefert; sie und noch nicht von Hand geprüfte Verknüpfungen bleiben außerhalb der veröffentlichten Zahlen; eine geteilte CAS-Nummer verknüpft einen Namen, der von Hand als genau dieser Stoff geprüft wurde, weiterhin normal. Viele Einträge in Anhang {5} gelten nur im Rahmen einer im Eintrag genannten Bedingung oder Ausnahme. Die URL der Bekanntmachung und der Hash des Anhang-PDFs stehen in jeder Eintragszeile ({6}, {7}), nicht in {8}. Keine Rechtsberatung.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
  "20d7cad68d4fb73a": {
   "src": "Listed in MFDS Notice {0}, Annex {1} — other ingredients with restrictions on use.",
-  "t": "Aufgeführt in MFDS-Bekanntmachung {0}, Anhang {1} — sonstige Inhaltsstoffe mit Verwendungsbeschränkungen.",
+  "t": "Aufgeführt in der MFDS-Bekanntmachung {0}, Anhang {1} — sonstige Inhaltsstoffe mit Verwendungsbeschränkungen.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -604,6 +604,12 @@
   "t": "Fügen Sie den Schnipsel in Ihren Beitrag ein. Er verlinkt das Diagramm auf diese Seite — die einzige Namensnennung, um die wir bitten.",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "231c59ddee2edbb4": {
+  "src": "<0>✓</0> Annexes {1} and {2} of MFDS Notice {3} in full: {4} Annex {5} and {6} Annex {7} entries",
+  "t": "<0>✓</0> Anhänge {1} und {2} der MFDS-Bekanntmachung {3} vollständig: {4} Einträge aus Anhang {5} und {6} aus Anhang {7}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "235c14c382f4bbe3": {
   "src": "LABEL POSITION",
@@ -781,7 +787,7 @@
  },
  "2d8406f6a948f700": {
   "src": "Listed in MFDS Notice {0}, Annex {1} — ingredients that may not be used (scope in the entry text).",
-  "t": "Aufgeführt in MFDS-Bekanntmachung {0}, Anhang {1} — Inhaltsstoffe, die nicht verwendet werden dürfen (Geltungsbereich im Eintragstext).",
+  "t": "Aufgeführt in der MFDS-Bekanntmachung {0}, Anhang {1} — Inhaltsstoffe, die nicht verwendet werden dürfen (Geltungsbereich im Eintragstext).",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -901,7 +907,7 @@
  },
  "35b22701c056aa33": {
   "src": "Listed in MFDS Notice {0}, Annex {1} — UV-filter ingredients.",
-  "t": "Aufgeführt in MFDS-Bekanntmachung {0}, Anhang {1} — UV-Filter.",
+  "t": "Aufgeführt in der MFDS-Bekanntmachung {0}, Anhang {1} — UV-Filter.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -1087,7 +1093,7 @@
  },
  "43352908f1908666": {
   "src": "{0} links are positive listings by exact CAS number. The notice gives its CAS numbers as examples, so an ingredient without a link has no status in this data, and many Annex {1} entries apply only as limited by a condition or exception written in the entry. Not legal advice.",
-  "t": "Die Verknüpfungen in {0} sind positive Listungen über die exakte CAS-Nummer. Die Bekanntmachung nennt ihre CAS-Nummern als Beispiele, daher hat ein Inhaltsstoff ohne Verknüpfung in diesen Daten keinen Status, und viele Einträge in Anhang {1} gelten nur im Rahmen einer im Eintrag genannten Bedingung oder Ausnahme. Keine Rechtsberatung.",
+  "t": "Die Verknüpfungen in {0} zeigen nur an, dass ein Eintrag den Inhaltsstoff über die exakte CAS-Nummer aufführt. Die Bekanntmachung nennt ihre CAS-Nummern als Beispiele, daher hat ein Inhaltsstoff ohne Verknüpfung in diesen Daten keinen Status, und viele Einträge in Anhang {1} gelten nur im Rahmen einer im Eintrag genannten Bedingung oder Ausnahme. Keine Rechtsberatung.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -1993,7 +1999,7 @@
  },
  "829af3155f095563": {
   "src": "Listed in MFDS Notice {0}, Annex {1} — preservative ingredients.",
-  "t": "Aufgeführt in MFDS-Bekanntmachung {0}, Anhang {1} — Konservierungsstoffe.",
+  "t": "Aufgeführt in der MFDS-Bekanntmachung {0}, Anhang {1} — Konservierungsstoffe.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -2363,6 +2369,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "9f177840253c3119": {
+  "src": "<0>✓</0> {1} CAS sub-rows, with CosIng English names cross-referenced by CAS where CosIng lists the number",
+  "t": "<0>✓</0> {1} CAS-Unterzeilen, mit den englischen CosIng-Namen, über die CAS-Nummer zugeordnet, wo CosIng die Nummer führt",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
+ },
  "9f28194ee971485b": {
   "src": "Fragrance, Perfuming &amp; Colorant Agents | INCIDB",
   "t": "Duftstoffe, Parfümierung &amp; Farbstoffe | INCIDB",
@@ -2725,7 +2737,7 @@
  },
  "b2ca31d091537032": {
   "src": "Listed in MFDS Notice {0}, Annex {1} — hair-dye ingredients.",
-  "t": "Aufgeführt in MFDS-Bekanntmachung {0}, Anhang {1} — Haarfärbestoffe.",
+  "t": "Aufgeführt in der MFDS-Bekanntmachung {0}, Anhang {1} — Haarfärbestoffe.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },

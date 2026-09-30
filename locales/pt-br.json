@@ -547,7 +547,7 @@
  },
  "20cfdfac28ef3d37": {
   "src": "<0>South Korea MFDS ({1} only)</0> — Annexes {2} and {3} of MFDS Notice {4} (Regulation on Safety Standards etc. of Cosmetics), from law.go.kr. Each entry is linked to INCIDB only where one of its printed CAS numbers equals the single CAS INCIDB holds for an ingredient. Links on botanical entries, links a hand check found wrong and links whose CAS number several INCIDB names share ship as review links; they, and links not yet hand-checked, stay outside the published counts; a shared CAS still links normally for a name hand-checked as that same substance. Many Annex {5} entries apply only as limited by a condition or exception written in the entry. The notice URL and the annex PDF hash are on every entry row ({6}, {7}), not in {8}. Not legal advice.",
-  "t": "<0>MFDS da Coreia do Sul (somente {1})</0> — Anexos {2} e {3} do aviso {4} do MFDS (Regulation on Safety Standards etc. of Cosmetics), do law.go.kr. Uma entrada é vinculada ao INCIDB somente quando um de seus números CAS impressos é igual ao único CAS que o INCIDB mantém para um ingrediente. Vínculos em entradas botânicas, vínculos que uma verificação manual considerou errados e vínculos cujo número CAS é compartilhado por vários nomes do INCIDB são entregues como vínculos retidos para revisão; eles, e os vínculos ainda não verificados manualmente, ficam fora das contagens publicadas; um CAS compartilhado continua vinculando normalmente um nome verificado manualmente como essa mesma substância. Muitas entradas do Anexo {5} só se aplicam nos limites de uma condição ou exceção escrita na entrada. A URL do aviso e o hash do PDF do anexo estão em cada linha de entrada ({6}, {7}), não em {8}. Não constitui aconselhamento jurídico.",
+  "t": "<0>MFDS da Coreia do Sul (somente {1})</0> — Anexos {2} e {3} do aviso {4} do MFDS (Regulation on Safety Standards etc. of Cosmetics), obtidos do law.go.kr. Uma entrada é vinculada ao INCIDB somente quando um de seus números CAS impressos é igual ao único CAS que o INCIDB mantém para um ingrediente. Vínculos em entradas botânicas, vínculos que uma verificação manual considerou errados e vínculos cujo número CAS é compartilhado por vários nomes do INCIDB são entregues como vínculos retidos para revisão; eles, e os vínculos ainda não verificados manualmente, ficam fora das contagens publicadas; um CAS compartilhado continua vinculando normalmente um nome verificado manualmente como essa mesma substância. Muitas entradas do Anexo {5} só se aplicam nos limites de uma condição ou exceção escrita na entrada. A URL do aviso e o hash do PDF do anexo estão em cada linha de entrada ({6}, {7}), não em {8}. Não constitui aconselhamento jurídico.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -604,6 +604,12 @@
   "t": "Cole o trecho na sua publicação. Ele vincula o gráfico a esta página, a única atribuição que pedimos.",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "231c59ddee2edbb4": {
+  "src": "<0>✓</0> Annexes {1} and {2} of MFDS Notice {3} in full: {4} Annex {5} and {6} Annex {7} entries",
+  "t": "<0>✓</0> Os Anexos {1} e {2} do aviso {3} do MFDS completos: {4} entradas do Anexo {5} e {6} do Anexo {7}",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "235c14c382f4bbe3": {
   "src": "LABEL POSITION",
@@ -2161,7 +2167,7 @@
  },
  "8e4f59b06665cbbb": {
   "src": "Matched by CAS number to {0} (MFDS Notice {1}). The notice gives its CAS numbers as examples, so only a match is shown.",
-  "t": "Correspondido por número CAS com {0} (aviso {1} do MFDS). O aviso apresenta seus números CAS como exemplos, por isso só são mostradas correspondências.",
+  "t": "Associado por número CAS a {0} (aviso {1} do MFDS). O aviso apresenta seus números CAS como exemplos, por isso só são mostradas correspondências.",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },
@@ -2362,6 +2368,12 @@
   "t": "Documentação",
   "by": "claude-opus-5",
   "at": "2026-09-16"
+ },
+ "9f177840253c3119": {
+  "src": "<0>✓</0> {1} CAS sub-rows, with CosIng English names cross-referenced by CAS where CosIng lists the number",
+  "t": "<0>✓</0> {1} sublinhas CAS, com referência cruzada por CAS aos nomes em inglês do CosIng quando o CosIng registra o número",
+  "by": "claude-opus-5.5",
+  "at": "2026-09-30"
  },
  "9f28194ee971485b": {
   "src": "Fragrance, Perfuming &amp; Colorant Agents | INCIDB",
@@ -2569,7 +2581,7 @@
  },
  "aa6a9fda2851f9c4": {
   "src": "{0}: Annexes {1} and {2} of MFDS Notice {3} (Regulation on Safety Standards etc. of Cosmetics), from the Korean National Law Information Center (law.go.kr).",
-  "t": "{0}: Anexos {1} e {2} do aviso {3} do MFDS (Regulation on Safety Standards etc. of Cosmetics), do Centro Nacional de Informação Jurídica da Coreia (law.go.kr).",
+  "t": "{0}: Anexos {1} e {2} do aviso {3} do MFDS (Regulation on Safety Standards etc. of Cosmetics), obtidos do Centro Nacional de Informação Jurídica da Coreia (law.go.kr).",
   "by": "claude-opus-5.5",
   "at": "2026-09-30"
  },

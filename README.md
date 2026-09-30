@@ -180,8 +180,8 @@ South Korea MFDS overlay, delivered as two archives from the same edition.
 | Price | **$79** one-time | **$149** one-time |
 | Tables | All 7 (`products`, `brands`, `ingredients`, `product_ingredients`, `ingredient_name_map`, `fragrance_allergens`, `regulatory_status`) | The same 7, plus `kr_mfds_entries`, `kr_mfds_substances`, `kr_mfds_links` |
 | Formats | Pipe-delimited CSV (`\|`) **and** Apache Parquet | Pipe-delimited CSV (`\|`) **and** Apache Parquet |
-| Enrichment | Every CosIng column, allergen flags, authored ratings — at the coverage stated above | As Complete, plus MFDS Notice 2026-19 in full (1,077 Annex 1 and 248 Annex 2 entries, 1,784 CAS sub-rows) with 191 INCIDB names linked by exact CAS and hand-checked; 73.2% of products contain at least one |
-| Extras | `build_report.json` (per-column fill rates and source hashes), data dictionary, licence | As Complete, plus Korean text as printed, parsed limit fields and CosIng English names by CAS |
+| Enrichment | Every CosIng column, allergen flags, authored ratings — at the coverage stated above | As Complete, plus Annexes 1 and 2 of MFDS Notice 2026-19 in full (1,077 Annex 1 and 248 Annex 2 entries, 1,784 CAS sub-rows) with 191 INCIDB names linked by exact CAS and hand-checked; 73.2% of products contain at least one |
+| Extras | `build_report.json` (per-column fill rates and source hashes), data dictionary, licence | As Complete, plus Korean text as printed, parsed limit fields and CosIng English names by CAS where CosIng lists the number |
 | Delivery | Stripe checkout, instant download | Stripe checkout, instant download of both archives |
 | Updates | One-time snapshot (2026.09) | One-time snapshot of the same edition |
 
