@@ -376,6 +376,108 @@ hash and row count.
 
 ---
 
+## 8. INCIDB Korea tables (sold separately; not in this archive)
+
+These three tables are not in the INCIDB Complete archive this dictionary
+ships in. They are sold separately as INCIDB Korea: INCIDB Complete plus a
+second archive from the same edition that holds them, with its own
+`README-DELIVERY.txt`, `schema_kr.sql` and `korea_report.json`. They are
+built from South Korea's MFDS Notice 2026-19 (Regulation on Safety
+Standards etc. of Cosmetics), Annexes 1 and 2. Every printed entry ships,
+linked or not. `name_ko`, `limit_ko`, `note_ko` and `chemical_name_ko` are
+the Korean text as printed, line-wrap spacing normalised: the source PDF
+carries no space characters, so word spaces are inferred from glyph
+positions and can differ from the print where a line wraps. Compare on text
+with the spaces removed. Join on `entry_id` and CAS, never on Korean text.
+No condition text is translated.
+
+**Read an Annex 1 entry with its condition.** Many Annex 1 entries apply
+only as limited by a condition or exception written in the entry;
+`condition_kind`, `hair_dye_exemption` and each link's `scope_note` point to
+it. Limonene is listed only above a peroxide value (`peroxide_value`), talc
+only where it fails the Korean Pharmacopoeia asbestos specification
+(`impurity_spec`), and an entry with the hair-dye footnote does not cover
+use as a hair dye that meets the Annex 2 hair-dye standard
+(`hair_dye_exemption`). Read the entry text before treating a link as a ban.
+
+**Links are checked by hand.** Every link with `review = 0` is checked
+against the printed entry before the website shows it. A link that a later
+edition adds ships in the archive at once and is listed under
+`unaudited_links` in `korea_report.json` until it has been checked.
+`linked_names` and `products_pct` in `korea_report.json` count only links
+that have passed the hand check; `nonreview_names` counts every link with
+`review = 0`, and `unaudited_links` lists the difference.
+
+### `kr_mfds_entries`
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `entry_id` | `STRING` | Stable entry id in print order: `A1-0001`… for Annex 1, `A2-0001`… for Annex 2 |
+| `annex` | `INTEGER` | `1` (ingredients that may not be used) or `2` (ingredients with use restrictions) |
+| `section` | `STRING` | `prohibited` (the section code of every Annex 1 entry; its scope is in `name_ko`, see `status_label` and `condition_kind`), or the Annex 2 section: `preservative`, `uv_filter`, `hair_dye`, `other` |
+| `name_ko` | `STRING` | The 원료명 (ingredient) cell as printed, conditions included: an Annex 1 condition lives in this text |
+| `limit_ko` | `STRING` | Annex 2 only: the 사용한도 (use limit) cell, or 사용할 때 농도상한 for hair dyes, as printed; `NULL` on Annex 1 |
+| `note_ko` | `STRING` | Annex 2 only: the 비고 (remarks) cell as printed; `NULL` on Annex 1 |
+| `hair_dye_exemption` | `BOOLEAN` | `1` when the Annex 1 name carries the ¹⁾ footnote: excepted from the entry when used as a hair dye that meets the Annex 2 hair-dye standard; `0` otherwise (always `0` on Annex 2) |
+| `max_pct` | `DECIMAL` | The limit as a number, set only when the printed limit is one unconditional percentage; `NULL` otherwise |
+| `limit_basis_ko` | `STRING` | The "~로서" (expressed-as) basis of `max_pct`, spaces removed; `NULL` when the limit states none or the basis cannot be read without guessing |
+| `rinse_off_only` | `BOOLEAN` | `1` rinse-off products only (other products banned); `0` the limit also covers leave-on or other products; `NULL` when the entry states neither |
+| `banned_in_other_products` | `BOOLEAN` | `1` when the note says 기타 제품에는 사용금지 (not to be used in other products); `NULL` otherwise |
+| `condition_kind` | `STRING` | `peroxide_value`, `impurity_spec`, `exception` or `none`: the kind of condition printed in the name cell |
+| `status_label` | `STRING` | "Annex 1 entry: scope in entry text" or "Annex 2 restricted: limit in entry text"; never a bare "prohibited" |
+| `effective_from` | `DATE` | `NULL` when the entry is in force under this notice; otherwise the later date set by a supplementary provision (부칙) |
+| `effective_from_notice` | `STRING` | The notice whose supplementary provision sets `effective_from`; `NULL` when `effective_from` is `NULL` |
+| `notice_no` | `STRING` | MFDS notice number of the consolidated text, e.g. `2026-19` |
+| `notice_date` | `DATE` | Date of that notice |
+| `source_url` | `STRING` | law.go.kr page of the notice |
+| `pdf_sha256` | `STRING` | SHA-256 of the annex PDF the entry was parsed from |
+| `page_from` | `INTEGER` | First PDF page the entry is printed on |
+| `page_to` | `INTEGER` | Last PDF page the entry is printed on (entries can run across a page break) |
+
+One row per printed entry. `status_label` is the entry's annex category,
+not a verdict: the form, condition or exception an entry covers is in
+`name_ko` (on Annex 2, also in `limit_ko` and `note_ko`).
+
+### `kr_mfds_substances`
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `entry_id` | `STRING` | The entry this CAS sub-row belongs to |
+| `substance_seq` | `INTEGER` | Sub-row order within the entry, from `1` |
+| `cas_printed` | `STRING` | The CAS cell as printed (`-` and `a / b` alternatives kept); `NULL` when the cell is empty |
+| `cas` | `STRING` | The checksum-valid CAS numbers of the cell, joined with ` / `; `NULL` when none is valid |
+| `cas_valid` | `BOOLEAN` | `1` when every hyphenated number printed in the cell is a checksum-valid CAS number; `0` when any fails the check digit (a misprinted CAS, or another number such as the EC number `280-855-6`); `NULL` when the cell prints none |
+| `chemical_name_ko` | `STRING` | The 화학물질명 (chemical name) cell as printed |
+| `cosing_inci_names` | `STRING` | CosIng inventory names sharing a CAS of the cell, joined with `; `: a CAS cross-reference, not the Korean entry's name. `NULL` when the cell has no valid CAS or CosIng does not know it |
+
+One row per CAS sub-row of an entry. The notice gives its CAS numbers as
+representative examples (Annex 1, note 1), so a CAS that is not here proves
+nothing.
+
+### `kr_mfds_links`
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `ingredient_id` | `INTEGER` | INCIDB ingredient id in the INCIDB Complete archive of the same edition |
+| `inci_name` | `STRING` | The INCIDB canonical name, carried so a link can be re-joined if ids move between editions |
+| `cas` | `STRING` | The CAS number that matched: the one valid CAS INCIDB holds for the ingredient |
+| `entry_id` | `STRING` | The linked Korean entry |
+| `substance_seq` | `INTEGER` | The sub-row of the entry that printed the CAS |
+| `match_method` | `STRING` | `CAS` (exact CAS equality; names are never used to match) |
+| `review` | `BOOLEAN` | `1` for a link held for review, `0` otherwise |
+| `review_reason` | `STRING` | `EXCLUDED` (a link a hand check found wrong), `BOTANICAL` (the entry prints a Latin plant name, so a CAS match cannot confirm the plant part or preparation) or `FAN_OUT_CAS` (several INCIDB names share the sub-row's CAS; a name hand-checked as that same substance links with `review = 0` instead, a `(NANO)` or colour-index name only where the entry states that grade); `NULL` when `review = 0` |
+| `scope_note` | `STRING` | What the link means for this entry, one of four fixed phrases: `listed in Annex 1 (ingredients that may not be used); scope as stated in the entry`, `banned only under the condition stated in the entry`, `banned except as a hair dye meeting the Annex 2 hair-dye standard` (followed by `; further conditions stated in the entry` when the entry also states one), or `listed in the Annex 2 <section> section; see the entry for limit and scope` (`<section>` is the section's English name with its Korean heading, e.g. `preservative (보존제)`) |
+
+Links are many-to-many: the same CAS can sit in several Annex 2 sections.
+Review links, and links not yet hand-checked, ship but are left out of the
+published link counts.
+
+**A missing link is not a status.** An ingredient without a link is one for
+which no printed CAS equals the single CAS INCIDB holds for it; many INCIDB
+names hold no CAS, or several. Nothing here is legal advice.
+
+---
+
 ## Columns present but empty in this snapshot
 
 Named here so nothing in the archive is a surprise. They carry no data and
@@ -398,5 +500,8 @@ attribution under the Commission's public-sector information reuse policy.
 EU regulatory overlay: Annex III to Regulation (EC) No 1223/2009 as amended
 by Regulation (EU) 2023/1545 (EUR-Lex, © European Union) and the CosIng
 Annex II–VI exports, reused with attribution. Not legal advice.
+INCIDB Korea tables: Annexes 1 and 2 of MFDS Notice 2026-19, from law.go.kr;
+our reading is that Korean Copyright Act Art. 7(2) excludes such public
+notices from protection (not legal advice).
 Provided as-is, without warranty; the flags and ratings above are
 informational and are not medical, safety or regulatory-compliance advice.

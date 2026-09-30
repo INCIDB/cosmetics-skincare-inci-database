@@ -104,15 +104,30 @@
           "name": "INCIDB"
         },
         "category": "Software > Data & Databases",
-        "offers": {
+        "offers": [
+          {
           "@type": "Offer",
+          "name": "INCIDB Complete",
+          "sku": "INCIDB-COMPLETE",
           "price": "79.00",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
           "url": "https://incidb.dataengineered.io/#pricing",
           "shippingDetails": {"@type":"OfferShippingDetails","shippingRate":{"@type":"MonetaryAmount","value":"0","currency":"USD"},"shippingDestination":[{"@type":"DefinedRegion","addressCountry":"US"},{"@type":"DefinedRegion","addressCountry":"GB"},{"@type":"DefinedRegion","addressCountry":"CA"},{"@type":"DefinedRegion","addressCountry":"AU"}],"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"},"transitTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"}}},
           "hasMerchantReturnPolicy": {"@type":"MerchantReturnPolicy","applicableCountry":["US", "GB", "CA", "AU"],"returnPolicyCategory":"https://schema.org/MerchantReturnNotPermitted"}
-        }
+          },
+          {
+          "@type": "Offer",
+          "name": "INCIDB Korea: INCIDB Complete plus the South Korea MFDS overlay",
+          "sku": "INCIDB-KOREA",
+          "price": "149.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://incidb.dataengineered.io/#pricing",
+          "shippingDetails": {"@type":"OfferShippingDetails","shippingRate":{"@type":"MonetaryAmount","value":"0","currency":"USD"},"shippingDestination":[{"@type":"DefinedRegion","addressCountry":"US"},{"@type":"DefinedRegion","addressCountry":"GB"},{"@type":"DefinedRegion","addressCountry":"CA"},{"@type":"DefinedRegion","addressCountry":"AU"}],"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"},"transitTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"}}},
+          "hasMerchantReturnPolicy": {"@type":"MerchantReturnPolicy","applicableCountry":["US", "GB", "CA", "AU"],"returnPolicyCategory":"https://schema.org/MerchantReturnNotPermitted"}
+          }
+        ]
       }
     ]
     </script>
@@ -435,12 +450,13 @@
     <section id="pricing" class="section">
         <div class="container">
             <div class="section-header" style="text-align: center;">
-                <div class="section-eyebrow">One product, one price</div>
-                <h2 class="section-title">INCIDB Complete</h2>
+                <div class="section-eyebrow">Pricing</div>
+                <h2 class="section-title">INCIDB Complete · <span translate="no">INCIDB Korea</span></h2>
                 <p style="color: var(--text-secondary); margin-top: 0.5rem;">The data is open (ODbL). What you pay for is the normalisation, the canonicalisation, the join, the measurement — and instant delivery.</p>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">The EU overlay is part of INCIDB Complete. <span translate="no">INCIDB Korea</span> adds the South Korea MFDS overlay, a separate parse of a separate legal text, and always ships together with INCIDB Complete from the same edition, because its links join to that edition's ingredient ids.</p>
             </div>
 
-            <div class="pricing-grid" style="max-width: 860px; margin: 0 auto;">
+            <div class="pricing-grid" style="max-width: 1180px; margin: 0 auto;">
                 <!-- Free Sample -->
                 <div class="pricing-card">
                     <div class="tier-name">Free sample</div>
@@ -458,7 +474,6 @@
 
                 <!-- INCIDB Complete -->
                 <div class="pricing-card featured">
-                    <div class="featured-badge">Everything</div>
                     <div class="tier-name">INCIDB Complete</div>
                     <div class="tier-desc">The full 2026.09 snapshot, both formats, instant download.</div>
                     <div class="tier-price">$79 <span>USD one-time</span></div>
@@ -474,8 +489,26 @@
                     </ul>
                     <a href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_en_home" class="btn btn-primary" style="width: 100%; justify-content: center;">Buy now · Instant download</a>
                 </div>
+
+                <!-- INCIDB Korea -->
+                <div class="pricing-card">
+                    <div class="featured-badge" translate="no">Complete + Korea</div>
+                    <div class="tier-name" translate="no">INCIDB Korea</div>
+                    <div class="tier-desc">INCIDB Complete plus the South Korea MFDS overlay: one checkout, two archives from the same edition.</div>
+                    <div class="tier-price">$149 <span>USD one-time</span></div>
+                    <ul class="tier-features">
+                        <li class="included"><span class="check-icon">✓</span> Everything in INCIDB Complete</li>
+                        <li class="included"><span class="check-icon">✓</span> Annexes 1 and 2 of MFDS Notice 2026-19 in full: 1,077 Annex 1 and 248 Annex 2 entries</li>
+                        <li class="included"><span class="check-icon">✓</span> 1,784 CAS sub-rows, with CosIng English names cross-referenced by CAS where CosIng lists the number</li>
+                        <li class="included"><span class="check-icon">✓</span> Korean text as printed, plus parsed limit, scope and effective-date fields</li>
+                        <li class="included"><span class="check-icon">✓</span> 191 INCIDB ingredient names linked by exact CAS and hand-checked; 73.2% of products contain at least one</li>
+                        <li class="included"><span class="check-icon">✓</span> <code>kr_mfds_entries</code>, <code>kr_mfds_substances</code>, <code>kr_mfds_links</code> in CSV <em>and</em> Parquet</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k?client_reference_id=incidb_en_home" class="btn btn-primary" style="width: 100%; justify-content: center;">Buy <span translate="no">INCIDB Korea</span> · Instant download</a>
+                </div>
             </div>
             <p id="contact" style="text-align:center; margin-top: 24px; font-size: 0.9rem; opacity: 0.85; max-width: 700px; margin-left: auto; margin-right: auto;">Secure card checkout via Stripe (card / Apple&nbsp;Pay / Google&nbsp;Pay) with <b>instant download</b> after payment. The purchase covers delivery and the engineering, <b>not</b> exclusive rights to the data — it stays ODbL. Company invoice, a custom slice, or a question first? <a href="#" onclick="openModal('Custom / Invoice Inquiry'); return false;">Open the contact form</a>.</p>
+            <p style="text-align:center; margin-top: 12px; font-size: 0.85rem; opacity: 0.85; max-width: 700px; margin-left: auto; margin-right: auto;"><span translate="no">INCIDB Korea</span> links are positive listings by exact CAS number. The notice gives its CAS numbers as examples, so an ingredient without a link has no status in this data, and many Annex 1 entries apply only as limited by a condition or exception written in the entry. Not legal advice.</p>
         </div>
     </section>
 
@@ -597,6 +630,7 @@
             <p>INCIDB · snapshot 2026.09 · counts generated from the build report</p>
             <p style="margin-top: 0.5rem;"><a href="/schema" style="color: var(--accent-blue); text-decoration: none;">Schema Specification</a> · <a href="/stats/" style="color: var(--accent-blue); text-decoration: none;">Ingredient Statistics</a> · <a href="/eu-fragrance-allergens/" style="color: var(--accent-blue); text-decoration: none;">EU Fragrance Allergens</a> · <a href="LICENSE" style="color: var(--accent-blue); text-decoration: none;">License Terms</a> · <a href="/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentation</a></p>
             <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Product data © <a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a> contributors, under the <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL) v1.0</a> — attribution and share-alike apply to derivatives. Ingredient enrichment contains data from the European Commission CosIng database, reused with attribution. EU fragrance-allergen list: Annex III to Regulation (EC) No 1223/2009 as amended by Regulation (EU) 2023/1545, EUR-Lex (© European Union), reused with attribution.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);"><span translate="no">INCIDB Korea</span>: Annexes 1 and 2 of MFDS Notice 2026-19 (Regulation on Safety Standards etc. of Cosmetics), from the Korean National Law Information Center (law.go.kr).</p>
         </div>
     <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Part of the DataEngineered catalog →</a> · <a href="https://dataengineered.io/about">About</a> · <a href="https://dataengineered.io/terms">Terms</a> · <a href="https://dataengineered.io/privacy">Privacy</a> · <a href="https://dataengineered.io/refund-policy">Refund policy</a></div>
 <!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Language" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><span aria-current="true" style="font-weight:600">English</span> · <a href="/es/" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <a href="/de/" hreflang="de" lang="de" data-i18n-lang="de">Deutsch</a> · <a href="/fr/" hreflang="fr" lang="fr" data-i18n-lang="fr">Français</a> · <a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></nav><!-- /i18n:switcher --></footer>

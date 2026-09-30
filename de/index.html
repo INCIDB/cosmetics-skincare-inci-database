@@ -113,64 +113,128 @@
       "name": "INCIDB"
     },
     "category": "Software > Data & Databases",
-    "offers": {
-      "@type": "Offer",
-      "price": "79.00",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://incidb.dataengineered.io/de/#pricing",
-      "shippingDetails": {
-        "@type": "OfferShippingDetails",
-        "shippingRate": {
-          "@type": "MonetaryAmount",
-          "value": "0",
-          "currency": "USD"
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "INCIDB Complete",
+        "sku": "INCIDB-COMPLETE",
+        "price": "79.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://incidb.dataengineered.io/de/#pricing",
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "USD"
+          },
+          "shippingDestination": [
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "US"
+            },
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "GB"
+            },
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "CA"
+            },
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "AU"
+            }
+          ],
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            },
+            "transitTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            }
+          }
         },
-        "shippingDestination": [
-          {
-            "@type": "DefinedRegion",
-            "addressCountry": "US"
-          },
-          {
-            "@type": "DefinedRegion",
-            "addressCountry": "GB"
-          },
-          {
-            "@type": "DefinedRegion",
-            "addressCountry": "CA"
-          },
-          {
-            "@type": "DefinedRegion",
-            "addressCountry": "AU"
-          }
-        ],
-        "deliveryTime": {
-          "@type": "ShippingDeliveryTime",
-          "handlingTime": {
-            "@type": "QuantitativeValue",
-            "minValue": 0,
-            "maxValue": 0,
-            "unitCode": "DAY"
-          },
-          "transitTime": {
-            "@type": "QuantitativeValue",
-            "minValue": 0,
-            "maxValue": 0,
-            "unitCode": "DAY"
-          }
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": [
+            "US",
+            "GB",
+            "CA",
+            "AU"
+          ],
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
         }
       },
-      "hasMerchantReturnPolicy": {
-        "@type": "MerchantReturnPolicy",
-        "applicableCountry": [
-          "US",
-          "GB",
-          "CA",
-          "AU"
-        ],
-        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      {
+        "@type": "Offer",
+        "name": "INCIDB Korea: INCIDB Complete plus das MFDS-Overlay für Südkorea",
+        "sku": "INCIDB-KOREA",
+        "price": "149.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://incidb.dataengineered.io/de/#pricing",
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "USD"
+          },
+          "shippingDestination": [
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "US"
+            },
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "GB"
+            },
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "CA"
+            },
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "AU"
+            }
+          ],
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            },
+            "transitTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            }
+          }
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": [
+            "US",
+            "GB",
+            "CA",
+            "AU"
+          ],
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+        }
       }
-    }
+    ]
   }
 ]
 </script>
@@ -528,11 +592,12 @@
 <section class="section" id="pricing">
 <div class="container">
 <div class="section-header" style="text-align: center;">
-<div class="section-eyebrow">Ein Produkt, ein Preis</div>
-<h2 class="section-title">INCIDB Complete</h2>
+<div class="section-eyebrow">Preise</div>
+<h2 class="section-title">INCIDB Complete · <span translate="no">INCIDB Korea</span></h2>
 <p style="color: var(--text-secondary); margin-top: 0.5rem;">Die Daten sind offen (ODbL). Sie bezahlen für die Normalisierung, die Kanonisierung, den Join, die Messung — und die sofortige Bereitstellung.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Das EU-Overlay ist Teil von INCIDB Complete. <span translate="no">INCIDB Korea</span> ergänzt das MFDS-Overlay für Südkorea, ein eigenes Parsing eines eigenen Rechtstexts, und wird immer zusammen mit INCIDB Complete derselben Edition ausgeliefert, weil seine Verknüpfungen über die Inhaltsstoff-IDs dieser Edition verbunden werden.</p>
 </div>
-<div class="pricing-grid" style="max-width: 860px; margin: 0 auto;">
+<div class="pricing-grid" style="max-width: 1180px; margin: 0 auto;">
 <!-- Free Sample -->
 <div class="pricing-card">
 <div class="tier-name">Kostenlose Beispieldaten</div>
@@ -549,7 +614,6 @@
 </div>
 <!-- INCIDB Complete -->
 <div class="pricing-card featured">
-<div class="featured-badge">Alles</div>
 <div class="tier-name">INCIDB Complete</div>
 <div class="tier-desc">Der vollständige Snapshot 2026.09, beide Formate, sofortiger Download.</div>
 <div class="tier-price">$79 <span>USD einmalig</span></div>
@@ -565,8 +629,25 @@
 </ul>
 <a class="btn btn-primary" href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_de_home" style="width: 100%; justify-content: center;">Jetzt kaufen · Sofortiger Download</a>
 </div>
+<!-- INCIDB Korea -->
+<div class="pricing-card">
+<div class="featured-badge" translate="no">Complete + Korea</div>
+<div class="tier-name" translate="no">INCIDB Korea</div>
+<div class="tier-desc">INCIDB Complete plus das MFDS-Overlay für Südkorea: ein Bezahlvorgang, zwei Archive derselben Edition.</div>
+<div class="tier-price">$149 <span>USD einmalig</span></div>
+<ul class="tier-features">
+<li class="included"><span class="check-icon">✓</span> Alles aus INCIDB Complete</li>
+<li class="included"><span class="check-icon">✓</span> Anhänge 1 und 2 der MFDS-Bekanntmachung 2026-19 vollständig: 1.077 Einträge aus Anhang 1 und 248 aus Anhang 2</li>
+<li class="included"><span class="check-icon">✓</span> 1.784 CAS-Unterzeilen, mit den englischen CosIng-Namen, über die CAS-Nummer zugeordnet, wo CosIng die Nummer führt</li>
+<li class="included"><span class="check-icon">✓</span> Koreanischer Text wie abgedruckt, dazu ausgelesene Felder für Grenzwert, Geltungsbereich und Datum des Inkrafttretens</li>
+<li class="included"><span class="check-icon">✓</span> 191 INCIDB-Inhaltsstoffnamen, über die exakte CAS-Nummer verknüpft und von Hand geprüft; 73,2% der Produkte enthalten mindestens einen</li>
+<li class="included"><span class="check-icon">✓</span> <code>kr_mfds_entries</code>, <code>kr_mfds_substances</code>, <code>kr_mfds_links</code> als CSV <em>und</em> Parquet</li>
+</ul>
+<a class="btn btn-primary" href="https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k?client_reference_id=incidb_de_home" style="width: 100%; justify-content: center;"><span translate="no">INCIDB Korea</span> kaufen · Sofortiger Download</a>
+</div>
 </div>
 <p id="contact" style="text-align:center; margin-top: 24px; font-size: 0.9rem; opacity: 0.85; max-width: 700px; margin-left: auto; margin-right: auto;">Sichere Kartenzahlung über Stripe (Karte / Apple Pay / Google Pay) mit <b>sofortigem Download</b> nach der Zahlung. Der Kauf deckt die Bereitstellung und die Aufbereitung ab, <b>nicht</b> exklusive Rechte an den Daten — diese bleiben unter ODbL. Firmenrechnung, ein individueller Auszug oder vorab eine Frage? <a href="#" onclick="openModal('Custom / Invoice Inquiry'); return false;">Kontaktformular öffnen</a>.</p>
+<p style="text-align:center; margin-top: 12px; font-size: 0.85rem; opacity: 0.85; max-width: 700px; margin-left: auto; margin-right: auto;">Die Verknüpfungen in <span translate="no">INCIDB Korea</span> zeigen nur an, dass ein Eintrag den Inhaltsstoff über die exakte CAS-Nummer aufführt. Die Bekanntmachung nennt ihre CAS-Nummern als Beispiele, daher hat ein Inhaltsstoff ohne Verknüpfung in diesen Daten keinen Status, und viele Einträge in Anhang 1 gelten nur im Rahmen einer im Eintrag genannten Bedingung oder Ausnahme. Keine Rechtsberatung.</p>
 </div>
 </section>
 <!-- Visible FAQ -->
@@ -678,6 +759,7 @@
 <p>INCIDB · Snapshot 2026.09 · Zahlen aus dem Build-Bericht generiert</p>
 <p style="margin-top: 0.5rem;"><a href="/de/schema" style="color: var(--accent-blue); text-decoration: none;">Schema-Spezifikation</a> · <a href="/de/stats/" style="color: var(--accent-blue); text-decoration: none;">Inhaltsstoff-Statistiken</a> · <a href="/de/eu-fragrance-allergens/" style="color: var(--accent-blue); text-decoration: none;">EU-Duftstoffallergene</a> · <a href="/LICENSE" style="color: var(--accent-blue); text-decoration: none;">Lizenzbedingungen</a> · <a href="/de/documentation" style="color: var(--accent-blue); text-decoration: none;">Dokumentation</a></p>
 <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Produktdaten © Mitwirkende von <a href="https://world.openbeautyfacts.org/" style="color: var(--accent-blue); text-decoration: none;">Open Beauty Facts</a>, unter der <a href="https://opendatacommons.org/licenses/odbl/1-0/" style="color: var(--accent-blue); text-decoration: none;">Open Database License (ODbL) v1.0</a> — für abgeleitete Werke gelten Namensnennung und Weitergabe unter gleichen Bedingungen. Die Inhaltsstoff-Anreicherung enthält Daten aus der CosIng-Datenbank der Europäischen Kommission, weiterverwendet mit Quellenangabe. EU-Duftstoffallergenliste: Anhang III der Verordnung (EG) Nr. 1223/2009, geändert durch Verordnung (EU) 2023/1545, EUR-Lex (© Europäische Union), weiterverwendet mit Quellenangabe.</p>
+<p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);"><span translate="no">INCIDB Korea</span>: Anhänge 1 und 2 der MFDS-Bekanntmachung 2026-19 (Regulation on Safety Standards etc. of Cosmetics), vom Nationalen Rechtsinformationszentrum Koreas (law.go.kr).</p>
 </div>
 <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Teil des DataEngineered-Katalogs →</a> · <a href="https://dataengineered.io/about">Über uns</a> · <a href="https://dataengineered.io/terms">Nutzungsbedingungen</a> · <a href="https://dataengineered.io/privacy">Datenschutz</a> · <a href="https://dataengineered.io/refund-policy">Rückerstattungsrichtlinie</a></div>
 <!-- i18n:switcher --><nav class="i18n-switch" translate="no" aria-label="Sprache" style="text-align:center;margin:14px auto;font-size:0.85rem;opacity:0.85;"><a href="/" hreflang="en" lang="en" data-i18n-lang="en">English</a> · <a href="/es/" hreflang="es" lang="es" data-i18n-lang="es">Español</a> · <span aria-current="true" style="font-weight:600">Deutsch</span> · <a href="/fr/" hreflang="fr" lang="fr" data-i18n-lang="fr">Français</a> · <a href="/pt-br/" hreflang="pt-BR" lang="pt-BR" data-i18n-lang="pt-br">Português</a></nav><!-- /i18n:switcher --></footer>

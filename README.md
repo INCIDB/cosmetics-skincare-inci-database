@@ -17,7 +17,7 @@
 
 > **Live portal, interactive schema & free sample:** [https://incidb.dataengineered.io/](https://incidb.dataengineered.io/)
 >
-> **Free sample:** [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) (200 products, 1,123 ingredients) · **INCIDB Complete: $79 one-time, CSV + Parquet** → [Buy on Stripe](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g)
+> **Free sample:** [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) (200 products, 1,123 ingredients) · **INCIDB Complete: $79 one-time, CSV + Parquet** → [Buy on Stripe](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g) · **INCIDB Korea (Complete + South Korea MFDS overlay): $149 one-time** → [Buy on Stripe](https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k)
 > **Same sample on [Hugging Face](https://huggingface.co/datasets/Ichlibitiche/incidb-skincare-free-sample)** · **[Kaggle](https://www.kaggle.com/datasets/dataengineered/incidb-skincare-and-cosmetics-inci-formulations)**
 
 **For ML/NLP teams training ingredient-normalisation models and compliance
@@ -170,22 +170,26 @@ same seven tables, the same columns, as CSV and Parquet:
 
 ---
 
-## INCIDB Complete — $79 one-time
+## Pricing: INCIDB Complete $79 · INCIDB Korea $149
 
-One product. Everything measured above, both formats, instant download.
+Everything measured above, both formats, instant download. INCIDB Korea is INCIDB Complete plus the
+South Korea MFDS overlay, delivered as two archives from the same edition.
 
-| | INCIDB Complete |
-| :--- | :--- |
-| Price | **$79** one-time |
-| Tables | All 7 (`products`, `brands`, `ingredients`, `product_ingredients`, `ingredient_name_map`, `fragrance_allergens`, `regulatory_status`) |
-| Formats | Pipe-delimited CSV (`\|`) **and** Apache Parquet |
-| Enrichment | Every CosIng column, allergen flags, authored ratings — at the coverage stated above |
-| Extras | `build_report.json` (per-column fill rates and source hashes), data dictionary, licence |
-| Delivery | Stripe checkout, instant download |
-| Updates | One-time snapshot (2026.09) |
+| | INCIDB Complete | INCIDB Korea |
+| :--- | :--- | :--- |
+| Price | **$79** one-time | **$149** one-time |
+| Tables | All 7 (`products`, `brands`, `ingredients`, `product_ingredients`, `ingredient_name_map`, `fragrance_allergens`, `regulatory_status`) | The same 7, plus `kr_mfds_entries`, `kr_mfds_substances`, `kr_mfds_links` |
+| Formats | Pipe-delimited CSV (`\|`) **and** Apache Parquet | Pipe-delimited CSV (`\|`) **and** Apache Parquet |
+| Enrichment | Every CosIng column, allergen flags, authored ratings — at the coverage stated above | As Complete, plus Annexes 1 and 2 of MFDS Notice 2026-19 in full (1,077 Annex 1 and 248 Annex 2 entries, 1,784 CAS sub-rows) with 191 INCIDB names linked by exact CAS and hand-checked; 73.2% of products contain at least one |
+| Extras | `build_report.json` (per-column fill rates and source hashes), data dictionary, licence | As Complete, plus Korean text as printed, parsed limit fields and CosIng English names by CAS where CosIng lists the number |
+| Delivery | Stripe checkout, instant download | Stripe checkout, instant download of both archives |
+| Updates | One-time snapshot (2026.09) | One-time snapshot of the same edition |
 
 👉 [Buy INCIDB Complete](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g) ·
+[Buy INCIDB Korea](https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k) ·
 [pricing details](docs/pricing_plan.md)
+
+INCIDB Korea links are positive listings by exact CAS number. The notice gives its CAS numbers as examples, so an ingredient without a link has no status in this data, and many Annex 1 entries apply only as limited by a condition or exception written in the entry. Not legal advice.
 
 What you are paying for is the engineering: a corpus of raw label strings
 turned into normalised, canonicalised, joined, measured tables, delivered
@@ -250,7 +254,7 @@ duckdb.query("""
 * [DATA_DICTIONARY.md](DATA_DICTIONARY.md) — every column, its source, its
   measured fill rate, and the method notes.
 * [Live schema](https://incidb.dataengineered.io/schema) — the same reference on the web.
-* [docs/pricing_plan.md](docs/pricing_plan.md) — what the $79 covers.
+* [docs/pricing_plan.md](docs/pricing_plan.md) — what the $79 and $149 cover.
 * [claims.json](claims.json) — the numbers on this page, generated from the
   build report by [`scripts/render_claims.py`](scripts/render_claims.py) and
   enforced by a test. If the copy and the corpus ever disagree, the build fails.
@@ -271,6 +275,9 @@ duckdb.query("""
   amended by Regulation (EU) 2023/1545 (EUR-Lex, © European Union) and the
   CosIng Annex II–VI exports, reused on the same terms, with attribution.
   Not legal advice.
+* **South Korea overlay (INCIDB Korea only):** Annexes 1 and 2 of MFDS Notice 2026-19
+  (Regulation on Safety Standards etc. of Cosmetics), from law.go.kr. Our reading is that
+  Korean Copyright Act Art. 7(2) excludes such public notices from protection; not legal advice.
 * **Schema & documentation:** CC BY 4.0.
 * Provided **as-is, without warranty**. The flags and ratings are
   informational; they are not medical, safety or regulatory-compliance advice.

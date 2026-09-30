@@ -341,6 +341,23 @@
 </div>
 <p style="color: var(--text-secondary); margin-top: 0.75rem;"><code>status</code> ist die Anhangskategorie des Eintrags, kein Urteil über den Inhaltsstoff. Eine Zeile, insbesondere eine mit <code>match_method = IDENTIFIED_INGREDIENT</code>, bedeutet, dass CosIng den INCI-Namen mit diesem Listeneintrag verknüpft. Ein Verbot nach Anhang II gilt nur für den Stoff, die Form oder die Verwendung, die der Eintrag in <code>condition_text</code> beschreibt (zum Beispiel nur die Verwendung in Haarfärbemitteln, nur die Nanoform oder ein Bestandteil wie Furocumarine), daher kann derselbe Inhaltsstoff zusätzlich eine Zeile aus den Anhängen III–VI tragen. Lesen Sie <code>condition_text</code>, bevor Sie Schlüsse ziehen.</p>
 </div>
+<!-- INCIDB Korea tables -->
+<div class="doc-section">
+<h2>8. Tabellen von <span translate="no">INCIDB Korea</span></h2>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Separat erhältlich als <span translate="no">INCIDB Korea</span> (INCIDB Complete plus das MFDS-Overlay für Südkorea); nicht Teil von INCIDB Complete. Jeder Eintrag der MFDS-Bekanntmachung 2026-19, Anhang 1 und Anhang 2, mit dem koreanischen Text wie abgedruckt und INCIDB-Verknüpfungen über die exakte CAS-Nummer. Viele Einträge in Anhang 1 gelten nur im Rahmen einer im Eintrag genannten Bedingung oder Ausnahme (<code>condition_kind</code>, <code>hair_dye_exemption</code>, <code>scope_note</code>). Ein Inhaltsstoff ohne Verknüpfung hat in diesen Daten keinen Status. Keine Rechtsberatung. Jede Spalte ist in <code>DATA_DICTIONARY.md</code> beschrieben (Abschnitt 8).</p>
+<div class="table-container">
+<table>
+<thead>
+<tr><th>Tabelle</th><th>Schlüsselspalten</th><th>Beschreibung</th></tr>
+</thead>
+<tbody>
+<tr><td><code>kr_mfds_entries</code></td><td><code>entry_id</code>, <code>annex</code>, <code>section</code>, <code>name_ko</code>, <code>limit_ko</code>, <code>max_pct</code>, <code>condition_kind</code>, <code>effective_from</code></td><td>Eine Zeile pro abgedrucktem Eintrag, mit den ausgelesenen Feldern für Grenzwert und Geltungsbereich und der Seite, auf der er abgedruckt ist</td></tr>
+<tr><td><code>kr_mfds_substances</code></td><td><code>entry_id</code>, <code>cas</code>, <code>cas_valid</code>, <code>chemical_name_ko</code>, <code>cosing_inci_names</code></td><td>Eine Zeile pro CAS-Unterzeile, mit den CosIng-Namen, die dieselbe CAS-Nummer tragen (ein Querverweis, keine Übersetzung)</td></tr>
+<tr><td><code>kr_mfds_links</code></td><td><code>ingredient_id</code>, <code>inci_name</code>, <code>cas</code>, <code>entry_id</code>, <code>review</code>, <code>scope_note</code></td><td>INCIDB-Inhaltsstoffe, über die exakte CAS-Nummer mit Einträgen verknüpft; zur Prüfung zurückgehaltene Verknüpfungen und noch nicht von Hand geprüfte Verknüpfungen werden ausgeliefert, fließen aber nicht in die veröffentlichten Zahlen ein</td></tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <!-- Footer -->
 <footer>

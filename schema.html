@@ -352,6 +352,24 @@
             </div>
             <p style="color: var(--text-secondary); margin-top: 0.75rem;"><code>status</code> is the entry's annex category, not a verdict on the ingredient. A row, especially one with <code>match_method = IDENTIFIED_INGREDIENT</code>, means CosIng links the INCI name to that list entry. An Annex II ban covers only the substance, form or use the entry describes in <code>condition_text</code> (for example hair-dye use only, the nano form only, or a component such as furocoumarins), so the same ingredient can also carry an Annex III–VI row. Read <code>condition_text</code> before concluding anything.</p>
         </div>
+
+        <!-- INCIDB Korea tables -->
+        <div class="doc-section">
+            <h2>8. <span translate="no">INCIDB Korea</span> tables</h2>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Sold separately as <span translate="no">INCIDB Korea</span> (INCIDB Complete plus the South Korea MFDS overlay); not part of INCIDB Complete. Every entry of MFDS Notice 2026-19, Annex 1 and Annex 2, with the Korean text as printed and INCIDB links by exact CAS. Many Annex 1 entries apply only as limited by a condition or exception written in the entry (<code>condition_kind</code>, <code>hair_dye_exemption</code>, <code>scope_note</code>). An ingredient without a link has no status in this data. Not legal advice. Every column is described in <code>DATA_DICTIONARY.md</code> (section 8).</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Table</th><th>Key columns</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>kr_mfds_entries</code></td><td><code>entry_id</code>, <code>annex</code>, <code>section</code>, <code>name_ko</code>, <code>limit_ko</code>, <code>max_pct</code>, <code>condition_kind</code>, <code>effective_from</code></td><td>One row per printed entry, with the parsed limit and scope fields and the page it is printed on</td></tr>
+                        <tr><td><code>kr_mfds_substances</code></td><td><code>entry_id</code>, <code>cas</code>, <code>cas_valid</code>, <code>chemical_name_ko</code>, <code>cosing_inci_names</code></td><td>One row per CAS sub-row, with the CosIng names that share the CAS number (a cross-reference, not a translation)</td></tr>
+                        <tr><td><code>kr_mfds_links</code></td><td><code>ingredient_id</code>, <code>inci_name</code>, <code>cas</code>, <code>entry_id</code>, <code>review</code>, <code>scope_note</code></td><td>INCIDB ingredients linked to entries by exact CAS; review links and links not yet hand-checked ship but are left out of the published counts</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->

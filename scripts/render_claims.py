@@ -78,9 +78,9 @@ STRIPE_LINK_RE = re.compile(r"https://buy\.stripe\.com/[A-Za-z0-9]+")
 STRIPE_PRICE_RE = re.compile(r"price_[A-Za-z0-9]+")
 KOREA_TIER = {
     "price_usd": 149,
-    "released": False,
-    "payment_link": "https://buy.stripe.com/REPLACE-WITH-INCIDB-KOREA-LINK",
-    "stripe_price_id": None,
+    "released": True,
+    "payment_link": "https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k",
+    "stripe_price_id": "price_1UK7zqJan3lr9lV5ozFnY4GM",
 }
 # korea_report.json keys (written by src.enrichment.regulatory.kr_mfds_build) that the
 # block carries; build_delivery.build_korea checks the same keys against the ZIP.

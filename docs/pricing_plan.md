@@ -1,23 +1,26 @@
 # INCIDB Pricing & Access
 
-One product. One price. Snapshot 2026.09.
+Two products: INCIDB Complete, and INCIDB Korea (INCIDB Complete plus the
+South Korea MFDS overlay, delivered as two archives from the same edition).
+Snapshot 2026.09.
 
-| | Free sample | **INCIDB Complete** |
-| :--- | :--- | :--- |
-| **Price** | `$0` | **`$79`** one-time |
-| **Products** | 200 (seeded random draw) | 19,764 |
-| **Brands** | the 200 products' brands | 6,412 |
-| **Distinct canonical INCI names** | 1,123 | 45,327 |
-| **Composition links** | the 200 products' links | 367,785 |
-| **`ingredient_name_map` rows** | the rows for the sampled products' own label tokens | 77,367 |
-| **Tables** | all 7 | all 7 |
-| **Formats** | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet |
-| **CosIng enrichment columns** | included | included |
-| **Allergen flags, authored ratings** | included | included |
-| **EU overlay: `fragrance_allergens`, `regulatory_status`** | rows for the sampled ingredients | included |
-| **`build_report.json` quality report** | — | included |
-| **Delivery** | direct download | Stripe checkout, instant download |
-| **Updates** | static | one-time snapshot |
+| | Free sample | **INCIDB Complete** | **INCIDB Korea** |
+| :--- | :--- | :--- | :--- |
+| **Price** | `$0` | **`$79`** one-time | **`$149`** one-time |
+| **Products** | 200 (seeded random draw) | 19,764 | as Complete |
+| **Brands** | the 200 products' brands | 6,412 | as Complete |
+| **Distinct canonical INCI names** | 1,123 | 45,327 | as Complete |
+| **Composition links** | the 200 products' links | 367,785 | as Complete |
+| **`ingredient_name_map` rows** | the rows for the sampled products' own label tokens | 77,367 | as Complete |
+| **Tables** | all 7 | all 7 | the 7, plus 3 Korea tables |
+| **Formats** | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet |
+| **CosIng enrichment columns** | included | included | included |
+| **Allergen flags, authored ratings** | included | included | included |
+| **EU overlay: `fragrance_allergens`, `regulatory_status`** | rows for the sampled ingredients | included | included |
+| **South Korea MFDS overlay (Notice 2026-19)** | — | — | included |
+| **`build_report.json` quality report** | — | included | included |
+| **Delivery** | direct download | Stripe checkout, instant download | Stripe checkout, instant download of both archives |
+| **Updates** | static | one-time snapshot | one-time snapshot of the same edition |
 
 The sample is not a crippled subset: it has the identical schema and the
 identical columns. It is smaller, and it is drawn from products whose
@@ -25,7 +28,7 @@ ingredient lists are at least 80% CosIng-matched, so its enrichment looks
 better than the corpus average. Evaluate against the coverage table below,
 not against the sample.
 
-👉 [Buy INCIDB Complete — $79](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g)
+👉 [Buy INCIDB Complete — $79](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g) · [Buy INCIDB Korea — $149](https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k)
 
 ---
 
@@ -55,6 +58,44 @@ query today:
 
 You are **not** buying exclusive rights to the data. Redistribute it under
 ODbL if you want to.
+
+---
+
+## INCIDB Korea
+
+INCIDB Korea is INCIDB Complete plus three tables built from South Korea's
+MFDS Notice 2026-19 (Regulation on Safety Standards etc. of Cosmetics),
+Annex 1 (ingredients that may not be used) and Annex 2 (ingredients with use
+restrictions):
+
+* **Both annexes in full.** 1,077 Annex 1 and 248 Annex 2 entries and 1,784
+  CAS sub-rows, including entries that match nothing in INCIDB. The Korean
+  text ships as printed; limits and rinse-off scope are parsed into their own
+  fields only where the entry states them; later effective dates come from
+  the notice's supplementary provisions (부칙).
+* **English identities by CAS.** A CAS sub-row carries the CosIng inventory
+  names that share its CAS number, where CosIng lists it. That is a
+  cross-reference, not a translation of the Korean entry.
+* **Links by exact CAS.** 191 INCIDB ingredient names are linked by
+  exact CAS and hand-checked; 73.2% of products contain at least one.
+  Nothing is fuzzy, and names are never used to match. Links on botanical
+  entries, links a hand check found wrong, links whose CAS number several
+  INCIDB names share, and links not yet hand-checked stay outside those
+  figures; a shared CAS still links normally for a name hand-checked as
+  that same substance.
+
+Why it is sold with Complete: `kr_mfds_links` joins to Complete by
+`ingredient_id`, and ids are reassigned on every edition, so that join only
+works between the two archives of the same edition (across editions, rejoin
+on `inci_name` + `cas`). The EU overlay stays inside INCIDB Complete at no
+extra cost; Korea is a separate parse of a separate legal text, which is what
+the higher price pays for.
+
+Read before relying on it: a link is a positive listing, and an ingredient
+without a link has no status in this data, because the notice gives its CAS
+numbers as examples. Many Annex 1 entries apply only as limited by a
+condition or exception written in the entry (a peroxide value, an impurity
+limit, a hair-dye exception). Not legal advice.
 
 ---
 
@@ -111,6 +152,9 @@ Flags and ratings are deliberately small:
   amended by Regulation (EU) 2023/1545 (EUR-Lex, © European Union) and the
   CosIng Annex II–VI exports, reused on the same terms, with attribution.
   Not legal advice.
+* **South Korea overlay (INCIDB Korea only):** Annexes 1 and 2 of MFDS
+  Notice 2026-19, from law.go.kr. Our reading is that Korean Copyright Act
+  Art. 7(2) excludes such public notices from protection; not legal advice.
 * **Schema & documentation:** CC BY 4.0.
 * Provided as-is, without warranty. Flags and ratings are informational, not
   medical, safety or regulatory-compliance advice.

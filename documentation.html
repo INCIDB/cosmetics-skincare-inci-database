@@ -107,6 +107,7 @@
                 <li><strong>274 <code>fragrance_allergens</code> rows</strong> — the EU Annex III fragrance-allergen entries, one row per legal name and INCIDB match, review rows and unmatched names included.</li>
                 <li><strong>637 <code>regulatory_status</code> rows</strong> — EU Annex II–VI status per ingredient and list entry, conditions verbatim. A row exists only where a list says something.</li>
             </ul>
+            <p><span translate="no">INCIDB Korea</span>, sold separately, adds three tables in a second archive from the same edition: <code>kr_mfds_entries</code>, <code>kr_mfds_substances</code> and <code>kr_mfds_links</code>, built from Annexes 1 and 2 of South Korea's MFDS Notice 2026-19, with the Korean text as printed and INCIDB links by exact CAS. An ingredient without a link has no status in this data.</p>
         </div>
 
         <div class="doc-section">
@@ -118,6 +119,7 @@
                 <li><strong>EU fragrance allergens.</strong> The 81 labelling entries of Annex III to Regulation (EC) 1223/2009, as amended by Regulation (EU) 2023/1545 (consolidated text of 18.05.2026), are matched to INCIDB by exact INCI name, then by the collective label name the Regulation prescribes (e.g. "Rose Ketones"), then by CAS number for chemically defined substances only. Botanical CAS hits are shipped as review rows, never flags. 120 names are flagged; 47.2% of products contain at least one. About 2.4% of products list ingredients as unsplit text that the allergen flags do not reach. The US FDA has not yet published its MoCRA fragrance-allergen list, so this dataset carries no US flag.</li>
                 <li><strong>Authored layer</strong> — 142 comedogenic ratings transcribed from one published table, and 275 rule-derived fungal-acne flags. Both carry their citation per row in <code>rating_source</code>, and are <code>NULL</code> everywhere else.</li>
             </ul>
+            <p><strong>South Korea MFDS (<span translate="no">INCIDB Korea</span> only)</strong> — Annexes 1 and 2 of MFDS Notice 2026-19 (Regulation on Safety Standards etc. of Cosmetics), from law.go.kr. Each entry is linked to INCIDB only where one of its printed CAS numbers equals the single CAS INCIDB holds for an ingredient. Links on botanical entries, links a hand check found wrong and links whose CAS number several INCIDB names share ship as review links; they, and links not yet hand-checked, stay outside the published counts; a shared CAS still links normally for a name hand-checked as that same substance. Many Annex 1 entries apply only as limited by a condition or exception written in the entry. The notice URL and the annex PDF hash are on every entry row (<code>source_url</code>, <code>pdf_sha256</code>), not in <code>build_report.json</code>. Not legal advice.</p>
         </div>
 
         <div class="doc-section">
@@ -170,6 +172,15 @@ duckdb.query("""
 SELECT method, COUNT(*) AS n
 FROM 'ingredient_name_map.parquet'
 GROUP BY 1 ORDER BY 2 DESC;
+""").show()
+
+# INCIDB Korea: Annex 2 preservatives linked to INCIDB ingredients
+duckdb.query("""
+SELECT l.inci_name, e.name_ko, e.limit_ko, l.scope_note
+FROM 'kr_mfds_links.parquet' l
+JOIN 'kr_mfds_entries.parquet' e USING (entry_id)
+WHERE e.section = 'preservative' AND l.review = 0
+ORDER BY l.inci_name;
 """).show()</code></pre>
         </div>
     </div>
