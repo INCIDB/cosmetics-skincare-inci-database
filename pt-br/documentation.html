@@ -98,11 +98,11 @@
 <h2>1. O que há no snapshot</h2>
 <p>Sete tabelas, exportadas em CSV delimitado por barra vertical UTF-8 e em Apache Parquet, com colunas idênticas:</p>
 <ul>
-<li><strong>19.764 produtos</strong> — uma linha por produto do Open Beauty Facts com uma lista de ingredientes utilizável na embalagem, com a declaração bruta mantida literalmente para que a análise possa ser refeita.</li>
-<li><strong>6.412 marcas</strong> — identidades de marca conforme registradas na origem.</li>
-<li><strong>45.327 nomes INCI canônicos distintos</strong> — resultado da canonicalização de cada token bruto dos rótulos, enriquecidos com o CosIng onde o CosIng os lista.</li>
-<li><strong>367.785 vínculos de composição ordenados</strong> — preservando a ordem do rótulo em <code>position_index</code>.</li>
-<li><strong>77.367 linhas do mapa de nomes</strong> — como cada token bruto dos rótulos foi resolvido e por qual método.</li>
+<li><strong>20.029 produtos</strong> — uma linha por produto do Open Beauty Facts com uma lista de ingredientes utilizável na embalagem, com a declaração bruta mantida literalmente para que a análise possa ser refeita.</li>
+<li><strong>6.453 marcas</strong> — identidades de marca conforme registradas na origem.</li>
+<li><strong>45.584 nomes INCI canônicos distintos</strong> — resultado da canonicalização de cada token bruto dos rótulos, enriquecidos com o CosIng onde o CosIng os lista.</li>
+<li><strong>373.216 vínculos de composição ordenados</strong> — preservando a ordem do rótulo em <code>position_index</code>.</li>
+<li><strong>78.151 linhas do mapa de nomes</strong> — como cada token bruto dos rótulos foi resolvido e por qual método.</li>
 <li><strong>274 linhas de <code>fragrance_allergens</code></strong> — as entradas de alergênicos de fragrância do Anexo III da UE, uma linha por nome legal e correspondência no INCIDB, incluindo linhas de revisão e nomes sem correspondência.</li>
 <li><strong>637 linhas de <code>regulatory_status</code></strong> — o status dos Anexos II–VI da UE por ingrediente e entrada de lista, condições literais. Uma linha só existe onde uma lista diz algo.</li>
 </ul>
@@ -114,8 +114,8 @@
 <ul>
 <li><strong>Open Beauty Facts</strong> — o corpus de produtos (códigos de barras, marcas, as próprias <code>categories_tags</code> da fonte, listas de ingredientes brutas) sob a Open Database License (ODbL).</li>
 <li><strong>CosIng da Comissão Europeia</strong> — o inventário de ingredientes: categorias funcionais, números CAS e CE, descrições químicas, restrições e inclusão nos Anexos II–VI. Junção pelo nome canônico exato; nomes sem correspondência ficam <code>NULL</code> em todas as colunas derivadas do CosIng, nunca com um valor de preenchimento. As exportações dos Anexos II–VI também alimentam <code>regulatory_status</code>, correspondidas apenas pelo nome do glossário do CosIng ou pelo nome "Identified INGREDIENTS" do CosIng (sem via de CAS). A ausência de uma linha não é um status, e nada nela constitui aconselhamento jurídico.</li>
-<li><strong>Alergênicos de fragrância da UE.</strong> As 81 entradas de rotulagem do Anexo III do Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545 (texto consolidado de 18.05.2026), são correspondidas ao INCIDB pelo nome INCI exato, depois pelo nome coletivo de rotulagem que o Regulamento prescreve (por exemplo, "Rose Ketones"), depois por número CAS somente para substâncias quimicamente definidas. As correspondências de CAS de origem botânica são entregues como linhas de revisão, nunca como sinalizações. 120 nomes são sinalizados; 47,2% dos produtos contêm pelo menos um. Cerca de 2,4% dos produtos listam os ingredientes como texto não dividido, que as sinalizações de alergênicos não alcançam. A FDA dos EUA ainda não publicou sua lista de alergênicos de fragrância da MoCRA; por isso, este conjunto de dados não traz sinalização dos EUA.</li>
-<li><strong>Camada autoral</strong> — 142 classificações comedogênicas transcritas de uma única tabela publicada e 275 sinalizações de acne fúngica derivadas de regras. Ambas trazem sua citação por linha em <code>rating_source</code> e são <code>NULL</code> em todos os outros casos.</li>
+<li><strong>Alergênicos de fragrância da UE.</strong> As 81 entradas de rotulagem do Anexo III do Regulamento (CE) 1223/2009, alterado pelo Regulamento (UE) 2023/1545 (texto consolidado de 18.05.2026), são correspondidas ao INCIDB pelo nome INCI exato, depois pelo nome coletivo de rotulagem que o Regulamento prescreve (por exemplo, "Rose Ketones"), depois por número CAS somente para substâncias quimicamente definidas. As correspondências de CAS de origem botânica são entregues como linhas de revisão, nunca como sinalizações. 120 nomes são sinalizados; 47,3% dos produtos contêm pelo menos um. Cerca de 2,4% dos produtos listam os ingredientes como texto não dividido, que as sinalizações de alergênicos não alcançam. A FDA dos EUA ainda não publicou sua lista de alergênicos de fragrância da MoCRA; por isso, este conjunto de dados não traz sinalização dos EUA.</li>
+<li><strong>Camada autoral</strong> — 142 classificações comedogênicas transcritas de uma única tabela publicada e 276 sinalizações de acne fúngica derivadas de regras. Ambas trazem sua citação por linha em <code>rating_source</code> e são <code>NULL</code> em todos os outros casos.</li>
 </ul>
 <p><strong>MFDS da Coreia do Sul (somente <span translate="no">INCIDB Korea</span>)</strong> — Anexos 1 e 2 do aviso 2026-19 do MFDS (Regulation on Safety Standards etc. of Cosmetics), obtidos do law.go.kr. Uma entrada é vinculada ao INCIDB somente quando um de seus números CAS impressos é igual ao único CAS que o INCIDB mantém para um ingrediente. Vínculos em entradas botânicas, vínculos que uma verificação manual considerou errados e vínculos cujo número CAS é compartilhado por vários nomes do INCIDB são entregues como vínculos retidos para revisão; eles, e os vínculos ainda não verificados manualmente, ficam fora das contagens publicadas; um CAS compartilhado continua vinculando normalmente um nome verificado manualmente como essa mesma substância. Muitas entradas do Anexo 1 só se aplicam nos limites de uma condição ou exceção escrita na entrada. A URL do aviso e o hash do PDF do anexo estão em cada linha de entrada (<code>source_url</code>, <code>pdf_sha256</code>), não em <code>build_report.json</code>. Não constitui aconselhamento jurídico.</p>
 </div>
@@ -123,10 +123,10 @@
 <h2>3. Cobertura medida</h2>
 <p>Apresentada de duas formas, porque as duas diferem em uma ordem de grandeza e citar apenas uma induziria ao erro:</p>
 <ul>
-<li><strong>Correspondência CosIng (qualquer):</strong> 12,2% dos 45.327 nomes canônicos distintos; 85,1% das 367.785 ocorrências de ingredientes nos rótulos dos produtos.</li>
-<li><strong><code>functions</code>:</strong> 12,0% dos nomes distintos; 84,0% das ocorrências em rótulos.</li>
-<li><strong><code>cas_number</code>:</strong> 9,0% dos nomes distintos; 78,6% das ocorrências em rótulos.</li>
-<li><strong><code>chemical_description</code>:</strong> 9,5% dos nomes distintos, 4.257 valores distintos.</li>
+<li><strong>Correspondência CosIng (qualquer):</strong> 12,2% dos 45.584 nomes canônicos distintos; 85,2% das 373.216 ocorrências de ingredientes nos rótulos dos produtos.</li>
+<li><strong><code>functions</code>:</strong> 12,0% dos nomes distintos; 84,2% das ocorrências em rótulos.</li>
+<li><strong><code>cas_number</code>:</strong> 9,0% dos nomes distintos; 78,7% das ocorrências em rótulos.</li>
+<li><strong><code>chemical_description</code>:</strong> 9,5% dos nomes distintos, 4.281 valores distintos.</li>
 </ul>
 <p>Um corpus de rótulos contém muito mais strings distintas — variantes botânicas, grafias multilíngues, tokens de marketing — do que qualquer inventário regulatório lista, e é por isso que o primeiro número de cada par é baixo. As posições em um rótulo real são preenchidas, em sua esmagadora maioria, por ingredientes que o CosIng cobre, e é por isso que o segundo é alto. Nenhum dos dois números, isoladamente, descreve os dados.</p>
 </div>

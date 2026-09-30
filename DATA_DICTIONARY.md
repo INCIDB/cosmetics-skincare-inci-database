@@ -13,11 +13,11 @@ disagree.
 
 | Table | Rows |
 | :--- | ---: |
-| `products` | 19,764 |
-| `brands` | 6,412 |
-| `ingredients` | 45,327 |
-| `product_ingredients` | 367,785 |
-| `ingredient_name_map` | 77,367 |
+| `products` | 20,029 |
+| `brands` | 6,453 |
+| `ingredients` | 45,584 |
+| `product_ingredients` | 373,216 |
+| `ingredient_name_map` | 78,151 |
 | `fragrance_allergens` | 274 |
 | `regulatory_status` | 637 |
 
@@ -43,7 +43,7 @@ declaration.
 | `brand_id` | `INTEGER` | FK → `brands.brand_id`. **`NULL` = no brand on the source label** — 2,184 products carry no brand in Open Beauty Facts, and are given NULL rather than being attached to a placeholder brand row | `55` |
 | `barcode_ean` | `STRING` | GTIN / EAN barcode | `4006381333931` |
 | `name` | `STRING` | Product name as recorded upstream | `Good Genes Lactic Acid Treatment` |
-| `obf_categories_tags` | `STRING` | Open Beauty Facts' own `categories_tags` list for this product, joined with `;` and otherwise **verbatim** — not normalised, not translated, not collapsed into a taxonomy of ours. Present on 13,462 of 19,764 products (68.1%); `NULL` where the source record carries no tags | `en:hygiene;en:soaps` |
+| `obf_categories_tags` | `STRING` | Open Beauty Facts' own `categories_tags` list for this product, joined with `;` and otherwise **verbatim** — not normalised, not translated, not collapsed into a taxonomy of ours. Present on 13,489 of 20,029 products (67.3%); `NULL` where the source record carries no tags | `en:hygiene;en:soaps` |
 | `raw_ingredient_text` | `STRING` | The unparsed on-pack ingredient declaration, kept verbatim so you can re-derive the parse | `Water, Glycerin, ...` |
 | `created_at` | `STRING` | Ingestion timestamp (ISO 8601) | `2026-07-02T14:01:48Z` |
 
@@ -76,12 +76,12 @@ Commission CosIng inventory on an exact name match; they are `NULL` otherwise.
 
 ### Coverage of the CosIng columns — both views
 
-| Column | Share of the 45,327 distinct names | Share of the 367,785 label occurrences |
+| Column | Share of the 45,584 distinct names | Share of the 373,216 label occurrences |
 | :--- | ---: | ---: |
-| CosIng match (any) | 12.2% | 85.1% |
-| `functions` | 12.0% | 84.0% |
-| `cas_number` | 9.0% | 78.6% |
-| `chemical_description` | 9.5% (4,257 distinct values) | — |
+| CosIng match (any) | 12.2% | 85.2% |
+| `functions` | 12.0% | 84.2% |
+| `cas_number` | 9.0% | 78.7% |
+| `chemical_description` | 9.5% (4,281 distinct values) | — |
 
 The left column counts distinct names; the right counts ingredient
 occurrences across product labels. They differ by an order of magnitude
@@ -154,7 +154,7 @@ Regulation (EC) 1223/2009, as amended by Regulation (EU) 2023/1545
 then by the collective label name the Regulation prescribes (e.g. "Rose
 Ketones"), then by CAS number for chemically defined substances only.
 Botanical CAS hits are shipped as review rows, never flags. 120 names are
-flagged; 47.2% of products contain at least one. About 2.4% of products list
+flagged; 47.3% of products contain at least one. About 2.4% of products list
 ingredients as unsplit text that the allergen flags do not reach. The US FDA
 has not yet published its MoCRA fragrance-allergen list, so this dataset
 carries no US flag.
@@ -181,7 +181,7 @@ This is a **rule-derived heuristic, not a measured property.** No
 per-ingredient *Malassezia* assay exists to transcribe. The rule flags
 C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, and it is
 applied only to CosIng-matched ingredients (so the chemical identity behind
-the flag is a known one). **275** ingredients are flagged. The basis is the
+the flag is a known one). **276** ingredients are flagged. The basis is the
 lipid dependence of *Malassezia* — Saunte et al., *Front Cell Infect
 Microbiol* 2020;10:112 (DOI 10.3389/fcimb.2020.00112) — with the chain-length
 window taken from Liebregts et al., *FEMS Yeast Res* 2025;25:foaf043 (DOI
