@@ -329,7 +329,7 @@ CosIng exports.
 | `instrument` | `STRING` | CosIng's "Regulation" column as printed |
 | `product_type` | `STRING` | Product type / body parts, verbatim; `NULL` when the entry states none |
 | `max_concentration` | `STRING` | Maximum concentration in the ready-for-use preparation, verbatim. Multi-part values are never collapsed to one number |
-| `condition_text` | `STRING` | Annex II: the entry's "Chemical name / INN" text verbatim, which is where conditional bans live (e.g. "unless the full refining history is known"). Annexes III–VI: the "Other" and "Wording of conditions of use and warnings" columns joined with ` \| ` |
+| `condition_text` | `STRING` | Annex II: the entry's "Chemical name / INN" text verbatim, which is where conditional bans live (e.g. "unless the full refining history is known"). Annexes III–VI: the "Other" and "Wording of conditions of use and warnings" columns joined with ` \| `. The separator is the CSV delimiter too: those values are double-quoted in the CSV, so read the file with a CSV parser (`csv`, pandas, DuckDB), never by splitting lines on `\|`. Parquet is unaffected |
 | `effective_date` | `DATE` | Only where the source states one. CosIng does not, so it is `NULL` on every EU row |
 | `match_method` | `STRING` | `NAME` or `IDENTIFIED_INGREDIENT` (see below). `CAS` is reserved for later sources |
 | `source_url`, `retrieved_at` | `STRING`, `DATE` | The CosIng export the row came from and the date it was fetched |
@@ -342,6 +342,12 @@ the substance, form or use the entry describes in `condition_text` (for
 example hair-dye use only, the nano form only, or a component such as
 furocoumarins), so the same ingredient can also carry an Annex III–VI row.
 Read `condition_text` before concluding anything.
+
+`(ingredient_id, list_ref)` is not unique. CosIng can list one substance twice
+under the same entry with different conditions (1-NAPHTHOL under Annex III/16
+has one row limited to 1 % and one to 2,0 %, both stated in `condition_text`),
+and both rows are kept verbatim. Key on the whole row, or group by
+`(ingredient_id, list_ref)` and keep every row's `condition_text`.
 
 | `match_method` | Meaning |
 | :--- | :--- |
