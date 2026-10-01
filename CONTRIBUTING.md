@@ -32,6 +32,7 @@ If you want to improve `DATA_DICTIONARY.md`, `SPEC.md`, or the sample datasets u
 3. **Make & Verify Your Changes:**
    * Ensure any CSV sample additions maintain exact pipe delimitation (`|`) without unescaped carriage returns (`\r` or `\n`).
    * Verify Parquet schema compatibility if updating sample Parquet files.
+   * In `DATA_DICTIONARY.md` and `SPEC.md`, a number between comments such as `<!--claims:products-->…<!--/claims-->` is filled in from `claims.json` and the export files for every release. Edit the words around it, not the number.
 4. **Commit & Push:**
    ```bash
    git commit -m "fix(schema): correct CAS registry mapping for ascorbic acid derivatives"
