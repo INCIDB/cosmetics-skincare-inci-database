@@ -17,7 +17,7 @@
 
 > **Live portal, interactive schema & free sample:** [https://incidb.dataengineered.io/](https://incidb.dataengineered.io/)
 >
-> **Free sample:** [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) (200 products, 1,123 ingredients) · **INCIDB Complete: $79 one-time, CSV + Parquet** → [Buy on Stripe](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g) · **INCIDB Korea (Complete + South Korea MFDS overlay): $149 one-time** → [Buy on Stripe](https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k)
+> **Free sample:** [`samples/incidb_free_samples.zip`](samples/incidb_free_samples.zip) (200 products, 1,123 ingredients) · **INCIDB Complete: $79 one-time, CSV + Parquet** → [Buy on Stripe](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_en_github) · **INCIDB Korea (Complete + South Korea MFDS overlay): $149 one-time** → [Buy on Stripe](https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k?client_reference_id=incidb_en_github)
 > **Same sample on [Hugging Face](https://huggingface.co/datasets/Ichlibitiche/incidb-skincare-free-sample)** · **[Kaggle](https://www.kaggle.com/datasets/dataengineered/incidb-skincare-and-cosmetics-inci-formulations)**
 
 **For ML/NLP teams training ingredient-normalisation models and compliance
@@ -185,8 +185,8 @@ South Korea MFDS overlay, delivered as two archives from the same edition.
 | Delivery | Stripe checkout, instant download | Stripe checkout, instant download of both archives |
 | Updates | One-time snapshot (2026.09) | One-time snapshot of the same edition |
 
-👉 [Buy INCIDB Complete](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g) ·
-[Buy INCIDB Korea](https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k) ·
+👉 [Buy INCIDB Complete](https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_en_github) ·
+[Buy INCIDB Korea](https://buy.stripe.com/eVq6oIg7K1IG4bxeqQ3840k?client_reference_id=incidb_en_github) ·
 [pricing details](docs/pricing_plan.md)
 
 INCIDB Korea links are positive listings by exact CAS number. The notice gives its CAS numbers as examples, so an ingredient without a link has no status in this data, and many Annex 1 entries apply only as limited by a condition or exception written in the entry. Not legal advice.
