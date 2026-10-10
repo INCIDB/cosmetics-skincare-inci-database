@@ -1,4 +1,4 @@
-# INCIDB Data Dictionary — snapshot <!--claims:snapshot-->2026.09<!--/claims-->
+# INCIDB Data Dictionary — snapshot <!--claims:snapshot-->2026.10<!--/claims-->
 
 Seven tables, exported as pipe-delimited UTF-8 CSV (`|`) and Apache Parquet
 with identical columns. Every enrichment column is either populated from a
@@ -13,13 +13,13 @@ disagree.
 
 | Table | Rows |
 | :--- | ---: |
-| `products` | <!--claims:products-->20,029<!--/claims--> |
-| `brands` | <!--claims:brands-->6,453<!--/claims--> |
-| `ingredients` | <!--claims:ingredients-->45,584<!--/claims--> |
-| `product_ingredients` | <!--claims:links-->373,216<!--/claims--> |
-| `ingredient_name_map` | <!--claims:name_map_rows-->78,151<!--/claims--> |
-| `fragrance_allergens` | <!--claims:fragrance_allergens_rows-->274<!--/claims--> |
-| `regulatory_status` | <!--claims:regulatory_status_rows-->637<!--/claims--> |
+| `products` | <!--claims:products-->20,435<!--/claims--> |
+| `brands` | <!--claims:brands-->6,542<!--/claims--> |
+| `ingredients` | <!--claims:ingredients-->46,013<!--/claims--> |
+| `product_ingredients` | <!--claims:links-->382,797<!--/claims--> |
+| `ingredient_name_map` | <!--claims:name_map_rows-->79,047<!--/claims--> |
+| `fragrance_allergens` | <!--claims:fragrance_allergens_rows-->277<!--/claims--> |
+| `regulatory_status` | <!--claims:regulatory_status_rows-->641<!--/claims--> |
 
 ---
 
@@ -40,10 +40,10 @@ declaration.
 | Field | Type | Description | Example |
 | :--- | :--- | :--- | :--- |
 | `product_id` | `INTEGER` | Primary key | `68597` |
-| `brand_id` | `INTEGER` | FK → `brands.brand_id`. **`NULL` = no brand on the source label** — <!--claims:products_without_brand-->2,184<!--/claims--> products carry no brand in Open Beauty Facts, and are given NULL rather than being attached to a placeholder brand row | `55` |
+| `brand_id` | `INTEGER` | FK → `brands.brand_id`. **`NULL` = no brand on the source label** — <!--claims:products_without_brand-->2,192<!--/claims--> products carry no brand in Open Beauty Facts, and are given NULL rather than being attached to a placeholder brand row | `55` |
 | `barcode_ean` | `STRING` | GTIN / EAN barcode | `4006381333931` |
 | `name` | `STRING` | Product name as recorded upstream | `Good Genes Lactic Acid Treatment` |
-| `obf_categories_tags` | `STRING` | Open Beauty Facts' own `categories_tags` list for this product, joined with `;` and otherwise **verbatim** — not normalised, not translated, not collapsed into a taxonomy of ours. Present on <!--claims:obf_categories_filled-->13,489<!--/claims--> of <!--claims:products-->20,029<!--/claims--> products (<!--claims:obf_categories_pct-->67.3<!--/claims-->%); `NULL` where the source record carries no tags | `en:hygiene;en:soaps` |
+| `obf_categories_tags` | `STRING` | Open Beauty Facts' own `categories_tags` list for this product, joined with `;` and otherwise **verbatim** — not normalised, not translated, not collapsed into a taxonomy of ours. Present on <!--claims:obf_categories_filled-->13,647<!--/claims--> of <!--claims:products-->20,435<!--/claims--> products (<!--claims:obf_categories_pct-->66.8<!--/claims-->%); `NULL` where the source record carries no tags | `en:hygiene;en:soaps` |
 | `raw_ingredient_text` | `STRING` | The unparsed on-pack ingredient declaration, kept verbatim so you can re-derive the parse | `Water, Glycerin, ...` |
 | `created_at` | `STRING` | Ingestion timestamp (ISO 8601) | `2026-07-02T14:01:48Z` |
 
@@ -76,12 +76,12 @@ Commission CosIng inventory on an exact name match; they are `NULL` otherwise.
 
 ### Coverage of the CosIng columns — both views
 
-| Column | Share of the <!--claims:ingredients-->45,584<!--/claims--> distinct names | Share of the <!--claims:links-->373,216<!--/claims--> label occurrences |
+| Column | Share of the <!--claims:ingredients-->46,013<!--/claims--> distinct names | Share of the <!--claims:links-->382,797<!--/claims--> label occurrences |
 | :--- | ---: | ---: |
-| CosIng match (any) | <!--claims:cosing_matched_pct-->12.2<!--/claims-->% | <!--claims:cosing_link_weighted_pct-->85.2<!--/claims-->% |
-| `functions` | <!--claims:functions_pct-->12.0<!--/claims-->% | <!--claims:functions_link_weighted_pct-->84.2<!--/claims-->% |
-| `cas_number` | <!--claims:cas_pct-->9.0<!--/claims-->% | <!--claims:cas_link_weighted_pct-->78.7<!--/claims-->% |
-| `chemical_description` | <!--claims:chemical_description_pct-->9.5<!--/claims-->% (<!--claims:chemical_description_distinct-->4,281<!--/claims--> distinct values) | — |
+| CosIng match (any) | <!--claims:cosing_matched_pct-->12.2<!--/claims-->% | <!--claims:cosing_link_weighted_pct-->85.4<!--/claims-->% |
+| `functions` | <!--claims:functions_pct-->12.0<!--/claims-->% | <!--claims:functions_link_weighted_pct-->84.3<!--/claims-->% |
+| `cas_number` | <!--claims:cas_pct-->9.0<!--/claims-->% | <!--claims:cas_link_weighted_pct-->78.8<!--/claims-->% |
+| `chemical_description` | <!--claims:chemical_description_pct-->9.5<!--/claims-->% (<!--claims:chemical_description_distinct-->4,322<!--/claims--> distinct values) | — |
 
 The left column counts distinct names; the right counts ingredient
 occurrences across product labels. They differ by an order of magnitude
@@ -154,7 +154,7 @@ Regulation (EC) 1223/2009, as amended by Regulation (EU) 2023/1545
 then by the collective label name the Regulation prescribes (e.g. "Rose
 Ketones"), then by CAS number for chemically defined substances only.
 Botanical CAS hits are shipped as review rows, never flags. <!--claims:allergen_flagged-->120<!--/claims--> names are
-flagged; <!--claims:allergen_products_pct-->47.3<!--/claims-->% of products contain at least one. About <!--claims:unsplit_allergen_products_pct-->2.4<!--/claims-->% of products list
+flagged; <!--claims:allergen_products_pct-->47.3<!--/claims-->% of products contain at least one. About <!--claims:unsplit_allergen_products_pct-->2.3<!--/claims-->% of products list
 ingredients as unsplit text that the allergen flags do not reach. The US FDA
 has not yet published its MoCRA fragrance-allergen list, so this dataset
 carries no US flag.
@@ -181,7 +181,7 @@ This is a **rule-derived heuristic, not a measured property.** No
 per-ingredient *Malassezia* assay exists to transcribe. The rule flags
 C11–C24 fatty acids and their esters, and polysorbates 20/40/60/80, and it is
 applied only to CosIng-matched ingredients (so the chemical identity behind
-the flag is a known one). **<!--claims:fungal_flagged-->276<!--/claims-->** ingredients are flagged. The basis is the
+the flag is a known one). **<!--claims:fungal_flagged-->277<!--/claims-->** ingredients are flagged. The basis is the
 lipid dependence of *Malassezia* — Saunte et al., *Front Cell Infect
 Microbiol* 2020;10:112 (DOI 10.3389/fcimb.2020.00112) — with the chain-length
 window taken from Liebregts et al., *FEMS Yeast Res* 2025;25:foaf043 (DOI
@@ -296,7 +296,7 @@ name, and tagged `source = COSING_ANNEX_III` so you can filter them out.
 **The unsplit caveat.** Some products carry part of their ingredient list as
 one unsplit text string that never resolved into individual names; an
 allergen inside such a string is not flagged. `unsplit`, as used in the
-<!--claims:unsplit_allergen_products_pct-->2.4<!--/claims-->% figure above, is defined as:
+<!--claims:unsplit_allergen_products_pct-->2.3<!--/claims-->% figure above, is defined as:
 
 > share of products linked to an ingredient row with cosing_matched = 0 whose name is longer than 60 characters or has >= 2 commas or >= 2 ' - ' separators, and contains a flagged allergen name or label name at word boundaries; an estimate used only for the coverage caveat, never a flag
 
