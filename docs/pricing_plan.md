@@ -2,16 +2,16 @@
 
 Two products: INCIDB Complete, and INCIDB Korea (INCIDB Complete plus the
 South Korea MFDS overlay, delivered as two archives from the same edition).
-Snapshot 2026.09.
+Snapshot 2026.10.
 
 | | Free sample | **INCIDB Complete** | **INCIDB Korea** |
 | :--- | :--- | :--- | :--- |
 | **Price** | `$0` | **`$79`** one-time | **`$149`** one-time |
-| **Products** | 200 (seeded random draw) | 20,029 | as Complete |
-| **Brands** | the 200 products' brands | 6,453 | as Complete |
-| **Distinct canonical INCI names** | 1,123 | 45,584 | as Complete |
-| **Composition links** | the 200 products' links | 373,216 | as Complete |
-| **`ingredient_name_map` rows** | the rows for the sampled products' own label tokens | 78,151 | as Complete |
+| **Products** | 200 (seeded random draw) | 20,435 | as Complete |
+| **Brands** | the 200 products' brands | 6,542 | as Complete |
+| **Distinct canonical INCI names** | 1,123 | 46,013 | as Complete |
+| **Composition links** | the 200 products' links | 382,797 | as Complete |
+| **`ingredient_name_map` rows** | the rows for the sampled products' own label tokens | 79,047 | as Complete |
 | **Tables** | all 7 | all 7 | the 7, plus 3 Korea tables |
 | **Formats** | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet | CSV (`\|`) + Parquet |
 | **CosIng enrichment columns** | included | included | included |
@@ -77,7 +77,7 @@ restrictions):
   names that share its CAS number, where CosIng lists it. That is a
   cross-reference, not a translation of the Korean entry.
 * **Links by exact CAS.** 191 INCIDB ingredient names are linked by
-  exact CAS and hand-checked; 73.2% of products contain at least one.
+  exact CAS and hand-checked; 73.4% of products contain at least one.
   Nothing is fuzzy, and names are never used to match. Links on botanical
   entries, links a hand check found wrong, links whose CAS number several
   INCIDB names share, and links not yet hand-checked stay outside those
@@ -104,16 +104,16 @@ limit, a hair-dye exception). Not legal advice.
 Coverage is reported two ways because the two differ by an order of
 magnitude, and quoting only one of them would be a lie by omission.
 
-| Column | Share of the 45,584 distinct names | Share of the 373,216 label occurrences |
+| Column | Share of the 46,013 distinct names | Share of the 382,797 label occurrences |
 | :--- | ---: | ---: |
-| CosIng match (any) | 12.2% | 85.2% |
-| `functions` | 12.0% | 84.2% |
-| `cas_number` | 9.0% | 78.7% |
-| `chemical_description` | 9.5% (4,281 distinct values) | — |
+| CosIng match (any) | 12.2% | 85.4% |
+| `functions` | 12.0% | 84.3% |
+| `cas_number` | 9.0% | 78.8% |
+| `chemical_description` | 9.5% (4,322 distinct values) | — |
 
 A cosmetic label corpus contains far more distinct strings than a regulatory
 inventory lists — botanical variants, multilingual spellings, marketing
-names, one-off blends. Those make up the long tail of the 45,584 names and
+names, one-off blends. Those make up the long tail of the 46,013 names and
 are mostly unmatched. The ingredients that actually fill label slots are
 overwhelmingly the ones CosIng covers, which is why the right-hand column is
 high. Pick the column that matches your use case.
@@ -122,7 +122,7 @@ Flags and ratings are deliberately small:
 
 * `is_common_allergen` — EU fragrance-allergen overlay (Reg. (EU) 2023/1545):
   **120** names flagged by exact INCI name, label name or CAS for defined
-  substances; 47.3% of products carry at least one (about 2.4% of products
+  substances; 47.3% of products carry at least one (about 2.3% of products
   list ingredients as unsplit text that the allergen flags do not reach). The
   per-entry evidence ships in `fragrance_allergens`. The US FDA has not yet published its MoCRA
   fragrance-allergen list, so there is no US flag in this dataset.
@@ -132,7 +132,7 @@ Flags and ratings are deliberately small:
 * `comedogenic_rating` — **142** ingredients rated 0–5, transcribed from
   Fulton JE Jr., J Soc Cosmet Chem 1989;40:321–333 (Table I). `NULL`
   everywhere the paper does not reach.
-* `is_fungal_acne_trigger` — **276** flags from an explicit rule (C11–C24
+* `is_fungal_acne_trigger` — **277** flags from an explicit rule (C11–C24
   fatty acids and their esters, polysorbates 20/40/60/80, applied only to
   CosIng-matched ingredients). A heuristic, not a measured property. Basis:
   DOI 10.3389/fcimb.2020.00112 and DOI 10.1093/femsyr/foaf043.
