@@ -108,7 +108,7 @@
 </header>
 <div class="container">
 <div class="doc-header">
-<div class="section-eyebrow">Diccionario de datos · snapshot 2026.09</div>
+<div class="section-eyebrow">Diccionario de datos · snapshot 2026.10</div>
 <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Especificación del esquema relacional</h1>
 <p style="color: var(--text-secondary); max-width: 760px; margin-top: 1rem;">
                 Siete tablas, exportadas como CSV UTF-8 delimitado por barras verticales y Apache Parquet, con columnas idénticas. Cada columna de enriquecimiento se completa a partir de una fuente pública identificada con una unión documentada, o es <code>NULL</code>. No hay valores predeterminados ni filas de relleno.
@@ -117,13 +117,13 @@
 <table>
 <thead><tr><th>Tabla</th><th>Filas</th></tr></thead>
 <tbody>
-<tr><td><code>products</code></td><td>20.029</td></tr>
-<tr><td><code>brands</code></td><td>6.453</td></tr>
-<tr><td><code>ingredients</code></td><td>45.584</td></tr>
-<tr><td><code>product_ingredients</code></td><td>373.216</td></tr>
-<tr><td><code>ingredient_name_map</code></td><td>78.151</td></tr>
-<tr><td><code>fragrance_allergens</code></td><td>274</td></tr>
-<tr><td><code>regulatory_status</code></td><td>637</td></tr>
+<tr><td><code>products</code></td><td>20.435</td></tr>
+<tr><td><code>brands</code></td><td>6.542</td></tr>
+<tr><td><code>ingredients</code></td><td>46.013</td></tr>
+<tr><td><code>product_ingredients</code></td><td>382.797</td></tr>
+<tr><td><code>ingredient_name_map</code></td><td>79.047</td></tr>
+<tr><td><code>fragrance_allergens</code></td><td>277</td></tr>
+<tr><td><code>regulatory_status</code></td><td>641</td></tr>
 </tbody>
 </table>
 </div>
@@ -131,7 +131,7 @@
 <!-- Brands -->
 <div class="doc-section">
 <h2>1. brands</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">6.453 identidades de marca tal como constan en Open Beauty Facts.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">6.542 identidades de marca tal como constan en Open Beauty Facts.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -147,7 +147,7 @@
 <!-- Products -->
 <div class="doc-section">
 <h2>2. products</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">20.029 productos, una fila cada uno, todos con una lista de ingredientes utilizable en el envase.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">20.435 productos, una fila cada uno, todos con una lista de ingredientes utilizable en el envase.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -158,7 +158,7 @@
 <tr><td><code>brand_id</code></td><td><code class="type-tag">INTEGER</code></td><td>FK → <code>brands.brand_id</code>. <strong>NULL</strong> cuando la etiqueta de origen no registra marca</td><td><code>55</code></td></tr>
 <tr><td><code>barcode_ean</code></td><td><code class="type-tag">STRING</code></td><td>Código de barras GTIN / EAN</td><td><code>4006381333931</code></td></tr>
 <tr><td><code>name</code></td><td><code class="type-tag">STRING</code></td><td>Nombre del producto tal como consta en la fuente</td><td><code>Good Genes Lactic Acid Treatment</code></td></tr>
-<tr><td><code>obf_categories_tags</code></td><td><code class="type-tag">STRING</code></td><td>La lista de etiquetas propia de Open Beauty Facts, unida con <code>;</code>, literal; presente en 13.489 de 20.029 productos (67,3%), NULL cuando la fuente no tiene ninguna</td><td><code>en:hygiene;en:soaps</code></td></tr>
+<tr><td><code>obf_categories_tags</code></td><td><code class="type-tag">STRING</code></td><td>La lista de etiquetas propia de Open Beauty Facts, unida con <code>;</code>, literal; presente en 13.647 de 20.435 productos (66,8%), NULL cuando la fuente no tiene ninguna</td><td><code>en:hygiene;en:soaps</code></td></tr>
 <tr><td><code>raw_ingredient_text</code></td><td><code class="type-tag">STRING</code></td><td>La declaración sin analizar, conservada literalmente para que el análisis pueda volver a derivarse</td><td><code>Water, Glycerin, ...</code></td></tr>
 <tr><td><code>created_at</code></td><td><code class="type-tag">STRING</code></td><td>Marca de tiempo de ingesta (ISO 8601)</td><td><code>2026-07-02T14:01:48Z</code></td></tr>
 </tbody>
@@ -168,7 +168,7 @@
 <!-- Ingredients -->
 <div class="doc-section">
 <h2>3. ingredients</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">Una fila por nombre INCI canónico distinto, 45.584 en total. Cada columna derivada de CosIng se completa solo cuando el nombre canónico coincide exactamente con un nombre del inventario CosIng de la Comisión Europea, y es <code>NULL</code> en caso contrario.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">Una fila por nombre INCI canónico distinto, 46.013 en total. Cada columna derivada de CosIng se completa solo cuando el nombre canónico coincide exactamente con un nombre del inventario CosIng de la Comisión Europea, y es <code>NULL</code> en caso contrario.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -198,13 +198,13 @@
 <div class="table-container">
 <table>
 <thead>
-<tr><th>Columna</th><th>Proporción de los 45.584 nombres distintos</th><th>Proporción de las 373.216 apariciones en etiquetas</th></tr>
+<tr><th>Columna</th><th>Proporción de los 46.013 nombres distintos</th><th>Proporción de las 382.797 apariciones en etiquetas</th></tr>
 </thead>
 <tbody>
-<tr><td>Coincidencia CosIng (cualquiera)</td><td>12,2%</td><td>85,2%</td></tr>
-<tr><td><code>functions</code></td><td>12,0%</td><td>84,2%</td></tr>
-<tr><td><code>cas_number</code></td><td>9,0%</td><td>78,7%</td></tr>
-<tr><td><code>chemical_description</code></td><td>9,5% · 4.281 valores distintos</td><td>—</td></tr>
+<tr><td>Coincidencia CosIng (cualquiera)</td><td>12,2%</td><td>85,4%</td></tr>
+<tr><td><code>functions</code></td><td>12,0%</td><td>84,3%</td></tr>
+<tr><td><code>cas_number</code></td><td>9,0%</td><td>78,8%</td></tr>
+<tr><td><code>chemical_description</code></td><td>9,5% · 4.322 valores distintos</td><td>—</td></tr>
 </tbody>
 </table>
 </div>
@@ -218,13 +218,13 @@
 <strong>Método: índices comedogénicos.</strong> 142 ingredientes tienen una calificación en la escala 0–5, transcrita de la Tabla I (págs. 324–326) de Fulton JE Jr., <em>Comedogenicity and irritancy of commonly used ingredients in skin care products</em>, J Soc Cosmet Chem 1989;40:321–333. Cuando el artículo indica un rango en lugar de una calificación única, el índice se deja <code>NULL</code>. La ausencia de calificación significa "no cubierto por la fuente citada", nunca "seguro".
             </div>
 <div class="note">
-<strong>Método: indicador de acné fúngico.</strong> Una heurística derivada de reglas, no una propiedad medida: no existe ningún ensayo de <em>Malassezia</em> por ingrediente que transcribir. La regla marca los ácidos grasos C11–C24 y sus ésteres, y los polisorbatos 20/40/60/80, aplicada solo a ingredientes con coincidencia en CosIng, con 276 indicadores. Base: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), con la ventana de longitud de cadena de Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). No se marcan aceites, mantecas ni ceras concretos: la bibliografía no respalda conclusiones a nivel de ingrediente sobre ellos.
+<strong>Método: indicador de acné fúngico.</strong> Una heurística derivada de reglas, no una propiedad medida: no existe ningún ensayo de <em>Malassezia</em> por ingrediente que transcribir. La regla marca los ácidos grasos C11–C24 y sus ésteres, y los polisorbatos 20/40/60/80, aplicada solo a ingredientes con coincidencia en CosIng, con 277 indicadores. Base: Saunte et al., <em>Front Cell Infect Microbiol</em> 2020 (DOI 10.3389/fcimb.2020.00112), con la ventana de longitud de cadena de Liebregts et al., <em>FEMS Yeast Res</em> 2025 (DOI 10.1093/femsyr/foaf043). No se marcan aceites, mantecas ni ceras concretos: la bibliografía no respalda conclusiones a nivel de ingrediente sobre ellos.
             </div>
 </div>
 <!-- Product Ingredients -->
 <div class="doc-section">
 <h2>4. product_ingredients</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">373.216 enlaces de composición ordenados, que conservan el orden en que se declaran los ingredientes en la etiqueta.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">382.797 enlaces de composición ordenados, que conservan el orden en que se declaran los ingredientes en la etiqueta.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -242,7 +242,7 @@
 <!-- Name map -->
 <div class="doc-section">
 <h2>5. ingredient_name_map</h2>
-<p style="color: var(--text-secondary); margin-top: 0.5rem;">78.151 filas: la evidencia de la canonicalización, entregada con los datos para que cada decisión del pipeline pueda auditarse o corregirse.</p>
+<p style="color: var(--text-secondary); margin-top: 0.5rem;">79.047 filas: la evidencia de la canonicalización, entregada con los datos para que cada decisión del pipeline pueda auditarse o corregirse.</p>
 <div class="table-container">
 <table>
 <thead>
@@ -362,7 +362,7 @@
 <!-- Footer -->
 <footer>
 <div class="container">
-<p>INCIDB · snapshot 2026.09 · cifras generadas a partir del informe de compilación</p>
+<p>INCIDB · snapshot 2026.10 · cifras generadas a partir del informe de compilación</p>
 <p style="margin-top: 0.5rem;"><a href="/es/schema" style="color: var(--accent-blue); text-decoration: none;">Especificación del esquema</a> · <a href="/LICENSE" style="color: var(--accent-blue); text-decoration: none;">Términos de licencia</a> · <a href="/es/documentation" style="color: var(--accent-blue); text-decoration: none;">Documentación</a></p>
 <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">Datos de productos © colaboradores de Open Beauty Facts, bajo la Open Database License (ODbL) v1.0. El enriquecimiento de ingredientes contiene datos de la base de datos CosIng de la Comisión Europea, reutilizados con atribución. Lista de alérgenos de fragancia de la UE: Anexo III del Reglamento (CE) n.º 1223/2009, modificado por el Reglamento (UE) 2023/1545, EUR-Lex (© Unión Europea), reutilizada con atribución.</p>
 <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Parte del catálogo de DataEngineered →</a> · <a href="https://dataengineered.io/about">Acerca de</a> · <a href="https://dataengineered.io/terms">Términos</a> · <a href="https://dataengineered.io/privacy">Privacidad</a> · <a href="https://dataengineered.io/refund-policy">Política de reembolso</a></div>

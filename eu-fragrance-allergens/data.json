@@ -1,8 +1,8 @@
 {
  "dataset": "INCIDB",
  "page": "https://incidb.dataengineered.io/eu-fragrance-allergens/",
- "generated": "2026-09-30",
- "snapshot": "2026-09-30",
+ "generated": "2026-10-10",
+ "snapshot": "2026-10-10",
  "legal_source": {
   "text": "Annex III to Regulation (EC) No 1223/2009 as amended by Regulation (EU) 2023/1545",
   "consolidated_version": "18.05.2026",
@@ -11,10 +11,10 @@
  },
  "license": "Counts: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), attribute with a link to the page; product data (c) Open Beauty Facts contributors, ODbL v1.0",
  "totals": {
-  "products": 20029,
-  "products_declaring_any": 9470,
+  "products": 20435,
+  "products_declaring_any": 9670,
   "share_pct": 47.3,
-  "unsplit_text_products_pct": 2.4,
+  "unsplit_text_products_pct": 2.3,
   "entries": 81,
   "entries_on_labels": 76
  },
@@ -37,8 +37,8 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 5415,
-   "share_pct": 27.0
+   "products": 5491,
+   "share_pct": 26.9
   },
   {
    "ref": "84",
@@ -55,8 +55,8 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 5323,
-   "share_pct": 26.6
+   "products": 5421,
+   "share_pct": 26.5
   },
   {
    "ref": "45",
@@ -73,8 +73,8 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": true,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 3036,
-   "share_pct": 15.2
+   "products": 3095,
+   "share_pct": 15.1
   },
   {
    "ref": "86",
@@ -94,7 +94,7 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 2701,
+   "products": 2765,
    "share_pct": 13.5
   },
   {
@@ -112,8 +112,8 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 2377,
-   "share_pct": 11.9
+   "products": 2444,
+   "share_pct": 12.0
   },
   {
    "ref": "78",
@@ -130,8 +130,8 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 2364,
-   "share_pct": 11.8
+   "products": 2392,
+   "share_pct": 11.7
   },
   {
    "ref": "75",
@@ -148,7 +148,7 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 1659,
+   "products": 1704,
    "share_pct": 8.3
   },
   {
@@ -166,7 +166,7 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 1612,
+   "products": 1634,
    "share_pct": 8.0
   },
   {
@@ -188,8 +188,8 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 1458,
-   "share_pct": 7.3
+   "products": 1474,
+   "share_pct": 7.2
   },
   {
    "ref": "90",
@@ -206,8 +206,8 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 1257,
-   "share_pct": 6.3
+   "products": 1307,
+   "share_pct": 6.4
   },
   {
    "ref": "338",
@@ -227,8 +227,8 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 744,
-   "share_pct": 3.7
+   "products": 769,
+   "share_pct": 3.8
   },
   {
    "ref": "85",
@@ -245,7 +245,7 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 714,
+   "products": 727,
    "share_pct": 3.6
   },
   {
@@ -263,8 +263,8 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 712,
-   "share_pct": 3.6
+   "products": 722,
+   "share_pct": 3.5
   },
   {
    "ref": "72",
@@ -281,8 +281,29 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 668,
+   "products": 678,
    "share_pct": 3.3
+  },
+  {
+   "ref": "344",
+   "legal_names": [
+    "Tetramethyl acetyloctahydronaphthalenes"
+   ],
+   "label_as": null,
+   "cas": [
+    "54464-57-2",
+    "54464-59-4",
+    "68155-66-8",
+    "68155-67-9"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": "2026-07-31",
+   "making_available_until": "2028-07-31",
+   "conditional_transition": false,
+   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
+   "products": 438,
+   "share_pct": 2.1
   },
   {
    "ref": "351",
@@ -305,28 +326,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 398,
-   "share_pct": 2.0
-  },
-  {
-   "ref": "344",
-   "legal_names": [
-    "Tetramethyl acetyloctahydronaphthalenes"
-   ],
-   "label_as": null,
-   "cas": [
-    "54464-57-2",
-    "54464-59-4",
-    "68155-66-8",
-    "68155-67-9"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": "2026-07-31",
-   "making_available_until": "2028-07-31",
-   "conditional_transition": false,
-   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 391,
+   "products": 417,
    "share_pct": 2.0
   },
   {
@@ -344,8 +344,8 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 374,
-   "share_pct": 1.9
+   "products": 406,
+   "share_pct": 2.0
   },
   {
    "ref": "360",
@@ -376,7 +376,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 266,
+   "products": 274,
    "share_pct": 1.3
   },
   {
@@ -395,7 +395,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 258,
+   "products": 270,
    "share_pct": 1.3
   },
   {
@@ -413,7 +413,7 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 255,
+   "products": 256,
    "share_pct": 1.3
   },
   {
@@ -431,27 +431,8 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 224,
-   "share_pct": 1.1
-  },
-  {
-   "ref": "353",
-   "legal_names": [
-    "Citrus Limon Peel Oil"
-   ],
-   "label_as": null,
-   "cas": [
-    "8008-56-8",
-    "84929-31-7"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": "2026-07-31",
-   "making_available_until": "2028-07-31",
-   "conditional_transition": false,
-   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 216,
-   "share_pct": 1.1
+   "products": 245,
+   "share_pct": 1.2
   },
   {
    "ref": "371",
@@ -471,7 +452,26 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 211,
+   "products": 222,
+   "share_pct": 1.1
+  },
+  {
+   "ref": "353",
+   "legal_names": [
+    "Citrus Limon Peel Oil"
+   ],
+   "label_as": null,
+   "cas": [
+    "8008-56-8",
+    "84929-31-7"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": "2026-07-31",
+   "making_available_until": "2028-07-31",
+   "conditional_transition": false,
+   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
+   "products": 219,
    "share_pct": 1.1
   },
   {
@@ -492,7 +492,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 198,
+   "products": 210,
    "share_pct": 1.0
   },
   {
@@ -510,7 +510,7 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 182,
+   "products": 183,
    "share_pct": 0.9
   },
   {
@@ -530,7 +530,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 175,
+   "products": 180,
    "share_pct": 0.9
   },
   {
@@ -548,25 +548,7 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 164,
-   "share_pct": 0.8
-  },
-  {
-   "ref": "76",
-   "legal_names": [
-    "Cinnamal"
-   ],
-   "label_as": null,
-   "cas": [
-    "104-55-2"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": null,
-   "making_available_until": null,
-   "conditional_transition": false,
-   "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 160,
+   "products": 168,
    "share_pct": 0.8
   },
   {
@@ -584,7 +566,25 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 158,
+   "products": 165,
+   "share_pct": 0.8
+  },
+  {
+   "ref": "76",
+   "legal_names": [
+    "Cinnamal"
+   ],
+   "label_as": null,
+   "cas": [
+    "104-55-2"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": null,
+   "making_available_until": null,
+   "conditional_transition": false,
+   "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
+   "products": 162,
    "share_pct": 0.8
   },
   {
@@ -604,7 +604,26 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 143,
+   "products": 146,
+   "share_pct": 0.7
+  },
+  {
+   "ref": "329",
+   "legal_names": [
+    "Anethole"
+   ],
+   "label_as": null,
+   "cas": [
+    "104-46-1",
+    "4180-23-8"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": "2026-07-31",
+   "making_available_until": "2028-07-31",
+   "conditional_transition": false,
+   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
+   "products": 138,
    "share_pct": 0.7
   },
   {
@@ -622,7 +641,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 134,
+   "products": 137,
    "share_pct": 0.7
   },
   {
@@ -643,27 +662,8 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 129,
-   "share_pct": 0.6
-  },
-  {
-   "ref": "329",
-   "legal_names": [
-    "Anethole"
-   ],
-   "label_as": null,
-   "cas": [
-    "104-46-1",
-    "4180-23-8"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": "2026-07-31",
-   "making_available_until": "2028-07-31",
-   "conditional_transition": false,
-   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 126,
-   "share_pct": 0.6
+   "products": 134,
+   "share_pct": 0.7
   },
   {
    "ref": "365",
@@ -682,7 +682,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 119,
+   "products": 123,
    "share_pct": 0.6
   },
   {
@@ -700,7 +700,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 112,
+   "products": 121,
    "share_pct": 0.6
   },
   {
@@ -719,7 +719,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 112,
+   "products": 118,
    "share_pct": 0.6
   },
   {
@@ -732,6 +732,24 @@
     "2244-16-8",
     "6485-40-1",
     "99-49-0"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": "2026-07-31",
+   "making_available_until": "2028-07-31",
+   "conditional_transition": false,
+   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
+   "products": 116,
+   "share_pct": 0.6
+  },
+  {
+   "ref": "328",
+   "legal_names": [
+    "Amyl Salicylate"
+   ],
+   "label_as": null,
+   "cas": [
+    "2050-08-0"
    ],
    "leave_on_pct": 0.001,
    "rinse_off_pct": 0.01,
@@ -760,43 +778,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 101,
-   "share_pct": 0.5
-  },
-  {
-   "ref": "328",
-   "legal_names": [
-    "Amyl Salicylate"
-   ],
-   "label_as": null,
-   "cas": [
-    "2050-08-0"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": "2026-07-31",
-   "making_available_until": "2028-07-31",
-   "conditional_transition": false,
-   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 95,
-   "share_pct": 0.5
-  },
-  {
-   "ref": "332",
-   "legal_names": [
-    "Beta-Caryophyllene"
-   ],
-   "label_as": null,
-   "cas": [
-    "87-44-5"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": "2026-07-31",
-   "making_available_until": "2028-07-31",
-   "conditional_transition": false,
-   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 92,
+   "products": 105,
    "share_pct": 0.5
   },
   {
@@ -814,8 +796,26 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 86,
-   "share_pct": 0.4
+   "products": 96,
+   "share_pct": 0.5
+  },
+  {
+   "ref": "332",
+   "legal_names": [
+    "Beta-Caryophyllene"
+   ],
+   "label_as": null,
+   "cas": [
+    "87-44-5"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": "2026-07-31",
+   "making_available_until": "2028-07-31",
+   "conditional_transition": false,
+   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
+   "products": 94,
+   "share_pct": 0.5
   },
   {
    "ref": "366",
@@ -851,24 +851,6 @@
    "share_pct": 0.4
   },
   {
-   "ref": "324",
-   "legal_names": [
-    "Methyl Salicylate"
-   ],
-   "label_as": null,
-   "cas": [
-    "119-36-8"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": "2026-07-31",
-   "making_available_until": "2028-07-31",
-   "conditional_transition": true,
-   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 69,
-   "share_pct": 0.3
-  },
-  {
    "ref": "80",
    "legal_names": [
     "Anise alcohol"
@@ -883,25 +865,25 @@
    "making_available_until": null,
    "conditional_transition": false,
    "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 67,
+   "products": 70,
    "share_pct": 0.3
   },
   {
-   "ref": "81",
+   "ref": "324",
    "legal_names": [
-    "Benzyl cinnamate"
+    "Methyl Salicylate"
    ],
    "label_as": null,
    "cas": [
-    "103-41-3"
+    "119-36-8"
    ],
    "leave_on_pct": 0.001,
    "rinse_off_pct": 0.01,
-   "placing_on_market_until": null,
-   "making_available_until": null,
-   "conditional_transition": false,
-   "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 61,
+   "placing_on_market_until": "2026-07-31",
+   "making_available_until": "2028-07-31",
+   "conditional_transition": true,
+   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
+   "products": 70,
    "share_pct": 0.3
   },
   {
@@ -933,7 +915,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": true,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 60,
+   "products": 66,
    "share_pct": 0.3
   },
   {
@@ -953,7 +935,25 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 59,
+   "products": 63,
+   "share_pct": 0.3
+  },
+  {
+   "ref": "81",
+   "legal_names": [
+    "Benzyl cinnamate"
+   ],
+   "label_as": null,
+   "cas": [
+    "103-41-3"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": null,
+   "making_available_until": null,
+   "conditional_transition": false,
+   "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
+   "products": 61,
    "share_pct": 0.3
   },
   {
@@ -975,7 +975,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 55,
+   "products": 58,
    "share_pct": 0.3
   },
   {
@@ -999,7 +999,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": true,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 54,
+   "products": 57,
    "share_pct": 0.3
   },
   {
@@ -1022,8 +1022,26 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 54,
+   "products": 55,
    "share_pct": 0.3
+  },
+  {
+   "ref": "330",
+   "legal_names": [
+    "Benzaldehyde"
+   ],
+   "label_as": null,
+   "cas": [
+    "100-52-7"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": "2026-07-31",
+   "making_available_until": "2028-07-31",
+   "conditional_transition": false,
+   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
+   "products": 51,
+   "share_pct": 0.2
   },
   {
    "ref": "352",
@@ -1043,7 +1061,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 49,
+   "products": 50,
    "share_pct": 0.2
   },
   {
@@ -1070,24 +1088,6 @@
    "share_pct": 0.2
   },
   {
-   "ref": "330",
-   "legal_names": [
-    "Benzaldehyde"
-   ],
-   "label_as": null,
-   "cas": [
-    "100-52-7"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": "2026-07-31",
-   "making_available_until": "2028-07-31",
-   "conditional_transition": false,
-   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 47,
-   "share_pct": 0.2
-  },
-  {
    "ref": "133",
    "legal_names": [
     "Terpinolene"
@@ -1106,24 +1106,6 @@
    "share_pct": 0.2
   },
   {
-   "ref": "339",
-   "legal_names": [
-    "Trimethylcyclopentenyl Methylisopentenol"
-   ],
-   "label_as": null,
-   "cas": [
-    "67801-20-1"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": "2026-07-31",
-   "making_available_until": "2028-07-31",
-   "conditional_transition": false,
-   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 30,
-   "share_pct": 0.1
-  },
-  {
    "ref": "354",
    "legal_names": [
     "Cymbopogon Schoenanthus Oil",
@@ -1135,6 +1117,24 @@
     "8007-02-1",
     "89998-16-3",
     "91844-92-7"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": "2026-07-31",
+   "making_available_until": "2028-07-31",
+   "conditional_transition": false,
+   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
+   "products": 31,
+   "share_pct": 0.2
+  },
+  {
+   "ref": "339",
+   "legal_names": [
+    "Trimethylcyclopentenyl Methylisopentenol"
+   ],
+   "label_as": null,
+   "cas": [
+    "67801-20-1"
    ],
    "leave_on_pct": 0.001,
    "rinse_off_pct": 0.01,
@@ -1164,6 +1164,24 @@
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
    "products": 25,
+   "share_pct": 0.1
+  },
+  {
+   "ref": "91",
+   "legal_names": [
+    "Evernia prunastri extract"
+   ],
+   "label_as": null,
+   "cas": [
+    "90028-68-5"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": null,
+   "making_available_until": null,
+   "conditional_transition": false,
+   "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
+   "products": 20,
    "share_pct": 0.1
   },
   {
@@ -1204,24 +1222,6 @@
    "share_pct": 0.1
   },
   {
-   "ref": "91",
-   "legal_names": [
-    "Evernia prunastri extract"
-   ],
-   "label_as": null,
-   "cas": [
-    "90028-68-5"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": null,
-   "making_available_until": null,
-   "conditional_transition": false,
-   "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 19,
-   "share_pct": 0.1
-  },
-  {
    "ref": "370",
    "legal_names": [
     "Isoeugenyl Acetate"
@@ -1236,7 +1236,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 19,
+   "products": 20,
    "share_pct": 0.1
   },
   {
@@ -1254,7 +1254,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 12,
+   "products": 13,
    "share_pct": 0.1
   },
   {
@@ -1273,8 +1273,26 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 12,
+   "products": 13,
    "share_pct": 0.1
+  },
+  {
+   "ref": "89",
+   "legal_names": [
+    "Methyl 2-Octynoate"
+   ],
+   "label_as": null,
+   "cas": [
+    "111-12-6"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": null,
+   "making_available_until": null,
+   "conditional_transition": false,
+   "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
+   "products": 10,
+   "share_pct": 0.0
   },
   {
    "ref": "124",
@@ -1297,24 +1315,6 @@
    "share_pct": 0.0
   },
   {
-   "ref": "89",
-   "legal_names": [
-    "Methyl 2-Octynoate"
-   ],
-   "label_as": null,
-   "cas": [
-    "111-12-6"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": null,
-   "making_available_until": null,
-   "conditional_transition": false,
-   "instrument": "Regulation (EC) No 1223/2009, Annex III (consolidated version 18.05.2026)",
-   "products": 9,
-   "share_pct": 0.0
-  },
-  {
    "ref": "335",
    "legal_names": [
     "Hexadecanolactone"
@@ -1329,7 +1329,7 @@
    "making_available_until": "2028-07-31",
    "conditional_transition": false,
    "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 8,
+   "products": 10,
    "share_pct": 0.0
   },
   {
@@ -1408,6 +1408,28 @@
    "share_pct": 0.0
   },
   {
+   "ref": "154",
+   "legal_names": [
+    "Myroxylon Balsamum Pereirae Balsam Extract",
+    "Myroxylon Balsamum Pereirae Balsam Oil",
+    "Myroxylon Pereirae Oil",
+    "Myroxylon Pereirae Resin Extract",
+    "Myroxylon Pereirae Resin"
+   ],
+   "label_as": "Myroxylon Pereirae Oil/ Extract",
+   "cas": [
+    "8007-00-9"
+   ],
+   "leave_on_pct": 0.001,
+   "rinse_off_pct": 0.01,
+   "placing_on_market_until": "2026-07-31",
+   "making_available_until": "2028-07-31",
+   "conditional_transition": true,
+   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
+   "products": 3,
+   "share_pct": 0.0
+  },
+  {
    "ref": "341",
    "legal_names": [
     "Santalol"
@@ -1457,28 +1479,6 @@
    "label_as": "Pinus Pumila",
    "cas": [
     "97676-05-6"
-   ],
-   "leave_on_pct": 0.001,
-   "rinse_off_pct": 0.01,
-   "placing_on_market_until": "2026-07-31",
-   "making_available_until": "2028-07-31",
-   "conditional_transition": true,
-   "instrument": "Commission Regulation (EU) 2023/1545 (OJ L 188, 27.7.2023, p. 1), corrected by OJ L 2025/90876",
-   "products": 2,
-   "share_pct": 0.0
-  },
-  {
-   "ref": "154",
-   "legal_names": [
-    "Myroxylon Balsamum Pereirae Balsam Extract",
-    "Myroxylon Balsamum Pereirae Balsam Oil",
-    "Myroxylon Pereirae Oil",
-    "Myroxylon Pereirae Resin Extract",
-    "Myroxylon Pereirae Resin"
-   ],
-   "label_as": "Myroxylon Pereirae Oil/ Extract",
-   "cas": [
-    "8007-00-9"
    ],
    "leave_on_pct": 0.001,
    "rinse_off_pct": 0.01,

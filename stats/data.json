@@ -1,245 +1,245 @@
 {
  "dataset": "INCIDB",
  "page": "https://incidb.dataengineered.io/stats/",
- "generated": "2026-09-30",
- "snapshot": "2026-09-30",
+ "generated": "2026-10-10",
+ "snapshot": "2026-10-10",
  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) - attribute with a link to the page; product data (c) Open Beauty Facts contributors, ODbL v1.0; contains data from the European Commission CosIng database",
  "totals": {
-  "products": 20029,
-  "brands": 6439,
-  "ingredient_names": 45584,
-  "links": 373216,
-  "categorised": 13489
+  "products": 20435,
+  "brands": 6527,
+  "ingredient_names": 46013,
+  "links": 382797,
+  "categorised": 13647
  },
  "top_ingredients": [
   {
    "inci_name": "Aqua / Water",
-   "products": 14382,
-   "share_pct": 71.8
+   "products": 14727,
+   "share_pct": 72.1
   },
   {
    "inci_name": "PARFUM",
-   "products": 10283,
-   "share_pct": 51.3
+   "products": 10498,
+   "share_pct": 51.4
   },
   {
    "inci_name": "GLYCERIN",
-   "products": 9754,
-   "share_pct": 48.7
+   "products": 10009,
+   "share_pct": 49.0
   },
   {
    "inci_name": "CITRIC ACID",
-   "products": 6893,
-   "share_pct": 34.4
+   "products": 7067,
+   "share_pct": 34.6
   },
   {
    "inci_name": "SODIUM BENZOATE",
-   "products": 5454,
-   "share_pct": 27.2
+   "products": 5581,
+   "share_pct": 27.3
   },
   {
    "inci_name": "LIMONENE",
-   "products": 5415,
-   "share_pct": 27.0
+   "products": 5491,
+   "share_pct": 26.9
   },
   {
    "inci_name": "LINALOOL",
-   "products": 5323,
-   "share_pct": 26.6
+   "products": 5421,
+   "share_pct": 26.5
   },
   {
    "inci_name": "SODIUM CHLORIDE",
-   "products": 4692,
+   "products": 4781,
    "share_pct": 23.4
   },
   {
    "inci_name": "PHENOXYETHANOL",
-   "products": 4311,
-   "share_pct": 21.5
+   "products": 4458,
+   "share_pct": 21.8
   },
   {
    "inci_name": "SODIUM HYDROXIDE",
-   "products": 3787,
+   "products": 3867,
    "share_pct": 18.9
   },
   {
+   "inci_name": "TOCOPHEROL",
+   "products": 3628,
+   "share_pct": 17.8
+  },
+  {
    "inci_name": "COCAMIDOPROPYL BETAINE",
-   "products": 3529,
+   "products": 3600,
    "share_pct": 17.6
   },
   {
-   "inci_name": "TOCOPHEROL",
-   "products": 3480,
-   "share_pct": 17.4
-  },
-  {
    "inci_name": "BENZYL ALCOHOL",
-   "products": 3036,
-   "share_pct": 15.2
+   "products": 3095,
+   "share_pct": 15.1
   },
   {
    "inci_name": "SODIUM LAURETH SULFATE",
-   "products": 2859,
-   "share_pct": 14.3
+   "products": 2896,
+   "share_pct": 14.2
   },
   {
    "inci_name": "PROPYLENE GLYCOL",
-   "products": 2826,
+   "products": 2887,
+   "share_pct": 14.1
+  },
+  {
+   "inci_name": "XANTHAN GUM",
+   "products": 2877,
    "share_pct": 14.1
   },
   {
    "inci_name": "POTASSIUM SORBATE",
-   "products": 2787,
-   "share_pct": 13.9
-  },
-  {
-   "inci_name": "XANTHAN GUM",
-   "products": 2782,
-   "share_pct": 13.9
+   "products": 2857,
+   "share_pct": 14.0
   },
   {
    "inci_name": "CITRONELLOL",
-   "products": 2701,
+   "products": 2765,
    "share_pct": 13.5
   },
   {
    "inci_name": "DIMETHICONE",
-   "products": 2524,
-   "share_pct": 12.6
+   "products": 2621,
+   "share_pct": 12.8
   },
   {
    "inci_name": "CETEARYL ALCOHOL",
-   "products": 2517,
+   "products": 2577,
    "share_pct": 12.6
   }
  ],
  "ingredient_groups": [
   {
    "group": "Fragrance (Parfum / Fragrance / Aroma)",
-   "products": 11463,
+   "products": 11692,
    "share_pct": 57.2
   },
   {
    "group": "EU-listed fragrance allergens",
-   "products": 9470,
+   "products": 9670,
    "share_pct": 47.3
   },
   {
+   "group": "Phenoxyethanol",
+   "products": 4458,
+   "share_pct": 21.8
+  },
+  {
    "group": "PEG compounds",
-   "products": 4318,
+   "products": 4421,
    "share_pct": 21.6
   },
   {
-   "group": "Phenoxyethanol",
-   "products": 4311,
-   "share_pct": 21.5
+   "group": "Silicones",
+   "products": 4048,
+   "share_pct": 19.8
   },
   {
    "group": "Sulfate surfactants (SLS / SLES)",
-   "products": 3989,
-   "share_pct": 19.9
-  },
-  {
-   "group": "Silicones",
-   "products": 3932,
-   "share_pct": 19.6
+   "products": 4039,
+   "share_pct": 19.8
   },
   {
    "group": "Alcohol / Alcohol denat.",
-   "products": 2423,
+   "products": 2468,
    "share_pct": 12.1
   },
   {
    "group": "Mineral oil / Petrolatum",
-   "products": 1264,
-   "share_pct": 6.3
+   "products": 1269,
+   "share_pct": 6.2
   },
   {
    "group": "Parabens",
-   "products": 1039,
-   "share_pct": 5.2
+   "products": 1041,
+   "share_pct": 5.1
   }
  ],
  "actives": [
   {
    "active": "Vitamin E (Tocopherol, Tocopheryl acetate)",
-   "products": 5221,
-   "share_pct": 26.1
+   "products": 5393,
+   "share_pct": 26.4
   },
   {
    "active": "Glycolic / Lactic acid (AHAs)",
-   "products": 1277,
+   "products": 1317,
    "share_pct": 6.4
   },
   {
    "active": "Hyaluronic acid / Sodium hyaluronate",
-   "products": 1228,
-   "share_pct": 6.1
+   "products": 1300,
+   "share_pct": 6.4
   },
   {
    "active": "Vitamin C and derivatives",
-   "products": 1200,
-   "share_pct": 6.0
+   "products": 1215,
+   "share_pct": 5.9
   },
   {
    "active": "Niacinamide",
-   "products": 858,
-   "share_pct": 4.3
+   "products": 907,
+   "share_pct": 4.4
   },
   {
    "active": "Salicylic acid",
-   "products": 723,
+   "products": 737,
    "share_pct": 3.6
   },
   {
    "active": "Ceramides",
-   "products": 260,
+   "products": 269,
    "share_pct": 1.3
   },
   {
    "active": "Retinoids (Retinol, Retinyl esters)",
-   "products": 229,
+   "products": 234,
    "share_pct": 1.1
   }
  ],
  "ingredient_count": {
   "median": 18,
-  "mean": 18.6,
+  "mean": 18.7,
   "max": 207,
   "buckets": [
    {
     "bucket": "1 to 5",
-    "products": 2415,
-    "share_pct": 12.1
+    "products": 2433,
+    "share_pct": 11.9
    },
    {
     "bucket": "6 to 10",
-    "products": 1967,
-    "share_pct": 9.8
+    "products": 1988,
+    "share_pct": 9.7
    },
    {
     "bucket": "11 to 15",
-    "products": 3692,
+    "products": 3754,
     "share_pct": 18.4
    },
    {
     "bucket": "16 to 20",
-    "products": 4261,
+    "products": 4352,
     "share_pct": 21.3
    },
    {
     "bucket": "21 to 30",
-    "products": 5269,
+    "products": 5377,
     "share_pct": 26.3
    },
    {
     "bucket": "31 to 50",
-    "products": 2132,
-    "share_pct": 10.6
+    "products": 2229,
+    "share_pct": 10.9
    },
    {
     "bucket": "51 or more",
-    "products": 292,
+    "products": 301,
     "share_pct": 1.5
    }
   ],
@@ -247,7 +247,7 @@
    {
     "label": "Facial creams",
     "tag": "en:facial-creams",
-    "products": 330,
+    "products": 331,
     "median": 27
    },
    {
@@ -257,63 +257,63 @@
     "median": 27
    },
    {
+    "label": "Makeup",
+    "tag": "en:makeup",
+    "products": 582,
+    "median": 25
+   },
+   {
     "label": "Hair conditioners",
     "tag": "en:hair-conditioners",
-    "products": 180,
+    "products": 183,
     "median": 24
    },
    {
     "label": "Shampoos",
     "tag": "en:shampoos",
-    "products": 1070,
-    "median": 23
-   },
-   {
-    "label": "Makeup",
-    "tag": "en:makeup",
-    "products": 537,
+    "products": 1079,
     "median": 23
    },
    {
     "label": "Body creams",
     "tag": "en:body-creams",
-    "products": 257,
+    "products": 259,
     "median": 22
    },
    {
     "label": "Hand creams",
     "tag": "en:hand-creams",
-    "products": 222,
-    "median": 21
+    "products": 223,
+    "median": 22
    },
    {
     "label": "Shower gels",
     "tag": "en:shower-gels",
-    "products": 576,
+    "products": 579,
     "median": 19
    },
    {
     "label": "Toothpastes",
     "tag": "en:toothpastes",
-    "products": 574,
+    "products": 578,
     "median": 16
    },
    {
     "label": "Soaps",
     "tag": "en:soaps",
-    "products": 643,
+    "products": 654,
     "median": 15
    },
    {
     "label": "Deodorants",
     "tag": "en:deodorants",
-    "products": 716,
+    "products": 722,
     "median": 15
    },
    {
     "label": "Perfumes",
     "tag": "en:perfumes",
-    "products": 206,
+    "products": 207,
     "median": 15
    },
    {
@@ -325,57 +325,57 @@
   ]
  },
  "first_ingredient": {
-  "denominator": 20028,
+  "denominator": 20434,
   "rows": [
    {
     "inci_name": "AQUA",
-    "products": 8556,
-    "share_pct": 42.7
+    "products": 8803,
+    "share_pct": 43.1
    },
    {
     "inci_name": "WATER",
-    "products": 1782,
+    "products": 1824,
     "share_pct": 8.9
    },
    {
     "inci_name": "ALCOHOL DENAT.",
-    "products": 522,
+    "products": 526,
     "share_pct": 2.6
    },
    {
     "inci_name": "BUTANE",
-    "products": 382,
+    "products": 387,
     "share_pct": 1.9
    },
    {
     "inci_name": "SODIUM PALMATE",
-    "products": 250,
+    "products": 254,
     "share_pct": 1.2
    },
    {
     "inci_name": "GLYCERIN",
-    "products": 155,
+    "products": 156,
     "share_pct": 0.8
    },
    {
     "inci_name": "SORBITOL",
-    "products": 149,
+    "products": 150,
     "share_pct": 0.7
    },
    {
     "inci_name": "ALCOHOL",
-    "products": 140,
+    "products": 141,
     "share_pct": 0.7
    },
    {
     "inci_name": "BUTYL ACETATE",
-    "products": 106,
+    "products": 107,
     "share_pct": 0.5
    },
    {
     "inci_name": "TALC",
     "products": 91,
-    "share_pct": 0.5
+    "share_pct": 0.4
    },
    {
     "inci_name": "CALCIUM CARBONATE",
@@ -390,182 +390,182 @@
   ]
  },
  "annex_iii": {
-  "products_with_any": 13816,
+  "products_with_any": 14094,
   "share_pct": 69.0,
-  "names_in_catalogue": 306,
+  "names_in_catalogue": 309,
   "top": [
    {
     "inci_name": "LIMONENE",
-    "products": 5415,
-    "share_pct": 27.0
+    "products": 5491,
+    "share_pct": 26.9
    },
    {
     "inci_name": "LINALOOL",
-    "products": 5323,
-    "share_pct": 26.6
+    "products": 5421,
+    "share_pct": 26.5
    },
    {
     "inci_name": "SODIUM HYDROXIDE",
-    "products": 3787,
+    "products": 3867,
     "share_pct": 18.9
    },
    {
     "inci_name": "BENZYL ALCOHOL",
-    "products": 3036,
-    "share_pct": 15.2
+    "products": 3095,
+    "share_pct": 15.1
    },
    {
     "inci_name": "CITRONELLOL",
-    "products": 2701,
+    "products": 2765,
     "share_pct": 13.5
    },
    {
     "inci_name": "HEXYL CINNAMAL",
-    "products": 2377,
-    "share_pct": 11.9
+    "products": 2444,
+    "share_pct": 12.0
    },
    {
     "inci_name": "GERANIOL",
-    "products": 2364,
-    "share_pct": 11.8
+    "products": 2392,
+    "share_pct": 11.7
    },
    {
     "inci_name": "BENZYL SALICYLATE",
-    "products": 1659,
+    "products": 1704,
     "share_pct": 8.3
    },
    {
     "inci_name": "COUMARIN",
-    "products": 1612,
+    "products": 1634,
     "share_pct": 8.0
    },
    {
     "inci_name": "CITRAL",
-    "products": 1457,
-    "share_pct": 7.3
+    "products": 1473,
+    "share_pct": 7.2
    }
   ]
  },
  "functions": {
-  "denominator_positions": 314138,
+  "denominator_positions": 322855,
   "rows": [
    {
     "function": "FRAGRANCE",
-    "positions": 86416,
-    "share_pct": 27.5
+    "positions": 88596,
+    "share_pct": 27.4
    },
    {
     "function": "SKIN CONDITIONING",
-    "positions": 75456,
-    "share_pct": 24.0
+    "positions": 78220,
+    "share_pct": 24.2
    },
    {
     "function": "VISCOSITY CONTROLLING",
-    "positions": 66571,
+    "positions": 68527,
     "share_pct": 21.2
    },
    {
     "function": "PERFUMING",
-    "positions": 65878,
-    "share_pct": 21.0
+    "positions": 67364,
+    "share_pct": 20.9
    },
    {
     "function": "SOLVENT",
-    "positions": 52942,
-    "share_pct": 16.9
+    "positions": 54325,
+    "share_pct": 16.8
    },
    {
     "function": "SKIN CONDITIONING - EMOLLIENT",
-    "positions": 40885,
-    "share_pct": 13.0
+    "positions": 42146,
+    "share_pct": 13.1
    },
    {
     "function": "SURFACTANT - CLEANSING",
-    "positions": 39493,
-    "share_pct": 12.6
+    "positions": 40443,
+    "share_pct": 12.5
    },
    {
     "function": "SURFACTANT - EMULSIFYING",
-    "positions": 37412,
+    "positions": 38311,
     "share_pct": 11.9
    },
    {
     "function": "HAIR CONDITIONING",
-    "positions": 36463,
-    "share_pct": 11.6
+    "positions": 37693,
+    "share_pct": 11.7
    },
    {
     "function": "HUMECTANT",
-    "positions": 26458,
-    "share_pct": 8.4
+    "positions": 27395,
+    "share_pct": 8.5
    },
    {
     "function": "PRESERVATIVE",
-    "positions": 24692,
-    "share_pct": 7.9
+    "positions": 25256,
+    "share_pct": 7.8
    },
    {
     "function": "ANTISTATIC",
-    "positions": 20944,
+    "positions": 21564,
     "share_pct": 6.7
    }
   ]
  },
  "coverage": {
-  "cosing_matched_names": 5555,
+  "cosing_matched_names": 5603,
   "cosing_matched_names_pct": 12.2,
-  "cosing_matched_positions": 317954,
-  "cosing_matched_positions_pct": 85.2,
-  "name_map_rows": 78151,
+  "cosing_matched_positions": 326770,
+  "cosing_matched_positions_pct": 85.4,
+  "name_map_rows": 79047,
   "methods": [
    {
     "method": "unresolved",
-    "rows": 34732,
+    "rows": 35066,
     "share_pct": 44.4
    },
    {
     "method": "split",
-    "rows": 12195,
+    "rows": 12364,
     "share_pct": 15.6
    },
    {
     "method": "exact",
-    "rows": 10240,
-    "share_pct": 13.1
+    "rows": 10431,
+    "share_pct": 13.2
    },
    {
     "method": "cleaned",
-    "rows": 7852,
+    "rows": 7899,
     "share_pct": 10.0
    },
    {
     "method": "unresolved_residual",
-    "rows": 7016,
+    "rows": 7097,
     "share_pct": 9.0
    },
    {
     "method": "paren_stripped",
-    "rows": 4441,
+    "rows": 4501,
     "share_pct": 5.7
    },
    {
     "method": "slash_variant",
-    "rows": 927,
+    "rows": 931,
     "share_pct": 1.2
    },
    {
     "method": "synonym_map",
-    "rows": 278,
+    "rows": 281,
     "share_pct": 0.4
    },
    {
     "method": "slash_same_cas",
-    "rows": 251,
+    "rows": 256,
     "share_pct": 0.3
    },
    {
     "method": "percent_stripped",
-    "rows": 173,
+    "rows": 175,
     "share_pct": 0.2
    },
    {
