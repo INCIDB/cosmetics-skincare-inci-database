@@ -1355,6 +1355,12 @@
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
  },
+ "57282d973b427bac": {
+  "src": "{0} products, {1} canonical INCI names, {2} ordered composition links, the {3}-row name map, and EU fragrance-allergen (Reg. (EU) {4}) and Annex II–VI status tables. CSV + Parquet. Optional South Korea MFDS overlay.",
+  "t": "{0} produtos, {1} nomes INCI canônicos, {2} vínculos de composição ordenados, o mapa de nomes com {3} linhas e tabelas de alérgenos de fragrância da UE (Reg. (UE) {4}) e de status pelos anexos II–VI. CSV + Parquet. Camada opcional do MFDS da Coreia do Sul.",
+  "by": "claude-opus-5.5",
+  "at": "2026-10-11"
+ },
  "572e9c8d0c6c7c3a": {
   "src": "INCI monographs whose recorded CosIng functions place them under Skin-Conditioning &amp; Emollient Agents.",
   "t": "Monografias INCI cujas funções registradas no CosIng as classificam como agentes condicionantes da pele e emolientes.",
@@ -2495,6 +2501,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "a4186e8b73ae7c4e": {
+  "src": "{0} products, {1} canonical INCI names, {2} composition links; CosIng on {3} of occurrences; EU fragrance-allergen and Annex II–VI tables. {4} with South Korea MFDS.",
+  "t": "{0} produtos, {1} nomes INCI canônicos, {2} vínculos de composição; CosIng em {3} das ocorrências; tabelas de alérgenos de fragrância da UE e dos anexos II–VI. {4} com o MFDS da Coreia do Sul.",
+  "by": "claude-opus-5.5",
+  "at": "2026-10-11"
+ },
  "a43b096f69573d4b": {
   "src": "The matched INCIDB ingredient; {0} when the legal name matched nothing",
   "t": "O ingrediente correspondente do INCIDB; {0} quando o nome legal não corresponde a nada",
@@ -2560,6 +2572,12 @@
   "t": "Dois nomes da CosIng unidos por barra que compartilham um número CAS ({0}): um único ingrediente, associado ao nome listado primeiro",
   "by": "claude-opus-5.5",
   "at": "2026-09-25"
+ },
+ "a979ea4f5ea9e7f4": {
+  "src": "The INCIDB {0} snapshot in two editions. INCIDB Complete: all seven tables (products, brands, ingredients, product_ingredients, ingredient_name_map, fragrance_allergens, regulatory_status) as pipe-delimited CSV and Apache Parquet, plus the build_report.json quality report, data dictionary and licence. {1}: INCIDB Complete plus the South Korea MFDS overlay (Annexes {2} and {3} of MFDS Notice {4} as three tables), two archives of the same edition. One-time purchase, instant download.",
+  "t": "O snapshot {0} do INCIDB em duas edições. INCIDB Complete: as sete tabelas (products, brands, ingredients, product_ingredients, ingredient_name_map, fragrance_allergens, regulatory_status) em CSV delimitado por barra vertical e Apache Parquet, além do relatório de qualidade build_report.json, do dicionário de dados e da licença. {1}: INCIDB Complete mais a camada do MFDS da Coreia do Sul (anexos {2} e {3} do Aviso MFDS {4}, em três tabelas), dois arquivos da mesma edição. Pagamento único, download imediato.",
+  "by": "claude-opus-5.5",
+  "at": "2026-10-11"
  },
  "a9e1c1a0b61a260a": {
   "src": "{0}. What is in the snapshot",
@@ -2945,6 +2963,12 @@
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
  },
+ "be46939fddecb06a": {
+  "src": "Relational schema for INCIDB's {0} Complete tables, from products and ingredients to fragrance_allergens and regulatory_status, plus the {1} {2} tables, with source and coverage per column.",
+  "t": "Esquema relacional das {0} tabelas do INCIDB Complete, de products e ingredients até fragrance_allergens e regulatory_status, mais as {1} tabelas do {2}, com fonte e cobertura por coluna.",
+  "by": "claude-opus-5.5",
+  "at": "2026-10-11"
+ },
  "bf214f983057a5cc": {
   "src": "Technical documentation for INCIDB: the five-table schema, CosIng join coverage, canonicalisation method, and quick-start PyArrow/DuckDB snippets.",
   "t": "Documentação técnica do INCIDB: esquema de cinco tabelas, cobertura da junção com o CosIng, método de canonicalização e exemplos de início rápido com PyArrow/DuckDB.",
@@ -3124,6 +3148,12 @@
   "t": "Quão comuns são os ativos famosos do skincare",
   "by": "claude-fable-5-1",
   "at": "2026-09-19"
+ },
+ "c5dc38c930d94f73": {
+  "src": "The INCIDB schema column by column: {0} Complete tables plus {1} {2} tables, with the source and measured coverage of every enrichment field.",
+  "t": "O esquema do INCIDB coluna por coluna: {0} tabelas do INCIDB Complete mais {1} tabelas do {2}, com a fonte e a cobertura medida de cada campo de enriquecimento.",
+  "by": "claude-opus-5.5",
+  "at": "2026-10-11"
  },
  "c605fa14d66f968a": {
   "src": "The page you're looking for doesn't exist or may have moved.",
@@ -3635,6 +3665,12 @@
   "by": "claude-opus-5",
   "at": "2026-09-16"
  },
+ "edc4e22a3cbade92": {
+  "src": "Seven tables in INCIDB Complete, plus three in {0} ({1}), exported as pipe-delimited {2} CSV and Apache Parquet with identical columns. Every enrichment column is either populated from a named public source with a documented join, or {3}. There are no default values and no placeholder rows.",
+  "t": "Sete tabelas no INCIDB Complete, mais três no {0} ({1}), exportadas em CSV delimitado por barra vertical {2} e em Apache Parquet, com colunas idênticas. Cada coluna de enriquecimento é preenchida a partir de uma fonte pública identificada, com uma junção documentada, ou é {3}. Não há valores padrão nem linhas de preenchimento.",
+  "by": "claude-opus-5.5",
+  "at": "2026-10-11"
+ },
  "ede301db7eb0e7ab": {
   "src": "Authored ratings",
   "t": "Classificações autorais",
@@ -3784,6 +3820,12 @@
   "t": "<0>{1} linhas de {2}</0> — as entradas de alergênicos de fragrância do Anexo III da UE, uma linha por nome legal e correspondência no INCIDB, incluindo linhas de revisão e nomes sem correspondência.",
   "by": "claude-opus-5.5",
   "at": "2026-09-24"
+ },
+ "f8d9c44ee993e34a": {
+  "src": "<0>{1} one-time</0> ({2} {3}) · CSV + Parquet · snapshot {4} — for ML/NLP teams building ingredient-normalisation models and compliance analysts running bulk Annex audits",
+  "t": "<0>{1} pagamento único</0> ({2} {3}) · CSV + Parquet · snapshot {4} — para equipes de ML/NLP que criam modelos de normalização de ingredientes e analistas de conformidade que fazem auditorias em massa dos Anexos",
+  "by": "claude-opus-5.5",
+  "at": "2026-10-11"
  },
  "f9e3729dc6404f21": {
   "src": "{0} is the largest bucket by distinct token and a small one by label occurrence — the same long-tail effect that produces the two coverage columns above.",

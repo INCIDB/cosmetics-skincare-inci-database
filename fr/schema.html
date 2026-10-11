@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Schéma de données INCIDB et dictionnaire relationnel</title>
-<meta content="Schéma relationnel des 7 tables d'INCIDB, de products et ingredients à fragrance_allergens et regulatory_status, avec source et couverture par colonne." name="description"/>
+<meta content="Schéma relationnel des 7 tables d'INCIDB Complete, de products et ingredients à fragrance_allergens et regulatory_status, plus les 3 tables d'INCIDB Korea, avec source et couverture par colonne." name="description"/>
 <link href="https://incidb.dataengineered.io/fr/schema" rel="canonical"/>
 <!-- i18n:alternates -->
 <link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/schema">
@@ -24,7 +24,7 @@
 <script src="/i18n/i18n.js?v=5" defer></script>
 <!-- /i18n:alternates -->
 <meta content="Schéma de données INCIDB et dictionnaire relationnel" property="og:title"/>
-<meta content="Le schéma INCIDB à 7 tables, colonne par colonne, avec la source et la couverture mesurée de chaque champ d’enrichissement." property="og:description"/>
+<meta content="Le schéma INCIDB colonne par colonne : 7 tables d'INCIDB Complete plus 3 tables d'INCIDB Korea, avec la source et la couverture mesurée de chaque champ d’enrichissement." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/fr/schema" property="og:url"/>
 <meta content="https://incidb.dataengineered.io/og-image.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -111,7 +111,7 @@
 <div class="section-eyebrow">Dictionnaire de données · snapshot 2026.10</div>
 <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Spécification du schéma relationnel</h1>
 <p style="color: var(--text-secondary); max-width: 760px; margin-top: 1rem;">
-                Sept tables, exportées en CSV UTF-8 délimité par des barres verticales et en Apache Parquet, avec des colonnes identiques. Chaque colonne d'enrichissement est soit renseignée à partir d'une source publique nommée via une jointure documentée, soit <code>NULL</code>. Il n'y a ni valeurs par défaut ni lignes fictives.
+                Sept tables dans INCIDB Complete, plus trois dans <span translate="no">INCIDB Korea</span> (§8), exportées en CSV UTF-8 délimité par des barres verticales et en Apache Parquet, avec des colonnes identiques. Chaque colonne d'enrichissement est soit renseignée à partir d'une source publique nommée via une jointure documentée, soit <code>NULL</code>. Il n'y a ni valeurs par défaut ni lignes fictives.
             </p>
 <div class="table-container" style="max-width: 520px;">
 <table>

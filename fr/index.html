@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="2VE0Ll5xPaIkGjSTkvTenDhcKRLJGPFgVqekvGOIw-4" name="google-site-verification"/>
 <title>INCIDB — Base de données INCI cosmétiques pour développeurs</title>
-<meta content="20 435 produits, 46 013 noms INCI canoniques, 382 797 liens de composition ; CosIng sur 85,4% des occurrences ; tables des allergènes de parfum de l’UE et des annexes II–VI. $79." name="description"/>
+<meta content="20 435 produits, 46 013 noms INCI canoniques, 382 797 liens de composition ; CosIng sur 85,4% des occurrences ; tables des allergènes de parfum de l’UE et des annexes II–VI. $79; $149 avec le MFDS de Corée du Sud." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://incidb.dataengineered.io/fr/" rel="canonical"/>
 <!-- i18n:alternates -->
@@ -28,7 +28,7 @@
 <link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
 <!-- OpenGraph Meta Tags -->
 <meta content="INCIDB — La base de données INCI cosmétiques et soins de la peau pour les développeurs" property="og:title"/>
-<meta content="20 435 produits, 46 013 noms INCI canoniques, 382 797 liens de composition ordonnés, la table de correspondance de 79 047 lignes, et des tables des allergènes de parfum de l’UE (règl. (UE) 2023/1545) et du statut au titre des annexes II–VI. CSV + Parquet." property="og:description"/>
+<meta content="20 435 produits, 46 013 noms INCI canoniques, 382 797 liens de composition ordonnés, la table de correspondance de 79 047 lignes, et des tables des allergènes de parfum de l’UE (règl. (UE) 2023/1545) et du statut au titre des annexes II–VI. CSV + Parquet. Surcouche MFDS de Corée du Sud en option." property="og:description"/>
 <meta content="https://incidb.dataengineered.io/fr/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="INCIDB — Base de données INCI cosmétiques et soins de la peau" property="og:site_name"/>
@@ -104,10 +104,10 @@
   {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": "INCIDB Complete",
-    "description": "Le snapshot INCIDB 2026.10 complet : les sept tables (products, brands, ingredients, product_ingredients, ingredient_name_map, fragrance_allergens, regulatory_status) en CSV délimité par des barres verticales et en Apache Parquet, plus le rapport qualité build_report.json, le dictionnaire de données et la licence. Paiement unique, téléchargement immédiat.",
+    "name": "INCIDB",
+    "description": "Le snapshot INCIDB 2026.10 en deux éditions. INCIDB Complete : les sept tables (products, brands, ingredients, product_ingredients, ingredient_name_map, fragrance_allergens, regulatory_status) en CSV délimité par des barres verticales et en Apache Parquet, plus le rapport qualité build_report.json, le dictionnaire de données et la licence. INCIDB Korea : INCIDB Complete plus la surcouche MFDS de Corée du Sud (annexes 1 et 2 de l’avis MFDS 2026-19, en trois tables), deux archives de la même édition. Paiement unique, téléchargement immédiat.",
     "image": "https://incidb.dataengineered.io/og-image.png",
-    "sku": "INCIDB-COMPLETE-2026-10",
+    "sku": "INCIDB-SNAPSHOT-2026-10",
     "brand": {
       "@type": "Brand",
       "name": "INCIDB"
@@ -433,7 +433,7 @@
 <a class="btn btn-primary" href="#pricing">Obtenir INCIDB Complete — $79 →</a>
 <a class="btn btn-secondary" download="" href="/samples/incidb_free_samples.zip">Télécharger l’échantillon gratuit</a>
 </div>
-<p class="hero-persona" style="font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5; color: var(--text-secondary); margin: 0.9rem 0 1.75rem; max-width: 60ch;"><strong style="color: var(--text-primary);">$79 en paiement unique</strong> · CSV + Parquet · snapshot 2026.10 — pour les équipes ML/NLP qui construisent des modèles de normalisation d’ingrédients et les analystes conformité qui mènent des audits d’annexes à grande échelle</p>
+<p class="hero-persona" style="font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5; color: var(--text-secondary); margin: 0.9rem 0 1.75rem; max-width: 60ch;"><strong style="color: var(--text-primary);">$79 en paiement unique</strong> (<span translate="no">INCIDB Korea</span> $149) · CSV + Parquet · snapshot 2026.10 — pour les équipes ML/NLP qui construisent des modèles de normalisation d’ingrédients et les analystes conformité qui mènent des audits d’annexes à grande échelle</p>
 <div class="metrics-grid">
 <div class="metric-card">
 <div class="metric-number">20 435</div>
