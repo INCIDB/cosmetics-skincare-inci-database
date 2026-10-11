@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INCIDB Data Schema & Relational Dictionary</title>
-    <meta name="description" content="Relational schema for INCIDB's 7 tables, from products and ingredients to fragrance_allergens and regulatory_status, with source and coverage per column.">
+    <meta name="description" content="Relational schema for INCIDB's 7 Complete tables, from products and ingredients to fragrance_allergens and regulatory_status, plus the 3 INCIDB Korea tables, with source and coverage per column.">
     <link rel="canonical" href="https://incidb.dataengineered.io/schema">
     <!-- i18n:alternates -->
     <link rel="alternate" hreflang="en" href="https://incidb.dataengineered.io/schema">
@@ -22,7 +22,7 @@
     <script src="/i18n/i18n.js?v=5" defer></script>
     <!-- /i18n:alternates -->
     <meta property="og:title" content="INCIDB Data Schema & Relational Dictionary">
-    <meta property="og:description" content="The 7-table INCIDB schema, column by column, with the source and measured coverage of every enrichment field.">
+    <meta property="og:description" content="The INCIDB schema column by column: 7 Complete tables plus 3 INCIDB Korea tables, with the source and measured coverage of every enrichment field.">
     <meta property="og:url" content="https://incidb.dataengineered.io/schema">
     <meta property="og:image" content="https://incidb.dataengineered.io/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -111,7 +111,7 @@
             <div class="section-eyebrow">Data Dictionary · snapshot 2026.10</div>
             <h1 class="hero-title" style="font-size: 2.5rem; margin-top: 0.5rem;">Relational Schema Specification</h1>
             <p style="color: var(--text-secondary); max-width: 760px; margin-top: 1rem;">
-                Seven tables, exported as pipe-delimited UTF-8 CSV and Apache Parquet with identical columns. Every enrichment column is either populated from a named public source with a documented join, or <code>NULL</code>. There are no default values and no placeholder rows.
+                Seven tables in INCIDB Complete, plus three in <span translate="no">INCIDB Korea</span> (§8), exported as pipe-delimited UTF-8 CSV and Apache Parquet with identical columns. Every enrichment column is either populated from a named public source with a documented join, or <code>NULL</code>. There are no default values and no placeholder rows.
             </p>
             <div class="table-container" style="max-width: 520px;">
                 <table>
