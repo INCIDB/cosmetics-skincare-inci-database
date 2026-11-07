@@ -33,9 +33,18 @@ const RETIRED = {
 // Repo-only files. Pages serves the whole repository root, so without this the
 // translation catalogs, the build scripts, their config, the README and dotfiles
 // would be downloadable from the site. They get the site's normal 404 instead
-// (they stay in the GitHub repository).
-const REPO_ONLY_PREFIXES = ["/locales/", "/scripts/"];
-const REPO_ONLY_FILES = new Set(["/i18n.config.json", "/readme.md", "/vercel.json", "/requirements.txt"]);
+// (they stay in the GitHub repository), as do the Kaggle upload files, examples,
+// notebooks, tests, the changelog, the GitHub community files and the i18n tool's
+// marker file in each language folder. Anything a page, llms.txt or a listing
+// links stays served.
+const REPO_ONLY_PREFIXES = ["/locales/", "/scripts/", "/kaggle/", "/examples/", "/notebooks/", "/tests/"];
+const REPO_ONLY_FILES = new Set([
+  "/i18n.config.json", "/readme.md", "/vercel.json", "/requirements.txt",
+  "/changelog.md", "/contributing.md", "/code_of_conduct.md", "/security.md", "/assets/readme.md",
+  "/es/_i18n-generated.txt", "/de/_i18n-generated.txt", "/fr/_i18n-generated.txt", "/pt-br/_i18n-generated.txt",
+  "/spec.md", "/docs/schema.sql",
+  "/assets/og-image.html", // the render source of og-image.png, not a page
+]);
 
 // Matched on the decoded, slash-collapsed, lower-cased path, because the asset
 // server also answers /locales%2Fes.json and //locales/es.json.
@@ -47,7 +56,8 @@ function isRepoOnly(pathname) {
     return true; // malformed escapes never name a real page
   }
   path = path.replace(/\/{2,}/g, "/").toLowerCase();
-  if (REPO_ONLY_FILES.has(path)) return true;
+  // Pages serves x.html at /x and redirects /x.html and /x/ there: an .html entry covers all three.
+  if (REPO_ONLY_FILES.has(path) || REPO_ONLY_FILES.has(`${path.replace(/\/$/, "")}.html`)) return true;
   if (REPO_ONLY_PREFIXES.some((prefix) => path.startsWith(prefix))) return true;
   // dotfiles and dot-segments (.gitignore, .github/, ..), but keep /.well-known/ usable
   return path.split("/").some((seg) => seg.startsWith(".") && seg !== ".well-known");
