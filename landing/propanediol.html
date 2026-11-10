@@ -127,7 +127,7 @@
 
             <p translate="no" lang="en" style="font-size: 1.05rem; color: #94A3B8; line-height: 1.7; margin-bottom: 1.75rem;">Propanediol is the organic compound that conforms to the formula</p>
 
-            <p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">PROPANEDIOL</strong> is listed in the European Commission CosIng inventory under the functional categories <span translate="no">Solvent, Viscosity Controlling</span>, with CAS number <span translate="no">504-63-2</span> and EC number <span translate="no">207-997-3</span>.</span> <span>CosIng also records it as <span translate="no">1,3-dihydroxypropane</span> (chemical name).</span> <span>In the free INCIDB sample it appears on 13 product labels, leading the declaration on <span translate="no">Every man jack deo</span>.</span></p>
+            <p style="font-size: 1rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1.75rem; padding-left: 1rem; border-left: 3px solid #06B6D4;"><span><strong translate="no">PROPANEDIOL</strong> is listed in the European Commission CosIng inventory under the functional categories <span translate="no">Solvent, Viscosity Controlling</span>, with CAS number <span translate="no">504-63-2</span> and EC number <span translate="no">207-997-3</span>.</span> <span>CosIng also records it as <span translate="no">1,3-dihydroxypropane</span> (chemical name).</span> <span>In the free INCIDB sample it appears on 13 product labels, leading the declaration on <span translate="no">Sandalwood Teak Deodorant</span>.</span></p>
 
             <div class="fact-grid">
                 <div>
@@ -196,7 +196,7 @@
             </tr>
             
             <tr style="border-bottom: 1px solid #232838;">
-                <td translate="no" style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;">Every man jack deo</td>
+                <td translate="no" style="padding: 0.75rem; color: #F8FAFC; font-weight: 500;">Sandalwood Teak Deodorant</td>
                 <td style="padding: 0.75rem; color: #38BDF8; font-family: 'JetBrains Mono', monospace;">#1</td>
             </tr>
             
@@ -217,7 +217,7 @@
 ingredients = pq.read_table('ingredients.parquet').to_pandas()
 target = ingredients[ingredients['inci_name'] == "PROPANEDIOL"]
 print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']])</code></pre>
-            <p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">The complete snapshot covers 20,435 products. Coverage of each enrichment column is published, both per distinct name and weighted by label occurrence — see the <a href="/#coverage" style="color: #38BDF8;">coverage table</a>.</p>
+            <p style="color: #94A3B8; font-size: 0.88rem; margin-bottom: 1.25rem;">The complete snapshot covers 21,997 products. Coverage of each enrichment column is published, both per distinct name and weighted by label occurrence — see the <a href="/#coverage" style="color: #38BDF8;">coverage table</a>.</p>
             <div style="text-align: right;">
                 <a href="https://buy.stripe.com/3cIfZi5t6fzwazV1E43840g?client_reference_id=incidb_en_landing" class="btn btn-primary" style="padding: 0.75rem 1.5rem; text-decoration: none;">Get INCIDB Complete — $79 →</a>
             </div>
@@ -228,7 +228,7 @@ print(target[['ingredient_id', 'functions', 'cas_number', 'is_common_allergen']]
 
     <footer style="background: #111318; border-top: 1px solid #232838; padding: 2rem 0; text-align: center; font-size: 0.85rem; color: #64748B; margin-top: auto;">
         <div class="container">
-            <p>INCIDB · snapshot 2026.10 · counts generated from the build report</p>
+            <p>INCIDB · snapshot 2026.11 · counts generated from the build report</p>
             <p style="margin-top: 0.5rem;"><a href="/schema" style="color: #38BDF8; text-decoration: none;">Schema Specification</a> · <a href="/LICENSE" style="color: #38BDF8; text-decoration: none;">License Terms</a> · <a href="/documentation" style="color: #38BDF8; text-decoration: none;">Documentation</a></p>
             <p style="margin-top: 0.5rem; font-size: 0.78rem;">Product data © Open Beauty Facts contributors (ODbL v1.0). Ingredient enrichment contains data from the European Commission CosIng database.</p>
             <div class="catalog-line" style="text-align:center; margin-top:14px; font-size:0.85rem; opacity:0.85;"><a href="https://dataengineered.io/">Part of the DataEngineered catalog →</a> · <a href="https://dataengineered.io/about">About</a> · <a href="https://dataengineered.io/terms">Terms</a> · <a href="https://dataengineered.io/privacy">Privacy</a> · <a href="https://dataengineered.io/refund-policy">Refund policy</a></div>
